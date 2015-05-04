@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PMNS.Business;
 namespace PMNS
 {
     public partial class Dang_nhap : Form
@@ -17,11 +18,10 @@ namespace PMNS
             InitializeComponent();
         }
 
-
         private void Dang_nhap_Load(object sender, EventArgs e)
         {
             this.ActiveControl = textBoxX1;
-        }   
+        }
         private void buttonX2_Click(object sender, EventArgs e)
         {
             Dang_nhap.ActiveForm.Close();
@@ -48,7 +48,7 @@ namespace PMNS
                 {
                     MessageBox.Show("Bạn đăng nhập sai tên hoặc mật khẩu", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
                 Connection.dongketnoi();
             }
         }

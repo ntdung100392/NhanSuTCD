@@ -12,3 +12,13 @@ C:\Users\nguyentan\documents\visual studio 2013\Projects\PMNS\PMNS\obj\Debug\PMN
 C:\Users\nguyentan\documents\visual studio 2013\Projects\PMNS\PMNS\obj\Debug\PMNS.Searchbutton.resources
 C:\Users\nguyentan\documents\visual studio 2013\Projects\PMNS\PMNS\obj\Debug\PMNS.ThongTin_TuyenDung.resources
 C:\Users\nguyentan\documents\visual studio 2013\Projects\PMNS\PMNS\obj\Debug\PMNS.csprojResolveAssemblyReference.cache
+D:\NhanSuTCD\Source Code\PMNS\PMNS\bin\Debug\PMNS.exe.config
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.csprojResolveAssemblyReference.cache
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.ChinhSuaThongTin.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.Dang_nhap.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.Menu.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.Properties.Resources.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.Searchbutton.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.ThemNV.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.ThongTin_TuyenDung.resources
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.csproj.GenerateResource.Cache
