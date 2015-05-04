@@ -22,3 +22,4 @@ D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.Searchbutton.resources
 D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.ThemNV.resources
 D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.ThongTin_TuyenDung.resources
 D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.csproj.GenerateResource.Cache
+D:\NhanSuTCD\Source Code\PMNS\PMNS\obj\Debug\PMNS.csprojFakesResolveAssemblyReference.cache
