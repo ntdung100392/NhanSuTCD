@@ -10,7 +10,7 @@ namespace PMNS
 {
     class Connection
     {
-        static public string ketnoi = "Data Source=BUM;Initial Catalog=WebNhanSu;Integrated Security=True";
+        static public string ketnoi = "TRUNGDUNG/TRUNGDUNG;Initial Catalog=WebNhanSu;Integrated Security=True";
         static public SqlConnection cnn = new SqlConnection(ketnoi);
         static public void moketnoi()
         {
