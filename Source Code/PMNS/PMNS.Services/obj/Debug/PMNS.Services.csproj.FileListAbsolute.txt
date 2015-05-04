@@ -10,3 +10,4 @@ D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\EntityFramework.SqlServer.
 D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.csprojResolveAssemblyReference.cache
 D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.dll
 D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.pdb
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\Microsoft.CSharp.dll
