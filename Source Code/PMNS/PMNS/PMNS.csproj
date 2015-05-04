@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\NguoiLaoDongBusiness.cs" />
     <Compile Include="ChinhSuaThongTin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,39 +64,6 @@
       <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
-    <Compile Include="C_Doi.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_LoaiTo.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_Phong.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThanhPho.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinGiaDinh.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinHopDongLaoDong.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinKhenThuong.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinKyLuat.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinNguoiLaoDong.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_ThongTinTrinhDo.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C_To.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Dang nhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,21 +76,6 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="NhanSuTCDModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhanSuTCDModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NhanSuTCDModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NhanSuTCDModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhanSuTCDModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Searchbutton.cs">
@@ -132,12 +83,6 @@
     </Compile>
     <Compile Include="Searchbutton.Designer.cs">
       <DependentUpon>Searchbutton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TD_DD_BN_TV.cs">
-      <DependentUpon>NhanSuTCDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ThemNV.cs">
       <SubType>Form</SubType>
@@ -179,23 +124,6 @@
     <EmbeddedResource Include="ThongTin_TuyenDung.resx">
       <DependentUpon>ThongTin_TuyenDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="NhanSuTCDModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NhanSuTCDModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="NhanSuTCDModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhanSuTCDModel.edmx</DependentUpon>
-      <LastGenOutput>NhanSuTCDModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="NhanSuTCDModel.edmx.diagram">
-      <DependentUpon>NhanSuTCDModel.edmx</DependentUpon>
-    </None>
-    <None Include="NhanSuTCDModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhanSuTCDModel.edmx</DependentUpon>
-      <LastGenOutput>NhanSuTCDModel.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -230,6 +158,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMNS.Entities\PMNS.Entities.csproj">
+      <Project>{c3851373-f611-4b20-b28a-ac2718af1089}</Project>
+      <Name>PMNS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMNS.Services\PMNS.Services.csproj">
+      <Project>{631cd10d-9f8d-4551-bc99-d223a6aede14}</Project>
+      <Name>PMNS.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,12 @@
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\PMNS.Services.dll.config
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\PMNS.Services.dll
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\PMNS.Services.pdb
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\EntityFramework.dll
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\EntityFramework.SqlServer.dll
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\PMNS.Entities.dll
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\PMNS.Entities.pdb
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\EntityFramework.xml
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\bin\Debug\EntityFramework.SqlServer.xml
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.csprojResolveAssemblyReference.cache
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.dll
+D:\NhanSuTCD\Source Code\PMNS\PMNS.Services\obj\Debug\PMNS.Services.pdb

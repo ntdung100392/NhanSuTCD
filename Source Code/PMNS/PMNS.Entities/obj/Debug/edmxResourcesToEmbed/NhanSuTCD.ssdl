@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NhanSuTCDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="_Doi">
+    <Key>
+      <PropertyRef Name="_MaDoi" />
+    </Key>
+    <Property Name="_MaDoi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_MaPhong" Type="nvarchar" MaxLength="50" />
+    <Property Name="_TenDoi" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="_LoaiTo">
+    <Key>
+      <PropertyRef Name="_MaLoaiTo" />
+    </Key>
+    <Property Name="_MaLoaiTo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_MaTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="_TenLoaiTo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="_Phong">
+    <Key>
+      <PropertyRef Name="_MaPhong" />
+    </Key>
+    <Property Name="_MaPhong" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_TenPhong" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="_ThanhPho">
+    <Key>
+      <PropertyRef Name="_MaTP" />
+    </Key>
+    <Property Name="_MaTP" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="_TenTP" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="_ThongTinGiaDinh">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_HoTenCha" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NgheNghiepCha" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NamSinhCha" Type="date" />
+    <Property Name="_HoTenMe" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NgheNghiepMe" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NamSinhMe" Type="date" />
+    <Property Name="_HoTenVoChong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NgheNghiepVoChong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NamSinhVoChong" Type="date" />
+    <Property Name="_HoTenCon" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NamSinhCon" Type="date" />
+    <Property Name="_NgheNghiepCon" Type="nvarchar" MaxLength="100" />
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="_ThongTinHopDongLaoDong">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_SoHopDong_TTHDLD" Type="nvarchar" MaxLength="20" />
+    <Property Name="_NguoiBaoLanh_TTHDLD" Type="nvarchar" MaxLength="50" />
+    <Property Name="_ChucDanh" Type="nvarchar" MaxLength="30" />
+    <Property Name="_HopDong" Type="nvarchar" MaxLength="20" />
+    <Property Name="_LoaiHopDong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NgayBatDau" Type="date" />
+    <Property Name="_NgayKetThuc" Type="date" />
+    <Property Name="_GhiChu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="_ThongTinKhenThuong">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_NamKhenThuong" Type="date" />
+    <Property Name="_LoaiKhenThuong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_CapKhenThuong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_SoSoKhenThuong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NguoiKyKhenThuong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_ThanhTichKhenThuong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_GhiChu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="_ThongTinKyLuat">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_ThangNamKyLuat" Type="date" />
+    <Property Name="_LoaiKyLuat" Type="nvarchar" MaxLength="150" />
+    <Property Name="_CapKyLuat" Type="nvarchar" MaxLength="100" />
+    <Property Name="_SoQuyetDinhKyLuat" Type="nvarchar" MaxLength="50" />
+    <Property Name="_NguoiKyQuyetDinh" Type="nvarchar" MaxLength="100" />
+    <Property Name="_HanhViBiKyLuat" Type="nvarchar(max)" />
+    <Property Name="_GhiChu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="_ThongTinNguoiLaoDong">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_MaPhongBan" Type="nvarchar" MaxLength="50" />
+    <Property Name="_MaDoi" Type="nvarchar" MaxLength="50" />
+    <Property Name="_MaLoaiTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="_MaTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="_user" Type="nvarchar" MaxLength="20" />
+    <Property Name="_Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="_PhanQuyen" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="_BienChe" Type="nvarchar" MaxLength="50" />
+    <Property Name="_CapBac" Type="nvarchar" MaxLength="50" />
+    <Property Name="_ChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="_MaChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="_CongViecDangLam" Type="nvarchar(max)" />
+    <Property Name="_HoTen" Type="nvarchar" MaxLength="100" />
+    <Property Name="_GioiTinh" Type="nvarchar" MaxLength="8" />
+    <Property Name="_NamSinh" Type="date" />
+    <Property Name="_NguyenQuan" Type="nvarchar(max)" />
+    <Property Name="_NoiOHienNay" Type="nvarchar(max)" />
+    <Property Name="_HoKhau" Type="nvarchar(max)" />
+    <Property Name="_CMND" Type="varchar" MaxLength="20" />
+    <Property Name="_NgayCapCMND" Type="date" />
+    <Property Name="_NoiCapCMND" Type="nvarchar" MaxLength="50" />
+    <Property Name="_SDTNha" Type="varchar" MaxLength="20" />
+    <Property Name="_SDTDD" Type="varchar" MaxLength="20" />
+    <Property Name="_NguoiBaoLanh" Type="nvarchar" MaxLength="50" />
+    <Property Name="_MoiQuanHeNBL" Type="nvarchar" MaxLength="100" />
+    <Property Name="_NoiCongTac" Type="varchar(max)" />
+    <Property Name="_NgayVaoCang" Type="date" />
+    <Property Name="_NamVaoST" Type="date" />
+    <Property Name="_NgayNhapNgu" Type="date" />
+    <Property Name="_TinhTrangHonNhan" Type="nvarchar" MaxLength="100" />
+    <Property Name="_HinhAnhCaNhan" Type="nvarchar(max)" />
+    <Property Name="_MaTP" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="_ThongTinTrinhDo">
+    <Key>
+      <PropertyRef Name="_MaNV" />
+    </Key>
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_VanHoa" Type="nvarchar" MaxLength="50" />
+    <Property Name="_TrinhDo" Type="nvarchar(max)" />
+    <Property Name="_NoiDaoTao" Type="nvarchar(max)" />
+    <Property Name="_ChuyenNganh" Type="nvarchar(max)" />
+    <Property Name="_LoaiHinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="_ThoiGianTotNghiep" Type="date" />
+    <Property Name="_BangCapPhu_CC" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="_To">
+    <Key>
+      <PropertyRef Name="_MaTo" />
+    </Key>
+    <Property Name="_MaTo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_MaDoi" Type="nvarchar" MaxLength="50" />
+    <Property Name="_TenTo" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TD-DD-BN-TV">
+    <Key>
+      <PropertyRef Name="_MaDDTDBNTV" />
+    </Key>
+    <Property Name="_MaDDTDBNTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_HoTenDD" Type="nvarchar" MaxLength="50" />
+    <Property Name="_NoiDung" Type="nvarchar" MaxLength="20" />
+    <Property Name="_NamThucHien" Type="date" />
+    <Property Name="_ViTriCu" Type="nvarchar(max)" />
+    <Property Name="_ViTriMoi" Type="nvarchar(max)" />
+    <Property Name="_DienLaoDong" Type="nvarchar" MaxLength="100" />
+    <Property Name="_DienHuongLuong" Type="nvarchar" MaxLength="50" />
+    <Property Name="_SoQuyetDinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="_NgayKyQD" Type="date" />
+    <Property Name="_NgayHieuLuc" Type="date" />
+    <Property Name="_GhiChu" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__Doi__Phong">
+    <End Role="_Phong" Type="Self._Phong" Multiplicity="0..1" />
+    <End Role="_Doi" Type="Self._Doi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_Phong">
+        <PropertyRef Name="_MaPhong" />
+      </Principal>
+      <Dependent Role="_Doi">
+        <PropertyRef Name="_MaPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LoaiTo__To">
+    <End Role="_To" Type="Self._To" Multiplicity="0..1" />
+    <End Role="_LoaiTo" Type="Self._LoaiTo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_To">
+        <PropertyRef Name="_MaTo" />
+      </Principal>
+      <Dependent Role="_LoaiTo">
+        <PropertyRef Name="_MaTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinGiaDinh__ThongTinNguoiLaoDong1">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="_ThongTinGiaDinh" Type="Self._ThongTinGiaDinh" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="_ThongTinGiaDinh">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinHopDongLaoDong__ThongTinNguoiLaoDong1">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="_ThongTinHopDongLaoDong" Type="Self._ThongTinHopDongLaoDong" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="_ThongTinHopDongLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinKhenThuong__ThongTinNguoiLaoDong1">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="_ThongTinKhenThuong" Type="Self._ThongTinKhenThuong" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="_ThongTinKhenThuong">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinKyLuat__ThongTinNguoiLaoDong1">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="_ThongTinKyLuat" Type="Self._ThongTinKyLuat" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="_ThongTinKyLuat">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinNguoiLaoDong__Doi1">
+    <End Role="_Doi" Type="Self._Doi" Multiplicity="0..1" />
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_Doi">
+        <PropertyRef Name="_MaDoi" />
+      </Principal>
+      <Dependent Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaDoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinNguoiLaoDong__LoaiTo1">
+    <End Role="_LoaiTo" Type="Self._LoaiTo" Multiplicity="0..1" />
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_LoaiTo">
+        <PropertyRef Name="_MaLoaiTo" />
+      </Principal>
+      <Dependent Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaLoaiTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinNguoiLaoDong__Phong1">
+    <End Role="_Phong" Type="Self._Phong" Multiplicity="0..1" />
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_Phong">
+        <PropertyRef Name="_MaPhong" />
+      </Principal>
+      <Dependent Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaPhongBan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinNguoiLaoDong__ThanhPho1">
+    <End Role="_ThanhPho" Type="Self._ThanhPho" Multiplicity="0..1" />
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_ThanhPho">
+        <PropertyRef Name="_MaTP" />
+      </Principal>
+      <Dependent Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaTP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinNguoiLaoDong__To1">
+    <End Role="_To" Type="Self._To" Multiplicity="0..1" />
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_To">
+        <PropertyRef Name="_MaTo" />
+      </Principal>
+      <Dependent Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThongTinTrinhDo__ThongTinNguoiLaoDong">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="_ThongTinTrinhDo" Type="Self._ThongTinTrinhDo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="_ThongTinTrinhDo">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__To__Doi">
+    <End Role="_Doi" Type="Self._Doi" Multiplicity="0..1" />
+    <End Role="_To" Type="Self._To" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_Doi">
+        <PropertyRef Name="_MaDoi" />
+      </Principal>
+      <Dependent Role="_To">
+        <PropertyRef Name="_MaDoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TT-DD-BN-TV__ThongTinNguoiLaoDong1">
+    <End Role="_ThongTinNguoiLaoDong" Type="Self._ThongTinNguoiLaoDong" Multiplicity="1" />
+    <End Role="TD-DD-BN-TV" Type="Self.TD-DD-BN-TV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_ThongTinNguoiLaoDong">
+        <PropertyRef Name="_MaNV" />
+      </Principal>
+      <Dependent Role="TD-DD-BN-TV">
+        <PropertyRef Name="_MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NhanSuTCDModelStoreContainer">
+    <EntitySet Name="_Doi" EntityType="Self._Doi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_LoaiTo" EntityType="Self._LoaiTo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_Phong" EntityType="Self._Phong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThanhPho" EntityType="Self._ThanhPho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinGiaDinh" EntityType="Self._ThongTinGiaDinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinHopDongLaoDong" EntityType="Self._ThongTinHopDongLaoDong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinKhenThuong" EntityType="Self._ThongTinKhenThuong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinKyLuat" EntityType="Self._ThongTinKyLuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinNguoiLaoDong" EntityType="Self._ThongTinNguoiLaoDong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_ThongTinTrinhDo" EntityType="Self._ThongTinTrinhDo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_To" EntityType="Self._To" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TD-DD-BN-TV" EntityType="Self.TD-DD-BN-TV" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Doi__Phong" Association="Self.FK__Doi__Phong">
+      <End Role="_Phong" EntitySet="_Phong" />
+      <End Role="_Doi" EntitySet="_Doi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LoaiTo__To" Association="Self.FK__LoaiTo__To">
+      <End Role="_To" EntitySet="_To" />
+      <End Role="_LoaiTo" EntitySet="_LoaiTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinGiaDinh__ThongTinNguoiLaoDong1" Association="Self.FK__ThongTinGiaDinh__ThongTinNguoiLaoDong1">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="_ThongTinGiaDinh" EntitySet="_ThongTinGiaDinh" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinHopDongLaoDong__ThongTinNguoiLaoDong1" Association="Self.FK__ThongTinHopDongLaoDong__ThongTinNguoiLaoDong1">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="_ThongTinHopDongLaoDong" EntitySet="_ThongTinHopDongLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinKhenThuong__ThongTinNguoiLaoDong1" Association="Self.FK__ThongTinKhenThuong__ThongTinNguoiLaoDong1">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="_ThongTinKhenThuong" EntitySet="_ThongTinKhenThuong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinKyLuat__ThongTinNguoiLaoDong1" Association="Self.FK__ThongTinKyLuat__ThongTinNguoiLaoDong1">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="_ThongTinKyLuat" EntitySet="_ThongTinKyLuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinNguoiLaoDong__Doi1" Association="Self.FK__ThongTinNguoiLaoDong__Doi1">
+      <End Role="_Doi" EntitySet="_Doi" />
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinNguoiLaoDong__LoaiTo1" Association="Self.FK__ThongTinNguoiLaoDong__LoaiTo1">
+      <End Role="_LoaiTo" EntitySet="_LoaiTo" />
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinNguoiLaoDong__Phong1" Association="Self.FK__ThongTinNguoiLaoDong__Phong1">
+      <End Role="_Phong" EntitySet="_Phong" />
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinNguoiLaoDong__ThanhPho1" Association="Self.FK__ThongTinNguoiLaoDong__ThanhPho1">
+      <End Role="_ThanhPho" EntitySet="_ThanhPho" />
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinNguoiLaoDong__To1" Association="Self.FK__ThongTinNguoiLaoDong__To1">
+      <End Role="_To" EntitySet="_To" />
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThongTinTrinhDo__ThongTinNguoiLaoDong" Association="Self.FK__ThongTinTrinhDo__ThongTinNguoiLaoDong">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="_ThongTinTrinhDo" EntitySet="_ThongTinTrinhDo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__To__Doi" Association="Self.FK__To__Doi">
+      <End Role="_Doi" EntitySet="_Doi" />
+      <End Role="_To" EntitySet="_To" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TT-DD-BN-TV__ThongTinNguoiLaoDong1" Association="Self.FK_TT-DD-BN-TV__ThongTinNguoiLaoDong1">
+      <End Role="_ThongTinNguoiLaoDong" EntitySet="_ThongTinNguoiLaoDong" />
+      <End Role="TD-DD-BN-TV" EntitySet="TD-DD-BN-TV" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

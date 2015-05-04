@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NhanSuTCDModelStoreContainer" CdmEntityContainer="NhanSuTCDEntities">
+    <EntitySetMapping Name="C_Doi">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_Doi">
+        <MappingFragment StoreEntitySet="_Doi">
+          <ScalarProperty Name="C_MaDoi" ColumnName="_MaDoi" />
+          <ScalarProperty Name="C_MaPhong" ColumnName="_MaPhong" />
+          <ScalarProperty Name="C_TenDoi" ColumnName="_TenDoi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_LoaiTo">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_LoaiTo">
+        <MappingFragment StoreEntitySet="_LoaiTo">
+          <ScalarProperty Name="C_MaLoaiTo" ColumnName="_MaLoaiTo" />
+          <ScalarProperty Name="C_MaTo" ColumnName="_MaTo" />
+          <ScalarProperty Name="C_TenLoaiTo" ColumnName="_TenLoaiTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_Phong">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_Phong">
+        <MappingFragment StoreEntitySet="_Phong">
+          <ScalarProperty Name="C_MaPhong" ColumnName="_MaPhong" />
+          <ScalarProperty Name="C_TenPhong" ColumnName="_TenPhong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThanhPho">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThanhPho">
+        <MappingFragment StoreEntitySet="_ThanhPho">
+          <ScalarProperty Name="C_MaTP" ColumnName="_MaTP" />
+          <ScalarProperty Name="C_TenTP" ColumnName="_TenTP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinGiaDinh">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinGiaDinh">
+        <MappingFragment StoreEntitySet="_ThongTinGiaDinh">
+          <ScalarProperty Name="C_HoTenCha" ColumnName="_HoTenCha" />
+          <ScalarProperty Name="C_NgheNghiepCha" ColumnName="_NgheNghiepCha" />
+          <ScalarProperty Name="C_NamSinhCha" ColumnName="_NamSinhCha" />
+          <ScalarProperty Name="C_HoTenMe" ColumnName="_HoTenMe" />
+          <ScalarProperty Name="C_NgheNghiepMe" ColumnName="_NgheNghiepMe" />
+          <ScalarProperty Name="C_NamSinhMe" ColumnName="_NamSinhMe" />
+          <ScalarProperty Name="C_HoTenVoChong" ColumnName="_HoTenVoChong" />
+          <ScalarProperty Name="C_NgheNghiepVoChong" ColumnName="_NgheNghiepVoChong" />
+          <ScalarProperty Name="C_NamSinhVoChong" ColumnName="_NamSinhVoChong" />
+          <ScalarProperty Name="C_HoTenCon" ColumnName="_HoTenCon" />
+          <ScalarProperty Name="C_NamSinhCon" ColumnName="_NamSinhCon" />
+          <ScalarProperty Name="C_NgheNghiepCon" ColumnName="_NgheNghiepCon" />
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinHopDongLaoDong">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinHopDongLaoDong">
+        <MappingFragment StoreEntitySet="_ThongTinHopDongLaoDong">
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_SoHopDong_TTHDLD" ColumnName="_SoHopDong_TTHDLD" />
+          <ScalarProperty Name="C_NguoiBaoLanh_TTHDLD" ColumnName="_NguoiBaoLanh_TTHDLD" />
+          <ScalarProperty Name="C_ChucDanh" ColumnName="_ChucDanh" />
+          <ScalarProperty Name="C_HopDong" ColumnName="_HopDong" />
+          <ScalarProperty Name="C_LoaiHopDong" ColumnName="_LoaiHopDong" />
+          <ScalarProperty Name="C_NgayBatDau" ColumnName="_NgayBatDau" />
+          <ScalarProperty Name="C_NgayKetThuc" ColumnName="_NgayKetThuc" />
+          <ScalarProperty Name="C_GhiChu" ColumnName="_GhiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinKhenThuong">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinKhenThuong">
+        <MappingFragment StoreEntitySet="_ThongTinKhenThuong">
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_NamKhenThuong" ColumnName="_NamKhenThuong" />
+          <ScalarProperty Name="C_LoaiKhenThuong" ColumnName="_LoaiKhenThuong" />
+          <ScalarProperty Name="C_CapKhenThuong" ColumnName="_CapKhenThuong" />
+          <ScalarProperty Name="C_SoSoKhenThuong" ColumnName="_SoSoKhenThuong" />
+          <ScalarProperty Name="C_NguoiKyKhenThuong" ColumnName="_NguoiKyKhenThuong" />
+          <ScalarProperty Name="C_ThanhTichKhenThuong" ColumnName="_ThanhTichKhenThuong" />
+          <ScalarProperty Name="C_GhiChu" ColumnName="_GhiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinKyLuat">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinKyLuat">
+        <MappingFragment StoreEntitySet="_ThongTinKyLuat">
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_ThangNamKyLuat" ColumnName="_ThangNamKyLuat" />
+          <ScalarProperty Name="C_LoaiKyLuat" ColumnName="_LoaiKyLuat" />
+          <ScalarProperty Name="C_CapKyLuat" ColumnName="_CapKyLuat" />
+          <ScalarProperty Name="C_SoQuyetDinhKyLuat" ColumnName="_SoQuyetDinhKyLuat" />
+          <ScalarProperty Name="C_NguoiKyQuyetDinh" ColumnName="_NguoiKyQuyetDinh" />
+          <ScalarProperty Name="C_HanhViBiKyLuat" ColumnName="_HanhViBiKyLuat" />
+          <ScalarProperty Name="C_GhiChu" ColumnName="_GhiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinNguoiLaoDong">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinNguoiLaoDong">
+        <MappingFragment StoreEntitySet="_ThongTinNguoiLaoDong">
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_MaPhongBan" ColumnName="_MaPhongBan" />
+          <ScalarProperty Name="C_MaDoi" ColumnName="_MaDoi" />
+          <ScalarProperty Name="C_MaLoaiTo" ColumnName="_MaLoaiTo" />
+          <ScalarProperty Name="C_MaTo" ColumnName="_MaTo" />
+          <ScalarProperty Name="C_user" ColumnName="_user" />
+          <ScalarProperty Name="C_Password" ColumnName="_Password" />
+          <ScalarProperty Name="C_PhanQuyen" ColumnName="_PhanQuyen" />
+          <ScalarProperty Name="C_BienChe" ColumnName="_BienChe" />
+          <ScalarProperty Name="C_CapBac" ColumnName="_CapBac" />
+          <ScalarProperty Name="C_ChucVu" ColumnName="_ChucVu" />
+          <ScalarProperty Name="C_MaChucVu" ColumnName="_MaChucVu" />
+          <ScalarProperty Name="C_CongViecDangLam" ColumnName="_CongViecDangLam" />
+          <ScalarProperty Name="C_HoTen" ColumnName="_HoTen" />
+          <ScalarProperty Name="C_GioiTinh" ColumnName="_GioiTinh" />
+          <ScalarProperty Name="C_NamSinh" ColumnName="_NamSinh" />
+          <ScalarProperty Name="C_NguyenQuan" ColumnName="_NguyenQuan" />
+          <ScalarProperty Name="C_NoiOHienNay" ColumnName="_NoiOHienNay" />
+          <ScalarProperty Name="C_HoKhau" ColumnName="_HoKhau" />
+          <ScalarProperty Name="C_CMND" ColumnName="_CMND" />
+          <ScalarProperty Name="C_NgayCapCMND" ColumnName="_NgayCapCMND" />
+          <ScalarProperty Name="C_NoiCapCMND" ColumnName="_NoiCapCMND" />
+          <ScalarProperty Name="C_SDTNha" ColumnName="_SDTNha" />
+          <ScalarProperty Name="C_SDTDD" ColumnName="_SDTDD" />
+          <ScalarProperty Name="C_NguoiBaoLanh" ColumnName="_NguoiBaoLanh" />
+          <ScalarProperty Name="C_MoiQuanHeNBL" ColumnName="_MoiQuanHeNBL" />
+          <ScalarProperty Name="C_NoiCongTac" ColumnName="_NoiCongTac" />
+          <ScalarProperty Name="C_NgayVaoCang" ColumnName="_NgayVaoCang" />
+          <ScalarProperty Name="C_NamVaoST" ColumnName="_NamVaoST" />
+          <ScalarProperty Name="C_NgayNhapNgu" ColumnName="_NgayNhapNgu" />
+          <ScalarProperty Name="C_TinhTrangHonNhan" ColumnName="_TinhTrangHonNhan" />
+          <ScalarProperty Name="C_HinhAnhCaNhan" ColumnName="_HinhAnhCaNhan" />
+          <ScalarProperty Name="C_MaTP" ColumnName="_MaTP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ThongTinTrinhDo">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_ThongTinTrinhDo">
+        <MappingFragment StoreEntitySet="_ThongTinTrinhDo">
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_VanHoa" ColumnName="_VanHoa" />
+          <ScalarProperty Name="C_TrinhDo" ColumnName="_TrinhDo" />
+          <ScalarProperty Name="C_NoiDaoTao" ColumnName="_NoiDaoTao" />
+          <ScalarProperty Name="C_ChuyenNganh" ColumnName="_ChuyenNganh" />
+          <ScalarProperty Name="C_LoaiHinh" ColumnName="_LoaiHinh" />
+          <ScalarProperty Name="C_ThoiGianTotNghiep" ColumnName="_ThoiGianTotNghiep" />
+          <ScalarProperty Name="C_BangCapPhu_CC" ColumnName="_BangCapPhu_CC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_To">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.C_To">
+        <MappingFragment StoreEntitySet="_To">
+          <ScalarProperty Name="C_MaTo" ColumnName="_MaTo" />
+          <ScalarProperty Name="C_MaDoi" ColumnName="_MaDoi" />
+          <ScalarProperty Name="C_TenTo" ColumnName="_TenTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TD_DD_BN_TV">
+      <EntityTypeMapping TypeName="NhanSuTCDModel.TD_DD_BN_TV">
+        <MappingFragment StoreEntitySet="TD-DD-BN-TV">
+          <ScalarProperty Name="C_MaDDTDBNTV" ColumnName="_MaDDTDBNTV" />
+          <ScalarProperty Name="C_MaNV" ColumnName="_MaNV" />
+          <ScalarProperty Name="C_HoTenDD" ColumnName="_HoTenDD" />
+          <ScalarProperty Name="C_NoiDung" ColumnName="_NoiDung" />
+          <ScalarProperty Name="C_NamThucHien" ColumnName="_NamThucHien" />
+          <ScalarProperty Name="C_ViTriCu" ColumnName="_ViTriCu" />
+          <ScalarProperty Name="C_ViTriMoi" ColumnName="_ViTriMoi" />
+          <ScalarProperty Name="C_DienLaoDong" ColumnName="_DienLaoDong" />
+          <ScalarProperty Name="C_DienHuongLuong" ColumnName="_DienHuongLuong" />
+          <ScalarProperty Name="C_SoQuyetDinh" ColumnName="_SoQuyetDinh" />
+          <ScalarProperty Name="C_NgayKyQD" ColumnName="_NgayKyQD" />
+          <ScalarProperty Name="C_NgayHieuLuc" ColumnName="_NgayHieuLuc" />
+          <ScalarProperty Name="C_GhiChu" ColumnName="_GhiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

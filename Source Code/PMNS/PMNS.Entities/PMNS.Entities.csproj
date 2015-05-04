@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3851373-F611-4B20-B28A-AC2718AF1089}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMNS.Entities</RootNamespace>
+    <AssemblyName>PMNS.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C_Doi.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_LoaiTo.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Phong.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThanhPho.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinGiaDinh.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinHopDongLaoDong.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinKhenThuong.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinKyLuat.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinNguoiLaoDong.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_ThongTinTrinhDo.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_To.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhanSuTCD.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhanSuTCD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhanSuTCD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhanSuTCD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhanSuTCD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TD_DD_BN_TV.cs">
+      <DependentUpon>NhanSuTCD.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="NhanSuTCD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NhanSuTCD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="NhanSuTCD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NhanSuTCD.edmx</DependentUpon>
+      <LastGenOutput>NhanSuTCD.Context.cs</LastGenOutput>
+    </None>
+    <None Include="NhanSuTCD.edmx.diagram">
+      <DependentUpon>NhanSuTCD.edmx</DependentUpon>
+    </None>
+    <None Include="NhanSuTCD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NhanSuTCD.edmx</DependentUpon>
+      <LastGenOutput>NhanSuTCD.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

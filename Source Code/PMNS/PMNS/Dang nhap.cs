@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using PMNS.Business;
 namespace PMNS
 {
     public partial class Dang_nhap : Form
