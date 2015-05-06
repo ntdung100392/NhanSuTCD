@@ -52,7 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NguoiLaoDongServices.cs" />
+    <Compile Include="Abstract\INguoiLaoDongServices.cs" />
+    <Compile Include="Abstract\IServices.cs" />
+    <Compile Include="Implement\NguoiLaoDongServices.cs" />
+    <Compile Include="Implement\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,8 +63,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PMNS.DAL\PMNS.DAL.csproj">
+      <Project>{105e6642-5a14-4952-afa9-c4cc7fdac9ee}</Project>
+      <Name>PMNS.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMNS.Entities\PMNS.Entities.csproj">
-      <Project>{c3851373-f611-4b20-b28a-ac2718af1089}</Project>
+      <Project>{94173f41-b6e9-4b7f-b063-f45c959139d0}</Project>
       <Name>PMNS.Entities</Name>
     </ProjectReference>
   </ItemGroup>

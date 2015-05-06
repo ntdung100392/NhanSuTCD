@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PMNS.Services.Abstract;
+using PMNS.Entities.Models;
+
 namespace PMNS
 {
     public partial class Dang_nhap : Form
     {
-        public Dang_nhap()
+        private INguoiLaoDongServices _nguoiLaoDongService;
+
+        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongServices)
         {
             InitializeComponent();
+            _nguoiLaoDongService = nguoiLaoDongServices;
         }
 
         private void Dang_nhap_Load(object sender, EventArgs e)
@@ -28,17 +34,16 @@ namespace PMNS
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
-            if (textBoxX1.Text == "" || textBoxX2.Text == "")
+            if (String.IsNullOrEmpty(textBoxX1.Text.Trim()) || String.IsNullOrEmpty(textBoxX2.Text.Trim()))
             {
                 MessageBox.Show("Bạn chưa nhập đủ thông tin", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                Connection.moketnoi();
-                SqlCommand cmd = new SqlCommand("Select * from _ThongTinNguoiLaoDong where _user = @_user and = _Password = @_Password", Connection.cnn);
-                cmd.Parameters.AddWithValue("@_user", textBoxX1.Text);
-                cmd.Parameters.AddWithValue("@_Password", textBoxX2.Text);
-                if (cmd.CommandText == "Select * from _ThongTinNguoiLaoDong where _user = @_user and = _Password = @_Password")
+                string name = textBoxX1.Text.Trim();
+                string pass = textBoxX2.Text.Trim();
+                C_ThongTinNguoiLaoDong emp = _nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass);
+                if (emp != null)
                 {
                     Menu form = new Menu();
                     form.Show();
@@ -47,8 +52,6 @@ namespace PMNS
                 {
                     MessageBox.Show("Bạn đăng nhập sai tên hoặc mật khẩu", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                Connection.dongketnoi();
             }
         }
 
