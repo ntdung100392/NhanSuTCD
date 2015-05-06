@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using PMNS.Services.Abstract;
 using PMNS.Entities.Models;
 
@@ -15,12 +14,17 @@ namespace PMNS
 {
     public partial class Dang_nhap : Form
     {
-        private INguoiLaoDongServices _nguoiLaoDongService;
+        protected readonly INguoiLaoDongServices _nguoiLaoDongService;
 
-        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongServices)
+        public Dang_nhap()
         {
             InitializeComponent();
-            _nguoiLaoDongService = nguoiLaoDongServices;
+        }
+
+        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongService)
+            : this()
+        {
+            this._nguoiLaoDongService = nguoiLaoDongService;
         }
 
         private void Dang_nhap_Load(object sender, EventArgs e)
@@ -42,8 +46,7 @@ namespace PMNS
             {
                 string name = textBoxX1.Text.Trim();
                 string pass = textBoxX2.Text.Trim();
-                C_ThongTinNguoiLaoDong emp = _nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass);
-                if (emp != null)
+                if (_nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass) != null)
                 {
                     Menu form = new Menu();
                     form.Show();

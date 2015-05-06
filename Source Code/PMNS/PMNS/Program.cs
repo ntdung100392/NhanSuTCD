@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PMNS.Services.Abstract;
 
 namespace PMNS
 {
@@ -16,7 +17,7 @@ namespace PMNS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ThemNV());
+            Application.Run(new Dang_nhap());
         }
     }
 }
