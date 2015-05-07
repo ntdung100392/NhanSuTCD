@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Services.Abstract;
+using PMNS.Services.Implement;
 using PMNS.Entities.Models;
 
 namespace PMNS
@@ -21,11 +22,7 @@ namespace PMNS
             InitializeComponent();
         }
 
-        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongService)
-            : this()
-        {
-            this._nguoiLaoDongService = nguoiLaoDongService;
-        }
+        NguoiLaoDongServices lao = new NguoiLaoDongServices();
 
         private void Dang_nhap_Load(object sender, EventArgs e)
         {
@@ -46,7 +43,7 @@ namespace PMNS
             {
                 string name = textBoxX1.Text.Trim();
                 string pass = textBoxX2.Text.Trim();
-                if (_nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass) != null)
+                if (lao.GetEmployeeByNameAndPass(name, pass) != null)
                 {
                     Menu form = new Menu();
                     form.Show();
