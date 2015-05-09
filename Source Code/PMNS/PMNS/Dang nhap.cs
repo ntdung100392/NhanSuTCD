@@ -17,12 +17,11 @@ namespace PMNS
     {
         protected readonly INguoiLaoDongServices _nguoiLaoDongService;
 
-        public Dang_nhap()
+        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongService)
         {
+            this._nguoiLaoDongService = nguoiLaoDongService;
             InitializeComponent();
         }
-
-        NguoiLaoDongServices lao = new NguoiLaoDongServices();
 
         private void Dang_nhap_Load(object sender, EventArgs e)
         {
@@ -43,7 +42,7 @@ namespace PMNS
             {
                 string name = textBoxX1.Text.Trim();
                 string pass = textBoxX2.Text.Trim();
-                if (lao.GetEmployeeByNameAndPass(name, pass) != null)
+                if (_nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass) != null)
                 {
                     Menu form = new Menu();
                     form.Show();
