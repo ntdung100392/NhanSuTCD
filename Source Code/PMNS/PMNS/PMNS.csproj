@@ -79,6 +79,12 @@
     <Compile Include="Dang nhap.Designer.cs">
       <DependentUpon>Dang nhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="DanhSachThongTin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhSachThongTin.Designer.cs">
+      <DependentUpon>DanhSachThongTin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,17 +105,20 @@
     <Compile Include="ThemNV.Designer.cs">
       <DependentUpon>ThemNV.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThongTin_TuyenDung.cs">
+    <Compile Include="Thong Tin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ThongTin_TuyenDung.Designer.cs">
-      <DependentUpon>ThongTin_TuyenDung.cs</DependentUpon>
+    <Compile Include="Thong Tin.Designer.cs">
+      <DependentUpon>Thong Tin.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ChinhSuaThongTin.resx">
       <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dang nhap.resx">
       <DependentUpon>Dang nhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhSachThongTin.resx">
+      <DependentUpon>DanhSachThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -130,8 +139,8 @@
     <EmbeddedResource Include="ThemNV.resx">
       <DependentUpon>ThemNV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThongTin_TuyenDung.resx">
-      <DependentUpon>ThongTin_TuyenDung.cs</DependentUpon>
+    <EmbeddedResource Include="Thong Tin.resx">
+      <DependentUpon>Thong Tin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
