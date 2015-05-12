@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IChucVuServices.cs" />
     <Compile Include="Abstract\IDoiServices.cs" />
     <Compile Include="Abstract\ILoaiToServices.cs" />
     <Compile Include="Abstract\INhanVienServices.cs" />
