@@ -7,8 +7,8 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Abstract
 {
-    public interface IDoiServices : IServices<C_Doi>
+    public interface IDoiServices : IServices<Doi>
     {
-        List<C_Doi> GetAllDoi();
+        List<Doi> GetAllDoi();
     }
 }

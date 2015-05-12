@@ -5,19 +5,19 @@ namespace PMNS.Entities.Models
 {
     public partial class TD_DD_BN_TV
     {
-        public int C_MaDDTDBNTV { get; set; }
-        public string C_MaNV { get; set; }
-        public string C_HoTenDD { get; set; }
-        public string C_NoiDung { get; set; }
-        public Nullable<System.DateTime> C_NamThucHien { get; set; }
-        public string C_ViTriCu { get; set; }
-        public string C_ViTriMoi { get; set; }
-        public string C_DienLaoDong { get; set; }
-        public string C_DienHuongLuong { get; set; }
-        public string C_SoQuyetDinh { get; set; }
-        public Nullable<System.DateTime> C_NgayKyQD { get; set; }
-        public Nullable<System.DateTime> C_NgayHieuLuc { get; set; }
-        public string C_GhiChu { get; set; }
-        public virtual C_ThongTinNguoiLaoDong C_ThongTinNguoiLaoDong { get; set; }
+        public int idTDDDBNTV { get; set; }
+        public int idNhanVien { get; set; }
+        public string hoTenDD { get; set; }
+        public string noiDung { get; set; }
+        public System.DateTime namThucHien { get; set; }
+        public string viTriCu { get; set; }
+        public string viTriMoi { get; set; }
+        public string dienLaoDong { get; set; }
+        public string dienHuongLuong { get; set; }
+        public string soQuyetDinh { get; set; }
+        public Nullable<System.DateTime> ngayKyQD { get; set; }
+        public Nullable<System.DateTime> ngayHieuLuc { get; set; }
+        public string ghiChu { get; set; }
+        public virtual ThongTinNhanVIen ThongTinNhanVIen { get; set; }
     }
 }

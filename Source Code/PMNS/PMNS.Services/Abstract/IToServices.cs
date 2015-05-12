@@ -7,8 +7,8 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Abstract
 {
-    public interface IToServices : IServices<C_To>
+    public interface IToServices : IServices<To>
     {
-        List<C_To> GetAllTo();
+        List<To> GetAllTo();
     }
 }

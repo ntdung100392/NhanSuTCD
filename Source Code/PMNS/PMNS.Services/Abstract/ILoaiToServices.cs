@@ -7,8 +7,8 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Abstract
 {
-    public interface ILoaiToServices : IServices<C_LoaiTo>
+    public interface ILoaiToServices : IServices<LoaiTo>
     {
-        List<C_LoaiTo> GetAllLoaiTo();
+        List<LoaiTo> GetAllLoaiTo();
     }
 }

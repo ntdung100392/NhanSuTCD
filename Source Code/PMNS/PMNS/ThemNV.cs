@@ -70,6 +70,7 @@ namespace PMNS
             txtNamVaoST.Text = datetimeNamVaoST.Text;
         }
         #endregion
+
         private void ThemNV_Load(object sender, EventArgs e)
         {
             txtPass.Visible = false;
@@ -91,20 +92,13 @@ namespace PMNS
         public void GetAllEmployees()
         {
             var listNhanVien = _nhanVienServices.GetAllEmployees();
-            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.C_HoTen).ToList().Select(x =>
+            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
                 new
                 {
-                    HoTen = x.C_HoTen,
-                    GioiTinh = x.C_GioiTinh,
-                    NamSinh = x.C_NamSinh,
-                    MaNV = x.C_MaNV,
-                    MaPhongBan = x.C_MaPhongBan,
-                    MaTo = x.C_MaTo,
-                    MaDoi = x.C_MaDoi,
-                    BienChe = x.C_BienChe,
-                    NoiCongTac = x.C_NoiCongTac,
-                    NguoiBaoLanh = x.C_NguoiBaoLanh,
-                    MoiQuanHe = x.C_MoiQuanHeNBL
+                    HoTen = x.hoTen,
+                    GioiTinh = x.gioiTinh,
+                    NamSinh = x.namSinh,
+                    MaNV = x.MaNV,
                 }).ToList();
         }
         private void btnThem_Click_1(object sender, EventArgs e)
@@ -187,10 +181,10 @@ namespace PMNS
         #region ComBoBox
         public void GetAllPhongBan()
         {
-            List<C_Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
+            List<Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
             cbPhongBan.DataSource = listPhongBan;
-            cbPhongBan.DisplayMember = "C_TenPhong";
-            cbPhongBan.ValueMember = "C_MaPhong";
+            cbPhongBan.DisplayMember = "tenPhong";
+            cbPhongBan.ValueMember = "idPhong";
             cbPhongBan.SelectedIndex = -1;
             txtChucVu.Enabled = false;
         }
@@ -208,39 +202,39 @@ namespace PMNS
         }
         public void GetAllDoi()
         {
-            List<C_Doi> listDoi = _doiServices.GetAllDoi();
+            List<Doi> listDoi = _doiServices.GetAllDoi();
             cbDoi.DataSource = listDoi;
-            cbDoi.DisplayMember = "C_TenDoi";
-            cbDoi.ValueMember = "C_MaDoi";
+            cbDoi.DisplayMember = "tenDoi";
+            cbDoi.ValueMember = "idDoi";
             cbDoi.SelectedIndex = -1;
         }
         public void GetAllTo()
         {
-            List<C_To> listTo = _toServices.GetAllTo();
+            List<To> listTo = _toServices.GetAllTo();
             cbTo.DataSource = listTo;
-            cbTo.DisplayMember = "C_TenTo";
-            cbTo.ValueMember = "C_MaTo";
+            cbTo.DisplayMember = "tenTo";
+            cbTo.ValueMember = "idTo";
             cbTo.SelectedIndex = -1;
         }
         public void GetAllLoaiTo()
         {
-            List<C_LoaiTo> listLoaiTo = _loaiToServices.GetAllLoaiTo();
+            List<LoaiTo> listLoaiTo = _loaiToServices.GetAllLoaiTo();
             cbLoaiTo.DataSource = listLoaiTo;
-            cbLoaiTo.DisplayMember = "C_TenLoaiTo";
-            cbLoaiTo.ValueMember = "C_MaLoaiTo";
+            cbLoaiTo.DisplayMember = "tenLoaiTo";
+            cbLoaiTo.ValueMember = "idLoaiTo";
             cbLoaiTo.SelectedIndex = -1;
         }
         public void GetAllThanhPho()
         {
-            List<C_ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
+            List<ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DataSource = listThanhPho;
-            cbThanhPho.DisplayMember = "C_TenTP";
-            cbThanhPho.ValueMember = "C_MaTP";
+            cbThanhPho.DisplayMember = "tenTP";
+            cbThanhPho.ValueMember = "idThanhPho";
             cbThanhPho.SelectedIndex = -1;
 
             cbNoiCapCMND.DataSource = listThanhPho;
-            cbNoiCapCMND.DisplayMember = "C_TenTP";
-            cbNoiCapCMND.ValueMember = "C_MaTP";
+            cbNoiCapCMND.DisplayMember = "tenTP";
+            cbNoiCapCMND.ValueMember = "idThanhPho";
             cbNoiCapCMND.SelectedIndex = -1;
         }
         public class ComboboxItem

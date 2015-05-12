@@ -9,14 +9,14 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Implement
 {
-    public class DoiServices : Services<C_Doi>, IDoiServices
+    public class DoiServices : Services<Doi>, IDoiServices
     {
         public DoiServices(IUnitOfWork unitOfWork) 
             : base(unitOfWork) { }
 
-        public List<C_Doi> GetAllDoi()
+        public List<Doi> GetAllDoi()
         {
-            List<C_Doi> listDoi = unitOfWork.Repository<C_Doi>().GetAll().ToList();
+            List<Doi> listDoi = unitOfWork.Repository<Doi>().GetAll().ToList();
             return listDoi;
         }
     }

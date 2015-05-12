@@ -10,14 +10,14 @@ using System.Data;
 
 namespace PMNS.Services.Implement
 {
-    public class PhongBanServices : Services<C_Phong>, IPhongBanServices
+    public class PhongBanServices : Services<Phong>, IPhongBanServices
     {
         public PhongBanServices(IUnitOfWork unitOfWork)
             : base(unitOfWork) { }
 
-        public List<C_Phong> GetAllPhongBan()
+        public List<Phong> GetAllPhongBan()
         {
-            List<C_Phong> listPhongBan = unitOfWork.Repository<C_Phong>().GetAll().ToList();
+            List<Phong> listPhongBan = unitOfWork.Repository<Phong>().GetAll().ToList();
             return listPhongBan;
         }
     }

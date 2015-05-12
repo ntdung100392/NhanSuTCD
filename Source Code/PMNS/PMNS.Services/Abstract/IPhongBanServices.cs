@@ -9,8 +9,8 @@ using PMNS.DAL.Abstract;
 
 namespace PMNS.Services.Abstract
 {
-    public interface IPhongBanServices : IServices<C_Phong>
+    public interface IPhongBanServices : IServices<Phong>
     {
-        List<C_Phong> GetAllPhongBan();
+        List<Phong> GetAllPhongBan();
     }
 }

@@ -9,9 +9,9 @@ using PMNS.DAL.Abstract;
 
 namespace PMNS.Services.Abstract
 {
-    public interface INhanVienServices : IServices<C_ThongTinNguoiLaoDong>
+    public interface INhanVienServices : IServices<ThongTinNhanVIen>
     {
         bool GetEmployeeByNameAndPass(string name, string pass);
-        List<C_ThongTinNguoiLaoDong> GetAllEmployees();
+        List<ThongTinNhanVIen> GetAllEmployees();
     }
 }

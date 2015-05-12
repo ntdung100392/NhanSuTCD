@@ -7,8 +7,8 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Abstract
 {
-    public interface IThanhPhoServices : IServices<C_ThanhPho>
+    public interface IThanhPhoServices : IServices<ThanhPho>
     {
-        List<C_ThanhPho> GetAllThanhPho();
+        List<ThanhPho> GetAllThanhPho();
     }
 }

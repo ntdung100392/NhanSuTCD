@@ -15,11 +15,11 @@ namespace PMNS.DAL.Implement
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
-        private WebNhanSuContext context;
+        private NhanSuTCDContext context;
 
         public UnitOfWork()
         {
-            context = new WebNhanSuContext();
+            context = new NhanSuTCDContext();
         }
 
         public IRepository<T> Repository<T>() where T : class

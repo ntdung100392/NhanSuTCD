@@ -9,13 +9,13 @@ using PMNS.DAL.Abstract;
 
 namespace PMNS.Services.Implement
 {
-    public class ThanhPhoServices : Services<C_ThanhPho>, IThanhPhoServices
+    public class ThanhPhoServices : Services<ThanhPho>, IThanhPhoServices
     {
         public ThanhPhoServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public List<C_ThanhPho> GetAllThanhPho()
+        public List<ThanhPho> GetAllThanhPho()
         {
-            List<C_ThanhPho> listThanhPho = unitOfWork.Repository<C_ThanhPho>().GetAll().ToList();
+            List<ThanhPho> listThanhPho = unitOfWork.Repository<ThanhPho>().GetAll().ToList();
             return listThanhPho;
         }
     }

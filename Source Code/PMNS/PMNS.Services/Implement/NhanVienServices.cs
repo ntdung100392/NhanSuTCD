@@ -9,7 +9,7 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Implement
 {
-    public class NhanVienServices : Services<C_ThongTinNguoiLaoDong>, INhanVienServices
+    public class NhanVienServices : Services<ThongTinNhanVIen>, INhanVienServices
     {
         public NhanVienServices(IUnitOfWork unitOfWork)
             : base(unitOfWork)
@@ -17,19 +17,19 @@ namespace PMNS.Services.Implement
 
         public bool GetEmployeeByNameAndPass(string name, string pass)
         {
-            C_ThongTinNguoiLaoDong emp = unitOfWork.Repository<C_ThongTinNguoiLaoDong>().
-                Get().Where(x => x.C_user.Equals(name) && x.C_Password.Equals(pass)).FirstOrDefault();
+            ThongTinNhanVIen emp = unitOfWork.Repository<ThongTinNhanVIen>().
+                Get().Where(x => x.userName.Equals(name) && x.password.Equals(pass)).FirstOrDefault();
             if (emp == null)
             {
-                emp = new C_ThongTinNguoiLaoDong();
+                emp = new ThongTinNhanVIen();
                 return true;
             }
             return false;
         }
 
-        public List<C_ThongTinNguoiLaoDong> GetAllEmployees()
+        public List<ThongTinNhanVIen> GetAllEmployees()
         {
-            List<C_ThongTinNguoiLaoDong> empList = unitOfWork.Repository<C_ThongTinNguoiLaoDong>().GetAll().ToList();
+            List<ThongTinNhanVIen> empList = unitOfWork.Repository<ThongTinNhanVIen>().GetAll().ToList();
             return empList;
         }
     }

@@ -9,13 +9,13 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Implement
 {
-    public class LoaiToServices : Services<C_LoaiTo>, ILoaiToServices
+    public class LoaiToServices : Services<LoaiTo>, ILoaiToServices
     {
         public LoaiToServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public List<C_LoaiTo> GetAllLoaiTo()
+        public List<LoaiTo> GetAllLoaiTo()
         {
-            List<C_LoaiTo> listLoaiTo = unitOfWork.Repository<C_LoaiTo>().GetAll().ToList();
+            List<LoaiTo> listLoaiTo = unitOfWork.Repository<LoaiTo>().GetAll().ToList();
             return listLoaiTo;
         }
     }

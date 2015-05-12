@@ -11,10 +11,10 @@ namespace PMNS.DAL.Repositories
     // TODO: Add more base functionality
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly WebNhanSuContext context;
+        protected readonly NhanSuTCDContext context;
         protected readonly DbSet<T> DbSet;
 
-        public Repository(WebNhanSuContext context)
+        public Repository(NhanSuTCDContext context)
         {
             if (context != null)
             {
