@@ -34,8 +34,6 @@ namespace PMNS
             InitializeComponent();
         }
 
-        string gioitinh = "";
-
         #region DateTimePicker
 
         private void datetimeNgaySinh_ValueChanged(object sender, EventArgs e)
@@ -103,13 +101,14 @@ namespace PMNS
         }
         private void btnThem_Click_1(object sender, EventArgs e)
         {
+            int sex;
             if (rbtnNam.Checked == true)
             {
-                gioitinh = "Nam";
+                sex = 0;
             }
             if (rBtnNu.Checked == true)
             {
-                gioitinh = "Nữ";
+                sex = 1;
             }
             try
             {
@@ -133,7 +132,7 @@ namespace PMNS
                 cmd.Parameters.AddWithValue("@CapBac", txtcapbac.Text);
                 cmd.Parameters.AddWithValue("@CongViecDangLam", txtCongViecDangLam.Text);
                 cmd.Parameters.AddWithValue("@HoTen", txtTennv.Text);
-                cmd.Parameters.AddWithValue("@GioiTinh", gioitinh);
+                cmd.Parameters.AddWithValue("@GioiTinh", sex);
                 string date = datetimeNgaySinh.Value.ToString("yyyy-MM-dd");
                 cmd.Parameters.AddWithValue("@NamSinh", date);
                 cmd.Parameters.AddWithValue("@NguyenQuan", txtNguyenquan.Text);
