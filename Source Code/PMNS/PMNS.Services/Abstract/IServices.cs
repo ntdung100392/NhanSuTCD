@@ -6,15 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using PMNS.DAL.Abstract;
 using PMNS.Services.Abstract;
+using System.Data;
 
 namespace PMNS.Services.Abstract
 {
-    public interface IService<TEntity> where TEntity : class
+    public interface IServices<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
+
+        DataTable ToDataTable<T>(List<T> items);
 
         TEntity GetById(int id);
 

@@ -8,18 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Services.Abstract;
-using PMNS.Services.Implement;
 using PMNS.Entities.Models;
 
 namespace PMNS
 {
     public partial class Dang_nhap : Form
     {
-        protected readonly INguoiLaoDongServices _nguoiLaoDongService;
+        protected readonly INhanVienServices _nhanVienServices;
+        protected readonly IPhongBanServices _phongBanServices;
+        protected readonly IDoiServices _doiServices;
+        protected readonly IToServices _toServices;
+        protected readonly ILoaiToServices _loaiToServices;
+        protected readonly IThanhPhoServices _thanhPhoServices;
 
-        public Dang_nhap(INguoiLaoDongServices nguoiLaoDongService)
+        public Dang_nhap(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices)
         {
-            this._nguoiLaoDongService = nguoiLaoDongService;
+            this._nhanVienServices = nhanVienServices;
+            this._phongBanServices = phongBanServices;
+            this._doiServices = doiServices;
+            this._toServices = toServices;
+            this._loaiToServices = loaiToServices;
+            this._thanhPhoServices = thanhPhoServices;
             InitializeComponent();
         }
 
@@ -42,9 +52,9 @@ namespace PMNS
             {
                 string name = textBoxX1.Text.Trim();
                 string pass = textBoxX2.Text.Trim();
-                if (_nguoiLaoDongService.GetEmployeeByNameAndPass(name, pass) != null)
+                if (_nhanVienServices.GetEmployeeByNameAndPass(name, pass))
                 {
-                    Menu form = new Menu();
+                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices);
                     form.Show();
                 }
                 else

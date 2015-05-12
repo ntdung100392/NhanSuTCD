@@ -9,13 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlClient;
+using PMNS.Entities.Models;
+using PMNS.Services.Abstract;
 
 namespace PMNS
 {
     public partial class ThemNV : Form
     {
-        public ThemNV()
+        protected readonly IPhongBanServices _phongBanServices;
+        protected readonly IDoiServices _doiServices;
+        protected readonly IToServices _toServices;
+        protected readonly ILoaiToServices _loaiToServices;
+        protected readonly IThanhPhoServices _thanhPhoServices;
+        public ThemNV(IPhongBanServices phongBanServices, IDoiServices doiServices, IToServices toServices, ILoaiToServices loaiToServices,
+            IThanhPhoServices thanhPhoServices)
         {
+            this._phongBanServices = phongBanServices;
+            this._doiServices = doiServices;
+            this._toServices = toServices;
+            this._loaiToServices = loaiToServices;
+            this._thanhPhoServices = thanhPhoServices;
             InitializeComponent();
         }
 
@@ -60,18 +73,18 @@ namespace PMNS
             txtPass.Visible = false;
             txtPQ.Visible = false;
             textBox1.Enabled = false;
-            PhongBan();
-            Doi();
-            To();
-            LoaiTo();
-            ThanhPho();
-            dropChucVu();
-            cbHonNhan();
-            NoiCapCMND();
-            loadgridview();
-            cbTo.SelectedIndex = -1;
-            cbDoi.SelectedIndex = -1;
-            cbLoaiTo.SelectedIndex = -1;
+            GetAllPhongBan();
+            GetAllDoi();
+            GetAllTo();
+            GetAllLoaiTo();
+            GetAllThanhPho();
+            //dropChucVu();
+            //cbHonNhan();
+            //NoiCapCMND();
+            //loadgridview();
+            //cbTo.SelectedIndex = -1;
+            //cbDoi.SelectedIndex = -1;
+            //cbLoaiTo.SelectedIndex = -1;
         }
         void loadgridview()
         {
@@ -157,20 +170,16 @@ namespace PMNS
         {
 
         }
+
         #region ComBoBox
-        void PhongBan()
+        public void GetAllPhongBan()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropPhong = new SqlDataAdapter("Select * from _Phong", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropPhong.Fill(dt);
-            cbPhongBan.DataSource = dt;
-            cbPhongBan.DisplayMember = "TenPhong";
-            cbPhongBan.ValueMember = "MaPhong";
+            List<C_Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
+            cbPhongBan.DataSource = listPhongBan;
+            cbPhongBan.DisplayMember = "C_TenPhong";
+            cbPhongBan.ValueMember = "C_MaPhong";
             cbPhongBan.SelectedIndex = -1;
             txtChucVu.Enabled = false;
-            Connection.dongketnoi();
-
         }
         void NoiCapCMND()
         {
@@ -196,53 +205,37 @@ namespace PMNS
             cbMaCV.SelectedIndex = -1;
             Connection.dongketnoi();
         }
-        void Doi()
+        public void GetAllDoi()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropDoi = new SqlDataAdapter("Select * from _Doi", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropDoi.Fill(dt);
-            cbDoi.DataSource = dt;
-            cbDoi.DisplayMember = "TenDoi";
-            cbDoi.ValueMember = "MaDoi";
+            List<C_Doi> listDoi = _doiServices.GetAllDoi();
+            cbDoi.DataSource = listDoi;
+            cbDoi.DisplayMember = "C_TenDoi";
+            cbDoi.ValueMember = "C_MaDoi";
             cbDoi.SelectedIndex = -1;
-            Connection.dongketnoi();
         }
-        void To()
+        public void GetAllTo()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropTo = new SqlDataAdapter("Select * from _To", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropTo.Fill(dt);
-            cbTo.DataSource = dt;
-            cbTo.DisplayMember = "TenTo";
-            cbTo.ValueMember = "MaTo";
+            List<C_To> listTo = _toServices.GetAllTo();
+            cbTo.DataSource = listTo;
+            cbTo.DisplayMember = "C_TenTo";
+            cbTo.ValueMember = "C_MaTo";
             cbTo.SelectedIndex = -1;
-            Connection.dongketnoi();
         }
-        void LoaiTo()
+        public void GetAllLoaiTo()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropLoaiTo = new SqlDataAdapter("Select * from _LoaiTo", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropLoaiTo.Fill(dt);
-            cbLoaiTo.DataSource = dt;
-            cbLoaiTo.DisplayMember = "TenLoaiTo";
-            cbLoaiTo.ValueMember = "MaLoaiTo";
+            List<C_LoaiTo> listLoaiTo = _loaiToServices.GetAllLoaiTo();
+            cbLoaiTo.DataSource = listLoaiTo;
+            cbLoaiTo.DisplayMember = "C_TenLoaiTo";
+            cbLoaiTo.ValueMember = "C_MaLoaiTo";
             cbLoaiTo.SelectedIndex = -1;
-            Connection.dongketnoi();
         }
-        void ThanhPho()
+        public void GetAllThanhPho()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropThanhPho = new SqlDataAdapter("Select * from _ThanhPho", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropThanhPho.Fill(dt);
-            cbThanhPho.DataSource = dt;
-            cbThanhPho.DisplayMember = "TenTP";
-            cbThanhPho.ValueMember = "MaTP";
+            List<C_ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
+            cbThanhPho.DataSource = listThanhPho;
+            cbThanhPho.DisplayMember = "C_TenTP";
+            cbThanhPho.ValueMember = "C_MaTP";
             cbThanhPho.SelectedIndex = -1;
-            Connection.dongketnoi();
         }
         public class ComboboxItem
         {

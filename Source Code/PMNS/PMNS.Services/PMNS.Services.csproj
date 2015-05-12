@@ -52,10 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\INguoiLaoDongServices.cs" />
+    <Compile Include="Abstract\IDoiServices.cs" />
+    <Compile Include="Abstract\ILoaiToServices.cs" />
+    <Compile Include="Abstract\INhanVienServices.cs" />
+    <Compile Include="Abstract\IPhongBanServices.cs" />
     <Compile Include="Abstract\IServices.cs" />
-    <Compile Include="Implement\NguoiLaoDongServices.cs" />
+    <Compile Include="Abstract\IThanhPhoServices.cs" />
+    <Compile Include="Abstract\IToServices.cs" />
+    <Compile Include="Implement\DoiServices.cs" />
+    <Compile Include="Implement\LoaiToServices.cs" />
+    <Compile Include="Implement\NhanVienServices.cs" />
+    <Compile Include="Implement\PhongBanServices.cs" />
     <Compile Include="Implement\Services.cs" />
+    <Compile Include="Implement\ThanhPhoServices.cs" />
+    <Compile Include="Implement\ToServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
