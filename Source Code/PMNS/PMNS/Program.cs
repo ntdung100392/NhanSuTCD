@@ -28,7 +28,7 @@ namespace PMNS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices));
-            Application.Run(new ThemNV(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices));
+            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices));
         }
     }
 }

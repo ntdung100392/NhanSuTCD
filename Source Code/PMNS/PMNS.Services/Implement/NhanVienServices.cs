@@ -9,7 +9,7 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Implement
 {
-    public class NhanVienServices :Services<C_ThongTinNguoiLaoDong>, INhanVienServices
+    public class NhanVienServices : Services<C_ThongTinNguoiLaoDong>, INhanVienServices
     {
         public NhanVienServices(IUnitOfWork unitOfWork)
             : base(unitOfWork)
@@ -25,6 +25,12 @@ namespace PMNS.Services.Implement
                 return true;
             }
             return false;
+        }
+
+        public List<C_ThongTinNguoiLaoDong> GetAllEmployees()
+        {
+            List<C_ThongTinNguoiLaoDong> empList = unitOfWork.Repository<C_ThongTinNguoiLaoDong>().GetAll().ToList();
+            return empList;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace PMNS.Services.Abstract
     public interface INhanVienServices : IServices<C_ThongTinNguoiLaoDong>
     {
         bool GetEmployeeByNameAndPass(string name, string pass);
+        List<C_ThongTinNguoiLaoDong> GetAllEmployees();
     }
 }

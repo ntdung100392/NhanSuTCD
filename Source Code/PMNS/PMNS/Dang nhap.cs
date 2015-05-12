@@ -54,7 +54,7 @@ namespace PMNS
                 string pass = textBoxX2.Text.Trim();
                 if (_nhanVienServices.GetEmployeeByNameAndPass(name, pass))
                 {
-                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices);
+                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _nhanVienServices);
                     form.Show();
                 }
                 else

@@ -16,14 +16,16 @@ namespace PMNS
 {
     public partial class ThemNV : Form
     {
+        protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IDoiServices _doiServices;
         protected readonly IToServices _toServices;
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        public ThemNV(IPhongBanServices phongBanServices, IDoiServices doiServices, IToServices toServices, ILoaiToServices loaiToServices,
-            IThanhPhoServices thanhPhoServices)
+        public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices)
         {
+            this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
             this._doiServices = doiServices;
             this._toServices = toServices;
@@ -81,18 +83,29 @@ namespace PMNS
             //dropChucVu();
             //cbHonNhan();
             //NoiCapCMND();
-            //loadgridview();
+            GetAllEmployees();
             //cbTo.SelectedIndex = -1;
             //cbDoi.SelectedIndex = -1;
             //cbLoaiTo.SelectedIndex = -1;
         }
-        void loadgridview()
+        public void GetAllEmployees()
         {
-            Connection.moketnoi();
-            SqlDataAdapter datagridNLD = new SqlDataAdapter("select * from _ThongTinNguoiLaoDong", Connection.cnn);
-            DataTable gridTTNLD = new DataTable();
-            datagridNLD.Fill(gridTTNLD);
-            dataGridView1.DataSource = gridTTNLD;
+            var listNhanVien = _nhanVienServices.GetAllEmployees();
+            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.C_HoTen).ToList().Select(x =>
+                new
+                {
+                    HoTen = x.C_HoTen,
+                    GioiTinh = x.C_GioiTinh,
+                    NamSinh = x.C_NamSinh,
+                    MaNV = x.C_MaNV,
+                    MaPhongBan = x.C_MaPhongBan,
+                    MaTo = x.C_MaTo,
+                    MaDoi = x.C_MaDoi,
+                    BienChe = x.C_BienChe,
+                    NoiCongTac = x.C_NoiCongTac,
+                    NguoiBaoLanh = x.C_NguoiBaoLanh,
+                    MoiQuanHe = x.C_MoiQuanHeNBL
+                }).ToList();
         }
         private void btnThem_Click_1(object sender, EventArgs e)
         {
@@ -181,18 +194,6 @@ namespace PMNS
             cbPhongBan.SelectedIndex = -1;
             txtChucVu.Enabled = false;
         }
-        void NoiCapCMND()
-        {
-            Connection.moketnoi();
-            SqlDataAdapter dropNoiCapCMND = new SqlDataAdapter("Select * from _ThanhPho", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropNoiCapCMND.Fill(dt);
-            cbNoiCapCMND.DataSource = dt;
-            cbNoiCapCMND.DisplayMember = "TenTP";
-            cbNoiCapCMND.ValueMember = "MaTP";
-            cbNoiCapCMND.SelectedIndex = -1;
-            Connection.dongketnoi();
-        }
         void dropChucVu()
         {
             Connection.moketnoi();
@@ -236,6 +237,11 @@ namespace PMNS
             cbThanhPho.DisplayMember = "C_TenTP";
             cbThanhPho.ValueMember = "C_MaTP";
             cbThanhPho.SelectedIndex = -1;
+
+            cbNoiCapCMND.DataSource = listThanhPho;
+            cbNoiCapCMND.DisplayMember = "C_TenTP";
+            cbNoiCapCMND.ValueMember = "C_MaTP";
+            cbNoiCapCMND.SelectedIndex = -1;
         }
         public class ComboboxItem
         {
