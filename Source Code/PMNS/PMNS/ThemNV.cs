@@ -11,6 +11,7 @@ using System.IO;
 using System.Data.SqlClient;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
+using PMNS.Model;
 
 namespace PMNS
 {
@@ -22,8 +23,9 @@ namespace PMNS
         protected readonly IToServices _toServices;
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
+        protected readonly IChucVuServices _chucVuServices;
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices)
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -31,6 +33,7 @@ namespace PMNS
             this._toServices = toServices;
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
+            this._chucVuServices = chucVuServices;
             InitializeComponent();
         }
 
@@ -79,29 +82,17 @@ namespace PMNS
             GetAllTo();
             GetAllLoaiTo();
             GetAllThanhPho();
-            //dropChucVu();
-            //cbHonNhan();
-            //NoiCapCMND();
+            GetAllChucVu();
+            GetHonNhan();
             GetAllEmployees();
-            //cbTo.SelectedIndex = -1;
-            //cbDoi.SelectedIndex = -1;
-            //cbLoaiTo.SelectedIndex = -1;
+            cbTo.SelectedIndex = -1;
+            cbDoi.SelectedIndex = -1;
+            cbLoaiTo.SelectedIndex = -1;
         }
-        public void GetAllEmployees()
-        {
-            var listNhanVien = _nhanVienServices.GetAllEmployees();
-            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
-                new
-                {
-                    HoTen = x.hoTen,
-                    GioiTinh = x.gioiTinh,
-                    NamSinh = x.namSinh,
-                    MaNV = x.MaNV,
-                }).ToList();
-        }
+        
         private void btnThem_Click_1(object sender, EventArgs e)
         {
-            int sex;
+            int sex = 0;
             if (rbtnNam.Checked == true)
             {
                 sex = 0;
@@ -177,7 +168,54 @@ namespace PMNS
 
         }
 
-        #region ComBoBox
+        private void cbMaCV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbMaCV.SelectedIndex == -1)
+            {
+                txtChucVu.Text = string.Empty;
+            }
+            else
+            {
+                txtChucVu.Text = cbMaCV.SelectedValue.ToString();
+            }
+        }
+
+        private void txtManv_TextChanged(object sender, EventArgs e)
+        {
+            textBox1.Text = txtManv.Text;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbPhongBan.SelectedIndex == -1)
+            {
+                label31.Text = string.Empty;
+            }
+            else
+            {
+                label31.Text = cbPhongBan.SelectedValue.ToString();
+            }
+        }
+
+        #region Init
+        public void GetAllEmployees()
+        {
+            var listNhanVien = _nhanVienServices.GetAllEmployees();
+            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
+                new
+                {
+                    HoTen = x.hoTen,
+                    GioiTinh = x.gioiTinh,
+                    NamSinh = x.namSinh,
+                    MaNV = x.MaNV,
+                }).ToList();
+        }
+
         public void GetAllPhongBan()
         {
             List<Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
@@ -187,17 +225,13 @@ namespace PMNS
             cbPhongBan.SelectedIndex = -1;
             txtChucVu.Enabled = false;
         }
-        void dropChucVu()
+        public void GetAllChucVu()
         {
-            Connection.moketnoi();
-            SqlDataAdapter dropChucVu = new SqlDataAdapter("Select * from ChucVu", Connection.cnn);
-            DataTable dt = new DataTable();
-            dropChucVu.Fill(dt);
-            cbMaCV.DataSource = dt;
-            cbMaCV.DisplayMember = "ChucVu";
-            cbMaCV.ValueMember = "MaChucVu";
+            List<ChucVu> listChucVu = _chucVuServices.GetAllChucVu();
+            cbMaCV.DataSource = listChucVu;
+            cbMaCV.DisplayMember = "ChucVu1";
+            cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
-            Connection.dongketnoi();
         }
         public void GetAllDoi()
         {
@@ -236,88 +270,25 @@ namespace PMNS
             cbNoiCapCMND.ValueMember = "idThanhPho";
             cbNoiCapCMND.SelectedIndex = -1;
         }
-        public class ComboboxItem
-        {
-            public string Text { get; set; }
-            public object Value { get; set; }
 
-            public override string ToString()
+        public void GetHonNhan()
+        {
+
+            List<ComboBoxItem> item = new List<ComboBoxItem> 
             {
-                return Text;
-            }
-        }
-        void cbHonNhan()
-        {
-            ComboboxItem item = new ComboboxItem();
-            item.Text = "";
-            //item.Value = 0;
-            ComboboxItem item1 = new ComboboxItem();
-            item1.Text = "Độc Thân";
-            //item1.Value = 1;
-            ComboboxItem item2 = new ComboboxItem();
-            item2.Text = "Đã kết hôn";
-            //item2.Value = 2;
-            ComboboxItem item3 = new ComboboxItem();
-            item3.Text = "Ly Thân";
-            //item3.Value = 3;
-            ComboboxItem item4 = new ComboboxItem();
-            item4.Text = "Ly Dị";
-            //item4.Value = 4;
-            ComboboxItem item5 = new ComboboxItem();
-            item5.Text = "Goá Chồng";
-            //item5.Value = 5;
-            ComboboxItem item6 = new ComboboxItem();
-            item6.Text = "Goá Vợ";
-            //item6.Value = 6;
+                new ComboBoxItem { Text = "Độc Thân", Value = 1 },
+                new ComboBoxItem { Text = "Đã kết hôn", Value = 2 },
+                new ComboBoxItem { Text = "Ly Thân", Value = 3 },
+                new ComboBoxItem { Text = "Ly Dị", Value = 4 },
+                new ComboBoxItem { Text = "Goá Chồng", Value = 5 },
+                new ComboBoxItem { Text = "Goá Vợ", Value = 6 }
+            };
 
-            cbTinhTrangHonNhan.Items.Add(item);
-            cbTinhTrangHonNhan.Items.Add(item1);
-            cbTinhTrangHonNhan.Items.Add(item2);
-            cbTinhTrangHonNhan.Items.Add(item3);
-            cbTinhTrangHonNhan.Items.Add(item4);
-            cbTinhTrangHonNhan.Items.Add(item5);
-            cbTinhTrangHonNhan.Items.Add(item6);
+            cbTinhTrangHonNhan.DataSource = item;
+            cbTinhTrangHonNhan.DisplayMember = "Text";
+            cbTinhTrangHonNhan.ValueMember = "Value";
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
         #endregion
-
-        private void cbMaCV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbMaCV.SelectedIndex == -1)
-            {
-                txtChucVu.Text = string.Empty;
-            }
-            else
-            {
-                txtChucVu.Text = cbMaCV.SelectedValue.ToString();
-            }
-        }
-
-        private void txtManv_TextChanged(object sender, EventArgs e)
-        {
-            textBox1.Text = txtManv.Text;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbPhongBan.SelectedIndex == -1)
-            {
-                label31.Text = string.Empty;
-            }
-            else
-            {
-                label31.Text = cbPhongBan.SelectedValue.ToString();
-            }
-        }
-
-
-
-
-
     }
 }

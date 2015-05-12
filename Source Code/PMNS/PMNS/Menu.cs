@@ -22,8 +22,9 @@ namespace PMNS
         protected readonly IToServices _toServices;
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
+        protected readonly IChucVuServices _chucVuServices;
         public Menu(IPhongBanServices phongBanServices, IDoiServices doiServices, IToServices toServices, ILoaiToServices loaiToServices,
-            IThanhPhoServices thanhPhoServices, INhanVienServices nhanVienServices)
+            IThanhPhoServices thanhPhoServices, INhanVienServices nhanVienServices,IChucVuServices chucVuServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._doiServices = doiServices;
@@ -31,6 +32,7 @@ namespace PMNS
             this._toServices = toServices;
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
+            this._chucVuServices = chucVuServices;
             InitializeComponent();
         }
         public void Form1_Load(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace PMNS
         }
         public void thêmNhânViênMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices);
+            ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _chucVuServices);
             ThemNV.Show();
         }
 

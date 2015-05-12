@@ -7,7 +7,8 @@ using PMNS.Entities.Models;
 
 namespace PMNS.Services.Abstract
 {
-    interface IChucVuServices
+    public interface IChucVuServices : IServices<ChucVu>
     {
+        List<ChucVu> GetAllChucVu();
     }
 }

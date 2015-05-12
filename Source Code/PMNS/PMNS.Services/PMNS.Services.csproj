@@ -60,6 +60,7 @@
     <Compile Include="Abstract\IServices.cs" />
     <Compile Include="Abstract\IThanhPhoServices.cs" />
     <Compile Include="Abstract\IToServices.cs" />
+    <Compile Include="Implement\ChucVuServices.cs" />
     <Compile Include="Implement\DoiServices.cs" />
     <Compile Include="Implement\LoaiToServices.cs" />
     <Compile Include="Implement\NhanVienServices.cs" />

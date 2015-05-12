@@ -20,9 +20,10 @@ namespace PMNS
         protected readonly IToServices _toServices;
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
+        protected readonly IChucVuServices _chucVuServices;
 
         public Dang_nhap(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices)
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices,IChucVuServices chucVuServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -30,6 +31,7 @@ namespace PMNS
             this._toServices = toServices;
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
+            this._chucVuServices = chucVuServices;
             InitializeComponent();
         }
 
@@ -54,7 +56,7 @@ namespace PMNS
                 string pass = textBoxX2.Text.Trim();
                 if (_nhanVienServices.GetEmployeeByNameAndPass(name, pass))
                 {
-                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _nhanVienServices);
+                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _nhanVienServices, _chucVuServices);
                     form.Show();
                 }
                 else
