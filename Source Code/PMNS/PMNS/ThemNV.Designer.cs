@@ -37,6 +37,8 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbCapBac = new System.Windows.Forms.ComboBox();
+            this.cbBienChe = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtPQ = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -109,8 +111,6 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.cbBienChe = new System.Windows.Forms.ComboBox();
-            this.cbCapBac = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -270,6 +270,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
             // 
+            // cbCapBac
+            // 
+            this.cbCapBac.FormattingEnabled = true;
+            this.cbCapBac.Location = new System.Drawing.Point(91, 98);
+            this.cbCapBac.Name = "cbCapBac";
+            this.cbCapBac.Size = new System.Drawing.Size(126, 21);
+            this.cbCapBac.TabIndex = 114;
+            // 
+            // cbBienChe
+            // 
+            this.cbBienChe.FormattingEnabled = true;
+            this.cbBienChe.Location = new System.Drawing.Point(348, 45);
+            this.cbBienChe.Name = "cbBienChe";
+            this.cbBienChe.Size = new System.Drawing.Size(126, 21);
+            this.cbBienChe.TabIndex = 113;
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -360,6 +376,7 @@
             this.cbDoi.Name = "cbDoi";
             this.cbDoi.Size = new System.Drawing.Size(181, 21);
             this.cbDoi.TabIndex = 102;
+            this.cbDoi.TextChanged += new System.EventHandler(this.cbDoi_TextChanged);
             // 
             // cbPhongBan
             // 
@@ -844,22 +861,6 @@
             // errorProvider7
             // 
             this.errorProvider7.ContainerControl = this;
-            // 
-            // cbBienChe
-            // 
-            this.cbBienChe.FormattingEnabled = true;
-            this.cbBienChe.Location = new System.Drawing.Point(348, 45);
-            this.cbBienChe.Name = "cbBienChe";
-            this.cbBienChe.Size = new System.Drawing.Size(126, 21);
-            this.cbBienChe.TabIndex = 113;
-            // 
-            // cbCapBac
-            // 
-            this.cbCapBac.FormattingEnabled = true;
-            this.cbCapBac.Location = new System.Drawing.Point(91, 98);
-            this.cbCapBac.Name = "cbCapBac";
-            this.cbCapBac.Size = new System.Drawing.Size(126, 21);
-            this.cbCapBac.TabIndex = 114;
             // 
             // ThemNV
             // 

@@ -23,10 +23,6 @@ namespace PMNS.Entities.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(150);
 
-            this.Property(t => t.idLoaiHopDong)
-                .IsRequired()
-                .HasMaxLength(100);
-
             // Table & Column Mappings
             this.ToTable("HopDongLaoDong");
             this.Property(t => t.idHopDongLaoDong).HasColumnName("idHopDongLaoDong");
@@ -40,6 +36,9 @@ namespace PMNS.Entities.Models.Mapping
             this.Property(t => t.ghiChu).HasColumnName("ghiChu");
 
             // Relationships
+            this.HasRequired(t => t.LoaiHopDong)
+                .WithMany(t => t.HopDongLaoDongs)
+                .HasForeignKey(d => d.idLoaiHopDong);
             this.HasRequired(t => t.ThongTinNhanVIen)
                 .WithMany(t => t.HopDongLaoDongs)
                 .HasForeignKey(d => d.idNhanVien);
