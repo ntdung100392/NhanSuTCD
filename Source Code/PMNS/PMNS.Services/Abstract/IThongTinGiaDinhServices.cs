@@ -10,5 +10,7 @@ namespace PMNS.Services.Abstract
     public interface IThongTinGiaDinhServices : IServices<ThongTinGiaDinh>
     {
         ThongTinGiaDinh GetThongTinByNhanVienId(int id);
+        string AddThongTinGiaDinh(ThongTinGiaDinh info);
+        string UpdateThongTinGiaDinh(ThongTinGiaDinh info);
     }
 }

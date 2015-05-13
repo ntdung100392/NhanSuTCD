@@ -9,6 +9,7 @@ namespace PMNS.Services.Abstract
 {
     public interface ICapBacServices: IServices<CapBac>
     {
+        List<CapBac> GetAllCapBac();
         bool AddCapBac(CapBac capBac);
         bool UpdateCapBac(CapBac capBacUpdate);
         string DeleteCapBac(CapBac capBacDelete);

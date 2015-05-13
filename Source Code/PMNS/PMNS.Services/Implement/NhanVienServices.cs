@@ -25,7 +25,6 @@ namespace PMNS.Services.Implement
             {
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    pass = EncryptedSecurity.GetMd5Hash(md5Hash, pass);
                     if (EncryptedSecurity.VerifyMd5Hash(md5Hash, pass, emp.password))
                     {
                         InitUserProfile(emp);
@@ -96,24 +95,6 @@ namespace PMNS.Services.Implement
                 try
                 {
                     unitOfWork.Repository<ThongTinNhanVIen>().Insert(emp);
-                    unitOfWork.Commit();
-                    return true;
-                }
-                catch (InvalidOperationException e)
-                {
-                    throw e;
-                }
-            }
-            return false;
-        }
-
-        public bool DeleteNhanVien(ThongTinNhanVIen emp)
-        {
-            if (emp != null)
-            {
-                try
-                {
-                    unitOfWork.Repository<ThongTinNhanVIen>().Delete(emp);
                     unitOfWork.Commit();
                     return true;
                 }

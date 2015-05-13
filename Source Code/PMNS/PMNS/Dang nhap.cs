@@ -56,7 +56,7 @@ namespace PMNS
                 string name = textBoxX1.Text.Trim();
                 string pass = textBoxX2.Text.Trim();
                 string thongBao = _nhanVienServices.GetEmployeeByNameAndPass(name, pass);
-                if (UserProfile.idNhanVien != 0 && UserProfile.idNhanVien != null)
+                if (UserProfile.idNhanVien != 0)
                 {
                     MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
                     Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _nhanVienServices, _chucVuServices);
