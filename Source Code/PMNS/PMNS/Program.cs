@@ -7,6 +7,7 @@ using PMNS.Services.Abstract;
 using PMNS.Services.Implement;
 using PMNS.DAL.Abstract;
 using PMNS.DAL.Implement;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -29,7 +30,19 @@ namespace PMNS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices));
-            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _chucVuServices));
+            //if (UserLogin.permission == 1)
+            //{
+                //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
+                //    _thanhPhoServices, _chucVuServices));
+            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
+                    _thanhPhoServices, _chucVuServices));
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
+            //        _thanhPhoServices, _chucVuServices));
+            //}
         }
     }
 }

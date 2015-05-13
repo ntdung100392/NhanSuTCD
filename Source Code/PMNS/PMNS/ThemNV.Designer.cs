@@ -84,7 +84,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtCongViecDangLam = new System.Windows.Forms.TextBox();
             this.txtChucVu = new System.Windows.Forms.TextBox();
-            this.txtBienche = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -94,7 +93,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtcapbac = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtdiachi = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -111,6 +109,8 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cbBienChe = new System.Windows.Forms.ComboBox();
+            this.cbCapBac = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -196,6 +196,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbCapBac);
+            this.groupBox2.Controls.Add(this.cbBienChe);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.txtPQ);
             this.groupBox2.Controls.Add(this.txtPass);
@@ -243,7 +245,6 @@
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.txtCongViecDangLam);
             this.groupBox2.Controls.Add(this.txtChucVu);
-            this.groupBox2.Controls.Add(this.txtBienche);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
@@ -253,7 +254,6 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.txtcapbac);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtdiachi);
             this.groupBox2.Controls.Add(this.label3);
@@ -666,13 +666,6 @@
             this.txtChucVu.Size = new System.Drawing.Size(126, 20);
             this.txtChucVu.TabIndex = 50;
             // 
-            // txtBienche
-            // 
-            this.txtBienche.Location = new System.Drawing.Point(348, 46);
-            this.txtBienche.Name = "txtBienche";
-            this.txtBienche.Size = new System.Drawing.Size(126, 20);
-            this.txtBienche.TabIndex = 48;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -757,13 +750,6 @@
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 36;
             this.label5.Text = "Cấp Bậc";
-            // 
-            // txtcapbac
-            // 
-            this.txtcapbac.Location = new System.Drawing.Point(91, 101);
-            this.txtcapbac.Name = "txtcapbac";
-            this.txtcapbac.Size = new System.Drawing.Size(126, 20);
-            this.txtcapbac.TabIndex = 35;
             // 
             // label4
             // 
@@ -859,6 +845,22 @@
             // 
             this.errorProvider7.ContainerControl = this;
             // 
+            // cbBienChe
+            // 
+            this.cbBienChe.FormattingEnabled = true;
+            this.cbBienChe.Location = new System.Drawing.Point(348, 45);
+            this.cbBienChe.Name = "cbBienChe";
+            this.cbBienChe.Size = new System.Drawing.Size(126, 21);
+            this.cbBienChe.TabIndex = 113;
+            // 
+            // cbCapBac
+            // 
+            this.cbCapBac.FormattingEnabled = true;
+            this.cbCapBac.Location = new System.Drawing.Point(91, 98);
+            this.cbCapBac.Name = "cbCapBac";
+            this.cbCapBac.Size = new System.Drawing.Size(126, 21);
+            this.cbCapBac.TabIndex = 114;
+            // 
             // ThemNV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -896,7 +898,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtCongViecDangLam;
         private System.Windows.Forms.TextBox txtChucVu;
-        private System.Windows.Forms.TextBox txtBienche;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -906,7 +907,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtcapbac;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtdiachi;
         private System.Windows.Forms.Label label3;
@@ -969,5 +969,7 @@
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox cbBienChe;
+        private System.Windows.Forms.ComboBox cbCapBac;
     }
 }

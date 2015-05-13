@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
 using PMNS.DAL.Abstract;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -41,8 +42,16 @@ namespace PMNS
         }
         public void thêmNhânViênMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _chucVuServices);
-            ThemNV.Show();
+            if (UserProfile.permission == 1)
+            {
+                ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _chucVuServices);
+                ThemNV.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)

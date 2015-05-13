@@ -102,60 +102,21 @@ namespace PMNS
             {
                 sex = 1;
             }
-            try
+            if (_nhanVienServices.AddNhanVien(txtManv.Text.Trim(), Convert.ToInt32(cbTo.SelectedValue), textBox1.Text.Trim(),
+                txtPass.Text.Trim(), 0, Convert.ToInt32(cbBienChe.SelectedValue), Convert.ToInt32(cbCapBac.SelectedValue),
+                Convert.ToInt32(cbMaCV.SelectedValue), Convert.ToInt32(cbThanhPho.SelectedValue), txtCongViecDangLam.Text.Trim(),
+                txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text, txtHoKhau.Text, txtCMND.Text,
+                datetimeCMND.Value, cbNoiCapCMND.SelectedText, "", txtSdt.Text.Trim(), txtNguoiBaoLanh.Text,
+                txtMoiQuanHeNBL.Text, "", datetimeNgayVaoCang.Value, datetimeNamVaoST.Value, datetimeNgayNhapNgu.Value,
+                cbTinhTrangHonNhan.SelectedText, ""))
             {
-                SqlCommand cmd = new SqlCommand("insert into _ThongTinNguoiLaoDong  (MaNV, MaPhongBan, MaDoi, MaTo, MaLoaiTo, ID, Password, PhanQuyen, BienChe, CapBac, MaChucVu, CongViecDangLam, HoTen, GioiTinh, NamSinh, NguyenQuan, NoiOHienNay, HoKhau, CMND, NgayCapCMND, NoiCapCMND, SDTDD, NguoiBaoLanh, MoiQuanHeNBL, NgayVaoCang, NamVaoST, NgayNhapNgu, TinhTrangHonNhan, MaTP) values (@MaNV, @MaPhongBan, @MaDoi, @MaTo, @MaLoaiTo, @ID, @Password, @PhanQuyen, @BienChe, @CapBac, @MaChucVu, @CongViecDangLam, @HoTen, @GioiTinh, @NamSinh, @NguyenQuan, @NoiOHienNay, @HoKhau, @CMND, @NgayCapCMND, @NoiCapCMND, @SDTDD, @NguoiBaoLanh, @MoiQuanHeNBL, @NgayVaoCang, @NamVaoST, @NgayNhapNgu, @TinhTrangHonNhan, @MaTP)", Connection.cnn);
-                cmd.Parameters.AddWithValue("@MaNV", txtManv.Text);
-                if (cbPhongBan.SelectedIndex == -1 || cbPhongBan.Text.ToString() == "")
-                {
-                    cmd.Parameters.AddWithValue("@MaPhongBan", null);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@MaPhongBan", cbPhongBan.SelectedValue.ToString());
-                }
-                cmd.Parameters.AddWithValue("@MaDoi", cbDoi.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@MaTo", cbTo.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@MaLoaiTo", cbLoaiTo.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@ID", textBox1.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPass.Text);
-                cmd.Parameters.AddWithValue("@PhanQuyen", txtPQ.Text);
-                cmd.Parameters.AddWithValue("@BienChe", txtBienche.Text);
-                cmd.Parameters.AddWithValue("@CapBac", txtcapbac.Text);
-                cmd.Parameters.AddWithValue("@CongViecDangLam", txtCongViecDangLam.Text);
-                cmd.Parameters.AddWithValue("@HoTen", txtTennv.Text);
-                cmd.Parameters.AddWithValue("@GioiTinh", sex);
-                string date = datetimeNgaySinh.Value.ToString("yyyy-MM-dd");
-                cmd.Parameters.AddWithValue("@NamSinh", date);
-                cmd.Parameters.AddWithValue("@NguyenQuan", txtNguyenquan.Text);
-                cmd.Parameters.AddWithValue("@NoiOHienNay", txtdiachi.Text);
-                cmd.Parameters.AddWithValue("@HoKhau", txtHoKhau.Text);
-                cmd.Parameters.AddWithValue("@CMND", txtCMND.Text);
-                string dateNgayCapCMND = datetimeCMND.Value.ToString("yyyy-MM-dd");
-                cmd.Parameters.AddWithValue("@NgayCapCMND", dateNgayCapCMND);
-                cmd.Parameters.AddWithValue("@NoiCapCMND", cbNoiCapCMND.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@NguoiBaoLanh", txtNguoiBaoLanh.Text);
-                cmd.Parameters.AddWithValue("@MoiQuanHeNBL", txtMoiQuanHeNBL.Text);
-                string dateNgayVaoCang = datetimeNgayVaoCang.Value.ToString("yyyy-MM-dd");
-                cmd.Parameters.AddWithValue("@NgayVaoCang", dateNgayVaoCang);
-                string dateNamVaoST = datetimeNamVaoST.Value.ToString("yyyy-MM-dd");
-                cmd.Parameters.AddWithValue("@NamVaoST", dateNamVaoST);
-                string dateNgayNhapNgu = datetimeNgayNhapNgu.Value.ToString("yyyy-MM-dd");
-                cmd.Parameters.AddWithValue("@NgayNhapNgu", dateNgayNhapNgu);
-                cmd.Parameters.AddWithValue("@TinhTrangHonNhan", cbTinhTrangHonNhan.SelectedText.ToString());
-                cmd.Parameters.AddWithValue("@SDTDD", txtSdt.Text);
-                cmd.Parameters.AddWithValue("@MaChucVu", cbMaCV.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@MaTP", cbThanhPho.SelectedValue.ToString());
-                Connection.moketnoi();
-                cmd.ExecuteNonQuery();
-                Connection.dongketnoi();
                 MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtManv.Clear();
                 txtTennv.Clear();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString(), "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
