@@ -262,5 +262,13 @@ namespace PMNS
         }
 
         #endregion
+
+        private void cbDoi_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(cbDoi.Text.Trim()))
+            {
+                cbDoi.Enabled = false;
+            }
+        }
     }
 }

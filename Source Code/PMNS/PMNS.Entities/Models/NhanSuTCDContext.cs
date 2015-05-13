@@ -23,6 +23,7 @@ namespace PMNS.Entities.Models
         public DbSet<HopDongLaoDong> HopDongLaoDongs { get; set; }
         public DbSet<KhenThuong> KhenThuongs { get; set; }
         public DbSet<KyLuat> KyLuats { get; set; }
+        public DbSet<LoaiHopDong> LoaiHopDongs { get; set; }
         public DbSet<LoaiTo> LoaiToes { get; set; }
         public DbSet<Phong> Phongs { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
@@ -42,6 +43,7 @@ namespace PMNS.Entities.Models
             modelBuilder.Configurations.Add(new HopDongLaoDongMap());
             modelBuilder.Configurations.Add(new KhenThuongMap());
             modelBuilder.Configurations.Add(new KyLuatMap());
+            modelBuilder.Configurations.Add(new LoaiHopDongMap());
             modelBuilder.Configurations.Add(new LoaiToMap());
             modelBuilder.Configurations.Add(new PhongMap());
             modelBuilder.Configurations.Add(new sysdiagramMap());

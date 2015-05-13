@@ -56,6 +56,7 @@
     <Compile Include="Models\HopDongLaoDong.cs" />
     <Compile Include="Models\KhenThuong.cs" />
     <Compile Include="Models\KyLuat.cs" />
+    <Compile Include="Models\LoaiHopDong.cs" />
     <Compile Include="Models\LoaiTo.cs" />
     <Compile Include="Models\Mapping\BienCheMap.cs" />
     <Compile Include="Models\Mapping\CapBacMap.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\Mapping\HopDongLaoDongMap.cs" />
     <Compile Include="Models\Mapping\KhenThuongMap.cs" />
     <Compile Include="Models\Mapping\KyLuatMap.cs" />
+    <Compile Include="Models\Mapping\LoaiHopDongMap.cs" />
     <Compile Include="Models\Mapping\LoaiToMap.cs" />
     <Compile Include="Models\Mapping\PhongMap.cs" />
     <Compile Include="Models\Mapping\sysdiagramMap.cs" />
