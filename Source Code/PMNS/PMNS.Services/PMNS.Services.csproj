@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBienCheServices.cs" />
     <Compile Include="Abstract\ICapBacServices.cs" />
     <Compile Include="Abstract\IChucVuServices.cs" />
     <Compile Include="Abstract\IDoiServices.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Abstract\IThanhPhoServices.cs" />
     <Compile Include="Abstract\IThongTinGiaDinhServices.cs" />
     <Compile Include="Abstract\IToServices.cs" />
+    <Compile Include="Implement\BienCheServices.cs" />
     <Compile Include="Implement\CapBacServices.cs" />
     <Compile Include="Implement\ChucVuServices.cs" />
     <Compile Include="Implement\DoiServices.cs" />

@@ -24,9 +24,12 @@ namespace PMNS
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IBienCheServices _bienCheServices;
 
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices)
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
+            ICapBacServices capBacServices,IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -35,6 +38,8 @@ namespace PMNS
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
             this._chucVuServices = chucVuServices;
+            this._capBacServices = capBacServices;
+            this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
 
@@ -86,6 +91,8 @@ namespace PMNS
             GetAllChucVu();
             GetHonNhan();
             GetAllEmployees();
+            GetAllCapBac();
+            GetAllBienChe();
             cbTo.SelectedIndex = -1;
             cbDoi.SelectedIndex = -1;
             cbLoaiTo.SelectedIndex = -1;
@@ -252,13 +259,20 @@ namespace PMNS
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
 
-        public bool AddEmployee(ThongTinNhanVIen empDetail)
+        public void GetAllCapBac()
         {
-            if (empDetail != null)
-            {
+            List<CapBac> listCapBac = _capBacServices.GetAllCapBac();
+            cbCapBac.DataSource = listCapBac;
+            cbCapBac.DisplayMember = "capBac1";
+            cbCapBac.ValueMember = "idCapBac";
+        }
 
-            }
-            return false;
+        public void GetAllBienChe()
+        {
+            List<BienChe> listBienChe = _bienCheServices.GetAllBienChe();
+            cbBienChe.DataSource = listBienChe;
+            cbBienChe.ValueMember = "idBienChe";
+            cbBienChe.DisplayMember = "bienChe1";
         }
 
         #endregion

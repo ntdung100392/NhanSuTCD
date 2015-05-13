@@ -19,23 +19,41 @@ namespace PMNS.Services.Implement
             return info;
         }
 
-        public bool DeleteThongTinByNhanVienId(int id)
+        public string AddThongTinGiaDinh(ThongTinGiaDinh info)
         {
-            ThongTinGiaDinh info = unitOfWork.Repository<ThongTinGiaDinh>().GetById(id);
             if (info != null)
             {
-                try
+                if (unitOfWork.Repository<ThongTinNhanVIen>().GetById(info.idNhanVien) != null)
                 {
-                    unitOfWork.Repository<ThongTinGiaDinh>().Delete(info);
+                    unitOfWork.Repository<ThongTinGiaDinh>().Insert(info);
                     unitOfWork.Commit();
-                    return true;
+                    return "Thêm Thông Tin Gia Đình Thành Công!";
                 }
-                catch(InvalidOperationException e)
-                {
-                    throw e;
-                }
+                return "Không Tồn Tại Nhân Viên Trên Trong Cơ Sở Dữ Liệu!";
             }
-            return false;
+            return "Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!";
+        }
+
+        public string UpdateThongTinGiaDinh(ThongTinGiaDinh info)
+        {
+            if (info != null)
+            {
+                if (unitOfWork.Repository<ThongTinNhanVIen>().GetById(info.idNhanVien) != null)
+                {
+                    try
+                    {
+                        unitOfWork.Repository<ThongTinGiaDinh>().Update(info);
+                        unitOfWork.Commit();
+                        return "Đã Chỉnh Sửa Thành Công!";
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        throw e;
+                    }
+                }
+                return "Không Tồn Tại Nhân Viên Trên Trong Cơ Sở Dữ Liệu!";
+            }
+            return "Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin!";
         }
     }
 }

@@ -27,6 +27,7 @@ namespace PMNS
             ILoaiToServices _loaiToServices = new LoaiToServices(unitOfWork);
             IThanhPhoServices _thanhPhoServices = new ThanhPhoServices(unitOfWork);
             IChucVuServices _chucVuServices = new ChucVuServices(unitOfWork);
+            ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices));
@@ -35,7 +36,7 @@ namespace PMNS
                 //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
                 //    _thanhPhoServices, _chucVuServices));
             Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
-                    _thanhPhoServices, _chucVuServices));
+                    _thanhPhoServices, _chucVuServices,_capBacServices));
             //}
             //else
             //{
