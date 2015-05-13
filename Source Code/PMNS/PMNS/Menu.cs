@@ -24,16 +24,22 @@ namespace PMNS
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
-        public Menu(IPhongBanServices phongBanServices, IDoiServices doiServices, IToServices toServices, ILoaiToServices loaiToServices,
-            IThanhPhoServices thanhPhoServices, INhanVienServices nhanVienServices,IChucVuServices chucVuServices)
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IBienCheServices _bienCheServices;
+
+        public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
+            ICapBacServices capBacServices, IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
-            this._doiServices = doiServices;
             this._phongBanServices = phongBanServices;
+            this._doiServices = doiServices;
             this._toServices = toServices;
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
             this._chucVuServices = chucVuServices;
+            this._capBacServices = capBacServices;
+            this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
         public void Form1_Load(object sender, EventArgs e)
@@ -44,14 +50,15 @@ namespace PMNS
         {
             if (UserProfile.permission == 1)
             {
-                ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _chucVuServices);
+                ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
+                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices);
                 ThemNV.Show();
             }
             else
             {
                 MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PMNS
 {
-    public partial class ChucVu : Form
+    public partial class QuanLyCapBac : Form
     {
-        public ChucVu()
+        public QuanLyCapBac()
         {
             InitializeComponent();
         }

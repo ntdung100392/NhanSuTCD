@@ -22,9 +22,12 @@ namespace PMNS
         protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IBienCheServices _bienCheServices;
 
         public Dang_nhap(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices)
+            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
+            ICapBacServices capBacServices, IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -33,6 +36,8 @@ namespace PMNS
             this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
             this._chucVuServices = chucVuServices;
+            this._capBacServices = capBacServices;
+            this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
 
@@ -59,7 +64,8 @@ namespace PMNS
                 if (UserProfile.idNhanVien != 0)
                 {
                     MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
-                    Menu form = new Menu(_phongBanServices, _doiServices, _toServices, _loaiToServices, _thanhPhoServices, _nhanVienServices, _chucVuServices);
+                    Menu form = new Menu(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
+                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices);
                     form.Show();
                 }
                 else

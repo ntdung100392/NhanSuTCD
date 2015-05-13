@@ -1,6 +1,6 @@
 ﻿namespace PMNS
 {
-    partial class CapBac
+    partial class QuanLyCapBac
     {
         /// <summary>
         /// Required designer variable.
