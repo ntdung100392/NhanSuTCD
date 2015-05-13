@@ -1,3 +1,4 @@
+use [NhanSuTCD]
 create table [dbo].[BienChe] (
     [idBienChe] [int] not null identity,
     [maBienChe] [nvarchar](50) not null,
@@ -67,6 +68,7 @@ create table [dbo].[LoaiHopDong] (
 );
 create table [dbo].[LoaiTo] (
     [idLoaiTo] [int] not null identity,
+	[idTo] [int] not null,
     [maLoaiTo] [nvarchar](50) not null,
     [tenLoaiTo] [nvarchar](150) not null,
     primary key ([idLoaiTo])
@@ -160,7 +162,6 @@ create table [dbo].[ThongTinNhanVIen] (
 create table [dbo].[To] (
     [idTo] [int] not null identity,
     [idDoi] [int] not null,
-    [idLoaiTo] [int] not null,
     [maTo] [nvarchar](50) not null,
     [tenTo] [nvarchar](100) not null,
     primary key ([idTo])
@@ -190,5 +191,5 @@ alter table [dbo].[ThongTinNhanVIen] add constraint [ThongTinNhanVIen_ChucVu] fo
 alter table [dbo].[ThongTinNhanVIen] add constraint [ThongTinNhanVIen_ThanhPho] foreign key ([idTP]) references [dbo].[ThanhPho]([idThanhPho]) on delete cascade;
 alter table [dbo].[ThongTinNhanVIen] add constraint [ThongTinNhanVIen_To] foreign key ([idTo]) references [dbo].[To]([idTo]) on delete cascade;
 alter table [dbo].[To] add constraint [To_Doi] foreign key ([idDoi]) references [dbo].[Doi]([idDoi]) on delete cascade;
-alter table [dbo].[To] add constraint [To_LoaiTo] foreign key ([idLoaiTo]) references [dbo].[LoaiTo]([idLoaiTo]) on delete cascade;
+alter table [dbo].[LoaiTo] add constraint [To_LoaiTo] foreign key ([idTo]) references [dbo].[To]([idTo]) on delete cascade;
 alter table [dbo].[TrinhDo] add constraint [TrinhDo_ThongTinNhanVIen] foreign key ([idNhanVien]) references [dbo].[ThongTinNhanVIen]([idNhanVien]) on delete cascade;
