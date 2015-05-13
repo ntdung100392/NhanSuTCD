@@ -65,11 +65,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapBac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapBac.Designer.cs">
+      <DependentUpon>CapBac.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChinhSuaThongTin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChinhSuaThongTin.Designer.cs">
       <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucVu.Designer.cs">
+      <DependentUpon>ChucVu.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="Dang nhap.cs">
@@ -83,6 +95,12 @@
     </Compile>
     <Compile Include="DanhSachThongTin.Designer.cs">
       <DependentUpon>DanhSachThongTin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiChinhSua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoaiChinhSua.Designer.cs">
+      <DependentUpon>LoaiChinhSua.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -111,14 +129,29 @@
     <Compile Include="Thong Tin.Designer.cs">
       <DependentUpon>Thong Tin.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongTinTrinhDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongTinTrinhDo.Designer.cs">
+      <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CapBac.resx">
+      <DependentUpon>CapBac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChinhSuaThongTin.resx">
       <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucVu.resx">
+      <DependentUpon>ChucVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dang nhap.resx">
       <DependentUpon>Dang nhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DanhSachThongTin.resx">
       <DependentUpon>DanhSachThongTin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoaiChinhSua.resx">
+      <DependentUpon>LoaiChinhSua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -141,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Thong Tin.resx">
       <DependentUpon>Thong Tin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongTinTrinhDo.resx">
+      <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
