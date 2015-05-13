@@ -28,15 +28,16 @@ namespace PMNS
             IThanhPhoServices _thanhPhoServices = new ThanhPhoServices(unitOfWork);
             IChucVuServices _chucVuServices = new ChucVuServices(unitOfWork);
             ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
+            IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices));
             //if (UserLogin.permission == 1)
             //{
-                //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
-                //    _thanhPhoServices, _chucVuServices));
-            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
-                    _thanhPhoServices, _chucVuServices,_capBacServices));
+            //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
+            //    _thanhPhoServices, _chucVuServices));
+            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
+                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
             //}
             //else
             //{

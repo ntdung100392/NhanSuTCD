@@ -29,7 +29,7 @@ namespace PMNS
 
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
             IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices,IBienCheServices bienCheServices)
+            ICapBacServices capBacServices, IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -83,16 +83,16 @@ namespace PMNS
             txtPass.Visible = false;
             txtPQ.Visible = false;
             textBox1.Enabled = false;
-            GetAllPhongBan();
-            GetAllDoi();
-            GetAllTo();
-            GetAllLoaiTo();
-            GetAllThanhPho();
-            GetAllChucVu();
+            GetPhongBan();
+            GetDoi();
+            GetTo();
+            GetLoaiTo();
+            GetThanhPho();
+            GetChucVu();
             GetHonNhan();
-            GetAllEmployees();
-            GetAllCapBac();
-            GetAllBienChe();
+            GetEmployees();
+            GetCapBac();
+            GetBienChe();
             cbTo.SelectedIndex = -1;
             cbDoi.SelectedIndex = -1;
             cbLoaiTo.SelectedIndex = -1;
@@ -172,7 +172,7 @@ namespace PMNS
         }
 
         #region Init
-        public void GetAllEmployees()
+        public void GetEmployees()
         {
             var listNhanVien = _nhanVienServices.GetAllEmployees();
             dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
@@ -185,7 +185,7 @@ namespace PMNS
                 }).ToList();
         }
 
-        public void GetAllPhongBan()
+        public void GetPhongBan()
         {
             List<Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
             cbPhongBan.DataSource = listPhongBan;
@@ -194,7 +194,7 @@ namespace PMNS
             cbPhongBan.SelectedIndex = -1;
             txtChucVu.Enabled = false;
         }
-        public void GetAllChucVu()
+        public void GetChucVu()
         {
             List<ChucVu> listChucVu = _chucVuServices.GetAllChucVu();
             cbMaCV.DataSource = listChucVu;
@@ -202,7 +202,7 @@ namespace PMNS
             cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
         }
-        public void GetAllDoi()
+        public void GetDoi()
         {
             List<Doi> listDoi = _doiServices.GetAllDoi();
             cbDoi.DataSource = listDoi;
@@ -210,7 +210,7 @@ namespace PMNS
             cbDoi.ValueMember = "idDoi";
             cbDoi.SelectedIndex = -1;
         }
-        public void GetAllTo()
+        public void GetTo()
         {
             List<To> listTo = _toServices.GetAllTo();
             cbTo.DataSource = listTo;
@@ -218,7 +218,7 @@ namespace PMNS
             cbTo.ValueMember = "idTo";
             cbTo.SelectedIndex = -1;
         }
-        public void GetAllLoaiTo()
+        public void GetLoaiTo()
         {
             List<LoaiTo> listLoaiTo = _loaiToServices.GetAllLoaiTo();
             cbLoaiTo.DataSource = listLoaiTo;
@@ -226,7 +226,7 @@ namespace PMNS
             cbLoaiTo.ValueMember = "idLoaiTo";
             cbLoaiTo.SelectedIndex = -1;
         }
-        public void GetAllThanhPho()
+        public void GetThanhPho()
         {
             List<ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DataSource = listThanhPho;
@@ -259,7 +259,7 @@ namespace PMNS
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
 
-        public void GetAllCapBac()
+        public void GetCapBac()
         {
             List<CapBac> listCapBac = _capBacServices.GetAllCapBac();
             cbCapBac.DataSource = listCapBac;
@@ -267,7 +267,7 @@ namespace PMNS
             cbCapBac.ValueMember = "idCapBac";
         }
 
-        public void GetAllBienChe()
+        public void GetBienChe()
         {
             List<BienChe> listBienChe = _bienCheServices.GetAllBienChe();
             cbBienChe.DataSource = listBienChe;

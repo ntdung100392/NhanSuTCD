@@ -1,6 +1,6 @@
 ﻿namespace PMNS
 {
-    partial class ChucVu
+    partial class QuanLyChucVu
     {
         /// <summary>
         /// Required designer variable.
