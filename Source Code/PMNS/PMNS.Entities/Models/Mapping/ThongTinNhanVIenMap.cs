@@ -85,6 +85,12 @@ namespace PMNS.Entities.Models.Mapping
             this.Property(t => t.hinhAnhCaNhan).HasColumnName("hinhAnhCaNhan");
 
             // Relationships
+            this.HasRequired(t => t.BienChe)
+                .WithMany(t => t.ThongTinNhanVIens)
+                .HasForeignKey(d => d.idBienChe);
+            this.HasRequired(t => t.CapBac)
+                .WithMany(t => t.ThongTinNhanVIens)
+                .HasForeignKey(d => d.idCapBac);
             this.HasRequired(t => t.ChucVu)
                 .WithMany(t => t.ThongTinNhanVIens)
                 .HasForeignKey(d => d.idChucVu);

@@ -45,6 +45,8 @@ namespace PMNS.Entities.Models
         public Nullable<System.DateTime> ngayNhapNgu { get; set; }
         public string tinhTrangHonNhan { get; set; }
         public string hinhAnhCaNhan { get; set; }
+        public virtual BienChe BienChe { get; set; }
+        public virtual CapBac CapBac { get; set; }
         public virtual ChucVu ChucVu { get; set; }
         public virtual ICollection<HopDongLaoDong> HopDongLaoDongs { get; set; }
         public virtual ICollection<KhenThuong> KhenThuongs { get; set; }

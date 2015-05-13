@@ -49,12 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BienChe.cs" />
+    <Compile Include="Models\CapBac.cs" />
     <Compile Include="Models\ChucVu.cs" />
     <Compile Include="Models\Doi.cs" />
     <Compile Include="Models\HopDongLaoDong.cs" />
     <Compile Include="Models\KhenThuong.cs" />
     <Compile Include="Models\KyLuat.cs" />
     <Compile Include="Models\LoaiTo.cs" />
+    <Compile Include="Models\Mapping\BienCheMap.cs" />
+    <Compile Include="Models\Mapping\CapBacMap.cs" />
     <Compile Include="Models\Mapping\ChucVuMap.cs" />
     <Compile Include="Models\Mapping\DoiMap.cs" />
     <Compile Include="Models\Mapping\HopDongLaoDongMap.cs" />

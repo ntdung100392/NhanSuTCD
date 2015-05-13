@@ -16,6 +16,8 @@ namespace PMNS.Entities.Models
         {
         }
 
+        public DbSet<BienChe> BienChes { get; set; }
+        public DbSet<CapBac> CapBacs { get; set; }
         public DbSet<ChucVu> ChucVus { get; set; }
         public DbSet<Doi> Dois { get; set; }
         public DbSet<HopDongLaoDong> HopDongLaoDongs { get; set; }
@@ -33,6 +35,8 @@ namespace PMNS.Entities.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new BienCheMap());
+            modelBuilder.Configurations.Add(new CapBacMap());
             modelBuilder.Configurations.Add(new ChucVuMap());
             modelBuilder.Configurations.Add(new DoiMap());
             modelBuilder.Configurations.Add(new HopDongLaoDongMap());

@@ -90,7 +90,7 @@ namespace PMNS
             cbDoi.SelectedIndex = -1;
             cbLoaiTo.SelectedIndex = -1;
         }
-        
+
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             int sex = 0;
@@ -290,6 +290,16 @@ namespace PMNS
             cbTinhTrangHonNhan.ValueMember = "Value";
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
+
+        public bool AddEmployee(ThongTinNhanVIen empDetail)
+        {
+            if (empDetail != null)
+            {
+
+            }
+            return false;
+        }
+
         #endregion
     }
 }
