@@ -7,16 +7,16 @@ namespace PMNS.Entities.Models
     {
         public To()
         {
+            this.LoaiToes = new List<LoaiTo>();
             this.ThongTinNhanVIens = new List<ThongTinNhanVIen>();
         }
 
         public int idTo { get; set; }
         public int idDoi { get; set; }
-        public int idLoaiTo { get; set; }
         public string maTo { get; set; }
         public string tenTo { get; set; }
         public virtual Doi Doi { get; set; }
-        public virtual LoaiTo LoaiTo { get; set; }
+        public virtual ICollection<LoaiTo> LoaiToes { get; set; }
         public virtual ICollection<ThongTinNhanVIen> ThongTinNhanVIens { get; set; }
     }
 }

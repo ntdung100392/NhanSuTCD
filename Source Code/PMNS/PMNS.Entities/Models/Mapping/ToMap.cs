@@ -23,7 +23,6 @@ namespace PMNS.Entities.Models.Mapping
             this.ToTable("To");
             this.Property(t => t.idTo).HasColumnName("idTo");
             this.Property(t => t.idDoi).HasColumnName("idDoi");
-            this.Property(t => t.idLoaiTo).HasColumnName("idLoaiTo");
             this.Property(t => t.maTo).HasColumnName("maTo");
             this.Property(t => t.tenTo).HasColumnName("tenTo");
 
@@ -31,9 +30,6 @@ namespace PMNS.Entities.Models.Mapping
             this.HasRequired(t => t.Doi)
                 .WithMany(t => t.Toes)
                 .HasForeignKey(d => d.idDoi);
-            this.HasRequired(t => t.LoaiTo)
-                .WithMany(t => t.Toes)
-                .HasForeignKey(d => d.idLoaiTo);
 
         }
     }

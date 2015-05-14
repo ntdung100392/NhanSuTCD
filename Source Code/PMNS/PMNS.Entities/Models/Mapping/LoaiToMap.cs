@@ -22,8 +22,15 @@ namespace PMNS.Entities.Models.Mapping
             // Table & Column Mappings
             this.ToTable("LoaiTo");
             this.Property(t => t.idLoaiTo).HasColumnName("idLoaiTo");
+            this.Property(t => t.idTo).HasColumnName("idTo");
             this.Property(t => t.maLoaiTo).HasColumnName("maLoaiTo");
             this.Property(t => t.tenLoaiTo).HasColumnName("tenLoaiTo");
+
+            // Relationships
+            this.HasRequired(t => t.To)
+                .WithMany(t => t.LoaiToes)
+                .HasForeignKey(d => d.idTo);
+
         }
     }
 }
