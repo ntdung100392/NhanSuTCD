@@ -86,6 +86,7 @@ namespace PMNS
             cbDoi.Enabled = false;
             cbTo.Enabled = false;
             cbLoaiTo.Enabled = false;
+            txtMoiQuanHeNBL.Enabled = false;
             InitPhongBan();
             InitThanhPho();
             InitChucVu();
@@ -111,7 +112,7 @@ namespace PMNS
                 "12345678x@X", Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
                 Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe), Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
                 Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu), Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho), 
-                txtCongViecDangLam.Text.Trim(), txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text, 
+                txtCongViecDangLam.Text.Trim(), txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text,
                 txtHoKhau.Text, txtCMND.Text, datetimeCMND.Value, cbNoiCapCMND.SelectedText, "", txtSdt.Text.Trim(), txtNguoiBaoLanh.Text,
                 txtMoiQuanHeNBL.Text, txtNoiCongTac.Text.Trim(), datetimeNgayVaoCang.Value, datetimeNamVaoST.Value, datetimeNgayNhapNgu.Value,
                 cbTinhTrangHonNhan.SelectedText, ""))
@@ -207,6 +208,18 @@ namespace PMNS
             }
         }
 
+        private void txtNguoiBaoLanh_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNguoiBaoLanh.Text.Trim() != "")
+            {
+                txtMoiQuanHeNBL.Enabled = true;
+            }
+            else
+            {
+                txtMoiQuanHeNBL.Enabled = false;
+            }
+        }
+
         #endregion
 
         #region Init
@@ -242,7 +255,6 @@ namespace PMNS
             cbPhongBan.DisplayMember = "tenPhong";
             cbPhongBan.ValueMember = "idPhong";
             cbPhongBan.SelectedIndex = -1;
-            txtNoiCongTac.Enabled = false;
         }
 
         public void InitChucVu()
@@ -303,6 +315,6 @@ namespace PMNS
             cbBienChe.DisplayMember = "bienChe1";
         }
 
-        #endregion
+        #endregion        
     }
 }

@@ -37,9 +37,12 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbPhanQuyen = new System.Windows.Forms.ComboBox();
+            this.lblPhanQuyen = new System.Windows.Forms.Label();
             this.cbCapBac = new System.Windows.Forms.ComboBox();
             this.cbBienChe = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.txtdiachi = new System.Windows.Forms.TextBox();
             this.lbUserName = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.cbTinhTrangHonNhan = new System.Windows.Forms.ComboBox();
@@ -85,6 +88,7 @@
             this.txtNoiCongTac = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.rBtnNu = new System.Windows.Forms.RadioButton();
             this.rbtnNam = new System.Windows.Forms.RadioButton();
@@ -92,7 +96,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtdiachi = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSdt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -107,9 +110,6 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblPhanQuyen = new System.Windows.Forms.Label();
-            this.cbPhanQuyen = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -268,6 +268,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
             // 
+            // cbPhanQuyen
+            // 
+            this.cbPhanQuyen.FormattingEnabled = true;
+            this.cbPhanQuyen.Location = new System.Drawing.Point(348, 173);
+            this.cbPhanQuyen.Name = "cbPhanQuyen";
+            this.cbPhanQuyen.Size = new System.Drawing.Size(126, 21);
+            this.cbPhanQuyen.TabIndex = 116;
+            // 
+            // lblPhanQuyen
+            // 
+            this.lblPhanQuyen.AutoSize = true;
+            this.lblPhanQuyen.Location = new System.Drawing.Point(239, 176);
+            this.lblPhanQuyen.Name = "lblPhanQuyen";
+            this.lblPhanQuyen.Size = new System.Drawing.Size(66, 13);
+            this.lblPhanQuyen.TabIndex = 115;
+            this.lblPhanQuyen.Text = "Phân Quyền";
+            // 
             // cbCapBac
             // 
             this.cbCapBac.FormattingEnabled = true;
@@ -291,6 +308,14 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(0, 13);
             this.label30.TabIndex = 109;
+            // 
+            // txtdiachi
+            // 
+            this.txtdiachi.Location = new System.Drawing.Point(91, 204);
+            this.txtdiachi.Multiline = true;
+            this.txtdiachi.Name = "txtdiachi";
+            this.txtdiachi.Size = new System.Drawing.Size(383, 20);
+            this.txtdiachi.TabIndex = 33;
             // 
             // lbUserName
             // 
@@ -534,6 +559,7 @@
             this.txtNguoiBaoLanh.Name = "txtNguoiBaoLanh";
             this.txtNguoiBaoLanh.Size = new System.Drawing.Size(181, 20);
             this.txtNguoiBaoLanh.TabIndex = 75;
+            this.txtNguoiBaoLanh.TextChanged += new System.EventHandler(this.txtNguoiBaoLanh_TextChanged);
             // 
             // label20
             // 
@@ -673,6 +699,15 @@
             this.label12.TabIndex = 46;
             this.label12.Text = "Chức Vụ";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(239, 128);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 45;
+            this.label11.Text = "Nơi Công Tác";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -739,14 +774,6 @@
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 34;
             this.label4.Text = "Địa Chỉ";
-            // 
-            // txtdiachi
-            // 
-            this.txtdiachi.Location = new System.Drawing.Point(91, 204);
-            this.txtdiachi.Multiline = true;
-            this.txtdiachi.Name = "txtdiachi";
-            this.txtdiachi.Size = new System.Drawing.Size(383, 20);
-            this.txtdiachi.TabIndex = 33;
             // 
             // label3
             // 
@@ -824,32 +851,6 @@
             // errorProvider7
             // 
             this.errorProvider7.ContainerControl = this;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(239, 128);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "Nơi Công Tác";
-            // 
-            // lblPhanQuyen
-            // 
-            this.lblPhanQuyen.AutoSize = true;
-            this.lblPhanQuyen.Location = new System.Drawing.Point(239, 176);
-            this.lblPhanQuyen.Name = "lblPhanQuyen";
-            this.lblPhanQuyen.Size = new System.Drawing.Size(66, 13);
-            this.lblPhanQuyen.TabIndex = 115;
-            this.lblPhanQuyen.Text = "Phân Quyền";
-            // 
-            // cbPhanQuyen
-            // 
-            this.cbPhanQuyen.FormattingEnabled = true;
-            this.cbPhanQuyen.Location = new System.Drawing.Point(348, 173);
-            this.cbPhanQuyen.Name = "cbPhanQuyen";
-            this.cbPhanQuyen.Size = new System.Drawing.Size(126, 21);
-            this.cbPhanQuyen.TabIndex = 116;
             // 
             // ThemNV
             // 

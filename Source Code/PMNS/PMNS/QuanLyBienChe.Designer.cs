@@ -98,6 +98,7 @@
             this.btnSuaBienChe.TabIndex = 1;
             this.btnSuaBienChe.Text = "Sửa";
             this.btnSuaBienChe.UseVisualStyleBackColor = true;
+            this.btnSuaBienChe.Click += new System.EventHandler(this.btnSuaBienChe_Click);
             // 
             // btnThemBienChe
             // 
@@ -107,6 +108,7 @@
             this.btnThemBienChe.TabIndex = 0;
             this.btnThemBienChe.Text = "Thêm";
             this.btnThemBienChe.UseVisualStyleBackColor = true;
+            this.btnThemBienChe.Click += new System.EventHandler(this.btnThemBienChe_Click);
             // 
             // groupBox2
             // 
@@ -124,7 +126,9 @@
             this.dataGridChucVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridChucVu.Location = new System.Drawing.Point(3, 16);
+            this.dataGridChucVu.MultiSelect = false;
             this.dataGridChucVu.Name = "dataGridChucVu";
+            this.dataGridChucVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridChucVu.Size = new System.Drawing.Size(333, 151);
             this.dataGridChucVu.TabIndex = 0;
             // 
@@ -137,6 +141,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "QuanLyBienChe";
             this.Text = "Quản Lý Biên Chế";
+            this.Load += new System.EventHandler(this.QuanLyBienChe_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
