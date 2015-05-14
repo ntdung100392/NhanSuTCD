@@ -10,5 +10,6 @@ namespace PMNS.Services.Abstract
     public interface IDoiServices : IServices<Doi>
     {
         List<Doi> GetAllDoi();
+        List<Doi> GetDoiByPhongBanId(int id);
     }
 }

@@ -35,9 +35,10 @@ namespace PMNS
             //if (UserLogin.permission == 1)
             //{
             //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
-            //    _thanhPhoServices, _chucVuServices));
-            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
-                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
+            ////    _thanhPhoServices, _chucVuServices));
+            //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
+            //        _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
+            Application.Run(new QuanLyCapBac(_capBacServices));
             //}
             //else
             //{

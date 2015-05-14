@@ -33,7 +33,7 @@ namespace PMNS.Services.Implement
                 {
                     throw e;
                 }
-            }            
+            }
             return false;
         }
 
@@ -47,7 +47,7 @@ namespace PMNS.Services.Implement
                     unitOfWork.Commit();
                     return true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
@@ -55,29 +55,17 @@ namespace PMNS.Services.Implement
             return false;
         }
 
-        public string DeleteCapBac(CapBac capBacDelete)
+        public CapBac FindCapBac(string nameCapBac, string maCapBac)
         {
-            if (capBacDelete != null)
-            {
-                if (capBacDelete.ThongTinNhanVIens.ToList() != null)
-                {
-                    try
-                    {
-                        unitOfWork.Repository<CapBac>().Delete(capBacDelete);
-                        unitOfWork.Commit();
-                        return "Cấp Bậc Đã Được Xóa!";
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
-                else
-                {
-                    return "Vẫn Còn Nhân Viên Sử Dụng Cấp Bậc Này! Không Thể Xóa!";
-                }
-            }
-            return "Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin!";
+            CapBac capBac = unitOfWork.Repository<CapBac>().Get(
+                x => x.capBac1.Equals(nameCapBac) || x.maCapBac.Equals(maCapBac)).FirstOrDefault();
+            return capBac;
+        }
+
+        public CapBac GetCapBacById(int id)
+        {
+            CapBac capBac = unitOfWork.Repository<CapBac>().GetById(id);
+            return capBac;
         }
     }
 }

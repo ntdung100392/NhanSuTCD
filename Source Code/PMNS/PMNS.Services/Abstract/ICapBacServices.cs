@@ -12,6 +12,7 @@ namespace PMNS.Services.Abstract
         List<CapBac> GetAllCapBac();
         bool AddCapBac(CapBac capBac);
         bool UpdateCapBac(CapBac capBacUpdate);
-        string DeleteCapBac(CapBac capBacDelete);
+        CapBac FindCapBac(string nameCapBac, string maCapBac);
+        CapBac GetCapBacById(int id);
     }
 }

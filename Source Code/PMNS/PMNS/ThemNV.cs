@@ -78,24 +78,22 @@ namespace PMNS
         }
         #endregion
 
+
+        #region Form's Event
         private void ThemNV_Load(object sender, EventArgs e)
         {
-            txtPass.Visible = false;
-            txtPQ.Visible = false;
-            textBox1.Enabled = false;
-            GetPhongBan();
-            GetDoi();
-            GetTo();
-            GetLoaiTo();
-            GetThanhPho();
-            GetChucVu();
-            GetHonNhan();
-            GetEmployees();
-            GetCapBac();
-            GetBienChe();
-            cbTo.SelectedIndex = -1;
-            cbDoi.SelectedIndex = -1;
-            cbLoaiTo.SelectedIndex = -1;
+            txtUserName.Enabled = false;
+            cbDoi.Enabled = false;
+            cbTo.Enabled = false;
+            cbLoaiTo.Enabled = false;
+            InitPhongBan();
+            InitThanhPho();
+            InitChucVu();
+            InitHonNhan();
+            InitEmployees();
+            InitCapBac();
+            InitBienChe();
+            InitPermission();
         }
 
         private void btnThem_Click_1(object sender, EventArgs e)
@@ -109,12 +107,13 @@ namespace PMNS
             {
                 sex = 1;
             }
-            if (_nhanVienServices.AddNhanVien(txtManv.Text.Trim(), Convert.ToInt32(cbTo.SelectedValue), textBox1.Text.Trim(),
-                txtPass.Text.Trim(), 0, Convert.ToInt32(cbBienChe.SelectedValue), Convert.ToInt32(cbCapBac.SelectedValue),
-                Convert.ToInt32(cbMaCV.SelectedValue), Convert.ToInt32(cbThanhPho.SelectedValue), txtCongViecDangLam.Text.Trim(),
-                txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text, txtHoKhau.Text, txtCMND.Text,
-                datetimeCMND.Value, cbNoiCapCMND.SelectedText, "", txtSdt.Text.Trim(), txtNguoiBaoLanh.Text,
-                txtMoiQuanHeNBL.Text, "", datetimeNgayVaoCang.Value, datetimeNamVaoST.Value, datetimeNgayNhapNgu.Value,
+            if (_nhanVienServices.AddNhanVien(txtManv.Text.Trim(), Convert.ToInt32((cbTo.SelectedItem as To).idTo), txtUserName.Text.Trim(),
+                "12345678x@X", Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
+                Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe), Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
+                Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu), Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho), 
+                txtCongViecDangLam.Text.Trim(), txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text, 
+                txtHoKhau.Text, txtCMND.Text, datetimeCMND.Value, cbNoiCapCMND.SelectedText, "", txtSdt.Text.Trim(), txtNguoiBaoLanh.Text,
+                txtMoiQuanHeNBL.Text, txtNoiCongTac.Text.Trim(), datetimeNgayVaoCang.Value, datetimeNamVaoST.Value, datetimeNgayNhapNgu.Value,
                 cbTinhTrangHonNhan.SelectedText, ""))
             {
                 MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -123,7 +122,7 @@ namespace PMNS
             }
             else
             {
-                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,45 +133,96 @@ namespace PMNS
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void cbMaCV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbMaCV.SelectedIndex == -1)
-            {
-                txtChucVu.Text = string.Empty;
-            }
-            else
-            {
-                txtChucVu.Text = cbMaCV.SelectedValue.ToString();
-            }
+            MessageBox.Show("Bạn Có Muốn Thoát Khỏi Chương Trình ?", "Warning", MessageBoxButtons.YesNo);
         }
 
         private void txtManv_TextChanged(object sender, EventArgs e)
         {
-            textBox1.Text = txtManv.Text;
+            txtUserName.Text = txtManv.Text;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void cbPhongBan_SelectedValueChanged(object sender, EventArgs e)
         {
-
+            if (cbPhongBan.Text.Trim() != "")
+            {
+                var phong = cbPhongBan.SelectedItem as Phong;
+                if (phong.Dois.Count != 0)
+                {
+                    cbDoi.Enabled = true;
+                    cbDoi.DataSource = phong.Dois;
+                    cbDoi.DisplayMember = "tenDoi";
+                    cbDoi.ValueMember = "idDoi";
+                }
+                else
+                {
+                    cbDoi.Enabled = false;
+                    cbDoi.DataSource = null;
+                    cbTo.Enabled = false;
+                    cbTo.DataSource = null;
+                    cbLoaiTo.Enabled = false;
+                    cbLoaiTo.DataSource = null;
+                }
+            }
         }
 
-        private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDoi_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cbPhongBan.SelectedIndex == -1)
+            if (cbDoi.Text.Trim() != "")
             {
-                label31.Text = string.Empty;
-            }
-            else
-            {
-                label31.Text = cbPhongBan.SelectedValue.ToString();
+                var doi = cbDoi.SelectedItem as Doi;
+                if (doi.Toes.Count != 0)
+                {
+                    cbTo.Enabled = true;
+                    cbTo.DataSource = doi.Toes;
+                    cbTo.DisplayMember = "tenTo";
+                    cbTo.ValueMember = "idTo";
+                }
+                else
+                {
+                    cbTo.Enabled = false;
+                    cbTo.DataSource = null;
+                    cbLoaiTo.Enabled = false;
+                    cbLoaiTo.DataSource = null;
+                }
             }
         }
+
+        private void cbTo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbTo.Text.Trim() != "")
+            {
+                var to = cbTo.SelectedItem as To;
+                if (to.LoaiToes.Count != 0)
+                {
+                    cbLoaiTo.Enabled = true;
+                    cbLoaiTo.DataSource = to.LoaiToes;
+                    cbLoaiTo.DisplayMember = "tenLoaiTo";
+                    cbLoaiTo.ValueMember = "idLoaiTo";
+                }
+                else
+                {
+                    cbLoaiTo.Enabled = false;
+                    cbLoaiTo.DataSource = null;
+                }
+            }
+        }
+
+        #endregion
 
         #region Init
-        public void GetEmployees()
+        public void InitPermission()
+        {
+            List<ComboBoxItem> item = new List<ComboBoxItem> 
+            {
+                new ComboBoxItem { Text = "Admin", Value = 1 },
+                new ComboBoxItem { Text = "User", Value = 0 }
+            };
+
+            cbPhanQuyen.DataSource = item;
+            cbPhanQuyen.DisplayMember = "Text";
+            cbPhanQuyen.ValueMember = "Value";
+        }
+        public void InitEmployees()
         {
             var listNhanVien = _nhanVienServices.GetAllEmployees();
             dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
@@ -185,16 +235,17 @@ namespace PMNS
                 }).ToList();
         }
 
-        public void GetPhongBan()
+        public void InitPhongBan()
         {
-            List<Phong> listPhongBan = _phongBanServices.GetAllPhongBan();
+            var listPhongBan = _phongBanServices.GetAllPhongBan();
             cbPhongBan.DataSource = listPhongBan;
             cbPhongBan.DisplayMember = "tenPhong";
             cbPhongBan.ValueMember = "idPhong";
             cbPhongBan.SelectedIndex = -1;
-            txtChucVu.Enabled = false;
+            txtNoiCongTac.Enabled = false;
         }
-        public void GetChucVu()
+
+        public void InitChucVu()
         {
             List<ChucVu> listChucVu = _chucVuServices.GetAllChucVu();
             cbMaCV.DataSource = listChucVu;
@@ -202,31 +253,8 @@ namespace PMNS
             cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
         }
-        public void GetDoi()
-        {
-            List<Doi> listDoi = _doiServices.GetAllDoi();
-            cbDoi.DataSource = listDoi;
-            cbDoi.DisplayMember = "tenDoi";
-            cbDoi.ValueMember = "idDoi";
-            cbDoi.SelectedIndex = -1;
-        }
-        public void GetTo()
-        {
-            List<To> listTo = _toServices.GetAllTo();
-            cbTo.DataSource = listTo;
-            cbTo.DisplayMember = "tenTo";
-            cbTo.ValueMember = "idTo";
-            cbTo.SelectedIndex = -1;
-        }
-        public void GetLoaiTo()
-        {
-            List<LoaiTo> listLoaiTo = _loaiToServices.GetAllLoaiTo();
-            cbLoaiTo.DataSource = listLoaiTo;
-            cbLoaiTo.DisplayMember = "tenLoaiTo";
-            cbLoaiTo.ValueMember = "idLoaiTo";
-            cbLoaiTo.SelectedIndex = -1;
-        }
-        public void GetThanhPho()
+
+        public void InitThanhPho()
         {
             List<ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DataSource = listThanhPho;
@@ -240,7 +268,7 @@ namespace PMNS
             cbNoiCapCMND.SelectedIndex = -1;
         }
 
-        public void GetHonNhan()
+        public void InitHonNhan()
         {
 
             List<ComboBoxItem> item = new List<ComboBoxItem> 
@@ -259,7 +287,7 @@ namespace PMNS
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
 
-        public void GetCapBac()
+        public void InitCapBac()
         {
             List<CapBac> listCapBac = _capBacServices.GetAllCapBac();
             cbCapBac.DataSource = listCapBac;
@@ -267,7 +295,7 @@ namespace PMNS
             cbCapBac.ValueMember = "idCapBac";
         }
 
-        public void GetBienChe()
+        public void InitBienChe()
         {
             List<BienChe> listBienChe = _bienCheServices.GetAllBienChe();
             cbBienChe.DataSource = listBienChe;
@@ -276,13 +304,5 @@ namespace PMNS
         }
 
         #endregion
-
-        private void cbDoi_TextChanged(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(cbDoi.Text.Trim()))
-            {
-                cbDoi.Enabled = false;
-            }
-        }
     }
 }

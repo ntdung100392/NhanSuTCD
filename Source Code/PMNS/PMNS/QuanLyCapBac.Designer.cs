@@ -55,12 +55,17 @@
             // 
             // dataGridCapBac
             // 
+            this.dataGridCapBac.AllowUserToOrderColumns = true;
             this.dataGridCapBac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCapBac.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridCapBac.Location = new System.Drawing.Point(3, 16);
+            this.dataGridCapBac.MultiSelect = false;
             this.dataGridCapBac.Name = "dataGridCapBac";
+            this.dataGridCapBac.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dataGridCapBac.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCapBac.Size = new System.Drawing.Size(333, 151);
             this.dataGridCapBac.TabIndex = 0;
+            this.dataGridCapBac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCapBac_CellClick);
             // 
             // groupBox1
             // 
@@ -118,6 +123,7 @@
             this.btnSuaCapBac.TabIndex = 1;
             this.btnSuaCapBac.Text = "Sửa";
             this.btnSuaCapBac.UseVisualStyleBackColor = true;
+            this.btnSuaCapBac.Click += new System.EventHandler(this.btnSuaCapBac_Click);
             // 
             // btnThemCapBac
             // 
@@ -127,16 +133,18 @@
             this.btnThemCapBac.TabIndex = 0;
             this.btnThemCapBac.Text = "Thêm";
             this.btnThemCapBac.UseVisualStyleBackColor = true;
+            this.btnThemCapBac.Click += new System.EventHandler(this.btnThemCapBac_Click);
             // 
-            // CapBac
+            // QuanLyCapBac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 314);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "CapBac";
+            this.Name = "QuanLyCapBac";
             this.Text = "Cấp Bậc";
+            this.Load += new System.EventHandler(this.QuanLyCapBac_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCapBac)).EndInit();
             this.groupBox1.ResumeLayout(false);
