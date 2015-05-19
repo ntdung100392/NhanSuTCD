@@ -66,7 +66,7 @@ namespace PMNS
 
         private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChinhSuaThongTin formChinhsưa = new ChinhSuaThongTin();
+            DanhSachNhanVien formChinhsưa = new DanhSachNhanVien();
             formChinhsưa.Show();
         }
     }

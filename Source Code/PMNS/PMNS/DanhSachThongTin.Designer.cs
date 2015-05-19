@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridviewTDDDBNTV = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.datetimeNgaySinh = new System.Windows.Forms.DateTimePicker();
-            this.txtNgaySinh = new System.Windows.Forms.MaskedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTenNV = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.datetimeNgaySinh = new System.Windows.Forms.DateTimePicker();
+            this.txtNamThucHien = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLenh = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnTim = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridviewTDDDBNTV)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -56,25 +56,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh Sách";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.datetimeNgaySinh);
-            this.groupBox2.Controls.Add(this.txtNgaySinh);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(715, 234);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "abc";
-            // 
             // gridviewTDDDBNTV
             // 
             this.gridviewTDDDBNTV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -84,21 +65,56 @@
             this.gridviewTDDDBNTV.Size = new System.Drawing.Size(709, 211);
             this.gridviewTDDDBNTV.TabIndex = 0;
             // 
-            // label1
+            // groupBox2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lệnh (nội Dung)";
+            this.groupBox2.Controls.Add(this.btnBack);
+            this.groupBox2.Controls.Add(this.btnTim);
+            this.groupBox2.Controls.Add(this.txtTenNV);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.datetimeNgaySinh);
+            this.groupBox2.Controls.Add(this.txtNamThucHien);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.txtLenh);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(715, 234);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "abc";
             // 
-            // textBox1
+            // txtTenNV
             // 
-            this.textBox1.Location = new System.Drawing.Point(153, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtTenNV.Location = new System.Drawing.Point(153, 122);
+            this.txtTenNV.Name = "txtTenNV";
+            this.txtTenNV.Size = new System.Drawing.Size(126, 20);
+            this.txtTenNV.TabIndex = 113;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(65, 125);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 111;
+            this.label4.Text = "Tên NV";
+            // 
+            // datetimeNgaySinh
+            // 
+            this.datetimeNgaySinh.Location = new System.Drawing.Point(264, 80);
+            this.datetimeNgaySinh.Name = "datetimeNgaySinh";
+            this.datetimeNgaySinh.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNgaySinh.TabIndex = 108;
+            // 
+            // txtNamThucHien
+            // 
+            this.txtNamThucHien.Location = new System.Drawing.Point(153, 80);
+            this.txtNamThucHien.Mask = "00/00/0000";
+            this.txtNamThucHien.Name = "txtNamThucHien";
+            this.txtNamThucHien.Size = new System.Drawing.Size(126, 20);
+            this.txtNamThucHien.TabIndex = 109;
+            this.txtNamThucHien.ValidatingType = typeof(System.DateTime);
             // 
             // label2
             // 
@@ -109,53 +125,39 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Năm Thực Hiện";
             // 
-            // datetimeNgaySinh
+            // txtLenh
             // 
-            this.datetimeNgaySinh.Location = new System.Drawing.Point(264, 80);
-            this.datetimeNgaySinh.Name = "datetimeNgaySinh";
-            this.datetimeNgaySinh.Size = new System.Drawing.Size(15, 20);
-            this.datetimeNgaySinh.TabIndex = 108;
+            this.txtLenh.Location = new System.Drawing.Point(153, 44);
+            this.txtLenh.Name = "txtLenh";
+            this.txtLenh.Size = new System.Drawing.Size(126, 20);
+            this.txtLenh.TabIndex = 1;
             // 
-            // txtNgaySinh
+            // label1
             // 
-            this.txtNgaySinh.Location = new System.Drawing.Point(153, 80);
-            this.txtNgaySinh.Mask = "00/00/0000";
-            this.txtNgaySinh.Name = "txtNgaySinh";
-            this.txtNgaySinh.Size = new System.Drawing.Size(126, 20);
-            this.txtNgaySinh.TabIndex = 109;
-            this.txtNgaySinh.ValidatingType = typeof(System.DateTime);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(65, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Lệnh (nội Dung)";
             // 
-            // label3
+            // btnTim
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(65, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 110;
-            this.label3.Text = "Mã NV";
+            this.btnTim.Location = new System.Drawing.Point(426, 193);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(75, 23);
+            this.btnTim.TabIndex = 114;
+            this.btnTim.Text = "Tìm ";
+            this.btnTim.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // btnBack
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(65, 158);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
-            this.label4.TabIndex = 111;
-            this.label4.Text = "Tên NV";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(153, 120);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 112;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(153, 155);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 113;
+            this.btnBack.Location = new System.Drawing.Point(527, 193);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 115;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
             // 
             // DanhSachThongTin
             // 
@@ -167,9 +169,9 @@
             this.Name = "DanhSachThongTin";
             this.Text = "Danh Sách Thông Tin";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridviewTDDDBNTV)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridviewTDDDBNTV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -180,13 +182,13 @@
         private System.Windows.Forms.DataGridView gridviewTDDDBNTV;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLenh;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTenNV;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker datetimeNgaySinh;
-        private System.Windows.Forms.MaskedTextBox txtNgaySinh;
+        private System.Windows.Forms.MaskedTextBox txtNamThucHien;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnTim;
     }
 }
