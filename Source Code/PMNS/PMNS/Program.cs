@@ -29,21 +29,13 @@ namespace PMNS
             IChucVuServices _chucVuServices = new ChucVuServices(unitOfWork);
             ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
             IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
+            IThongTinServices _thongTinServices = new ThongTinServices(unitOfWork);
+            IThongTinTrinhDoServices _thongTinTrinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices));
-            //if (UserLogin.permission == 1)
-            //{
             Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
                     _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
-            //Application.Run(new QuanLyCapBac(_capBacServices));
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    Application.Run(new Dang_nhap(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices, 
-            //        _thanhPhoServices, _chucVuServices));
-            //}
         }
     }
 }

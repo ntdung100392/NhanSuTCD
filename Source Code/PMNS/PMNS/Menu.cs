@@ -26,6 +26,8 @@ namespace PMNS
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
+        protected readonly IThongTinServices _thongTinServices;
+        protected readonly IThongTinTrinhDoServices _thongTinTrinhDoServices;
 
         public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
             IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
@@ -42,10 +44,12 @@ namespace PMNS
             this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
+
         public void Form1_Load(object sender, EventArgs e)
         {
 
         }
+
         public void thêmNhânViênMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserProfile.permission == 1)
@@ -58,7 +62,6 @@ namespace PMNS
             {
                 MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
