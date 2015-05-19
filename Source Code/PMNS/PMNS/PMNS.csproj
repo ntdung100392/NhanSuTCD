@@ -65,11 +65,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HopDongLaoDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HopDongLaoDong.Designer.cs">
+      <DependentUpon>HopDongLaoDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyCapBac.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuanLyCapBac.Designer.cs">
       <DependentUpon>QuanLyCapBac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhSachNhanVien.Designer.cs">
+      <DependentUpon>DanhSachNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyChucVu.cs">
       <SubType>Form</SubType>
@@ -135,8 +147,14 @@
     <Compile Include="ThongTinTrinhDo.Designer.cs">
       <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HopDongLaoDong.resx">
+      <DependentUpon>HopDongLaoDong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLyCapBac.resx">
       <DependentUpon>QuanLyCapBac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhSachNhanVien.resx">
+      <DependentUpon>DanhSachNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyChucVu.resx">
       <DependentUpon>QuanLyChucVu.cs</DependentUpon>
