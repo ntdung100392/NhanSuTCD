@@ -15,8 +15,54 @@ namespace PMNS.Services.Implement
 
         public List<ChucVu> GetAllChucVu()
         {
-            List<ChucVu> listChucVu = unitOfWork.Repository<ChucVu>().GetAll().ToList();
-            return listChucVu;
+            return unitOfWork.Repository<ChucVu>().GetAll().ToList();
+        }
+
+        public ChucVu GetChucVuById(int id)
+        {
+            return unitOfWork.Repository<ChucVu>().GetById(id);
+        }
+
+        public bool AddChucVu(ChucVu chucVu)
+        {
+            if (chucVu != null)
+            {
+                try
+                {
+                    unitOfWork.Repository<ChucVu>().Insert(chucVu);
+                    unitOfWork.Commit();
+                    return true;
+                }
+                catch (InvalidOperationException e)
+                {
+                    throw e;
+                }
+            }
+            return false;
+        }
+
+        public bool UpdateChucVu(ChucVu chucVu)
+        {
+            if (chucVu != null)
+            {
+                try
+                {
+                    unitOfWork.Repository<ChucVu>().Update(chucVu);
+                    unitOfWork.Commit();
+                    return true;
+                }
+                catch (InvalidOperationException e)
+                {
+                    throw e;
+                }
+            }
+            return false;
+        }
+
+        public ChucVu FindChucVu(string nameChucVu, string maChucVu)
+        {
+            return unitOfWork.Repository<ChucVu>().Get(
+                x => x.ChucVu1.Equals(nameChucVu) || x.MaChucVu.Equals(maChucVu)).FirstOrDefault();
         }
     }
 }

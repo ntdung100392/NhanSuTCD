@@ -10,5 +10,9 @@ namespace PMNS.Services.Abstract
     public interface IChucVuServices : IServices<ChucVu>
     {
         List<ChucVu> GetAllChucVu();
+        ChucVu GetChucVuById(int id);
+        bool AddChucVu(ChucVu chucVu);
+        bool UpdateChucVu(ChucVu chucVu);
+        ChucVu FindChucVu(string nameChucVu, string maChucVu);
     }
 }

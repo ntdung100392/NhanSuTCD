@@ -20,7 +20,7 @@ namespace PMNS
             this._capBacServices = capBacServices;
             InitializeComponent();
         }
-        static CapBac updateTemp;
+        private CapBac updateCapBac = new CapBac();
         #region Init Data
         public void InitGridView()
         {
@@ -71,22 +71,23 @@ namespace PMNS
         }
         private void dataGridCapBac_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            updateTemp = _capBacServices.GetCapBacById(Convert.ToInt32(dataGridCapBac.CurrentRow.Cells[0].Value.ToString()));
-            txtMaCapBac.Text = updateTemp.maCapBac;
-            txtCapBac.Text = updateTemp.capBac1;
+            updateCapBac = _capBacServices.GetCapBacById(Convert.ToInt32(dataGridCapBac.CurrentRow.Cells[0].Value.ToString()));
+            txtMaCapBac.Text = updateCapBac.maCapBac;
+            txtCapBac.Text = updateCapBac.capBac1;
         }
 
         private void btnSuaCapBac_Click(object sender, EventArgs e)
         {
-            updateTemp.capBac1 = txtCapBac.Text.Trim();
-            updateTemp.maCapBac = txtMaCapBac.Text.Trim();
-            if (_capBacServices.UpdateCapBac(updateTemp))
+            updateCapBac.capBac1 = txtCapBac.Text.Trim();
+            updateCapBac.maCapBac = txtMaCapBac.Text.Trim();
+            if (_capBacServices.UpdateCapBac(updateCapBac))
             {
                 MessageBox.Show("Đã Sửa Cấp Bậc Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                 InitGridView();
                 dataGridCapBac.Refresh();
                 txtCapBac.Clear();
                 txtMaCapBac.Clear();
+                updateCapBac = null;
             }
             else
             {

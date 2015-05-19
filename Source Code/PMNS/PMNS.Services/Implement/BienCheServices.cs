@@ -15,8 +15,12 @@ namespace PMNS.Services.Implement
 
         public List<BienChe> GetAllBienChe()
         {
-            List<BienChe> listBienChe = unitOfWork.Repository<BienChe>().GetAll().ToList();
-            return listBienChe;
+            return unitOfWork.Repository<BienChe>().GetAll().ToList();
+        }
+
+        public BienChe GetBienCheById(int id)
+        {
+            return unitOfWork.Repository<BienChe>().GetById(id);
         }
 
         public bool AddBienChe(BienChe bienChe)
@@ -53,6 +57,12 @@ namespace PMNS.Services.Implement
                 }
             }
             return false;
+        }
+
+        public BienChe FindBienChe(string nameBienChe, string maBienChe)
+        {
+            return unitOfWork.Repository<BienChe>().Get(
+                x => x.bienChe1.Equals(nameBienChe) || x.maBienChe.Equals(maBienChe)).FirstOrDefault();
         }
     }
 }

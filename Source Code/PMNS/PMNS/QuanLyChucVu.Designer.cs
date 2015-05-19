@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtChucVu = new System.Windows.Forms.TextBox();
+            this.txtMaChucVu = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSuaChucVu = new System.Windows.Forms.Button();
+            this.btnThemChucVu = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridChucVu = new System.Windows.Forms.DataGridView();
-            this.btnThemChucVu = new System.Windows.Forms.Button();
-            this.btnSuaChucVu = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMaChucVu = new System.Windows.Forms.TextBox();
-            this.txtChucVu = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridChucVu)).BeginInit();
@@ -58,6 +58,58 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
+            // txtChucVu
+            // 
+            this.txtChucVu.Location = new System.Drawing.Point(123, 58);
+            this.txtChucVu.Name = "txtChucVu";
+            this.txtChucVu.Size = new System.Drawing.Size(129, 20);
+            this.txtChucVu.TabIndex = 5;
+            // 
+            // txtMaChucVu
+            // 
+            this.txtMaChucVu.Location = new System.Drawing.Point(123, 27);
+            this.txtMaChucVu.Name = "txtMaChucVu";
+            this.txtMaChucVu.Size = new System.Drawing.Size(129, 20);
+            this.txtMaChucVu.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Chức Vụ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Mã Chức Vụ";
+            // 
+            // btnSuaChucVu
+            // 
+            this.btnSuaChucVu.Location = new System.Drawing.Point(258, 109);
+            this.btnSuaChucVu.Name = "btnSuaChucVu";
+            this.btnSuaChucVu.Size = new System.Drawing.Size(75, 23);
+            this.btnSuaChucVu.TabIndex = 1;
+            this.btnSuaChucVu.Text = "Sửa";
+            this.btnSuaChucVu.UseVisualStyleBackColor = true;
+            this.btnSuaChucVu.Click += new System.EventHandler(this.btnSuaChucVu_Click);
+            // 
+            // btnThemChucVu
+            // 
+            this.btnThemChucVu.Location = new System.Drawing.Point(177, 109);
+            this.btnThemChucVu.Name = "btnThemChucVu";
+            this.btnThemChucVu.Size = new System.Drawing.Size(75, 23);
+            this.btnThemChucVu.TabIndex = 0;
+            this.btnThemChucVu.Text = "Thêm";
+            this.btnThemChucVu.UseVisualStyleBackColor = true;
+            this.btnThemChucVu.Click += new System.EventHandler(this.btnThemChucVu_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridChucVu);
@@ -77,66 +129,18 @@
             this.dataGridChucVu.Name = "dataGridChucVu";
             this.dataGridChucVu.Size = new System.Drawing.Size(333, 151);
             this.dataGridChucVu.TabIndex = 0;
+            this.dataGridChucVu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridChucVu_CellClick);
             // 
-            // btnThemChucVu
-            // 
-            this.btnThemChucVu.Location = new System.Drawing.Point(177, 109);
-            this.btnThemChucVu.Name = "btnThemChucVu";
-            this.btnThemChucVu.Size = new System.Drawing.Size(75, 23);
-            this.btnThemChucVu.TabIndex = 0;
-            this.btnThemChucVu.Text = "Thêm";
-            this.btnThemChucVu.UseVisualStyleBackColor = true;
-            // 
-            // btnSuaChucVu
-            // 
-            this.btnSuaChucVu.Location = new System.Drawing.Point(258, 109);
-            this.btnSuaChucVu.Name = "btnSuaChucVu";
-            this.btnSuaChucVu.Size = new System.Drawing.Size(75, 23);
-            this.btnSuaChucVu.TabIndex = 1;
-            this.btnSuaChucVu.Text = "Sửa";
-            this.btnSuaChucVu.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mã Chức Vụ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Chức Vụ";
-            // 
-            // txtMaChucVu
-            // 
-            this.txtMaChucVu.Location = new System.Drawing.Point(123, 27);
-            this.txtMaChucVu.Name = "txtMaChucVu";
-            this.txtMaChucVu.Size = new System.Drawing.Size(129, 20);
-            this.txtMaChucVu.TabIndex = 4;
-            // 
-            // txtChucVu
-            // 
-            this.txtChucVu.Location = new System.Drawing.Point(123, 58);
-            this.txtChucVu.Name = "txtChucVu";
-            this.txtChucVu.Size = new System.Drawing.Size(129, 20);
-            this.txtChucVu.TabIndex = 5;
-            // 
-            // ChucVu
+            // QuanLyChucVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 314);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ChucVu";
+            this.Name = "QuanLyChucVu";
             this.Text = "Chức Vụ";
+            this.Load += new System.EventHandler(this.QuanLyChucVu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

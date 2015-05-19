@@ -15,8 +15,7 @@ namespace PMNS.Services.Implement
 
         public List<CapBac> GetAllCapBac()
         {
-            List<CapBac> listCapBac = unitOfWork.Repository<CapBac>().GetAll().ToList();
-            return listCapBac;
+            return unitOfWork.Repository<CapBac>().GetAll().ToList();
         }
 
         public bool AddCapBac(CapBac capBac)
@@ -57,15 +56,13 @@ namespace PMNS.Services.Implement
 
         public CapBac FindCapBac(string nameCapBac, string maCapBac)
         {
-            CapBac capBac = unitOfWork.Repository<CapBac>().Get(
+            return unitOfWork.Repository<CapBac>().Get(
                 x => x.capBac1.Equals(nameCapBac) || x.maCapBac.Equals(maCapBac)).FirstOrDefault();
-            return capBac;
         }
 
         public CapBac GetCapBacById(int id)
         {
-            CapBac capBac = unitOfWork.Repository<CapBac>().GetById(id);
-            return capBac;
+            return unitOfWork.Repository<CapBac>().GetById(id);
         }
     }
 }

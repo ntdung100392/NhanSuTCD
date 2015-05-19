@@ -36,10 +36,10 @@
             this.btnSuaBienChe = new System.Windows.Forms.Button();
             this.btnThemBienChe = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridChucVu = new System.Windows.Forms.DataGridView();
+            this.dataGridBienChe = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridChucVu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridBienChe)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -112,7 +112,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridChucVu);
+            this.groupBox2.Controls.Add(this.dataGridBienChe);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Location = new System.Drawing.Point(0, 144);
             this.groupBox2.Name = "groupBox2";
@@ -121,16 +121,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách biên chế";
             // 
-            // dataGridChucVu
+            // dataGridBienChe
             // 
-            this.dataGridChucVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridChucVu.Location = new System.Drawing.Point(3, 16);
-            this.dataGridChucVu.MultiSelect = false;
-            this.dataGridChucVu.Name = "dataGridChucVu";
-            this.dataGridChucVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridChucVu.Size = new System.Drawing.Size(333, 151);
-            this.dataGridChucVu.TabIndex = 0;
+            this.dataGridBienChe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridBienChe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridBienChe.Location = new System.Drawing.Point(3, 16);
+            this.dataGridBienChe.MultiSelect = false;
+            this.dataGridBienChe.Name = "dataGridBienChe";
+            this.dataGridBienChe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridBienChe.Size = new System.Drawing.Size(333, 151);
+            this.dataGridBienChe.TabIndex = 0;
+            this.dataGridBienChe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridBienChe_CellClick);
             // 
             // QuanLyBienChe
             // 
@@ -145,7 +146,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridChucVu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridBienChe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,6 +161,6 @@
         private System.Windows.Forms.Button btnSuaBienChe;
         private System.Windows.Forms.Button btnThemBienChe;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridChucVu;
+        private System.Windows.Forms.DataGridView dataGridBienChe;
     }
 }
