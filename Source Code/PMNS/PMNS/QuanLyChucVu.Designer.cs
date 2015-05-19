@@ -126,7 +126,9 @@
             this.dataGridChucVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridChucVu.Location = new System.Drawing.Point(3, 16);
+            this.dataGridChucVu.MultiSelect = false;
             this.dataGridChucVu.Name = "dataGridChucVu";
+            this.dataGridChucVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridChucVu.Size = new System.Drawing.Size(333, 151);
             this.dataGridChucVu.TabIndex = 0;
             this.dataGridChucVu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridChucVu_CellClick);
