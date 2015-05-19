@@ -55,7 +55,7 @@ namespace PMNS.Entities.Models.Mapping
             this.ToTable("ThongTinNhanVIen");
             this.Property(t => t.idNhanVien).HasColumnName("idNhanVien");
             this.Property(t => t.MaNV).HasColumnName("MaNV");
-            this.Property(t => t.idTo).HasColumnName("idTo");
+            this.Property(t => t.idPhong).HasColumnName("idPhong");
             this.Property(t => t.userName).HasColumnName("userName");
             this.Property(t => t.password).HasColumnName("password");
             this.Property(t => t.permission).HasColumnName("permission");
@@ -83,6 +83,9 @@ namespace PMNS.Entities.Models.Mapping
             this.Property(t => t.ngayNhapNgu).HasColumnName("ngayNhapNgu");
             this.Property(t => t.tinhTrangHonNhan).HasColumnName("tinhTrangHonNhan");
             this.Property(t => t.hinhAnhCaNhan).HasColumnName("hinhAnhCaNhan");
+            this.Property(t => t.idTo).HasColumnName("idTo");
+            this.Property(t => t.idDoi).HasColumnName("idDoi");
+            this.Property(t => t.idLoaiTo).HasColumnName("idLoaiTo");
 
             // Relationships
             this.HasRequired(t => t.BienChe)
@@ -94,12 +97,12 @@ namespace PMNS.Entities.Models.Mapping
             this.HasRequired(t => t.ChucVu)
                 .WithMany(t => t.ThongTinNhanVIens)
                 .HasForeignKey(d => d.idChucVu);
+            this.HasRequired(t => t.Phong)
+                .WithMany(t => t.ThongTinNhanVIens)
+                .HasForeignKey(d => d.idPhong);
             this.HasRequired(t => t.ThanhPho)
                 .WithMany(t => t.ThongTinNhanVIens)
                 .HasForeignKey(d => d.idTP);
-            this.HasRequired(t => t.To)
-                .WithMany(t => t.ThongTinNhanVIens)
-                .HasForeignKey(d => d.idTo);
 
         }
     }

@@ -8,7 +8,6 @@ namespace PMNS.Entities.Models
         public To()
         {
             this.LoaiToes = new List<LoaiTo>();
-            this.ThongTinNhanVIens = new List<ThongTinNhanVIen>();
         }
 
         public int idTo { get; set; }
@@ -17,6 +16,5 @@ namespace PMNS.Entities.Models
         public string tenTo { get; set; }
         public virtual Doi Doi { get; set; }
         public virtual ICollection<LoaiTo> LoaiToes { get; set; }
-        public virtual ICollection<ThongTinNhanVIen> ThongTinNhanVIens { get; set; }
     }
 }

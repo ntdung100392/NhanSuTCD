@@ -66,7 +66,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.txtHoKhau = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.txtNguyenquan = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.cbThanhPho = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -110,6 +109,7 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cbNguyenQuan = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -195,6 +195,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbNguyenQuan);
             this.groupBox2.Controls.Add(this.cbPhanQuyen);
             this.groupBox2.Controls.Add(this.lblPhanQuyen);
             this.groupBox2.Controls.Add(this.cbCapBac);
@@ -224,7 +225,6 @@
             this.groupBox2.Controls.Add(this.label29);
             this.groupBox2.Controls.Add(this.txtHoKhau);
             this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Controls.Add(this.txtNguyenquan);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.cbThanhPho);
             this.groupBox2.Controls.Add(this.label26);
@@ -511,14 +511,6 @@
             this.label28.Size = new System.Drawing.Size(49, 13);
             this.label28.TabIndex = 85;
             this.label28.Text = "Hộ Khẩu";
-            // 
-            // txtNguyenquan
-            // 
-            this.txtNguyenquan.Location = new System.Drawing.Point(91, 178);
-            this.txtNguyenquan.Multiline = true;
-            this.txtNguyenquan.Name = "txtNguyenquan";
-            this.txtNguyenquan.Size = new System.Drawing.Size(126, 20);
-            this.txtNguyenquan.TabIndex = 84;
             // 
             // label27
             // 
@@ -852,6 +844,14 @@
             // 
             this.errorProvider7.ContainerControl = this;
             // 
+            // cbNguyenQuan
+            // 
+            this.cbNguyenQuan.FormattingEnabled = true;
+            this.cbNguyenQuan.Location = new System.Drawing.Point(91, 178);
+            this.cbNguyenQuan.Name = "cbNguyenQuan";
+            this.cbNguyenQuan.Size = new System.Drawing.Size(126, 21);
+            this.cbNguyenQuan.TabIndex = 117;
+            // 
             // ThemNV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -922,7 +922,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.TextBox txtHoKhau;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox txtNguyenquan;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbThanhPho;
         private System.Windows.Forms.Label label26;
@@ -961,5 +960,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbPhanQuyen;
         private System.Windows.Forms.Label lblPhanQuyen;
+        private System.Windows.Forms.ComboBox cbNguyenQuan;
     }
 }

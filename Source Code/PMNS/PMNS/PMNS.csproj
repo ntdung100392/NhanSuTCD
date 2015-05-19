@@ -71,12 +71,6 @@
     <Compile Include="QuanLyCapBac.Designer.cs">
       <DependentUpon>QuanLyCapBac.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChinhSuaThongTin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChinhSuaThongTin.Designer.cs">
-      <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
-    </Compile>
     <Compile Include="QuanLyChucVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,9 +137,6 @@
     </Compile>
     <EmbeddedResource Include="QuanLyCapBac.resx">
       <DependentUpon>QuanLyCapBac.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChinhSuaThongTin.resx">
-      <DependentUpon>ChinhSuaThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyChucVu.resx">
       <DependentUpon>QuanLyChucVu.cs</DependentUpon>

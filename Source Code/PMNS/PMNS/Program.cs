@@ -36,6 +36,7 @@ namespace PMNS
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
                     _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
+            //Application.Run(new QuanLyBienChe(_bienCheServices));
         }
     }
 }

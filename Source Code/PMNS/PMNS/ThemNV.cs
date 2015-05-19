@@ -87,8 +87,22 @@ namespace PMNS
             cbTo.Enabled = false;
             cbLoaiTo.Enabled = false;
             txtMoiQuanHeNBL.Enabled = false;
+            cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDoi.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbLoaiTo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbMaCV.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbNguyenQuan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbNoiCapCMND.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPhanQuyen.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbThanhPho.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTinhTrangHonNhan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTo.DropDownStyle = ComboBoxStyle.DropDownList;
             InitPhongBan();
-            InitThanhPho();
+            InitCbThanhPho();
+            InitCbNoiCapCMND();
+            InitCbNguyenQuan();
             InitChucVu();
             InitHonNhan();
             InitEmployees();
@@ -100,6 +114,21 @@ namespace PMNS
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             int sex = 0;
+            int idTo = 0;
+            int idLoaiTo = 0;
+            int idDoi = 0;
+            if (cbTo.SelectedItem != null)
+            {
+                idTo = Convert.ToInt32((cbTo.SelectedItem as To).idTo);
+            }
+            if (cbDoi.SelectedItem != null)
+            {
+                idDoi = Convert.ToInt32((cbDoi.SelectedItem as Doi).idDoi);
+            }
+            if (cbLoaiTo.SelectedItem != null)
+            {
+                idLoaiTo = Convert.ToInt32((cbLoaiTo.SelectedItem as LoaiTo).idLoaiTo);
+            }
             if (rbtnNam.Checked == true)
             {
                 sex = 0;
@@ -108,18 +137,48 @@ namespace PMNS
             {
                 sex = 1;
             }
-            if (_nhanVienServices.AddNhanVien(txtManv.Text.Trim(), Convert.ToInt32((cbTo.SelectedItem as To).idTo), txtUserName.Text.Trim(),
-                "12345678x@X", Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
-                Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe), Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
-                Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu), Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho), 
-                txtCongViecDangLam.Text.Trim(), txtTennv.Text, sex, datetimeNgaySinh.Value, txtNguyenquan.Text, txtdiachi.Text,
-                txtHoKhau.Text, txtCMND.Text, datetimeCMND.Value, cbNoiCapCMND.SelectedText, "", txtSdt.Text.Trim(), txtNguoiBaoLanh.Text,
-                txtMoiQuanHeNBL.Text, txtNoiCongTac.Text.Trim(), datetimeNgayVaoCang.Value, datetimeNamVaoST.Value, datetimeNgayNhapNgu.Value,
-                cbTinhTrangHonNhan.SelectedText, ""))
+            ThongTinNhanVIen emp = new ThongTinNhanVIen
+            {
+                MaNV = txtManv.Text.Trim(),
+                idPhong = Convert.ToInt32((cbPhongBan.SelectedItem as Phong).idPhong),
+                idTo = idTo,
+                idDoi = idDoi,
+                idLoaiTo = idLoaiTo,
+                userName = txtUserName.Text.Trim(),
+                password = "12345678x@X",
+                permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
+                idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe),
+                idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
+                idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu),
+                idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho),
+                CongViecDangLam = txtCongViecDangLam.Text.Trim(),
+                hoTen = txtTennv.Text,
+                gioiTinh = Convert.ToByte(sex),
+                namSinh = datetimeNgaySinh.Value,
+                nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP,
+                noiOHienNay = txtdiachi.Text,
+                hoKhau = txtHoKhau.Text,
+                CMND = txtCMND.Text,
+                ngayCapCMND = datetimeCMND.Value,
+                noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP,
+                soDienThoaiNha = "",
+                soDienThoaiDiDong = txtSdt.Text.Trim(),
+                nguoiBaoLanh = txtNguoiBaoLanh.Text,
+                moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text,
+                noiCongTac = txtNoiCongTac.Text.Trim(),
+                ngayVaoCang = datetimeNgayVaoCang.Value,
+                namVaoSongThan = datetimeNamVaoST.Value,
+                ngayNhapNgu = datetimeNgayNhapNgu.Value,
+                tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text,
+                hinhAnhCaNhan = ""
+            };
+            if (_nhanVienServices.AddNhanVien(emp))
             {
                 MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtManv.Clear();
                 txtTennv.Clear();
+                InitEmployees();
+                dataGridView1.Refresh();
             }
             else
             {
@@ -250,8 +309,7 @@ namespace PMNS
 
         public void InitPhongBan()
         {
-            var listPhongBan = _phongBanServices.GetAllPhongBan();
-            cbPhongBan.DataSource = listPhongBan;
+            cbPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
             cbPhongBan.DisplayMember = "tenPhong";
             cbPhongBan.ValueMember = "idPhong";
             cbPhongBan.SelectedIndex = -1;
@@ -259,25 +317,34 @@ namespace PMNS
 
         public void InitChucVu()
         {
-            List<ChucVu> listChucVu = _chucVuServices.GetAllChucVu();
-            cbMaCV.DataSource = listChucVu;
+            cbMaCV.DataSource = _chucVuServices.GetAllChucVu();
             cbMaCV.DisplayMember = "ChucVu1";
             cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
         }
 
-        public void InitThanhPho()
+        public void InitCbNoiCapCMND()
         {
-            List<ThanhPho> listThanhPho = _thanhPhoServices.GetAllThanhPho();
-            cbThanhPho.DataSource = listThanhPho;
-            cbThanhPho.DisplayMember = "tenTP";
-            cbThanhPho.ValueMember = "idThanhPho";
-            cbThanhPho.SelectedIndex = -1;
-
-            cbNoiCapCMND.DataSource = listThanhPho;
+            cbNoiCapCMND.DataSource = _thanhPhoServices.GetAllThanhPho();
             cbNoiCapCMND.DisplayMember = "tenTP";
             cbNoiCapCMND.ValueMember = "idThanhPho";
             cbNoiCapCMND.SelectedIndex = -1;
+        }
+
+        public void InitCbNguyenQuan()
+        {
+            cbNguyenQuan.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbNguyenQuan.DisplayMember = "tenTP";
+            cbNguyenQuan.ValueMember = "idThanhPho";
+            cbNguyenQuan.SelectedIndex = -1;
+        }
+
+        public void InitCbThanhPho()
+        {
+            cbThanhPho.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbThanhPho.DisplayMember = "tenTP";
+            cbThanhPho.ValueMember = "idThanhPho";
+            cbThanhPho.SelectedIndex = -1;
         }
 
         public void InitHonNhan()
@@ -301,20 +368,18 @@ namespace PMNS
 
         public void InitCapBac()
         {
-            List<CapBac> listCapBac = _capBacServices.GetAllCapBac();
-            cbCapBac.DataSource = listCapBac;
+            cbCapBac.DataSource = _capBacServices.GetAllCapBac();
             cbCapBac.DisplayMember = "capBac1";
             cbCapBac.ValueMember = "idCapBac";
         }
 
         public void InitBienChe()
         {
-            List<BienChe> listBienChe = _bienCheServices.GetAllBienChe();
-            cbBienChe.DataSource = listBienChe;
+            cbBienChe.DataSource = _bienCheServices.GetAllBienChe();
             cbBienChe.ValueMember = "idBienChe";
             cbBienChe.DisplayMember = "bienChe1";
         }
 
-        #endregion        
+        #endregion
     }
 }

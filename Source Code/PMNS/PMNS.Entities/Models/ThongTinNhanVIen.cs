@@ -17,7 +17,7 @@ namespace PMNS.Entities.Models
 
         public int idNhanVien { get; set; }
         public string MaNV { get; set; }
-        public int idTo { get; set; }
+        public int idPhong { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
         public int permission { get; set; }
@@ -45,16 +45,19 @@ namespace PMNS.Entities.Models
         public Nullable<System.DateTime> ngayNhapNgu { get; set; }
         public string tinhTrangHonNhan { get; set; }
         public string hinhAnhCaNhan { get; set; }
+        public Nullable<int> idTo { get; set; }
+        public Nullable<int> idDoi { get; set; }
+        public Nullable<int> idLoaiTo { get; set; }
         public virtual BienChe BienChe { get; set; }
         public virtual CapBac CapBac { get; set; }
         public virtual ChucVu ChucVu { get; set; }
         public virtual ICollection<HopDongLaoDong> HopDongLaoDongs { get; set; }
         public virtual ICollection<KhenThuong> KhenThuongs { get; set; }
         public virtual ICollection<KyLuat> KyLuats { get; set; }
+        public virtual Phong Phong { get; set; }
         public virtual ICollection<TD_DD_BN_TV> TD_DD_BN_TV { get; set; }
         public virtual ThanhPho ThanhPho { get; set; }
         public virtual ICollection<ThongTinGiaDinh> ThongTinGiaDinhs { get; set; }
-        public virtual To To { get; set; }
         public virtual ICollection<TrinhDo> TrinhDoes { get; set; }
     }
 }

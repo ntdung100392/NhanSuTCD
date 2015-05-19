@@ -35,8 +35,8 @@ namespace PMNS
             {
                 BienChe bienChe = new BienChe
                 {
-                    maBienChe = txtBienChe.Text.Trim(),
-                    bienChe1 = txtMaBienChe.Text.Trim()
+                    bienChe1 = txtBienChe.Text.Trim(),
+                    maBienChe = txtMaBienChe.Text.Trim()
                 };
                 if (_bienCheServices.AddBienChe(bienChe))
                 {
@@ -100,7 +100,7 @@ namespace PMNS
             dataGridBienChe.Columns[0].Visible = false;
             dataGridBienChe.CurrentCell = null;
         }
-  
+
         #endregion
     }
 }
