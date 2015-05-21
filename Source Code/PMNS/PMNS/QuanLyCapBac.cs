@@ -32,6 +32,7 @@ namespace PMNS
                     CapBac = x.capBac1
                 }).ToList();
             dataGridCapBac.Columns[0].Visible = false;
+            dataGridCapBac.CurrentCell = null;
         }
         #endregion
 
@@ -67,7 +68,6 @@ namespace PMNS
         private void QuanLyCapBac_Load(object sender, EventArgs e)
         {
             InitGridView();
-            dataGridCapBac.CurrentCell = null;
         }
         private void dataGridCapBac_CellClick(object sender, DataGridViewCellEventArgs e)
         {

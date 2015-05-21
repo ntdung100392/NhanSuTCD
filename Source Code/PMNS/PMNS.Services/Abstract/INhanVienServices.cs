@@ -14,5 +14,7 @@ namespace PMNS.Services.Abstract
         string GetEmployeeByNameAndPass(string name, string pass);
         List<ThongTinNhanVIen> GetAllEmployees();
         bool AddNhanVien(ThongTinNhanVIen emp);
+        ThongTinNhanVIen GetEmpByMaNV(string maNV);
+        List<string> FindEmpByMaNV(string maNV);
     }
 }

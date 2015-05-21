@@ -19,23 +19,17 @@ namespace PMNS
     {
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IDoiServices _doiServices;
-        protected readonly IToServices _toServices;
-        protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
 
-        public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
+        public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
+            IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
-            this._doiServices = doiServices;
-            this._toServices = toServices;
-            this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
             this._chucVuServices = chucVuServices;
             this._capBacServices = capBacServices;
@@ -114,21 +108,6 @@ namespace PMNS
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             int sex = 0;
-            int idTo = 0;
-            int idLoaiTo = 0;
-            int idDoi = 0;
-            if (cbTo.SelectedItem != null)
-            {
-                idTo = Convert.ToInt32((cbTo.SelectedItem as To).idTo);
-            }
-            if (cbDoi.SelectedItem != null)
-            {
-                idDoi = Convert.ToInt32((cbDoi.SelectedItem as Doi).idDoi);
-            }
-            if (cbLoaiTo.SelectedItem != null)
-            {
-                idLoaiTo = Convert.ToInt32((cbLoaiTo.SelectedItem as LoaiTo).idLoaiTo);
-            }
             if (rbtnNam.Checked == true)
             {
                 sex = 0;
@@ -140,10 +119,7 @@ namespace PMNS
             ThongTinNhanVIen emp = new ThongTinNhanVIen
             {
                 MaNV = txtManv.Text.Trim(),
-                idPhong = Convert.ToInt32((cbPhongBan.SelectedItem as Phong).idPhong),
-                idTo = idTo,
-                idDoi = idDoi,
-                idLoaiTo = idLoaiTo,
+                idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai),
                 userName = txtUserName.Text.Trim(),
                 password = "12345678x@X",
                 permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
@@ -205,13 +181,14 @@ namespace PMNS
         {
             if (cbPhongBan.Text.Trim() != "")
             {
-                var phong = cbPhongBan.SelectedItem as Phong;
-                if (phong.Dois.Count != 0)
+                var listDoi = _phongBanServices.GetChildByParentId(
+                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
+                if (listDoi.Count!=0)
                 {
                     cbDoi.Enabled = true;
-                    cbDoi.DataSource = phong.Dois;
-                    cbDoi.DisplayMember = "tenDoi";
-                    cbDoi.ValueMember = "idDoi";
+                    cbDoi.DataSource = listDoi;
+                    cbDoi.DisplayMember = "tenPhongDoiToLoai";
+                    cbDoi.ValueMember = "idPhongDoiToLoai";
                 }
                 else
                 {
@@ -229,13 +206,14 @@ namespace PMNS
         {
             if (cbDoi.Text.Trim() != "")
             {
-                var doi = cbDoi.SelectedItem as Doi;
-                if (doi.Toes.Count != 0)
+                var listTo = _phongBanServices.GetChildByParentId(
+                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
+                if (listTo.Count != 0)
                 {
                     cbTo.Enabled = true;
-                    cbTo.DataSource = doi.Toes;
-                    cbTo.DisplayMember = "tenTo";
-                    cbTo.ValueMember = "idTo";
+                    cbTo.DataSource = listTo;
+                    cbTo.DisplayMember = "tenPhongDoiToLoai";
+                    cbTo.ValueMember = "idPhongDoiToLoai";
                 }
                 else
                 {
@@ -251,13 +229,14 @@ namespace PMNS
         {
             if (cbTo.Text.Trim() != "")
             {
-                var to = cbTo.SelectedItem as To;
-                if (to.LoaiToes.Count != 0)
+                var listLoaiTo = _phongBanServices.GetChildByParentId(
+                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
+                if (listLoaiTo.Count != 0)
                 {
                     cbLoaiTo.Enabled = true;
-                    cbLoaiTo.DataSource = to.LoaiToes;
-                    cbLoaiTo.DisplayMember = "tenLoaiTo";
-                    cbLoaiTo.ValueMember = "idLoaiTo";
+                    cbLoaiTo.DataSource = listLoaiTo;
+                    cbLoaiTo.DisplayMember = "tenPhongDoiToLoai";
+                    cbLoaiTo.ValueMember = "idPhongDoiToLoai";
                 }
                 else
                 {
@@ -302,7 +281,7 @@ namespace PMNS
                 {
                     HoTen = x.hoTen,
                     GioiTinh = x.gioiTinh,
-                    NamSinh = x.namSinh,
+                    NamSinh = x.namSinh.ToString("dd/MM/YYYY"),
                     MaNV = x.MaNV,
                 }).ToList();
         }
@@ -310,8 +289,8 @@ namespace PMNS
         public void InitPhongBan()
         {
             cbPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
-            cbPhongBan.DisplayMember = "tenPhong";
-            cbPhongBan.ValueMember = "idPhong";
+            cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
+            cbPhongBan.ValueMember = "idPhongDoiToLoai";
             cbPhongBan.SelectedIndex = -1;
         }
 

@@ -36,9 +36,9 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeNgayHieuLuc = new System.Windows.Forms.DateTimePicker();
             this.txtNgayHieuLuc = new System.Windows.Forms.MaskedTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeNgayKy = new System.Windows.Forms.DateTimePicker();
             this.txtNgayKyQD = new System.Windows.Forms.MaskedTextBox();
             this.txtSoQuyetDinh = new System.Windows.Forms.TextBox();
             this.txtDienHuongLuong = new System.Windows.Forms.TextBox();
@@ -53,16 +53,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.datetimeNgaySinh = new System.Windows.Forms.DateTimePicker();
+            this.datetimeNamThucHien = new System.Windows.Forms.DateTimePicker();
             this.txtNamThucHien = new System.Windows.Forms.MaskedTextBox();
-            this.txtNoiDungThongTin = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.txtNoiDung = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTenNV = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtTenNguoiKy = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaNv = new System.Windows.Forms.TextBox();
@@ -77,9 +75,11 @@
             this.dataGridThongTin.Location = new System.Drawing.Point(0, 246);
             this.dataGridThongTin.MultiSelect = false;
             this.dataGridThongTin.Name = "dataGridThongTin";
+            this.dataGridThongTin.ReadOnly = true;
             this.dataGridThongTin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridThongTin.Size = new System.Drawing.Size(848, 240);
             this.dataGridThongTin.TabIndex = 0;
+            this.dataGridThongTin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridThongTin_CellClick);
             // 
             // label6
             // 
@@ -131,9 +131,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtGhiChu);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.dateTimeNgayHieuLuc);
             this.groupBox1.Controls.Add(this.txtNgayHieuLuc);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dateTimeNgayKy);
             this.groupBox1.Controls.Add(this.txtNgayKyQD);
             this.groupBox1.Controls.Add(this.txtSoQuyetDinh);
             this.groupBox1.Controls.Add(this.txtDienHuongLuong);
@@ -148,16 +148,14 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.datetimeNgaySinh);
+            this.groupBox1.Controls.Add(this.datetimeNamThucHien);
             this.groupBox1.Controls.Add(this.txtNamThucHien);
-            this.groupBox1.Controls.Add(this.txtNoiDungThongTin);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.txtNoiDung);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtTenNV);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtTenNguoiKy);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtMaNv);
@@ -176,12 +174,13 @@
             this.txtGhiChu.Size = new System.Drawing.Size(126, 20);
             this.txtGhiChu.TabIndex = 125;
             // 
-            // dateTimePicker2
+            // dateTimeNgayHieuLuc
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(771, 59);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(15, 20);
-            this.dateTimePicker2.TabIndex = 123;
+            this.dateTimeNgayHieuLuc.Location = new System.Drawing.Point(771, 59);
+            this.dateTimeNgayHieuLuc.Name = "dateTimeNgayHieuLuc";
+            this.dateTimeNgayHieuLuc.Size = new System.Drawing.Size(15, 20);
+            this.dateTimeNgayHieuLuc.TabIndex = 123;
+            this.dateTimeNgayHieuLuc.ValueChanged += new System.EventHandler(this.dateTimeNgayHieuLuc_ValueChanged);
             // 
             // txtNgayHieuLuc
             // 
@@ -192,12 +191,13 @@
             this.txtNgayHieuLuc.TabIndex = 124;
             this.txtNgayHieuLuc.ValidatingType = typeof(System.DateTime);
             // 
-            // dateTimePicker1
+            // dateTimeNgayKy
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(770, 23);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(15, 20);
-            this.dateTimePicker1.TabIndex = 121;
+            this.dateTimeNgayKy.Location = new System.Drawing.Point(770, 23);
+            this.dateTimeNgayKy.Name = "dateTimeNgayKy";
+            this.dateTimeNgayKy.Size = new System.Drawing.Size(15, 20);
+            this.dateTimeNgayKy.TabIndex = 121;
+            this.dateTimeNgayKy.ValueChanged += new System.EventHandler(this.dateTimeNgayKy_ValueChanged);
             // 
             // txtNgayKyQD
             // 
@@ -210,7 +210,7 @@
             // 
             // txtSoQuyetDinh
             // 
-            this.txtSoQuyetDinh.Location = new System.Drawing.Point(410, 162);
+            this.txtSoQuyetDinh.Location = new System.Drawing.Point(97, 128);
             this.txtSoQuyetDinh.Name = "txtSoQuyetDinh";
             this.txtSoQuyetDinh.Size = new System.Drawing.Size(126, 20);
             this.txtSoQuyetDinh.TabIndex = 120;
@@ -273,7 +273,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(307, 165);
+            this.label12.Location = new System.Drawing.Point(12, 131);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(76, 13);
             this.label12.TabIndex = 112;
@@ -315,12 +315,13 @@
             this.label8.TabIndex = 108;
             this.label8.Text = "Vị Trí Cũ";
             // 
-            // datetimeNgaySinh
+            // datetimeNamThucHien
             // 
-            this.datetimeNgaySinh.Location = new System.Drawing.Point(208, 162);
-            this.datetimeNgaySinh.Name = "datetimeNgaySinh";
-            this.datetimeNgaySinh.Size = new System.Drawing.Size(15, 20);
-            this.datetimeNgaySinh.TabIndex = 106;
+            this.datetimeNamThucHien.Location = new System.Drawing.Point(208, 162);
+            this.datetimeNamThucHien.Name = "datetimeNamThucHien";
+            this.datetimeNamThucHien.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNamThucHien.TabIndex = 106;
+            this.datetimeNamThucHien.ValueChanged += new System.EventHandler(this.datetimeNamThucHien_ValueChanged);
             // 
             // txtNamThucHien
             // 
@@ -330,13 +331,6 @@
             this.txtNamThucHien.Size = new System.Drawing.Size(126, 20);
             this.txtNamThucHien.TabIndex = 107;
             this.txtNamThucHien.ValidatingType = typeof(System.DateTime);
-            // 
-            // txtNoiDungThongTin
-            // 
-            this.txtNoiDungThongTin.Location = new System.Drawing.Point(97, 125);
-            this.txtNoiDungThongTin.Name = "txtNoiDungThongTin";
-            this.txtNoiDungThongTin.Size = new System.Drawing.Size(126, 20);
-            this.txtNoiDungThongTin.TabIndex = 27;
             // 
             // label7
             // 
@@ -369,6 +363,7 @@
             // 
             this.txtNoiDung.Location = new System.Drawing.Point(107, 32);
             this.txtNoiDung.Name = "txtNoiDung";
+            this.txtNoiDung.ReadOnly = true;
             this.txtNoiDung.Size = new System.Drawing.Size(126, 20);
             this.txtNoiDung.TabIndex = 23;
             // 
@@ -381,35 +376,26 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Lệnh";
             // 
-            // txtTenNV
+            // txtTenNguoiKy
             // 
-            this.txtTenNV.Location = new System.Drawing.Point(97, 99);
-            this.txtTenNV.Name = "txtTenNV";
-            this.txtTenNV.Size = new System.Drawing.Size(126, 20);
-            this.txtTenNV.TabIndex = 20;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Nội Dung";
+            this.txtTenNguoiKy.Location = new System.Drawing.Point(97, 99);
+            this.txtTenNguoiKy.Name = "txtTenNguoiKy";
+            this.txtTenNguoiKy.Size = new System.Drawing.Size(126, 20);
+            this.txtTenNguoiKy.TabIndex = 20;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 97);
+            this.label2.Location = new System.Drawing.Point(16, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Tên NV";
+            this.label2.Text = "Tên Người Ký";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 66);
+            this.label1.Location = new System.Drawing.Point(48, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 17;
@@ -423,6 +409,7 @@
             this.txtMaNv.Name = "txtMaNv";
             this.txtMaNv.Size = new System.Drawing.Size(126, 20);
             this.txtMaNv.TabIndex = 16;
+            this.txtMaNv.TextChanged += new System.EventHandler(this.txtMaNv_TextChanged);
             // 
             // ThongTin_TuyenDung
             // 
@@ -474,20 +461,18 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtNoiDung;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTenNV;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTenNguoiKy;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMaNv;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtNoiDungThongTin;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker datetimeNgaySinh;
+        private System.Windows.Forms.DateTimePicker datetimeNamThucHien;
         private System.Windows.Forms.MaskedTextBox txtNamThucHien;
         private System.Windows.Forms.TextBox txtGhiChu;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimeNgayHieuLuc;
         private System.Windows.Forms.MaskedTextBox txtNgayHieuLuc;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeNgayKy;
         private System.Windows.Forms.MaskedTextBox txtNgayKyQD;
         private System.Windows.Forms.TextBox txtSoQuyetDinh;
         private System.Windows.Forms.TextBox txtDienHuongLuong;

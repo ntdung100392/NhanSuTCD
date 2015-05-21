@@ -10,15 +10,19 @@ using System.Data;
 
 namespace PMNS.Services.Implement
 {
-    public class PhongBanServices : Services<Phong>, IPhongBanServices
+    public class PhongBanServices : Services<PhongDoiToLoaiTo>, IPhongBanServices
     {
         public PhongBanServices(IUnitOfWork unitOfWork)
             : base(unitOfWork) { }
 
-        public List<Phong> GetAllPhongBan()
+        public List<PhongDoiToLoaiTo> GetAllPhongBan()
         {
-            List<Phong> listPhongBan = unitOfWork.Repository<Phong>().GetAll().ToList();
-            return listPhongBan;
+            return unitOfWork.Repository<PhongDoiToLoaiTo>().GetAll().ToList();
+        }
+
+        public List<PhongDoiToLoaiTo> GetChildByParentId(int id)
+        {
+            return unitOfWork.Repository<PhongDoiToLoaiTo>().Get().Where(x => x.idCha == id).ToList();
         }
     }
 }

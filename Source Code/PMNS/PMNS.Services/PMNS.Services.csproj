@@ -55,8 +55,6 @@
     <Compile Include="Abstract\IBienCheServices.cs" />
     <Compile Include="Abstract\ICapBacServices.cs" />
     <Compile Include="Abstract\IChucVuServices.cs" />
-    <Compile Include="Abstract\IDoiServices.cs" />
-    <Compile Include="Abstract\ILoaiToServices.cs" />
     <Compile Include="Abstract\INhanVienServices.cs" />
     <Compile Include="Abstract\IPhongBanServices.cs" />
     <Compile Include="Abstract\IServices.cs" />
@@ -64,12 +62,9 @@
     <Compile Include="Abstract\IThongTinGiaDinhServices.cs" />
     <Compile Include="Abstract\IThongTinServices.cs" />
     <Compile Include="Abstract\IThongTinTrinhDoServices.cs" />
-    <Compile Include="Abstract\IToServices.cs" />
     <Compile Include="Implement\BienCheServices.cs" />
     <Compile Include="Implement\CapBacServices.cs" />
     <Compile Include="Implement\ChucVuServices.cs" />
-    <Compile Include="Implement\DoiServices.cs" />
-    <Compile Include="Implement\LoaiToServices.cs" />
     <Compile Include="Implement\NhanVienServices.cs" />
     <Compile Include="Implement\PhongBanServices.cs" />
     <Compile Include="Implement\Services.cs" />
@@ -77,7 +72,6 @@
     <Compile Include="Implement\ThongTinGiaDinhServices.cs" />
     <Compile Include="Implement\ThongTinServices.cs" />
     <Compile Include="Implement\ThongTinTrinhDoServices.cs" />
-    <Compile Include="Implement\ToServices.cs" />
     <Compile Include="Models\EncryptedSecurity.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

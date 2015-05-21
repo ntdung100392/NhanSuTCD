@@ -69,6 +69,17 @@ namespace PMNS.Services.Implement
             return false;
         }
 
+        public ThongTinNhanVIen GetEmpByMaNV(string maNV)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().Get(x => x.MaNV.Equals(maNV)).FirstOrDefault();
+        }
+
+        public List<string> FindEmpByMaNV(string maNV)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().Get().Where(x => x.MaNV.Contains(maNV)).ToList()
+                .Select(x=>x.MaNV).ToList();
+        }
+
         private void InitUserProfile(ThongTinNhanVIen emp)
         {
             UserProfile.idNhanVien = emp.idNhanVien;

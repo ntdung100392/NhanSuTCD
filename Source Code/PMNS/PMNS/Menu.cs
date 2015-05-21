@@ -19,9 +19,6 @@ namespace PMNS
     {
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IDoiServices _doiServices;
-        protected readonly IToServices _toServices;
-        protected readonly ILoaiToServices _loaiToServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
@@ -29,15 +26,12 @@ namespace PMNS
         protected readonly IThongTinServices _thongTinServices;
         protected readonly IThongTinTrinhDoServices _thongTinTrinhDoServices;
 
-        public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IDoiServices doiServices,
-            IToServices toServices, ILoaiToServices loaiToServices, IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
+        public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
+            IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
-            this._doiServices = doiServices;
-            this._toServices = toServices;
-            this._loaiToServices = loaiToServices;
             this._thanhPhoServices = thanhPhoServices;
             this._chucVuServices = chucVuServices;
             this._capBacServices = capBacServices;
@@ -54,8 +48,8 @@ namespace PMNS
         {
             if (UserProfile.permission == 1)
             {
-                ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
-                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices);
+                ThemNV ThemNV = new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+                    _capBacServices, _bienCheServices);
                 ThemNV.Show();
             }
             else

@@ -21,10 +21,7 @@ namespace PMNS
         {
             IUnitOfWork unitOfWork = new UnitOfWork();
             IPhongBanServices _phongBanServices = new PhongBanServices(unitOfWork);
-            IDoiServices _doiServices = new DoiServices(unitOfWork);
             INhanVienServices _nhanVienServices = new NhanVienServices(unitOfWork);
-            IToServices _toServices = new ToServices(unitOfWork);
-            ILoaiToServices _loaiToServices = new LoaiToServices(unitOfWork);
             IThanhPhoServices _thanhPhoServices = new ThanhPhoServices(unitOfWork);
             IChucVuServices _chucVuServices = new ChucVuServices(unitOfWork);
             ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
@@ -34,9 +31,9 @@ namespace PMNS
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _doiServices, _toServices, _loaiToServices,
-                    _thanhPhoServices, _chucVuServices, _capBacServices, _bienCheServices));
-            //Application.Run(new QuanLyBienChe(_bienCheServices));
+            //Application.Run(new ThongTin_TuyenDung(_nhanVienServices,_thongTinServices,"Tuyển Dụng"));
+            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+                _capBacServices, _bienCheServices));
         }
     }
 }
