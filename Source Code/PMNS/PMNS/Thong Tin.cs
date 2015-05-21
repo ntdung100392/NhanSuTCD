@@ -82,10 +82,12 @@ namespace PMNS
         {
 
         }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
         }
+
         private void ClearAllText(Control con)
         {
             foreach (Control c in con.Controls)
@@ -96,6 +98,7 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
         private void txtMaNv_TextChanged(object sender, EventArgs e)
         {
             if (txtMaNv.Text.Trim() != null)
@@ -103,6 +106,7 @@ namespace PMNS
                 InitAutoComplete(txtMaNv.Text.Trim());
             }
         }
+
         private void dataGridThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             thongTin = _thongTinServices.GetThongTinById(Convert.ToInt32(dataGridThongTin.CurrentRow.Cells[0].Value.ToString()));
@@ -138,7 +142,6 @@ namespace PMNS
                         ViTriMoi = x.viTriMoi
                     }).ToList();
             dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.ClearSelection();
             dataGridThongTin.CurrentCell = null;
         }
 

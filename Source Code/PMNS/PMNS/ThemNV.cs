@@ -81,6 +81,7 @@ namespace PMNS
             cbTo.Enabled = false;
             cbLoaiTo.Enabled = false;
             txtMoiQuanHeNBL.Enabled = false;
+            rbtnNam.Checked = true;
             cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDoi.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -151,8 +152,7 @@ namespace PMNS
             if (_nhanVienServices.AddNhanVien(emp))
             {
                 MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtManv.Clear();
-                txtTennv.Clear();
+                ClearAllText(this);
                 InitEmployees();
                 dataGridView1.Refresh();
             }
@@ -183,7 +183,7 @@ namespace PMNS
             {
                 var listDoi = _phongBanServices.GetChildByParentId(
                     Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
-                if (listDoi.Count!=0)
+                if (listDoi.Count != 0)
                 {
                     cbDoi.Enabled = true;
                     cbDoi.DataSource = listDoi;
@@ -207,7 +207,7 @@ namespace PMNS
             if (cbDoi.Text.Trim() != "")
             {
                 var listTo = _phongBanServices.GetChildByParentId(
-                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
+                    Convert.ToInt32((cbDoi.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
                 if (listTo.Count != 0)
                 {
                     cbTo.Enabled = true;
@@ -230,7 +230,7 @@ namespace PMNS
             if (cbTo.Text.Trim() != "")
             {
                 var listLoaiTo = _phongBanServices.GetChildByParentId(
-                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
+                    Convert.ToInt32((cbTo.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
                 if (listLoaiTo.Count != 0)
                 {
                     cbLoaiTo.Enabled = true;
@@ -258,6 +258,16 @@ namespace PMNS
             }
         }
 
+        private void ClearAllText(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Clear();
+                else
+                    ClearAllText(c);
+            }
+        }
         #endregion
 
         #region Init
@@ -265,8 +275,8 @@ namespace PMNS
         {
             List<ComboBoxItem> item = new List<ComboBoxItem> 
             {
-                new ComboBoxItem { Text = "Admin", Value = 1 },
-                new ComboBoxItem { Text = "User", Value = 0 }
+                new ComboBoxItem { Text = "User", Value = 0 },
+                new ComboBoxItem { Text = "Admin", Value = 1 }
             };
 
             cbPhanQuyen.DataSource = item;

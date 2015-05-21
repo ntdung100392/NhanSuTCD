@@ -64,6 +64,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaNv = new System.Windows.Forms.TextBox();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridThongTin)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +132,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtHoTen);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.dateTimeNgayHieuLuc);
             this.groupBox1.Controls.Add(this.txtNgayHieuLuc);
@@ -210,7 +214,7 @@
             // 
             // txtSoQuyetDinh
             // 
-            this.txtSoQuyetDinh.Location = new System.Drawing.Point(97, 128);
+            this.txtSoQuyetDinh.Location = new System.Drawing.Point(410, 158);
             this.txtSoQuyetDinh.Name = "txtSoQuyetDinh";
             this.txtSoQuyetDinh.Size = new System.Drawing.Size(126, 20);
             this.txtSoQuyetDinh.TabIndex = 120;
@@ -273,7 +277,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 131);
+            this.label12.Location = new System.Drawing.Point(310, 165);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(76, 13);
             this.label12.TabIndex = 112;
@@ -378,7 +382,7 @@
             // 
             // txtTenNguoiKy
             // 
-            this.txtTenNguoiKy.Location = new System.Drawing.Point(97, 99);
+            this.txtTenNguoiKy.Location = new System.Drawing.Point(97, 131);
             this.txtTenNguoiKy.Name = "txtTenNguoiKy";
             this.txtTenNguoiKy.Size = new System.Drawing.Size(126, 20);
             this.txtTenNguoiKy.TabIndex = 20;
@@ -386,7 +390,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 97);
+            this.label2.Location = new System.Drawing.Point(19, 135);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 18;
@@ -410,6 +414,22 @@
             this.txtMaNv.Size = new System.Drawing.Size(126, 20);
             this.txtMaNv.TabIndex = 16;
             this.txtMaNv.TextChanged += new System.EventHandler(this.txtMaNv_TextChanged);
+            // 
+            // txtHoTen
+            // 
+            this.txtHoTen.Location = new System.Drawing.Point(97, 99);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(126, 20);
+            this.txtHoTen.TabIndex = 126;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 127;
+            this.label3.Text = "Tên NV";
             // 
             // ThongTin_TuyenDung
             // 
@@ -487,5 +507,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtHoTen;
     }
 }
