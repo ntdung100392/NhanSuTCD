@@ -31,7 +31,7 @@ namespace PMNS
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new ThongTin_TuyenDung(_nhanVienServices,_thongTinServices,"Tuyển Dụng"));
+            //Application.Run(new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng"));
             Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
                 _capBacServices, _bienCheServices));
         }

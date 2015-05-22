@@ -72,7 +72,7 @@ namespace PMNS.Services.Implement
 
         public List<TD_DD_BN_TV> FindThongTin(string condition)
         {
-            return unitOfWork.Repository<TD_DD_BN_TV>().GetAll().Where(x => x.hoTenDD.Contains(condition)).ToList();
+            return unitOfWork.Repository<TD_DD_BN_TV>().GetAll().Where(x => x.ThongTinNhanVIen.MaNV.Contains(condition)).ToList();
         }
     }
 }

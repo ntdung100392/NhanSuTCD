@@ -80,6 +80,29 @@ namespace PMNS.Services.Implement
                 .Select(x=>x.MaNV).ToList();
         }
 
+        public ThongTinNhanVIen GetEmpById(int id)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().GetById(id);
+        }
+
+        public bool UpdateEmpInfo(ThongTinNhanVIen emp)
+        {
+            if (emp != null)
+            {
+                try
+                {
+                    unitOfWork.Repository<ThongTinNhanVIen>().Update(emp);
+                    unitOfWork.Commit();
+                    return true;
+                }
+                catch (InvalidOperationException e)
+                {
+                    throw e;
+                }
+            }
+            return false;
+        }
+
         private void InitUserProfile(ThongTinNhanVIen emp)
         {
             UserProfile.idNhanVien = emp.idNhanVien;

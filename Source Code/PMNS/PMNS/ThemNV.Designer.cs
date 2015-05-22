@@ -35,8 +35,9 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridNhanVien = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbNguyenQuan = new System.Windows.Forms.ComboBox();
             this.cbPhanQuyen = new System.Windows.Forms.ComboBox();
             this.lblPhanQuyen = new System.Windows.Forms.Label();
             this.cbCapBac = new System.Windows.Forms.ComboBox();
@@ -109,9 +110,8 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.cbNguyenQuan = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
@@ -143,7 +143,7 @@
             this.groupBox1.Controls.Add(this.btnSua);
             this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.btnThem);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dataGridNhanVien);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -184,14 +184,17 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click_1);
             // 
-            // dataGridView1
+            // dataGridNhanVien
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 42);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1022, 212);
-            this.dataGridView1.TabIndex = 30;
+            this.dataGridNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridNhanVien.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridNhanVien.Location = new System.Drawing.Point(3, 42);
+            this.dataGridNhanVien.MultiSelect = false;
+            this.dataGridNhanVien.Name = "dataGridNhanVien";
+            this.dataGridNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridNhanVien.Size = new System.Drawing.Size(1022, 212);
+            this.dataGridNhanVien.TabIndex = 30;
+            this.dataGridNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridNhanVien_CellClick);
             // 
             // groupBox2
             // 
@@ -267,6 +270,14 @@
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
+            // 
+            // cbNguyenQuan
+            // 
+            this.cbNguyenQuan.FormattingEnabled = true;
+            this.cbNguyenQuan.Location = new System.Drawing.Point(91, 178);
+            this.cbNguyenQuan.Name = "cbNguyenQuan";
+            this.cbNguyenQuan.Size = new System.Drawing.Size(126, 21);
+            this.cbNguyenQuan.TabIndex = 117;
             // 
             // cbPhanQuyen
             // 
@@ -844,14 +855,6 @@
             // 
             this.errorProvider7.ContainerControl = this;
             // 
-            // cbNguyenQuan
-            // 
-            this.cbNguyenQuan.FormattingEnabled = true;
-            this.cbNguyenQuan.Location = new System.Drawing.Point(91, 178);
-            this.cbNguyenQuan.Name = "cbNguyenQuan";
-            this.cbNguyenQuan.Size = new System.Drawing.Size(126, 21);
-            this.cbNguyenQuan.TabIndex = 117;
-            // 
             // ThemNV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -864,7 +867,7 @@
             this.Load += new System.EventHandler(this.ThemNV_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -885,7 +888,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridNhanVien;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtCongViecDangLam;
         private System.Windows.Forms.TextBox txtNoiCongTac;

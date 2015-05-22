@@ -24,6 +24,9 @@ namespace PMNS
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
 
+        private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
+        public event DataGridViewCellFormattingEventHandler CellFormatting;
+
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices)
@@ -82,6 +85,7 @@ namespace PMNS
             cbLoaiTo.Enabled = false;
             txtMoiQuanHeNBL.Enabled = false;
             rbtnNam.Checked = true;
+            btnSua.Enabled = false;
             cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDoi.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -154,7 +158,7 @@ namespace PMNS
                 MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearAllText(this);
                 InitEmployees();
-                dataGridView1.Refresh();
+                dataGridNhanVien.Refresh();
             }
             else
             {
@@ -164,7 +168,52 @@ namespace PMNS
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            int sex = 0;
+            if (rbtnNam.Checked == true)
+            {
+                sex = 0;
+            }
+            if (rBtnNu.Checked == true)
+            {
+                sex = 1;
+            }
+            empUpdate.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+            empUpdate.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
+            empUpdate.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
+            empUpdate.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
+            empUpdate.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
+            empUpdate.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
+            empUpdate.CongViecDangLam = txtCongViecDangLam.Text.Trim();
+            empUpdate.hoTen = txtTennv.Text;
+            empUpdate.gioiTinh = Convert.ToByte(sex);
+            empUpdate.namSinh = datetimeNgaySinh.Value;
+            empUpdate.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
+            empUpdate.noiOHienNay = txtdiachi.Text;
+            empUpdate.hoKhau = txtHoKhau.Text;
+            empUpdate.CMND = txtCMND.Text;
+            empUpdate.ngayCapCMND = datetimeCMND.Value;
+            empUpdate.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
+            empUpdate.soDienThoaiNha = "";
+            empUpdate.soDienThoaiDiDong = txtSdt.Text.Trim();
+            empUpdate.nguoiBaoLanh = txtNguoiBaoLanh.Text;
+            empUpdate.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
+            empUpdate.noiCongTac = txtNoiCongTac.Text.Trim();
+            empUpdate.ngayVaoCang = datetimeNgayVaoCang.Value;
+            empUpdate.namVaoSongThan = datetimeNamVaoST.Value;
+            empUpdate.ngayNhapNgu = datetimeNgayNhapNgu.Value;
+            empUpdate.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
+            empUpdate.hinhAnhCaNhan = "";
+            if (_nhanVienServices.UpdateEmpInfo(empUpdate))
+            {
+                MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearAllText(this);
+                InitEmployees();
+                dataGridNhanVien.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -268,6 +317,80 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
+        private void dataGridNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            empUpdate = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridNhanVien.CurrentRow.Cells[0].Value.ToString()));
+            txtManv.Text = empUpdate.MaNV;
+            txtManv.ReadOnly = true;
+            txtTennv.Text = empUpdate.hoTen;
+            txtTennv.ReadOnly = true;
+            txtSdt.Text = empUpdate.soDienThoaiDiDong;
+            cbCapBac.SelectedValue = empUpdate.idCapBac;
+            cbBienChe.SelectedValue = empUpdate.idBienChe;
+            cbMaCV.SelectedValue = empUpdate.idChucVu;
+            if (empUpdate.gioiTinh == 0)
+            {
+                rBtnNu.Checked = true;
+            }
+            else
+            {
+                rbtnNam.Checked = true;
+            }
+            cbThanhPho.SelectedValue = empUpdate.idTP;
+            cbNoiCapCMND.Text = empUpdate.noiCapCMND;
+            cbNguyenQuan.Text = empUpdate.nguyenQuan;
+            txtdiachi.Text = empUpdate.noiOHienNay;
+            txtHoKhau.Text = empUpdate.hoKhau;
+            txtCMND.Text = empUpdate.CMND;
+            datetimeCMND.Value = Convert.ToDateTime(empUpdate.ngayCapCMND);
+            datetimeNamVaoST.Value = Convert.ToDateTime(empUpdate.namVaoSongThan);
+            datetimeNgaySinh.Value = Convert.ToDateTime(empUpdate.namSinh);
+            datetimeNgayNhapNgu.Value = Convert.ToDateTime(empUpdate.ngayNhapNgu);
+            datetimeNgayVaoCang.Value = Convert.ToDateTime(empUpdate.ngayVaoCang);
+            txtNoiCongTac.Text = empUpdate.noiCongTac;
+            txtCongViecDangLam.Text = empUpdate.CongViecDangLam;
+            cbTinhTrangHonNhan.Text = empUpdate.tinhTrangHonNhan.ToString();
+            cbPhanQuyen.SelectedValue = empUpdate.permission;
+            txtNguoiBaoLanh.Text = empUpdate.nguoiBaoLanh;
+            txtMoiQuanHeNBL.Text = empUpdate.moiQuanHeBaoLanh;
+            btnSua.Enabled = true;
+            if (empUpdate.PhongDoiToLoaiTo.idCha == 0)
+            {
+                cbPhongBan.SelectedValue = empUpdate.idPhongDoiToLoai;
+            }
+            else
+            {
+                List<int> phongBan = new List<int>();
+                bool stopWhileLooping = false;
+                int loop = empUpdate.idPhongDoiToLoai;
+                while (!stopWhileLooping)
+                {
+                    var listPhong = _phongBanServices.GetChildByParentId(loop);
+                    foreach (var phong in listPhong)
+                    {
+                        phongBan.Add(phong.idPhongDoiToLoai);
+                        loop = phong.idPhongDoiToLoai;
+                        if (phong.idCha == 0)
+                        {
+                            stopWhileLooping = true;
+                        }
+                    }
+                }
+                if (phongBan.Count == 4)
+                {
+                    cbLoaiTo.SelectedValue = empUpdate.idPhongDoiToLoai;
+                }
+                else if (phongBan.Count == 3)
+                {
+                    cbTo.SelectedValue = empUpdate.idPhongDoiToLoai;
+                }
+                else if (phongBan.Count == 2)
+                {
+                    cbDoi.SelectedValue = empUpdate.idPhongDoiToLoai;
+                }
+            }
+        }
         #endregion
 
         #region Init
@@ -286,13 +409,22 @@ namespace PMNS
         public void InitEmployees()
         {
             var listNhanVien = _nhanVienServices.GetAllEmployees();
-            dataGridView1.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
+            dataGridNhanVien.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
                 new
                 {
+                    ID = x.idNhanVien,
                     HoTen = x.hoTen,
-                    GioiTinh = x.gioiTinh,
-                    NamSinh = x.namSinh.ToString("dd/MM/YYYY"),
                     MaNV = x.MaNV,
+                    NamSinh = x.namSinh.ToString("dd/MM/YYYY"),
+                    CapBac = x.CapBac.capBac1,
+                    ChucVu = x.ChucVu.ChucVu1,
+                    PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
+                    HeBienChe = x.BienChe.bienChe1,
+                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/YYYY"),
+                    NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
+                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/YYYY"),
+                    NguoiBaoLanh = x.nguoiBaoLanh,
+                    MoiQuanHe = x.moiQuanHeBaoLanh
                 }).ToList();
         }
 

@@ -24,5 +24,10 @@ namespace PMNS.Services.Implement
         {
             return unitOfWork.Repository<PhongDoiToLoaiTo>().Get().Where(x => x.idCha == id).ToList();
         }
+
+        public int GetParentByChildId(int id)
+        {
+            return unitOfWork.Repository<PhongDoiToLoaiTo>().GetById(id).idPhongDoiToLoai;
+        }
     }
 }

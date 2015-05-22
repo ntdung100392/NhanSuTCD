@@ -32,9 +32,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnThem = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.dateTimeNgayHieuLuc = new System.Windows.Forms.DateTimePicker();
             this.txtNgayHieuLuc = new System.Windows.Forms.MaskedTextBox();
@@ -57,15 +59,12 @@
             this.txtNamThucHien = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.txtNoiDung = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTenNguoiKy = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaNv = new System.Windows.Forms.TextBox();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridThongTin)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -110,19 +109,19 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // btnXoa
+            // btnClear
             // 
-            this.btnXoa.Location = new System.Drawing.Point(476, 217);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 23);
-            this.btnXoa.TabIndex = 13;
-            this.btnXoa.Text = "Xoá";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.btnClear.Location = new System.Drawing.Point(557, 218);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(557, 217);
+            this.btnSua.Location = new System.Drawing.Point(476, 217);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 14;
@@ -156,7 +155,6 @@
             this.groupBox1.Controls.Add(this.txtNamThucHien);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.txtNoiDung);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtTenNguoiKy);
@@ -170,6 +168,22 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 127;
+            this.label3.Text = "Tên NV";
+            // 
+            // txtHoTen
+            // 
+            this.txtHoTen.Location = new System.Drawing.Point(107, 99);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(126, 20);
+            this.txtHoTen.TabIndex = 126;
             // 
             // txtGhiChu
             // 
@@ -321,7 +335,7 @@
             // 
             // datetimeNamThucHien
             // 
-            this.datetimeNamThucHien.Location = new System.Drawing.Point(208, 162);
+            this.datetimeNamThucHien.Location = new System.Drawing.Point(218, 162);
             this.datetimeNamThucHien.Name = "datetimeNamThucHien";
             this.datetimeNamThucHien.Size = new System.Drawing.Size(15, 20);
             this.datetimeNamThucHien.TabIndex = 106;
@@ -329,7 +343,7 @@
             // 
             // txtNamThucHien
             // 
-            this.txtNamThucHien.Location = new System.Drawing.Point(97, 162);
+            this.txtNamThucHien.Location = new System.Drawing.Point(107, 162);
             this.txtNamThucHien.Mask = "00/00/0000";
             this.txtNamThucHien.Name = "txtNamThucHien";
             this.txtNamThucHien.Size = new System.Drawing.Size(126, 20);
@@ -354,15 +368,6 @@
             this.label5.TabIndex = 25;
             this.label5.Text = "Lệnh ( Nội Dung )";
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(229, 64);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(49, 22);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "search";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // txtNoiDung
             // 
             this.txtNoiDung.Location = new System.Drawing.Point(107, 32);
@@ -382,7 +387,7 @@
             // 
             // txtTenNguoiKy
             // 
-            this.txtTenNguoiKy.Location = new System.Drawing.Point(97, 131);
+            this.txtTenNguoiKy.Location = new System.Drawing.Point(107, 131);
             this.txtTenNguoiKy.Name = "txtTenNguoiKy";
             this.txtTenNguoiKy.Size = new System.Drawing.Size(126, 20);
             this.txtTenNguoiKy.TabIndex = 20;
@@ -409,27 +414,11 @@
             // 
             this.txtMaNv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtMaNv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtMaNv.Location = new System.Drawing.Point(97, 66);
+            this.txtMaNv.Location = new System.Drawing.Point(107, 66);
             this.txtMaNv.Name = "txtMaNv";
             this.txtMaNv.Size = new System.Drawing.Size(126, 20);
             this.txtMaNv.TabIndex = 16;
             this.txtMaNv.TextChanged += new System.EventHandler(this.txtMaNv_TextChanged);
-            // 
-            // txtHoTen
-            // 
-            this.txtHoTen.Location = new System.Drawing.Point(97, 99);
-            this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(126, 20);
-            this.txtHoTen.TabIndex = 126;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 127;
-            this.label3.Text = "Tên NV";
             // 
             // ThongTin_TuyenDung
             // 
@@ -438,7 +427,7 @@
             this.ClientSize = new System.Drawing.Size(848, 486);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSua);
-            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label6);
@@ -475,10 +464,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtNoiDung;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtTenNguoiKy;

@@ -18,7 +18,7 @@ namespace PMNS
         protected readonly IThongTinServices _thongTinServices;
         protected readonly string _loaiThongTin;
 
-        private TD_DD_BN_TV thongTin = new TD_DD_BN_TV();
+        private TD_DD_BN_TV thongTinUpdate = new TD_DD_BN_TV();
         public ThongTin_TuyenDung(INhanVienServices nhanVienServices, IThongTinServices thongTinServices, string loaiThongTin)
         {
             this._nhanVienServices = nhanVienServices;
@@ -30,6 +30,7 @@ namespace PMNS
         #region Form's Event
         private void ThongTin_TuyenDung_Load(object sender, EventArgs e)
         {
+            btnSua.Enabled = false;
             txtNoiDung.Text = _loaiThongTin;
             InitGridView();
         }
@@ -73,19 +74,52 @@ namespace PMNS
             }
         }
 
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
+            thongTinUpdate.hoTenDD = txtTenNguoiKy.Text.Trim();
+            thongTinUpdate.namThucHien = datetimeNamThucHien.Value;
+            thongTinUpdate.ngayHieuLuc = dateTimeNgayHieuLuc.Value;
+            thongTinUpdate.ngayKyQD = dateTimeNgayKy.Value;
+            thongTinUpdate.noiDung = txtNoiDung.Text.Trim();
+            thongTinUpdate.soQuyetDinh = txtSoQuyetDinh.Text.Trim();
+            thongTinUpdate.viTriCu = txtViTriCu.Text.Trim();
+            thongTinUpdate.viTriMoi = txtViTriMoi.Text.Trim();
+            if (_thongTinServices.UpdateThongTin(thongTinUpdate))
+            {
+                MessageBox.Show("Đã Sửa Thông Tin Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                InitGridView();
+                dataGridThongTin.Refresh();
+                txtHoTen.ReadOnly = false;
+                txtMaNv.ReadOnly = false;
+                ClearAllText(this);
+                txtNoiDung.Text = _loaiThongTin;
+                thongTinUpdate = null;
+                btnSua.Enabled = false;
+                btnThem.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAllText(this);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-
+            if (String.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                InitGridView();
+                dataGridThongTin.Refresh();
+            }
+            else
+            {
+                InitSearch(txtSearch.Text.Trim());
+                dataGridThongTin.Refresh();
+            }            
         }
 
         private void ClearAllText(Control con)
@@ -97,6 +131,8 @@ namespace PMNS
                 else
                     ClearAllText(c);
             }
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
         }
 
         private void txtMaNv_TextChanged(object sender, EventArgs e)
@@ -109,18 +145,24 @@ namespace PMNS
 
         private void dataGridThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            thongTin = _thongTinServices.GetThongTinById(Convert.ToInt32(dataGridThongTin.CurrentRow.Cells[0].Value.ToString()));
-            txtMaNv.Text = thongTin.ThongTinNhanVIen.MaNV;
-            txtTenNguoiKy.Text = thongTin.hoTenDD;
-            txtSoQuyetDinh.Text = thongTin.soQuyetDinh;
-            datetimeNamThucHien.Value = thongTin.namThucHien;
-            dateTimeNgayHieuLuc.Value = Convert.ToDateTime(thongTin.ngayHieuLuc);
-            dateTimeNgayKy.Value = Convert.ToDateTime(thongTin.ngayKyQD);
-            txtViTriCu.Text = thongTin.viTriCu;
-            txtViTriMoi.Text = thongTin.viTriMoi;
-            txtDienLaoDong.Text = thongTin.dienLaoDong;
-            txtDienHuongLuong.Text = thongTin.dienHuongLuong;
-            txtGhiChu.Text = thongTin.ghiChu;
+            thongTinUpdate = _thongTinServices.GetThongTinById(Convert.ToInt32(dataGridThongTin.CurrentRow.Cells[0].Value.ToString()));
+            txtMaNv.Text = thongTinUpdate.ThongTinNhanVIen.MaNV;
+            txtHoTen.Text = thongTinUpdate.ThongTinNhanVIen.hoTen;
+            txtHoTen.ReadOnly = true;
+            txtMaNv.ReadOnly = true;
+            txtNoiDung.Text = thongTinUpdate.noiDung;
+            txtTenNguoiKy.Text = thongTinUpdate.hoTenDD;
+            txtSoQuyetDinh.Text = thongTinUpdate.soQuyetDinh;
+            datetimeNamThucHien.Value = thongTinUpdate.namThucHien;
+            dateTimeNgayHieuLuc.Value = Convert.ToDateTime(thongTinUpdate.ngayHieuLuc);
+            dateTimeNgayKy.Value = Convert.ToDateTime(thongTinUpdate.ngayKyQD);
+            txtViTriCu.Text = thongTinUpdate.viTriCu;
+            txtViTriMoi.Text = thongTinUpdate.viTriMoi;
+            txtDienLaoDong.Text = thongTinUpdate.dienLaoDong;
+            txtDienHuongLuong.Text = thongTinUpdate.dienHuongLuong;
+            txtGhiChu.Text = thongTinUpdate.ghiChu;
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
         }
         #endregion
 
@@ -150,6 +192,26 @@ namespace PMNS
             AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNv.AutoCompleteCustomSource = listMaNV;
+        }
+
+        private void InitSearch(string maNV)
+        {
+            dataGridThongTin.DataSource = _thongTinServices.FindThongTin(maNV).Select(x =>
+                    new
+                    {
+                        id = x.idTDDDBNTV,
+                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
+                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
+                        NguoiKyQuyetDinh = x.hoTenDD,
+                        NamThucHien = x.namThucHien.Year,
+                        NgayKy = x.ngayKyQD,
+                        NgayHieuLuc = x.ngayHieuLuc,
+                        SoQuyetDinh = x.soQuyetDinh,
+                        ViTriCu = x.viTriCu,
+                        ViTriMoi = x.viTriMoi
+                    }).ToList();
+            dataGridThongTin.Columns[0].Visible = false;
+            dataGridThongTin.CurrentCell = null;
         }
         #endregion
 

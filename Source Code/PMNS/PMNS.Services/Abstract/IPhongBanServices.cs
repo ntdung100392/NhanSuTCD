@@ -13,5 +13,6 @@ namespace PMNS.Services.Abstract
     {
         List<PhongDoiToLoaiTo> GetAllPhongBan();
         List<PhongDoiToLoaiTo> GetChildByParentId(int id);
+        int GetParentByChildId(int id);
     }
 }
