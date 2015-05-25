@@ -20,7 +20,7 @@ namespace PMNS.Services.Implement
         public string GetEmployeeByNameAndPass(string name, string pass)
         {
             ThongTinNhanVIen emp = unitOfWork.Repository<ThongTinNhanVIen>().
-                Get().Where(x => x.userName.Equals(name)).FirstOrDefault();            
+                Get().Where(x => x.userName.Equals(name)).FirstOrDefault();
             if (emp != null)
             {
                 using (MD5 md5Hash = MD5.Create())
@@ -77,7 +77,7 @@ namespace PMNS.Services.Implement
         public List<string> FindEmpByMaNV(string maNV)
         {
             return unitOfWork.Repository<ThongTinNhanVIen>().Get().Where(x => x.MaNV.Contains(maNV)).ToList()
-                .Select(x=>x.MaNV).ToList();
+                .Select(x => x.MaNV).ToList();
         }
 
         public ThongTinNhanVIen GetEmpById(int id)
@@ -101,6 +101,12 @@ namespace PMNS.Services.Implement
                 }
             }
             return false;
+        }
+
+        public List<ThongTinNhanVIen> GetAllNhanVienByIdPhongBan(int id)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().GetAll().
+                Where(x => x.idPhongDoiToLoai == id).ToList().OrderBy(x => x.MaNV).ToList();
         }
 
         private void InitUserProfile(ThongTinNhanVIen emp)

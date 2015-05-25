@@ -27,12 +27,14 @@ namespace PMNS
             ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
             IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
             IThongTinServices _thongTinServices = new ThongTinServices(unitOfWork);
-            IThongTinTrinhDoServices _thongTinTrinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            IThongTinTrinhDoServices _trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng"));
-            Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+            //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+            //    _capBacServices, _bienCheServices));
+            Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
                 _capBacServices, _bienCheServices));
         }
     }

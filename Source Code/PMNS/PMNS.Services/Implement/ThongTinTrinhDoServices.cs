@@ -19,6 +19,16 @@ namespace PMNS.Services.Implement
                 OrderByDescending(x => x.thoiGianTotNghiep).ToList();
         }
 
+        public List<TrinhDo> GetAllThongTinTrinhDo()
+        {
+            return unitOfWork.Repository<TrinhDo>().GetAll().OrderBy(x => x.ThongTinNhanVIen.MaNV).ToList();
+        }
+
+        public TrinhDo GetThongTinTrinhDoById(int id)
+        {
+            return unitOfWork.Repository<TrinhDo>().GetById(id);
+        }
+
         public bool AddThongTinTrinhDo(TrinhDo trinhDo)
         {
             if (trinhDo != null)
@@ -29,7 +39,7 @@ namespace PMNS.Services.Implement
                     unitOfWork.Commit();
                     return true;
                 }
-                catch (InvalidCastException e)
+                catch (InvalidOperationException e)
                 {
                     throw e;
                 }
@@ -50,7 +60,7 @@ namespace PMNS.Services.Implement
                     unitOfWork.Commit();
                     return true;
                 }
-                catch (InvalidCastException e)
+                catch (InvalidOperationException e)
                 {
                     throw e;
                 }
@@ -71,7 +81,7 @@ namespace PMNS.Services.Implement
                     unitOfWork.Commit();
                     return true;
                 }
-                catch (InvalidCastException e)
+                catch (InvalidOperationException e)
                 {
                     throw e;
                 }

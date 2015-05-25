@@ -17,7 +17,7 @@ namespace PMNS.Services.Implement
 
         public List<PhongDoiToLoaiTo> GetAllPhongBan()
         {
-            return unitOfWork.Repository<PhongDoiToLoaiTo>().GetAll().Where(x => x.idCha == 0).ToList();
+            return unitOfWork.Repository<PhongDoiToLoaiTo>().GetAll().OrderBy(x=>x.tenPhongDoiToLoai).ToList();
         }
 
         public List<PhongDoiToLoaiTo> GetChildByParentId(int id)

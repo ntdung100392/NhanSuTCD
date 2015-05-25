@@ -25,7 +25,6 @@ namespace PMNS
         protected readonly IBienCheServices _bienCheServices;
 
         private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
-        public event DataGridViewCellFormattingEventHandler CellFormatting;
 
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
@@ -80,16 +79,11 @@ namespace PMNS
         private void ThemNV_Load(object sender, EventArgs e)
         {
             txtUserName.Enabled = false;
-            cbDoi.Enabled = false;
-            cbTo.Enabled = false;
-            cbLoaiTo.Enabled = false;
             txtMoiQuanHeNBL.Enabled = false;
             rbtnNam.Checked = true;
             btnSua.Enabled = false;
             cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbDoi.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbLoaiTo.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMaCV.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNguyenQuan.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNoiCapCMND.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -97,7 +91,6 @@ namespace PMNS
             cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
             cbThanhPho.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTinhTrangHonNhan.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbTo.DropDownStyle = ComboBoxStyle.DropDownList;
             InitPhongBan();
             InitCbThanhPho();
             InitCbNoiCapCMND();
@@ -216,83 +209,14 @@ namespace PMNS
             }
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Bạn Có Muốn Thoát Khỏi Chương Trình ?", "Warning", MessageBoxButtons.YesNo);
+            ClearAllText(this);
         }
 
         private void txtManv_TextChanged(object sender, EventArgs e)
         {
             txtUserName.Text = txtManv.Text;
-        }
-
-        private void cbPhongBan_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cbPhongBan.Text.Trim() != "")
-            {
-                var listDoi = _phongBanServices.GetChildByParentId(
-                    Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
-                if (listDoi.Count != 0)
-                {
-                    cbDoi.Enabled = true;
-                    cbDoi.DataSource = listDoi;
-                    cbDoi.DisplayMember = "tenPhongDoiToLoai";
-                    cbDoi.ValueMember = "idPhongDoiToLoai";
-                }
-                else
-                {
-                    cbDoi.Enabled = false;
-                    cbDoi.DataSource = null;
-                    cbTo.Enabled = false;
-                    cbTo.DataSource = null;
-                    cbLoaiTo.Enabled = false;
-                    cbLoaiTo.DataSource = null;
-                }
-            }
-        }
-
-        private void cbDoi_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cbDoi.Text.Trim() != "")
-            {
-                var listTo = _phongBanServices.GetChildByParentId(
-                    Convert.ToInt32((cbDoi.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
-                if (listTo.Count != 0)
-                {
-                    cbTo.Enabled = true;
-                    cbTo.DataSource = listTo;
-                    cbTo.DisplayMember = "tenPhongDoiToLoai";
-                    cbTo.ValueMember = "idPhongDoiToLoai";
-                }
-                else
-                {
-                    cbTo.Enabled = false;
-                    cbTo.DataSource = null;
-                    cbLoaiTo.Enabled = false;
-                    cbLoaiTo.DataSource = null;
-                }
-            }
-        }
-
-        private void cbTo_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cbTo.Text.Trim() != "")
-            {
-                var listLoaiTo = _phongBanServices.GetChildByParentId(
-                    Convert.ToInt32((cbTo.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai));
-                if (listLoaiTo.Count != 0)
-                {
-                    cbLoaiTo.Enabled = true;
-                    cbLoaiTo.DataSource = listLoaiTo;
-                    cbLoaiTo.DisplayMember = "tenPhongDoiToLoai";
-                    cbLoaiTo.ValueMember = "idPhongDoiToLoai";
-                }
-                else
-                {
-                    cbLoaiTo.Enabled = false;
-                    cbLoaiTo.DataSource = null;
-                }
-            }
         }
 
         private void txtNguoiBaoLanh_TextChanged(object sender, EventArgs e)
@@ -355,41 +279,7 @@ namespace PMNS
             txtNguoiBaoLanh.Text = empUpdate.nguoiBaoLanh;
             txtMoiQuanHeNBL.Text = empUpdate.moiQuanHeBaoLanh;
             btnSua.Enabled = true;
-            if (empUpdate.PhongDoiToLoaiTo.idCha == 0)
-            {
-                cbPhongBan.SelectedValue = empUpdate.idPhongDoiToLoai;
-            }
-            else
-            {
-                List<int> phongBan = new List<int>();
-                bool stopWhileLooping = false;
-                int loop = empUpdate.idPhongDoiToLoai;
-                while (!stopWhileLooping)
-                {
-                    var listPhong = _phongBanServices.GetChildByParentId(loop);
-                    foreach (var phong in listPhong)
-                    {
-                        phongBan.Add(phong.idPhongDoiToLoai);
-                        loop = phong.idPhongDoiToLoai;
-                        if (phong.idCha == 0)
-                        {
-                            stopWhileLooping = true;
-                        }
-                    }
-                }
-                if (phongBan.Count == 4)
-                {
-                    cbLoaiTo.SelectedValue = empUpdate.idPhongDoiToLoai;
-                }
-                else if (phongBan.Count == 3)
-                {
-                    cbTo.SelectedValue = empUpdate.idPhongDoiToLoai;
-                }
-                else if (phongBan.Count == 2)
-                {
-                    cbDoi.SelectedValue = empUpdate.idPhongDoiToLoai;
-                }
-            }
+            cbPhongBan.SelectedValue = empUpdate.idPhongDoiToLoai;
         }
         #endregion
 
@@ -415,17 +305,19 @@ namespace PMNS
                     ID = x.idNhanVien,
                     HoTen = x.hoTen,
                     MaNV = x.MaNV,
-                    NamSinh = x.namSinh.ToString("dd/MM/YYYY"),
+                    NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
                     CapBac = x.CapBac.capBac1,
                     ChucVu = x.ChucVu.ChucVu1,
                     PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
                     HeBienChe = x.BienChe.bienChe1,
-                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/YYYY"),
+                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
                     NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
-                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/YYYY"),
+                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
                     NguoiBaoLanh = x.nguoiBaoLanh,
                     MoiQuanHe = x.moiQuanHeBaoLanh
                 }).ToList();
+            dataGridNhanVien.Columns[0].Visible = false;
+            dataGridNhanVien.CurrentCell = null;
         }
 
         public void InitPhongBan()

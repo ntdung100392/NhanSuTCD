@@ -65,6 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChinhSuaThongTinNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChinhSuaThongTinNhanVien.Designer.cs">
+      <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="HopDongLaoDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +95,6 @@
     <Compile Include="QuanLyChucVu.Designer.cs">
       <DependentUpon>QuanLyChucVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
     <Compile Include="Dang nhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +152,9 @@
     <Compile Include="ThongTinTrinhDo.Designer.cs">
       <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChinhSuaThongTinNhanVien.resx">
+      <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HopDongLaoDong.resx">
       <DependentUpon>HopDongLaoDong.cs</DependentUpon>
     </EmbeddedResource>

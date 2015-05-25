@@ -18,5 +18,6 @@ namespace PMNS.Services.Abstract
         List<string> FindEmpByMaNV(string maNV);
         ThongTinNhanVIen GetEmpById(int id);
         bool UpdateEmpInfo(ThongTinNhanVIen emp);
+        List<ThongTinNhanVIen> GetAllNhanVienByIdPhongBan(int id);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PMNS
 {
-    partial class ThemNV
+    partial class ChinhSuaThongTinNhanVien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.dataGridNhanVien = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbNguyenQuan = new System.Windows.Forms.ComboBox();
             this.cbPhanQuyen = new System.Windows.Forms.ComboBox();
@@ -96,102 +88,15 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).BeginInit();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(98, 19);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(126, 20);
-            this.txtSearch.TabIndex = 28;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Tìm kiếm";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnSua);
-            this.groupBox1.Controls.Add(this.btnClear);
-            this.groupBox1.Controls.Add(this.btnThem);
-            this.groupBox1.Controls.Add(this.dataGridNhanVien);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 223);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1028, 278);
-            this.groupBox1.TabIndex = 30;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh sách nhân viên";
-            // 
-            // btnSua
-            // 
-            this.btnSua.Location = new System.Drawing.Point(866, 19);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(75, 23);
-            this.btnSua.TabIndex = 33;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(947, 19);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 32;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnThem
-            // 
-            this.btnThem.Location = new System.Drawing.Point(785, 19);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(75, 23);
-            this.btnThem.TabIndex = 31;
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click_1);
-            // 
-            // dataGridNhanVien
-            // 
-            this.dataGridNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridNhanVien.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridNhanVien.Location = new System.Drawing.Point(3, 63);
-            this.dataGridNhanVien.MultiSelect = false;
-            this.dataGridNhanVien.Name = "dataGridNhanVien";
-            this.dataGridNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridNhanVien.Size = new System.Drawing.Size(1022, 212);
-            this.dataGridNhanVien.TabIndex = 30;
-            this.dataGridNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridNhanVien_CellClick);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnExit);
+            this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.cbNguyenQuan);
             this.groupBox2.Controls.Add(this.cbPhanQuyen);
             this.groupBox2.Controls.Add(this.lblPhanQuyen);
@@ -254,8 +159,8 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1028, 217);
-            this.groupBox2.TabIndex = 31;
+            this.groupBox2.Size = new System.Drawing.Size(1028, 249);
+            this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
             // 
@@ -514,7 +419,6 @@
             this.txtNguoiBaoLanh.Name = "txtNguoiBaoLanh";
             this.txtNguoiBaoLanh.Size = new System.Drawing.Size(181, 20);
             this.txtNguoiBaoLanh.TabIndex = 75;
-            this.txtNguoiBaoLanh.TextChanged += new System.EventHandler(this.txtNguoiBaoLanh_TextChanged);
             // 
             // label20
             // 
@@ -759,91 +663,77 @@
             this.txtManv.Name = "txtManv";
             this.txtManv.Size = new System.Drawing.Size(126, 20);
             this.txtManv.TabIndex = 27;
-            this.txtManv.TextChanged += new System.EventHandler(this.txtManv_TextChanged);
             // 
-            // errorProvider1
+            // btnSua
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.btnSua.Location = new System.Drawing.Point(861, 212);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(75, 23);
+            this.btnSua.TabIndex = 33;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
-            // errorProvider2
+            // btnExit
             // 
-            this.errorProvider2.ContainerControl = this;
+            this.btnExit.Location = new System.Drawing.Point(942, 212);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 118;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // errorProvider3
-            // 
-            this.errorProvider3.ContainerControl = this;
-            // 
-            // errorProvider5
-            // 
-            this.errorProvider5.ContainerControl = this;
-            // 
-            // errorProvider6
-            // 
-            this.errorProvider6.ContainerControl = this;
-            // 
-            // errorProvider4
-            // 
-            this.errorProvider4.ContainerControl = this;
-            // 
-            // errorProvider7
-            // 
-            this.errorProvider7.ContainerControl = this;
-            // 
-            // ThemNV
+            // ChinhSuaThongTinNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 501);
+            this.ClientSize = new System.Drawing.Size(1028, 251);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "ThemNV";
-            this.Text = "QUẢN LÝ NHÂN VIÊN";
-            this.Load += new System.EventHandler(this.ThemNV_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).EndInit();
+            this.Name = "ChinhSuaThongTinNhanVien";
+            this.Text = "ChinhSuaThongTinNhanVien";
+            this.Load += new System.EventHandler(this.ChinhSuaThongTinNhanVien_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.DataGridView dataGridNhanVien;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtCongViecDangLam;
-        private System.Windows.Forms.TextBox txtNoiCongTac;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RadioButton rBtnNu;
-        private System.Windows.Forms.RadioButton rbtnNam;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbNguyenQuan;
+        private System.Windows.Forms.ComboBox cbPhanQuyen;
+        private System.Windows.Forms.Label lblPhanQuyen;
+        private System.Windows.Forms.ComboBox cbCapBac;
+        private System.Windows.Forms.ComboBox cbBienChe;
+        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtdiachi;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSdt;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtTennv;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtManv;
+        private System.Windows.Forms.Label lbUserName;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.ComboBox cbTinhTrangHonNhan;
+        private System.Windows.Forms.DateTimePicker datetimeNgaySinh;
+        private System.Windows.Forms.MaskedTextBox txtNgaySinh;
+        private System.Windows.Forms.ComboBox cbPhongBan;
+        private System.Windows.Forms.ComboBox cbMaCV;
+        private System.Windows.Forms.ComboBox cbNoiCapCMND;
+        private System.Windows.Forms.DateTimePicker datetimeNgayNhapNgu;
+        private System.Windows.Forms.MaskedTextBox txtNgayNhapNgu;
+        private System.Windows.Forms.DateTimePicker datetimeCMND;
+        private System.Windows.Forms.MaskedTextBox txtNgayCapCMND;
+        private System.Windows.Forms.DateTimePicker datetimeNgayVaoCang;
+        private System.Windows.Forms.MaskedTextBox txtNgayVaoCang;
+        private System.Windows.Forms.DateTimePicker datetimeNamVaoST;
+        private System.Windows.Forms.MaskedTextBox txtNamVaoST;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtHoKhau;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox cbThanhPho;
+        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtMoiQuanHeNBL;
         private System.Windows.Forms.TextBox txtNguoiBaoLanh;
+        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtCMND;
@@ -853,44 +743,25 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.TextBox txtHoKhau;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox cbThanhPho;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.DateTimePicker datetimeNgayVaoCang;
-        private System.Windows.Forms.MaskedTextBox txtNgayVaoCang;
-        private System.Windows.Forms.DateTimePicker datetimeNamVaoST;
-        private System.Windows.Forms.MaskedTextBox txtNamVaoST;
-        private System.Windows.Forms.DateTimePicker datetimeNgayNhapNgu;
-        private System.Windows.Forms.MaskedTextBox txtNgayNhapNgu;
-        private System.Windows.Forms.DateTimePicker datetimeCMND;
-        private System.Windows.Forms.MaskedTextBox txtNgayCapCMND;
-        private System.Windows.Forms.ComboBox cbNoiCapCMND;
-        private System.Windows.Forms.ComboBox cbPhongBan;
-        private System.Windows.Forms.ComboBox cbMaCV;
-        private System.Windows.Forms.DateTimePicker datetimeNgaySinh;
-        private System.Windows.Forms.MaskedTextBox txtNgaySinh;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ErrorProvider errorProvider2;
-        private System.Windows.Forms.ErrorProvider errorProvider3;
-        private System.Windows.Forms.ErrorProvider errorProvider5;
-        private System.Windows.Forms.ErrorProvider errorProvider6;
-        private System.Windows.Forms.ErrorProvider errorProvider4;
-        private System.Windows.Forms.ErrorProvider errorProvider7;
-        private System.Windows.Forms.ComboBox cbTinhTrangHonNhan;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label lbUserName;
-        private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox cbBienChe;
-        private System.Windows.Forms.ComboBox cbCapBac;
+        private System.Windows.Forms.TextBox txtCongViecDangLam;
+        private System.Windows.Forms.TextBox txtNoiCongTac;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cbPhanQuyen;
-        private System.Windows.Forms.Label lblPhanQuyen;
-        private System.Windows.Forms.ComboBox cbNguyenQuan;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton rBtnNu;
+        private System.Windows.Forms.RadioButton rbtnNam;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSdt;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTennv;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtManv;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnSua;
     }
 }
