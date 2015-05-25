@@ -83,6 +83,7 @@ namespace PMNS
         {
             InitGridView();
             InitPhongBan();
+            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,8 +125,7 @@ namespace PMNS
             var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
             ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
                 _chucVuServices, _capBacServices, _bienCheServices, _emp);
-            editEmpInfo.ShowDialog(this);
-            
+            editEmpInfo.ShowDialog(this);            
             //}
             //else
             //{
