@@ -23,6 +23,7 @@ namespace PMNS
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
+        private List<ThongTinNhanVIen> _fullEmpList;
         public DanhSachNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices)
@@ -39,25 +40,13 @@ namespace PMNS
         #region Init
         private void InitGridView()
         {
-            dataGridDanhSachNV.DataSource = _nhanVienServices.GetAllEmployees().Select(x =>
-                new
-                {
-                    ID = x.idNhanVien,
-                    HoTen = x.hoTen,
-                    MaNV = x.MaNV,
-                    NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
-                    CapBac = x.CapBac.capBac1,
-                    ChucVu = x.ChucVu.ChucVu1,
-                    PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                    HeBienChe = x.BienChe.bienChe1,
-                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
-                    NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
-                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
-                    NguoiBaoLanh = x.nguoiBaoLanh,
-                    MoiQuanHe = x.moiQuanHeBaoLanh
-                }).ToList();
-            dataGridDanhSachNV.Columns[0].Visible = false;
-            dataGridDanhSachNV.CurrentCell = null;
+            ReFormatCollumnGridView(_fullEmpList);
+        }
+
+        private void InitRefreshGridView(bool close)
+        {
+            InitGridView();
+            dataGridDanhSachNV.Refresh();
         }
 
         private void InitPhongBan()
@@ -77,21 +66,10 @@ namespace PMNS
             cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
             cbPhongBan.ValueMember = "idPhongDoiToLoai";
         }
-        #endregion
 
-        private void DanhSachNhanVien_Load(object sender, EventArgs e)
+        private void ReFormatCollumnGridView(List<ThongTinNhanVIen> empList)
         {
-            InitGridView();
-            InitPhongBan();
-            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idPhongBan = (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai;
-            if (idPhongBan != 0)
-            {
-                dataGridDanhSachNV.DataSource = _nhanVienServices.GetAllNhanVienByIdPhongBan(idPhongBan).Select(x =>
+            dataGridDanhSachNV.DataSource = empList.Select(x =>
                 new
                 {
                     ID = x.idNhanVien,
@@ -108,14 +86,24 @@ namespace PMNS
                     NguoiBaoLanh = x.nguoiBaoLanh,
                     MoiQuanHe = x.moiQuanHeBaoLanh
                 }).ToList();
-                dataGridDanhSachNV.Columns[0].Visible = false;
-                dataGridDanhSachNV.CurrentCell = null;
-            }
-            else
-            {
-                InitGridView();
-                dataGridDanhSachNV.Refresh();
-            }
+            dataGridDanhSachNV.Columns[0].Visible = false;
+            dataGridDanhSachNV.CurrentCell = null;
+        }
+        #endregion
+
+        #region Form's Event
+        private void DanhSachNhanVien_Load(object sender, EventArgs e)
+        {
+            this._fullEmpList = _nhanVienServices.GetAllEmployees();
+            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
+            InitGridView();
+            InitPhongBan();
+        }
+
+        private void cbPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterGridView(txtMaNhanVien.Text.Trim(), txtTenNhanVien.Text.Trim(),
+                (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
         }
 
         private void dataGridDanhSachNV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -125,7 +113,8 @@ namespace PMNS
             var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
             ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
                 _chucVuServices, _capBacServices, _bienCheServices, _emp);
-            editEmpInfo.ShowDialog(this);            
+            editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
+            editEmpInfo.ShowDialog(this);
             //}
             //else
             //{
@@ -133,5 +122,66 @@ namespace PMNS
             //        MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
         }
+
+        private void txtMaNhanVien_TextChanged(object sender, EventArgs e)
+        {
+            FilterGridView(txtMaNhanVien.Text.Trim(), txtTenNhanVien.Text.Trim(),
+                (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+        }
+
+        private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
+        {
+            FilterGridView(txtMaNhanVien.Text.Trim(), txtTenNhanVien.Text.Trim(), 
+                (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+        }
+
+        private void FilterGridView(string maNv, string name, int idPhongBan)
+        {
+            List<ThongTinNhanVIen> empList = null;
+            if (idPhongBan != 0 && String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.idPhongDoiToLoai == idPhongBan).ToList()
+                    .Where(x => x.MaNV.Contains(maNv)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan != 0 && !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.idPhongDoiToLoai == idPhongBan).ToList()
+                    .Where(x => x.MaNV.Contains(maNv)).ToList().Where(x => x.hoTen.Contains(name)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan != 0 && !String.IsNullOrEmpty(name) && String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.idPhongDoiToLoai == idPhongBan).ToList()
+                    .Where(x => x.hoTen.Contains(name)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan != 0 && String.IsNullOrEmpty(name) && String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.idPhongDoiToLoai == idPhongBan).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan == 0 && !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.MaNV.Contains(maNv)).ToList().Where(x => x.hoTen.Contains(name)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan == 0 && String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.MaNV.Contains(maNv)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else if (idPhongBan == 0 && !String.IsNullOrEmpty(name) && String.IsNullOrEmpty(maNv))
+            {
+                empList = _fullEmpList.Where(x => x.hoTen.Contains(name)).ToList();
+                ReFormatCollumnGridView(empList);
+            }
+            else
+            {
+                empList = _fullEmpList;
+                ReFormatCollumnGridView(empList);
+            }
+        }
+        #endregion
     }
 }

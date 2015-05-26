@@ -32,10 +32,10 @@ namespace PMNS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng"));
-            //Application.Run(new ThemNV(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+            Application.Run(new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+                _capBacServices, _bienCheServices, _thongTinServices, _trinhDoServices));
+            //Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
             //    _capBacServices, _bienCheServices));
-            Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices));
         }
     }
 }

@@ -57,10 +57,10 @@ namespace PMNS
                 string thongBao = _nhanVienServices.GetEmployeeByNameAndPass(name, pass);
                 if (UserProfile.idNhanVien != 0)
                 {
-                    MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
-                    Menu form = new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                        _capBacServices, _bienCheServices);
-                    form.Show();
+                    //MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
+                    //Menu form = new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+                    //    _capBacServices, _bienCheServices);
+                    //form.Show();
                 }
                 else
                 {

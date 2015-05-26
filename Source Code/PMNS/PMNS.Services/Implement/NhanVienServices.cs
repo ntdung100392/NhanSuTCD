@@ -109,6 +109,12 @@ namespace PMNS.Services.Implement
                 Where(x => x.idPhongDoiToLoai == id).ToList().OrderBy(x => x.MaNV).ToList();
         }
 
+        public List<ThongTinNhanVIen> FindEmp(string condition)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().Get().
+                Where(x => x.MaNV.Contains(condition) || x.hoTen.Contains(condition)).ToList();
+        }
+
         private void InitUserProfile(ThongTinNhanVIen emp)
         {
             UserProfile.idNhanVien = emp.idNhanVien;
