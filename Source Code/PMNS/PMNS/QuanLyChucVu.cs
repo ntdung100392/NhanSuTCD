@@ -93,7 +93,7 @@ namespace PMNS
                 { 
                     ID=x.idChucVu,
                     MaChucVu=x.MaChucVu,
-                    BienChe=x.ChucVu1,
+                    ChucVu = x.ChucVu1,
                 });
             dataGridChucVu.Columns[0].Visible = false;
             dataGridChucVu.CurrentCell = null;
