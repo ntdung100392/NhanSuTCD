@@ -32,6 +32,8 @@
             this.dataGridDanhSachNV = new System.Windows.Forms.DataGridView();
             this.cbPhongBan = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDanhSachNV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,11 +68,31 @@
             this.label25.TabIndex = 104;
             this.label25.Text = "Phòng Ban";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(862, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 23);
+            this.button1.TabIndex = 109;
+            this.button1.Text = "Xem toàn bộ thông tin";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1026, 10);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 23);
+            this.button2.TabIndex = 110;
+            this.button2.Text = "Chỉnh sửa thông tin";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // DanhSachNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 511);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.cbPhongBan);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.dataGridDanhSachNV);
@@ -89,6 +111,8 @@
         private System.Windows.Forms.DataGridView dataGridDanhSachNV;
         private System.Windows.Forms.ComboBox cbPhongBan;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
 
     }
 }

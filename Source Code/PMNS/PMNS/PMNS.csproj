@@ -146,6 +146,18 @@
     <Compile Include="Thong Tin.Designer.cs">
       <DependentUpon>Thong Tin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Thongtincanhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thongtincanhan.Designer.cs">
+      <DependentUpon>Thongtincanhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongTinGiaDinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongTinGiaDinh.Designer.cs">
+      <DependentUpon>ThongTinGiaDinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThongTinTrinhDo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +212,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Thong Tin.resx">
       <DependentUpon>Thong Tin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Thongtincanhan.resx">
+      <DependentUpon>Thongtincanhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongTinGiaDinh.resx">
+      <DependentUpon>ThongTinGiaDinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongTinTrinhDo.resx">
       <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
