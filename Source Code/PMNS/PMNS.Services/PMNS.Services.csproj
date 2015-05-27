@@ -56,6 +56,7 @@
     <Compile Include="Abstract\ICapBacServices.cs" />
     <Compile Include="Abstract\IChucVuServices.cs" />
     <Compile Include="Abstract\IHopDongServices.cs" />
+    <Compile Include="Abstract\IKyLuatServices.cs" />
     <Compile Include="Abstract\ILoaiHopDongServices.cs" />
     <Compile Include="Abstract\INhanVienServices.cs" />
     <Compile Include="Abstract\IPhongBanServices.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Implement\CapBacServices.cs" />
     <Compile Include="Implement\ChucVuServices.cs" />
     <Compile Include="Implement\HopDongServices.cs" />
+    <Compile Include="Implement\KyLuatServices.cs" />
     <Compile Include="Implement\LoaiHopDongServices.cs" />
     <Compile Include="Implement\NhanVienServices.cs" />
     <Compile Include="Implement\PhongBanServices.cs" />

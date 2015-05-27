@@ -13,6 +13,7 @@ using PMNS.Model;
 
 namespace PMNS
 {
+    public delegate void OnClosing (bool close);
     public partial class ChinhSuaThongTinNhanVien : Form
     {
         protected readonly INhanVienServices _nhanVienServices;
@@ -21,6 +22,8 @@ namespace PMNS
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
+
+        public event OnClosing OnClose;
 
         private ThongTinNhanVIen _empDetails;
         public ChinhSuaThongTinNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
@@ -61,8 +64,17 @@ namespace PMNS
             InitEmpInfo();
         }
 
+        protected virtual void FireEvent(bool close)
+        {
+            if (OnClose != null)
+            {
+                OnClose(close);
+            }
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
+            FireEvent(true);
             this.Close();
         }
 
@@ -107,7 +119,7 @@ namespace PMNS
             {
                 MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearAllText(this);
-                this.Owner.Refresh();
+                FireEvent(true);
                 this.Close();
             }
             else

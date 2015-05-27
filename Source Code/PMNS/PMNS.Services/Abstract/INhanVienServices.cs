@@ -19,5 +19,6 @@ namespace PMNS.Services.Abstract
         ThongTinNhanVIen GetEmpById(int id);
         bool UpdateEmpInfo(ThongTinNhanVIen emp);
         List<ThongTinNhanVIen> GetAllNhanVienByIdPhongBan(int id);
+        List<ThongTinNhanVIen> FindEmp(string condition);
     }
 }
