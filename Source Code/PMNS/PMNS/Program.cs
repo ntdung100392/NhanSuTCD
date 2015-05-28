@@ -37,10 +37,10 @@ namespace PMNS
             //    _capBacServices, _bienCheServices));
             //Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
             //    _capBacServices, _bienCheServices));
-            //Application.Run(new Thongtincanhan());
+            Application.Run(new Thongtincanhan());
 //=======
-            Application.Run(new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices, _thongTinServices, _trinhDoServices));
+            //Application.Run(new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+            //    _capBacServices, _bienCheServices, _thongTinServices, _trinhDoServices));
             //Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
             //    _capBacServices, _bienCheServices));
 //>>>>>>> e6d38c393c07c5c40f1be67b15026494bf4df535
