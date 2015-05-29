@@ -9,6 +9,8 @@ namespace PMNS.Services.Abstract
 {
     public interface ILoaiHopDongServices : IServices<LoaiHopDong>
     {
-
+        List<LoaiHopDong> GettAllLoaiHopDong();
+        bool AddLoaiHopDong(LoaiHopDong loaiHopDong);
+        bool UpdateLoaiHopDong(LoaiHopDong loaiHopDong);
     }
 }

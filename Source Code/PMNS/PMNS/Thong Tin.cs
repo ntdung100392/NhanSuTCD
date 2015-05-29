@@ -131,8 +131,6 @@ namespace PMNS
                 else
                     ClearAllText(c);
             }
-            btnThem.Enabled = true;
-            btnSua.Enabled = false;
         }
 
         private void txtMaNv_TextChanged(object sender, EventArgs e)

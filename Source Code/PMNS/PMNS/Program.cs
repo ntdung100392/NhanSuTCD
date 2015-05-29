@@ -28,11 +28,13 @@ namespace PMNS
             IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
             IThongTinServices _thongTinServices = new ThongTinServices(unitOfWork);
             IThongTinTrinhDoServices _trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            IHopDongServices _hopDongServices = new HopDongServices(unitOfWork);
+            ILoaiHopDongServices _loaiHopDongServices = new LoaiHopDongServices(unitOfWork);
+            IKyLuatServices _kyLuatServices = new KyLuatServices(unitOfWork);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices, _thongTinServices, _trinhDoServices));
+            Application.Run(new HopDongLaoDong(_nhanVienServices,_hopDongServices,_loaiHopDongServices));
         }
     }
 }   

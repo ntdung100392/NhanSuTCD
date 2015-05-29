@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeNgayKetThuc = new System.Windows.Forms.DateTimePicker();
             this.txtNgayKetThuc = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.datetimeNgayVaoCang = new System.Windows.Forms.DateTimePicker();
+            this.datetimeNgayBatDau = new System.Windows.Forms.DateTimePicker();
             this.txtNgayBatDau = new System.Windows.Forms.MaskedTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.cbLoaiHopDong = new System.Windows.Forms.ComboBox();
@@ -58,12 +61,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dateTimeNgayKetThuc);
             this.groupBox1.Controls.Add(this.txtNgayKetThuc);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.datetimeNgayVaoCang);
+            this.groupBox1.Controls.Add(this.datetimeNgayBatDau);
             this.groupBox1.Controls.Add(this.txtNgayBatDau);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.cbLoaiHopDong);
@@ -86,6 +92,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(869, 151);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 105;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(788, 151);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 104;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(950, 151);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 103;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // txtGhiChu
             // 
             this.txtGhiChu.Location = new System.Drawing.Point(788, 35);
@@ -102,12 +138,13 @@
             this.label8.TabIndex = 101;
             this.label8.Text = "Ghi Chú";
             // 
-            // dateTimePicker1
+            // dateTimeNgayKetThuc
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(594, 135);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(17, 20);
-            this.dateTimePicker1.TabIndex = 99;
+            this.dateTimeNgayKetThuc.Location = new System.Drawing.Point(594, 135);
+            this.dateTimeNgayKetThuc.Name = "dateTimeNgayKetThuc";
+            this.dateTimeNgayKetThuc.Size = new System.Drawing.Size(17, 20);
+            this.dateTimeNgayKetThuc.TabIndex = 99;
+            this.dateTimeNgayKetThuc.ValueChanged += new System.EventHandler(this.dateTimeNgayKetThuc_ValueChanged);
             // 
             // txtNgayKetThuc
             // 
@@ -127,12 +164,13 @@
             this.label7.TabIndex = 98;
             this.label7.Text = "Ngày Kết Thúc";
             // 
-            // datetimeNgayVaoCang
+            // datetimeNgayBatDau
             // 
-            this.datetimeNgayVaoCang.Location = new System.Drawing.Point(596, 103);
-            this.datetimeNgayVaoCang.Name = "datetimeNgayVaoCang";
-            this.datetimeNgayVaoCang.Size = new System.Drawing.Size(15, 20);
-            this.datetimeNgayVaoCang.TabIndex = 96;
+            this.datetimeNgayBatDau.Location = new System.Drawing.Point(596, 103);
+            this.datetimeNgayBatDau.Name = "datetimeNgayBatDau";
+            this.datetimeNgayBatDau.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNgayBatDau.TabIndex = 96;
+            this.datetimeNgayBatDau.ValueChanged += new System.EventHandler(this.datetimeNgayBatDau_ValueChanged);
             // 
             // txtNgayBatDau
             // 
@@ -250,6 +288,7 @@
             this.txtMaNv.Name = "txtMaNv";
             this.txtMaNv.Size = new System.Drawing.Size(126, 20);
             this.txtMaNv.TabIndex = 25;
+            this.txtMaNv.TextChanged += new System.EventHandler(this.txtMaNv_TextChanged);
             // 
             // groupBox2
             // 
@@ -273,6 +312,7 @@
             this.dataGridHDLD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridHDLD.Size = new System.Drawing.Size(1025, 273);
             this.dataGridHDLD.TabIndex = 0;
+            this.dataGridHDLD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHDLD_CellClick);
             // 
             // HopDongLaoDong
             // 
@@ -309,13 +349,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbLoaiHopDong;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeNgayKetThuc;
         private System.Windows.Forms.MaskedTextBox txtNgayKetThuc;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker datetimeNgayVaoCang;
+        private System.Windows.Forms.DateTimePicker datetimeNgayBatDau;
         private System.Windows.Forms.MaskedTextBox txtNgayBatDau;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnExit;
     }
 }
