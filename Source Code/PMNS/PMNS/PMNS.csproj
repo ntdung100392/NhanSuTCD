@@ -77,6 +77,7 @@
     <Compile Include="HopDongLaoDong.Designer.cs">
       <DependentUpon>HopDongLaoDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\PhongBanModel.cs" />
     <Compile Include="QuanLyCapBac.cs">
       <SubType>Form</SubType>
     </Compile>

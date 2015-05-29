@@ -14,5 +14,9 @@ namespace PMNS.Services.Abstract
         List<PhongDoiToLoaiTo> GetAllPhongBan();
         List<PhongDoiToLoaiTo> GetChildByParentId(int id);
         int GetParentByChildId(int id);
+        PhongDoiToLoaiTo GetPhongBanById(int id);
+        bool AddPhongBan(PhongDoiToLoaiTo phongBan);
+        bool UpdatePhongBan(PhongDoiToLoaiTo phongBan);
+        PhongDoiToLoaiTo FindPhongBanByNameAndCode(string maPhongBan, string tenPhongBan);
     }
 }

@@ -28,7 +28,7 @@ namespace PMNS
 
         public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices,IThongTinServices thongTinServices,
+            ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinServices thongTinServices,
             IThongTinTrinhDoServices trinhDoServices)
         {
             this._nhanVienServices = nhanVienServices;
@@ -117,7 +117,7 @@ namespace PMNS
 
         private void danhSáchTuyểnDụngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(_thongTinServices,"Tuyển Dụng");
+            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(_thongTinServices, "Tuyển Dụng");
             danhSachTuyenDung.ShowDialog(this);
         }
 
@@ -137,6 +137,12 @@ namespace PMNS
         {
             DanhSachThongTin danhSachThoiViec = new DanhSachThongTin(_thongTinServices, "Thôi Việc");
             danhSachThoiViec.ShowDialog(this);
+        }
+
+        private void quảnLýPhòngBanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyPhongBan phongBanForm = new QuanLyPhongBan(_phongBanServices);
+            phongBanForm.ShowDialog(this);
         }
     }
 }

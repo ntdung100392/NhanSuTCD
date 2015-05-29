@@ -39,34 +39,43 @@ namespace PMNS
         #region Form's Event
         private void btnThemCapBac_Click(object sender, EventArgs e)
         {
-            if (_capBacServices.FindCapBac(txtCapBac.Text.Trim(), txtMaCapBac.Text.Trim()) == null)
+            if (String.IsNullOrEmpty(txtCapBac.Text.Trim()) || String.IsNullOrEmpty(txtMaCapBac.Text.Trim()))
             {
-                CapBac capBac = new CapBac
-                {
-                    maCapBac = txtMaCapBac.Text.Trim(),
-                    capBac1 = txtCapBac.Text.Trim()
-                };
-                if (_capBacServices.AddCapBac(capBac))
-                {
-                    MessageBox.Show("Đã Thêm Cấp Bậc Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                    InitGridView();
-                    dataGridCapBac.Refresh();
-                    txtCapBac.Clear();
-                    txtMaCapBac.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Lỗi! Thông Tin Cấp Bậc Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (_capBacServices.FindCapBac(txtCapBac.Text.Trim(), txtMaCapBac.Text.Trim()) == null)
+                {
+                    CapBac capBac = new CapBac
+                    {
+                        maCapBac = txtMaCapBac.Text.Trim(),
+                        capBac1 = txtCapBac.Text.Trim()
+                    };
+                    if (_capBacServices.AddCapBac(capBac))
+                    {
+                        MessageBox.Show("Đã Thêm Cấp Bậc Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                        InitGridView();
+                        dataGridCapBac.Refresh();
+                        ClearAllText(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Thông Tin Cấp Bậc Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void QuanLyCapBac_Load(object sender, EventArgs e)
         {
+            btnSuaCapBac.Enabled = false;
             InitGridView();
         }
         private void dataGridCapBac_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -74,24 +83,55 @@ namespace PMNS
             updateCapBac = _capBacServices.GetCapBacById(Convert.ToInt32(dataGridCapBac.CurrentRow.Cells[0].Value.ToString()));
             txtMaCapBac.Text = updateCapBac.maCapBac;
             txtCapBac.Text = updateCapBac.capBac1;
+            btnSuaCapBac.Enabled = true;
+            btnThemCapBac.Enabled = false;
         }
 
         private void btnSuaCapBac_Click(object sender, EventArgs e)
         {
-            updateCapBac.capBac1 = txtCapBac.Text.Trim();
-            updateCapBac.maCapBac = txtMaCapBac.Text.Trim();
-            if (_capBacServices.UpdateCapBac(updateCapBac))
+            if (String.IsNullOrEmpty(txtCapBac.Text.Trim()) || String.IsNullOrEmpty(txtMaCapBac.Text.Trim()))
             {
-                MessageBox.Show("Đã Sửa Cấp Bậc Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                InitGridView();
-                dataGridCapBac.Refresh();
-                txtCapBac.Clear();
-                txtMaCapBac.Clear();
-                updateCapBac = null;
+                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (_capBacServices.FindCapBac(txtCapBac.Text.Trim(), txtMaCapBac.Text.Trim()) == null)
+                {
+                    updateCapBac.capBac1 = txtCapBac.Text.Trim();
+                    updateCapBac.maCapBac = txtMaCapBac.Text.Trim();
+                    if (_capBacServices.UpdateCapBac(updateCapBac))
+                    {
+                        MessageBox.Show("Đã Sửa Cấp Bậc Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                        InitGridView();
+                        dataGridCapBac.Refresh();
+                        ClearAllText(this);
+                        btnSuaCapBac.Enabled = false;
+                        btnThemCapBac.Enabled = true;
+                        updateCapBac = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Thông Tin Cấp Bậc Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ClearAllText(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Clear();
+                else
+                    ClearAllText(c);
             }
         }
         #endregion

@@ -26,55 +26,71 @@ namespace PMNS
         #region Form's Event
         private void QuanLyBienChe_Load(object sender, EventArgs e)
         {
+            btnSuaBienChe.Enabled = false;
             InitGridView();
         }
 
         private void btnThemBienChe_Click(object sender, EventArgs e)
         {
-            if (_bienCheServices.FindBienChe(txtBienChe.Text.Trim(), txtMaBienChe.Text.Trim()) == null)
+            if (String.IsNullOrEmpty(txtBienChe.Text.Trim()) || String.IsNullOrEmpty(txtMaBienChe.Text.Trim()))
             {
-                BienChe bienChe = new BienChe
+                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (_bienCheServices.FindBienChe(txtBienChe.Text.Trim(), txtMaBienChe.Text.Trim()) == null)
                 {
-                    bienChe1 = txtBienChe.Text.Trim(),
-                    maBienChe = txtMaBienChe.Text.Trim()
-                };
-                if (_bienCheServices.AddBienChe(bienChe))
+                    BienChe bienChe = new BienChe
+                    {
+                        bienChe1 = txtBienChe.Text.Trim(),
+                        maBienChe = txtMaBienChe.Text.Trim()
+                    };
+                    if (_bienCheServices.AddBienChe(bienChe))
+                    {
+                        MessageBox.Show("Đã Thêm Biên Chế Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                        InitGridView();
+                        dataGridBienChe.Refresh();
+                        ClearAllText(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
                 {
-                    MessageBox.Show("Đã Thêm Biên Chế Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi! Thông Tin Biên Chế Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }            
+        }
+
+        private void btnSuaBienChe_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtBienChe.Text.Trim()) || String.IsNullOrEmpty(txtMaBienChe.Text.Trim()))
+            {
+                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                updateBienChe.bienChe1 = txtBienChe.Text.Trim();
+                updateBienChe.maBienChe = txtMaBienChe.Text.Trim();
+                if (_bienCheServices.UpdateBienChe(updateBienChe))
+                {
+                    MessageBox.Show("Đã Sửa Biên Chế Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                     InitGridView();
                     dataGridBienChe.Refresh();
-                    txtBienChe.Clear();
-                    txtMaBienChe.Clear();
+                    ClearAllText(this);
+                    updateBienChe = null;
+                    btnSuaBienChe.Enabled = false;
+                    btnThemBienChe.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Lỗi! Thông Tin Biên Chế Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnSuaBienChe_Click(object sender, EventArgs e)
-        {
-            updateBienChe.bienChe1 = txtBienChe.Text.Trim();
-            updateBienChe.maBienChe = txtMaBienChe.Text.Trim();
-            if (_bienCheServices.UpdateBienChe(updateBienChe))
-            {
-                MessageBox.Show("Đã Sửa Biên Chế Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                InitGridView();
-                dataGridBienChe.Refresh();
-                txtBienChe.Clear();
-                txtMaBienChe.Clear();
-                updateBienChe = null;
-            }
-            else
-            {
-                MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }            
         }
 
         private void dataGridBienChe_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -82,6 +98,19 @@ namespace PMNS
             updateBienChe = _bienCheServices.GetBienCheById(Convert.ToInt32(dataGridBienChe.CurrentRow.Cells[0].Value.ToString()));
             txtMaBienChe.Text = updateBienChe.maBienChe;
             txtBienChe.Text = updateBienChe.bienChe1;
+            btnSuaBienChe.Enabled = true;
+            btnThemBienChe.Enabled = false;
+        }
+
+        private void ClearAllText(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Clear();
+                else
+                    ClearAllText(c);
+            }
         }
 
         #endregion
