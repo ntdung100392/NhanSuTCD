@@ -12,6 +12,7 @@ namespace PMNS.Services.Abstract
     {
         List<HopDongLaoDong> GetAllHopDong();
         List<HopDongLaoDong> GetHopDongByEmpId(int id);
+        HopDongLaoDong GetHopDongById(int id);
         bool AddHopDongLaoDong(HopDongLaoDong hopDong);
         bool UpdateHopDongLaoDong(HopDongLaoDong hopDong);
     }

@@ -12,14 +12,15 @@ using PMNS.Services.Abstract;
 
 namespace PMNS
 {
-    public partial class HopDongLaoDong : Form
+    public partial class QuanLyHopDong : Form
     {
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IHopDongServices _hopDongServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
         private HopDongLaoDong updateHopDong;
+        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
 
-        public HopDongLaoDong(INhanVienServices nhanVienServices, IHopDongServices hopDongServices,
+        public QuanLyHopDong(INhanVienServices nhanVienServices, IHopDongServices hopDongServices,
             ILoaiHopDongServices loaiHopDongServices)
         {
             this._nhanVienServices = nhanVienServices;
@@ -32,8 +33,10 @@ namespace PMNS
         {
             cbLoaiHopDong.DropDownStyle = ComboBoxStyle.DropDownList;
             btnEdit.Enabled = false;
+            txtTenNV.ReadOnly = true;
             InitGridView();
             InitLoaiHopDong();
+            InitAutoComplete("");
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -48,11 +51,38 @@ namespace PMNS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            CheckAllNullTextBox(this);
+            var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+            if (emp != null)
+            {
+                HopDongLaoDong hopDong = new HopDongLaoDong
+                {
+                    idNhanVien = emp.idNhanVien,
+                    idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong,
+                    chucDanh = txtChucDanh.Text.Trim(),
+                    ngayBatDau = datetimeNgayBatDau.Value,
+                    ngayKetThuc = dateTimeNgayKetThuc.Value,
+                    nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim(),
+                    soHopDong_TTHDLD = txtSoHopDong.Text.Trim(),
+                    ghiChu = txtGhiChu.Text.Trim()
+                };
+                if (_hopDongServices.AddHopDongLaoDong(hopDong))
+                {
+                    MessageBox.Show("Đã Thêm Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                    InitGridView();
+                    dataGridHDLD.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void dataGridHDLD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            updateHopDong = _hopDongServices.GetHopDongById(Convert.ToInt32(dataGridHDLD.CurrentRow.Cells[0].Value.ToString()));
             btnEdit.Enabled = true;
             btnAdd.Enabled = false;
         }
@@ -61,11 +91,27 @@ namespace PMNS
         {
             if (!String.IsNullOrEmpty(txtMaNv.Text.Trim()))
             {
-                InitAutoComplete(txtMaNv.Text.Trim());                
+                InitAutoComplete(txtMaNv.Text.Trim());
                 var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
                 if (emp != null)
                 {
                     txtTenNV.Text = emp.hoTen;
+                }
+            }
+        }
+
+        private void CheckAllNullTextBox(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                {
+                    if (String.IsNullOrEmpty(c.Text.Trim()))
+                        MessageBox.Show("Thông Tin Đầu Vào Còn Thiếu!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    CheckAllNullTextBox(c);
                 }
             }
         }
@@ -100,7 +146,6 @@ namespace PMNS
         #region Init
         private void InitAutoComplete(string maNV)
         {
-            AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNv.AutoCompleteCustomSource = listMaNV;
         }

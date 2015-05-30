@@ -17,7 +17,7 @@ namespace PMNS
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IThongTinServices _thongTinServices;
         protected readonly string _loaiThongTin;
-
+        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
         private TD_DD_BN_TV thongTinUpdate = new TD_DD_BN_TV();
         public ThongTin_TuyenDung(INhanVienServices nhanVienServices, IThongTinServices thongTinServices, string loaiThongTin)
         {
@@ -30,9 +30,11 @@ namespace PMNS
         #region Form's Event
         private void ThongTin_TuyenDung_Load(object sender, EventArgs e)
         {
+            txtHoTen.ReadOnly = true;
             btnSua.Enabled = false;
             txtNoiDung.Text = _loaiThongTin;
             InitGridView();
+            InitAutoComplete("");
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -138,6 +140,11 @@ namespace PMNS
             if (txtMaNv.Text.Trim() != null)
             {
                 InitAutoComplete(txtMaNv.Text.Trim());
+                var emp=_nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                if (emp != null)
+                {
+                    txtHoTen.Text = emp.hoTen;
+                }
             }
         }
 
@@ -186,8 +193,7 @@ namespace PMNS
         }
 
         private void InitAutoComplete(string maNV)
-        {
-            AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
+        {            
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNv.AutoCompleteCustomSource = listMaNV;
         }

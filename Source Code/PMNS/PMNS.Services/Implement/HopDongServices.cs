@@ -25,6 +25,11 @@ namespace PMNS.Services.Implement
                 .ToList().OrderByDescending(x => x.ngayBatDau).ToList();
         }
 
+        public HopDongLaoDong GetHopDongById(int id)
+        {
+            return unitOfWork.Repository<HopDongLaoDong>().GetById(id);
+        }
+
         public bool AddHopDongLaoDong(HopDongLaoDong hopDong)
         {
             if (hopDong != null)

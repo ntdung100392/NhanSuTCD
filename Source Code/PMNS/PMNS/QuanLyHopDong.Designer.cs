@@ -1,6 +1,6 @@
 ﻿namespace PMNS
 {
-    partial class HopDongLaoDong
+    partial class QuanLyHopDong
     {
         /// <summary>
         /// Required designer variable.
@@ -151,6 +151,7 @@
             this.txtNgayKetThuc.Location = new System.Drawing.Point(481, 135);
             this.txtNgayKetThuc.Mask = "00/00/0000";
             this.txtNgayKetThuc.Name = "txtNgayKetThuc";
+            this.txtNgayKetThuc.ReadOnly = true;
             this.txtNgayKetThuc.Size = new System.Drawing.Size(128, 20);
             this.txtNgayKetThuc.TabIndex = 100;
             this.txtNgayKetThuc.ValidatingType = typeof(System.DateTime);
@@ -177,6 +178,7 @@
             this.txtNgayBatDau.Location = new System.Drawing.Point(483, 103);
             this.txtNgayBatDau.Mask = "00/00/0000";
             this.txtNgayBatDau.Name = "txtNgayBatDau";
+            this.txtNgayBatDau.ReadOnly = true;
             this.txtNgayBatDau.Size = new System.Drawing.Size(128, 20);
             this.txtNgayBatDau.TabIndex = 97;
             this.txtNgayBatDau.ValidatingType = typeof(System.DateTime);

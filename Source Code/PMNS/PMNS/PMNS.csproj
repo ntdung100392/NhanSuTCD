@@ -71,11 +71,11 @@
     <Compile Include="ChinhSuaThongTinNhanVien.Designer.cs">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="HopDongLaoDong.cs">
+    <Compile Include="QuanLyHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HopDongLaoDong.Designer.cs">
-      <DependentUpon>HopDongLaoDong.cs</DependentUpon>
+    <Compile Include="QuanLyHopDong.Designer.cs">
+      <DependentUpon>QuanLyHopDong.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\PhongBanModel.cs" />
     <Compile Include="QuanLyCapBac.cs">
@@ -186,8 +186,8 @@
     <EmbeddedResource Include="ChinhSuaThongTinNhanVien.resx">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HopDongLaoDong.resx">
-      <DependentUpon>HopDongLaoDong.cs</DependentUpon>
+    <EmbeddedResource Include="QuanLyHopDong.resx">
+      <DependentUpon>QuanLyHopDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyCapBac.resx">
       <DependentUpon>QuanLyCapBac.cs</DependentUpon>

@@ -34,7 +34,7 @@ namespace PMNS
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HopDongLaoDong(_nhanVienServices,_hopDongServices,_loaiHopDongServices));
+            Application.Run(new QuanLyHopDong(_nhanVienServices,_hopDongServices,_loaiHopDongServices));
         }
     }
 }   
