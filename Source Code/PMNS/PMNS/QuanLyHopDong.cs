@@ -34,6 +34,7 @@ namespace PMNS
             cbLoaiHopDong.DropDownStyle = ComboBoxStyle.DropDownList;
             btnEdit.Enabled = false;
             txtTenNV.ReadOnly = true;
+            btnClear.Enabled = true;
             InitGridView();
             InitLoaiHopDong();
             InitAutoComplete("");
@@ -46,12 +47,46 @@ namespace PMNS
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+            if (emp != null)
+            {
+                updateHopDong.idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong;
+                updateHopDong.chucDanh = txtChucDanh.Text.Trim();
+                updateHopDong.ngayBatDau = datetimeNgayBatDau.Value;
+                updateHopDong.ngayKetThuc = dateTimeNgayKetThuc.Value;
+                updateHopDong.nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim();
+                updateHopDong.soHopDong_TTHDLD = txtSoHopDong.Text.Trim();
+                updateHopDong.ghiChu = txtGhiChu.Text.Trim();
+                if (_hopDongServices.UpdateHopDongLaoDong(updateHopDong))
+                {
+                    MessageBox.Show("Đã Chỉnh Sửa Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                    InitGridView();
+                    dataGridHDLD.Refresh();
+                    ClearAllText(this);
+                    txtMaNv.ReadOnly = false;
+                    btnAdd.Enabled = true;
+                    btnClear.Enabled = false;
+                    btnEdit.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAllText(this);
+            txtMaNv.ReadOnly = false;
+            btnAdd.Enabled = true;
+            btnClear.Enabled = false;
+            btnEdit.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CheckAllNullTextBox(this);
             var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
             if (emp != null)
             {
@@ -71,6 +106,7 @@ namespace PMNS
                     MessageBox.Show("Đã Thêm Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                     InitGridView();
                     dataGridHDLD.Refresh();
+                    ClearAllText(this);
                 }
                 else
                 {
@@ -83,8 +119,18 @@ namespace PMNS
         private void dataGridHDLD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             updateHopDong = _hopDongServices.GetHopDongById(Convert.ToInt32(dataGridHDLD.CurrentRow.Cells[0].Value.ToString()));
+            txtMaNv.Text = updateHopDong.ThongTinNhanVIen.MaNV;
+            txtMaNv.ReadOnly = true;
+            txtTenNV.Text = updateHopDong.ThongTinNhanVIen.hoTen;
+            txtSoHopDong.Text = updateHopDong.soHopDong_TTHDLD;
+            txtNguoiBaoLanh.Text = updateHopDong.nguoiBaoLanh_TTHDLD;
+            datetimeNgayBatDau.Value = updateHopDong.ngayBatDau;
+            dateTimeNgayKetThuc.Value = updateHopDong.ngayKetThuc;
+            txtGhiChu.Text = updateHopDong.ghiChu;
+            cbLoaiHopDong.SelectedValue = updateHopDong.idLoaiHopDong;
             btnEdit.Enabled = true;
             btnAdd.Enabled = false;
+            btnClear.Enabled = true;
         }
 
         private void txtMaNv_TextChanged(object sender, EventArgs e)
@@ -170,7 +216,25 @@ namespace PMNS
 
         private void InitLoaiHopDong()
         {
-            cbLoaiHopDong.DataSource = _loaiHopDongServices.GettAllLoaiHopDong();
+            var listLoaiHopDong = _loaiHopDongServices.GettAllLoaiHopDong();
+            if (listLoaiHopDong.Count != 0)
+            {
+                foreach (var loaiHd in _loaiHopDongServices.GettAllLoaiHopDong())
+                {
+                    if (loaiHd.idCha != 0)
+                    {
+                        foreach (var removeHd in listLoaiHopDong)
+                        {
+                            if (loaiHd.idCha == removeHd.idLoaiHopDong)
+                            {
+                                listLoaiHopDong.Remove(removeHd);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            cbLoaiHopDong.DataSource = listLoaiHopDong;
             cbLoaiHopDong.DisplayMember = "loaiHopDong1";
             cbLoaiHopDong.ValueMember = "idLoaiHopDong";
         }

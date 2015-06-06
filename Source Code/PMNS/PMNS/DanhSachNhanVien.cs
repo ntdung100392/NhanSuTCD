@@ -47,6 +47,8 @@ namespace PMNS
         {
             InitGridView();
             dataGridDanhSachNV.Refresh();
+            btnViewDetails.Enabled = false;
+            btnEditDetails.Enabled = false;
         }
 
         private void InitPhongBan()
@@ -96,6 +98,8 @@ namespace PMNS
         {
             this._fullEmpList = _nhanVienServices.GetAllEmployees();
             cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
+            btnEditDetails.Enabled = false;
+            btnViewDetails.Enabled = false;
             InitGridView();
             InitPhongBan();
         }
@@ -181,6 +185,29 @@ namespace PMNS
                 empList = _fullEmpList;
                 ReFormatCollumnGridView(empList);
             }
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+            ThongTinCaNhan formDetails = new ThongTinCaNhan(_emp);
+            formDetails.ShowDialog(this);
+        }
+
+        private void dataGridDanhSachNV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+            btnViewDetails.Enabled = true;
+            btnEditDetails.Enabled = true;
+        }
+
+        private void btnEditDetails_Click(object sender, EventArgs e)
+        {
+            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+            ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
+                _chucVuServices, _capBacServices, _bienCheServices, _emp);
+            editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
+            editEmpInfo.ShowDialog(this);
         }
         #endregion
     }
