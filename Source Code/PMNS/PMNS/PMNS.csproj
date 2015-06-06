@@ -135,6 +135,12 @@
     <Compile Include="QuanLyPhongBan.Designer.cs">
       <DependentUpon>QuanLyPhongBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT.Designer.cs">
+      <DependentUpon>REPORT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Searchbutton.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyPhongBan.resx">
       <DependentUpon>QuanLyPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT.resx">
+      <DependentUpon>REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Searchbutton.resx">
       <DependentUpon>Searchbutton.cs</DependentUpon>
