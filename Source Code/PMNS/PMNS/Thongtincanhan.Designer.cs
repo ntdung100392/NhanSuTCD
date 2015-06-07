@@ -110,27 +110,7 @@
             this.lblHoTenMe = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.lblNgheNghiepCon = new System.Windows.Forms.Label();
-            this.lblNamSinhCon = new System.Windows.Forms.Label();
-            this.lblHoTenCon = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label44 = new System.Windows.Forms.Label();
             this.lblNgheNghiepVoChong = new System.Windows.Forms.Label();
@@ -226,6 +206,7 @@
             this.label74 = new System.Windows.Forms.Label();
             this.lblSoQDKyLuat = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtConCai = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -234,8 +215,6 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox17.SuspendLayout();
-            this.groupBox16.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -1066,8 +1045,6 @@
             // 
             this.groupBox7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox7.Controls.Add(this.groupBox9);
-            this.groupBox7.Controls.Add(this.groupBox17);
-            this.groupBox7.Controls.Add(this.groupBox16);
             this.groupBox7.Controls.Add(this.groupBox11);
             this.groupBox7.Controls.Add(this.groupBox10);
             this.groupBox7.Controls.Add(this.groupBox8);
@@ -1153,230 +1130,15 @@
             this.label42.TabIndex = 8;
             this.label42.Text = "Họ Tên";
             // 
-            // groupBox17
-            // 
-            this.groupBox17.Controls.Add(this.label63);
-            this.groupBox17.Controls.Add(this.label64);
-            this.groupBox17.Controls.Add(this.label65);
-            this.groupBox17.Controls.Add(this.label66);
-            this.groupBox17.Controls.Add(this.label67);
-            this.groupBox17.Controls.Add(this.label68);
-            this.groupBox17.Location = new System.Drawing.Point(211, 267);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(200, 97);
-            this.groupBox17.TabIndex = 25;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "Con 3";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label63.Location = new System.Drawing.Point(6, 71);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(81, 13);
-            this.label63.TabIndex = 9;
-            this.label63.Text = "Nghề Nghiệp";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(93, 71);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(96, 13);
-            this.label64.TabIndex = 16;
-            this.label64.Text = "lblNgheNghiepCon";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(73, 48);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(79, 13);
-            this.label65.TabIndex = 15;
-            this.label65.Text = "lblNamSinhCon";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(61, 26);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(69, 13);
-            this.label66.TabIndex = 14;
-            this.label66.Text = "lblHoTenCon";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label67.Location = new System.Drawing.Point(6, 48);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(61, 13);
-            this.label67.TabIndex = 10;
-            this.label67.Text = "Năm Sinh";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label68.Location = new System.Drawing.Point(6, 26);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(49, 13);
-            this.label68.TabIndex = 8;
-            this.label68.Text = "Họ Tên";
-            // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.label36);
-            this.groupBox16.Controls.Add(this.label45);
-            this.groupBox16.Controls.Add(this.label50);
-            this.groupBox16.Controls.Add(this.label52);
-            this.groupBox16.Controls.Add(this.label59);
-            this.groupBox16.Controls.Add(this.label62);
-            this.groupBox16.Location = new System.Drawing.Point(6, 267);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(200, 97);
-            this.groupBox16.TabIndex = 25;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Con 2";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label36.Location = new System.Drawing.Point(6, 71);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(81, 13);
-            this.label36.TabIndex = 9;
-            this.label36.Text = "Nghề Nghiệp";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(93, 71);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(96, 13);
-            this.label45.TabIndex = 16;
-            this.label45.Text = "lblNgheNghiepCon";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(73, 48);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(79, 13);
-            this.label50.TabIndex = 15;
-            this.label50.Text = "lblNamSinhCon";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(61, 26);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(69, 13);
-            this.label52.TabIndex = 14;
-            this.label52.Text = "lblHoTenCon";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label59.Location = new System.Drawing.Point(6, 48);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(61, 13);
-            this.label59.TabIndex = 10;
-            this.label59.Text = "Năm Sinh";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label62.Location = new System.Drawing.Point(6, 26);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(49, 13);
-            this.label62.TabIndex = 8;
-            this.label62.Text = "Họ Tên";
-            // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.label56);
-            this.groupBox11.Controls.Add(this.lblNgheNghiepCon);
-            this.groupBox11.Controls.Add(this.lblNamSinhCon);
-            this.groupBox11.Controls.Add(this.lblHoTenCon);
-            this.groupBox11.Controls.Add(this.label60);
-            this.groupBox11.Controls.Add(this.label61);
+            this.groupBox11.Controls.Add(this.txtConCai);
             this.groupBox11.Location = new System.Drawing.Point(211, 146);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(200, 121);
+            this.groupBox11.Size = new System.Drawing.Size(200, 217);
             this.groupBox11.TabIndex = 25;
             this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Con 1";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label56.Location = new System.Drawing.Point(6, 88);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(81, 13);
-            this.label56.TabIndex = 9;
-            this.label56.Text = "Nghề Nghiệp";
-            // 
-            // lblNgheNghiepCon
-            // 
-            this.lblNgheNghiepCon.AutoSize = true;
-            this.lblNgheNghiepCon.Location = new System.Drawing.Point(93, 88);
-            this.lblNgheNghiepCon.Name = "lblNgheNghiepCon";
-            this.lblNgheNghiepCon.Size = new System.Drawing.Size(96, 13);
-            this.lblNgheNghiepCon.TabIndex = 16;
-            this.lblNgheNghiepCon.Text = "lblNgheNghiepCon";
-            // 
-            // lblNamSinhCon
-            // 
-            this.lblNamSinhCon.AutoSize = true;
-            this.lblNamSinhCon.Location = new System.Drawing.Point(73, 58);
-            this.lblNamSinhCon.Name = "lblNamSinhCon";
-            this.lblNamSinhCon.Size = new System.Drawing.Size(79, 13);
-            this.lblNamSinhCon.TabIndex = 15;
-            this.lblNamSinhCon.Text = "lblNamSinhCon";
-            // 
-            // lblHoTenCon
-            // 
-            this.lblHoTenCon.AutoSize = true;
-            this.lblHoTenCon.Location = new System.Drawing.Point(61, 26);
-            this.lblHoTenCon.Name = "lblHoTenCon";
-            this.lblHoTenCon.Size = new System.Drawing.Size(69, 13);
-            this.lblHoTenCon.TabIndex = 14;
-            this.lblHoTenCon.Text = "lblHoTenCon";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label60.Location = new System.Drawing.Point(6, 58);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(61, 13);
-            this.label60.TabIndex = 10;
-            this.label60.Text = "Năm Sinh";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label61.Location = new System.Drawing.Point(6, 26);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(49, 13);
-            this.label61.TabIndex = 8;
-            this.label61.Text = "Họ Tên";
+            this.groupBox11.Text = "Con Cái";
             // 
             // groupBox10
             // 
@@ -2413,6 +2175,15 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // txtConCai
+            // 
+            this.txtConCai.Location = new System.Drawing.Point(7, 20);
+            this.txtConCai.Multiline = true;
+            this.txtConCai.Name = "txtConCai";
+            this.txtConCai.ReadOnly = true;
+            this.txtConCai.Size = new System.Drawing.Size(187, 191);
+            this.txtConCai.TabIndex = 0;
+            // 
             // ThongTinCaNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2444,10 +2215,6 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -2559,12 +2326,6 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label lblNgheNghiepCon;
-        private System.Windows.Forms.Label lblNamSinhCon;
-        private System.Windows.Forms.Label lblHoTenCon;
-        private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Label label61;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label lblNgheNghiepVoChong;
@@ -2608,20 +2369,6 @@
         private System.Windows.Forms.Label lblSoQDKhen;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox17;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label62;
         private System.Windows.Forms.GroupBox groupBox19;
         private System.Windows.Forms.Label lblNgayHieuLucBN;
         private System.Windows.Forms.Label label106;
@@ -2674,6 +2421,7 @@
         private System.Windows.Forms.Label lblGhiChuKyLuat;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Label lblLoaiKhenThuong;
+        private System.Windows.Forms.TextBox txtConCai;
 
     }
 }

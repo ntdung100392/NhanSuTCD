@@ -14,6 +14,7 @@ namespace PMNS
 {
     public partial class ThongTinCaNhan : Form
     {
+        #region Constructor
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
         private ThongTinNhanVIen _empDetails;
         public ThongTinCaNhan(ILoaiHopDongServices loaiHopDongServices, ThongTinNhanVIen empDetails)
@@ -25,10 +26,11 @@ namespace PMNS
 
         private void ThongTinCaNhan_Load(object sender, EventArgs e)
         {
-            InitDataForm();
+            Main();
         }
+        #endregion
 
-        private void InitDataForm()
+        private void Main()
         {
             //
             InitEmpDetails(_empDetails);
@@ -57,8 +59,12 @@ namespace PMNS
 
             KyLuat kyLuat = _empDetails.KyLuats.ToList().OrderByDescending(x => x.ngayKyLuat).FirstOrDefault();
             InitKyLuat(kyLuat);
+
+            KhenThuong khenThuong = _empDetails.KhenThuongs.ToList().OrderByDescending(x => x.namKhenThuong).FirstOrDefault();
+            InitKhenThuong(khenThuong);
         }
 
+        #region Method Init
         private void InitEmpDetails(ThongTinNhanVIen emp)
         {
             lblTenNV.Text = _empDetails.hoTen;
@@ -102,6 +108,36 @@ namespace PMNS
             lblNoiCongTac.Text = emp.noiCongTac;
             lblMQHNguoiBaoLanh.Text = emp.moiQuanHeBaoLanh;
             lblPhongBan.Text = emp.PhongDoiToLoaiTo.tenPhongDoiToLoai;
+        }
+
+        private void InitThongTinGiaDinh(PMNS.Entities.Models.ThongTinGiaDinh giaDinh)
+        {
+            if (giaDinh != null)
+            {
+                lblHoTenBo.Text = giaDinh.hoTenCha;
+                lblHoTenMe.Text = giaDinh.hoTenMe;
+                lblNamSinhBo.Text = giaDinh.namSinhCha.ToString("yyyy");
+                lblNamSinhme.Text = giaDinh.namSinhMe.ToString("yyyy");
+                lblNgheNghiepBo.Text = giaDinh.ngheNghiepCha;
+                lblNgheNghiepMe.Text = giaDinh.ngheNghiepMe;
+                lblHoTenVoChong.Text = giaDinh.hoTenVoChong;
+                lblNgheNghiepVoChong.Text = giaDinh.ngheNghiepVoChong;
+                lblNamSinhVoChong.Text = Convert.ToDateTime(giaDinh.namSinhVoChong).ToString("yyyy");
+                txtConCai.Text = giaDinh.hoTenCon;
+            }
+            else
+            {
+                lblHoTenBo.Text = "Chưa Cập Nhật";
+                lblHoTenMe.Text = "Chưa Cập Nhật";
+                lblNamSinhBo.Text = "Chưa Cập Nhật";
+                lblNamSinhme.Text = "Chưa Cập Nhật";
+                lblNgheNghiepBo.Text = "Chưa Cập Nhật";
+                lblNgheNghiepMe.Text = "Chưa Cập Nhật";
+                lblHoTenVoChong.Text = "Chưa Cập Nhật";
+                lblNgheNghiepVoChong.Text = "Chưa Cập Nhật";
+                lblNamSinhVoChong.Text = "Chưa Cập Nhật";
+                txtConCai.Text = "Chưa Cập Nhật";
+            }
         }
 
         private void InitThongTinHocVan(TrinhDo trinhDo)
@@ -157,6 +193,7 @@ namespace PMNS
             {
                 lblSoHopDong.Text = "Chưa Cập Nhật";
                 lblNguoiBaoLanhHDLD.Text = "Chưa Cập Nhật";
+                lblChucDanhHDLD.Text = "Chưa Cập Nhật";
                 lblLoaiHD.Text = "Chưa Cập Nhật";
                 lblNgayBatDau.Text = "Chưa Cập Nhật";
                 lblNgayKetThuc.Text = "Chưa Cập Nhật";
@@ -166,7 +203,24 @@ namespace PMNS
 
         private void InitKyLuat(KyLuat kyLuat)
         {
-
+            if (kyLuat != null)
+            {
+                lblLoaiKyLuat.Text = kyLuat.loaiKyLuat;
+                lblNgayKyLuat.Text = kyLuat.ngayKyLuat.ToString("dd/MM/yyyy");
+                lblSoQDKyLuat.Text = kyLuat.soQuyetDinhKyLuat;
+                lblHanhViKL.Text = kyLuat.hanhViBiKyLuat;
+                lblNguoiKyQD.Text = kyLuat.nguoiKyQuyetDinh;
+                lblGhiChuKyLuat.Text = kyLuat.ghiChu;
+            }
+            else
+            {
+                lblLoaiKyLuat.Text = "Chưa Cập Nhật";
+                lblNgayKyLuat.Text = "Chưa Cập Nhật";
+                lblSoQDKyLuat.Text = "Chưa Cập Nhật";
+                lblHanhViKL.Text = "Chưa Cập Nhật";
+                lblNguoiKyQD.Text = "Chưa Cập Nhật";
+                lblGhiChuKyLuat.Text = "Chưa Cập Nhật";
+            }
         }
 
         private void InitTuyenDung(TD_DD_BN_TV thongTin)
@@ -242,5 +296,28 @@ namespace PMNS
                 lblNgayHieuLucDD.Text = "Chưa Cập Nhật";
             }
         }
+
+        private void InitKhenThuong(KhenThuong khenThuong)
+        {
+            if (khenThuong != null)
+            {
+                lblLoaiKhenThuong.Text = khenThuong.loaiKhenThuong;
+                lblNamKhenThuong.Text = khenThuong.namKhenThuong.ToString("yyyy");
+                lblSoQDKhen.Text = khenThuong.soSoKhenThuong;
+                lblNguoiKhen.Text = khenThuong.nguoiKhenThuong;
+                lblThanhTichKhen.Text = khenThuong.thanhTichKhenThuong;
+                lblGhiChuKhen.Text = khenThuong.ghiChu;
+            }
+            else
+            {
+                lblLoaiKhenThuong.Text = "Chưa Cập Nhật";
+                lblNamKhenThuong.Text = "Chưa Cập Nhật";
+                lblSoQDKhen.Text = "Chưa Cập Nhật";
+                lblNguoiKhen.Text = "Chưa Cập Nhật";
+                lblThanhTichKhen.Text = "Chưa Cập Nhật";
+                lblGhiChuKhen.Text = "Chưa Cập Nhật";
+            }
+        }
+        #endregion
     }
 }
