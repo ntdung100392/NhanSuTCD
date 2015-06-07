@@ -7,15 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PMNS.Entities.Models;
+using PMNS.Services.Abstract;
 
 namespace PMNS
 {
     public partial class REPORT : Form
     {
-        public REPORT()
+        #region Constructor Or Destructor
+        protected readonly IBienCheServices _bienCheServices;
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IChucVuServices _chucVuServices;
+        protected readonly INhanVienServices _nhanVienServices;
+        protected readonly IPhongBanServices _phongBanServices;
+        protected readonly IThanhPhoServices _thanhPhoServices;
+        public REPORT(IBienCheServices bienCheServices,ICapBacServices capBacServices,IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
+            IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
         {
+            this._bienCheServices = bienCheServices;
+            this._capBacServices = capBacServices;
+            this._chucVuServices = chucVuServices;
+            this._nhanVienServices = nhanVienServices;
+            this._phongBanServices = phongBanServices;
+            this._thanhPhoServices = thanhPhoServices;
             InitializeComponent();
         }
+        #endregion
 
         private void REPORT_Load(object sender, EventArgs e)
         {
@@ -23,9 +40,6 @@ namespace PMNS
             comboDoTuoi.Enabled = false;
             comboBienChe.Enabled = false;
             comboPhongBan.Enabled = false;
-            comboDoi.Enabled = false;
-            comboTo.Enabled = false;
-            comboLoaiTo.Enabled = false;
             comboCapBac.Enabled = false;
             comboChucVu.Enabled = false;
             comboLoaiHD.Enabled = false;
@@ -43,10 +57,14 @@ namespace PMNS
             txtCGXD.Enabled = false;
             txtCT.Enabled = false;
             txtHCQS.Enabled = false;
+            InitNhanVien();
+            InitReportNumberOfEmp();
         }
+
+        #region Method Event
         private void cboxGioiTinh_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxGioiTinh.Checked == true)
+            if (cboxGioiTinh.Checked == true)
             {
                 comboGioiTinh.Enabled = true;
             }
@@ -70,7 +88,7 @@ namespace PMNS
 
         private void cboxBienChe_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxBienChe.Checked == true)
+            if (cboxBienChe.Checked == true)
             {
                 comboBienChe.Enabled = true;
             }
@@ -82,7 +100,7 @@ namespace PMNS
 
         private void cboxPhongBan_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxPhongBan.Checked==true)
+            if (cboxPhongBan.Checked == true)
             {
                 comboPhongBan.Enabled = true;
             }
@@ -92,45 +110,9 @@ namespace PMNS
             }
         }
 
-        private void cboxDoi_CheckedChanged(object sender, EventArgs e)
-        {
-            if(cboxDoi.Checked == true)
-            {
-                comboDoi.Enabled = true;
-            }
-            else
-            {
-                comboDoi.Enabled = false;
-            }
-        }
-
-        private void cboxTo_CheckedChanged(object sender, EventArgs e)
-        {
-            if(cboxTo.Checked == true)
-            {
-                comboTo.Enabled = true;
-            }
-            else
-            {
-                comboTo.Enabled = false;
-            }
-        }
-
-        private void cboxLoaiTo_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxLoaiTo.Checked == true)
-            {
-                comboLoaiTo.Enabled = true;
-            }
-            else
-            {
-                comboLoaiTo.Enabled = false;
-            }
-        }
-
         private void cboxCapBac_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxCapBac.Checked==true)
+            if (cboxCapBac.Checked == true)
             {
                 comboCapBac.Enabled = true;
             }
@@ -142,7 +124,7 @@ namespace PMNS
 
         private void cboxChucVu_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxChucVu.Checked == true)
+            if (cboxChucVu.Checked == true)
             {
                 comboChucVu.Enabled = true;
             }
@@ -154,7 +136,7 @@ namespace PMNS
 
         private void cboxLoaiHD_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxLoaiHD.Checked == true)
+            if (cboxLoaiHD.Checked == true)
             {
                 comboLoaiHD.Enabled = true;
             }
@@ -166,7 +148,7 @@ namespace PMNS
 
         private void cboxNoiO_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxNoiO.Checked==true)
+            if (cboxNoiO.Checked == true)
             {
                 comboNoiO.Enabled = true;
             }
@@ -190,7 +172,7 @@ namespace PMNS
 
         private void cboxNamVaoCang_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxNamVaoCang.Checked==true)
+            if (cboxNamVaoCang.Checked == true)
             {
                 txtNamVaoCang.Enabled = true;
             }
@@ -199,7 +181,110 @@ namespace PMNS
                 txtNamVaoCang.Enabled = false;
             }
         }
+        #endregion
 
+        #region Method InitData
+        private void InitNhanVien()
+        {
+            gridDanhsachNVReport.DataSource = _nhanVienServices.GetAllEmployees().Select(x =>
+                new
+                {
+                    ID = x.idNhanVien,
+                    HoTen = x.hoTen,
+                    MaNV = x.MaNV,
+                    NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
+                    CapBac = x.CapBac.capBac1,
+                    ChucVu = x.ChucVu.ChucVu1,
+                    PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
+                    HeBienChe = x.BienChe.bienChe1,
+                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
+                    NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
+                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
+                    NguoiBaoLanh = x.nguoiBaoLanh,
+                    MoiQuanHe = x.moiQuanHeBaoLanh
+                }).ToList();
+            gridDanhsachNVReport.Columns[0].Visible = false;
+            gridDanhsachNVReport.CurrentCell = null;
+        }
 
+        private void InitBienChe()
+        {
+            comboBienChe.DataSource = _bienCheServices.GetAllBienChe();
+            comboBienChe.ValueMember = "idBienChe";
+            comboBienChe.DisplayMember = "bienChe1";
+            comboBienChe.SelectedIndex = -1;
+        }
+
+        private void InitChucVu()
+        {
+            comboChucVu.DataSource = _chucVuServices.GetAllChucVu();
+            comboChucVu.DisplayMember = "ChucVu1";
+            comboChucVu.ValueMember = "idChucVu";
+            comboChucVu.SelectedIndex = -1;
+        }
+
+        public void InitPhongBan()
+        {
+            comboPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
+            comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
+            comboPhongBan.ValueMember = "idPhongDoiToLoai";
+            comboPhongBan.SelectedIndex = -1;
+        }
+
+        private void InitReportNumberOfEmp()
+        {
+            var empList = _nhanVienServices.GetAllEmployees();
+            txtTongQuanSo.Text = empList.Count.ToString();
+            txtNam.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
+            txtNu.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
+        }
+        #endregion
+
+        #region Report Event
+        private void comboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBienChe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboCapBac_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboLoaiHD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboNoiO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

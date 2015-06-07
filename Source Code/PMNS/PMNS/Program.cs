@@ -34,9 +34,8 @@ namespace PMNS
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices, _loaiHopDongServices));
+            Application.Run(new REPORT(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices));
             //Application.Run(new QuanLyHopDong(_nhanVienServices, _hopDongServices, _loaiHopDongServices));
         }
     }
-}   
+}

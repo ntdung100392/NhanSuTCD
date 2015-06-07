@@ -90,11 +90,15 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
+            this.btnThongGiaDinh = new System.Windows.Forms.Button();
+            this.btnTrinhDoHocVan = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnTrinhDoHocVan);
+            this.groupBox2.Controls.Add(this.btnThongGiaDinh);
             this.groupBox2.Controls.Add(this.btnExit);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.cbNguyenQuan);
@@ -684,6 +688,24 @@
             this.txtManv.Size = new System.Drawing.Size(126, 20);
             this.txtManv.TabIndex = 27;
             // 
+            // btnThongGiaDinh
+            // 
+            this.btnThongGiaDinh.Location = new System.Drawing.Point(721, 212);
+            this.btnThongGiaDinh.Name = "btnThongGiaDinh";
+            this.btnThongGiaDinh.Size = new System.Drawing.Size(134, 23);
+            this.btnThongGiaDinh.TabIndex = 119;
+            this.btnThongGiaDinh.Text = "Sửa Thông Tin Gia Đình";
+            this.btnThongGiaDinh.UseVisualStyleBackColor = true;
+            // 
+            // btnTrinhDoHocVan
+            // 
+            this.btnTrinhDoHocVan.Location = new System.Drawing.Point(590, 212);
+            this.btnTrinhDoHocVan.Name = "btnTrinhDoHocVan";
+            this.btnTrinhDoHocVan.Size = new System.Drawing.Size(125, 23);
+            this.btnTrinhDoHocVan.TabIndex = 120;
+            this.btnTrinhDoHocVan.Text = "Sửa Trình Độ Học Vấn";
+            this.btnTrinhDoHocVan.UseVisualStyleBackColor = true;
+            // 
             // ChinhSuaThongTinNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -763,5 +785,7 @@
         private System.Windows.Forms.TextBox txtManv;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnTrinhDoHocVan;
+        private System.Windows.Forms.Button btnThongGiaDinh;
     }
 }

@@ -36,10 +36,7 @@
             this.cboxLoaiHD = new System.Windows.Forms.CheckBox();
             this.cboxChucVu = new System.Windows.Forms.CheckBox();
             this.cboxCapBac = new System.Windows.Forms.CheckBox();
-            this.cboxLoaiTo = new System.Windows.Forms.CheckBox();
-            this.cboxTo = new System.Windows.Forms.CheckBox();
             this.txtNamVaoCang = new System.Windows.Forms.TextBox();
-            this.cboxDoi = new System.Windows.Forms.CheckBox();
             this.cboxPhongBan = new System.Windows.Forms.CheckBox();
             this.cboxBienChe = new System.Windows.Forms.CheckBox();
             this.cboxDoTuoi = new System.Windows.Forms.CheckBox();
@@ -48,9 +45,6 @@
             this.comboNoiO = new System.Windows.Forms.ComboBox();
             this.comboLoaiHD = new System.Windows.Forms.ComboBox();
             this.comboChucVu = new System.Windows.Forms.ComboBox();
-            this.comboLoaiTo = new System.Windows.Forms.ComboBox();
-            this.comboTo = new System.Windows.Forms.ComboBox();
-            this.comboDoi = new System.Windows.Forms.ComboBox();
             this.comboPhongBan = new System.Windows.Forms.ComboBox();
             this.comboCapBac = new System.Windows.Forms.ComboBox();
             this.comboBienChe = new System.Windows.Forms.ComboBox();
@@ -117,10 +111,7 @@
             this.groupBox5.Controls.Add(this.cboxLoaiHD);
             this.groupBox5.Controls.Add(this.cboxChucVu);
             this.groupBox5.Controls.Add(this.cboxCapBac);
-            this.groupBox5.Controls.Add(this.cboxLoaiTo);
-            this.groupBox5.Controls.Add(this.cboxTo);
             this.groupBox5.Controls.Add(this.txtNamVaoCang);
-            this.groupBox5.Controls.Add(this.cboxDoi);
             this.groupBox5.Controls.Add(this.cboxPhongBan);
             this.groupBox5.Controls.Add(this.cboxBienChe);
             this.groupBox5.Controls.Add(this.cboxDoTuoi);
@@ -129,9 +120,6 @@
             this.groupBox5.Controls.Add(this.comboNoiO);
             this.groupBox5.Controls.Add(this.comboLoaiHD);
             this.groupBox5.Controls.Add(this.comboChucVu);
-            this.groupBox5.Controls.Add(this.comboLoaiTo);
-            this.groupBox5.Controls.Add(this.comboTo);
-            this.groupBox5.Controls.Add(this.comboDoi);
             this.groupBox5.Controls.Add(this.comboPhongBan);
             this.groupBox5.Controls.Add(this.comboCapBac);
             this.groupBox5.Controls.Add(this.comboBienChe);
@@ -211,45 +199,13 @@
             this.cboxCapBac.UseVisualStyleBackColor = true;
             this.cboxCapBac.CheckedChanged += new System.EventHandler(this.cboxCapBac_CheckedChanged);
             // 
-            // cboxLoaiTo
-            // 
-            this.cboxLoaiTo.AutoSize = true;
-            this.cboxLoaiTo.Location = new System.Drawing.Point(33, 176);
-            this.cboxLoaiTo.Name = "cboxLoaiTo";
-            this.cboxLoaiTo.Size = new System.Drawing.Size(62, 17);
-            this.cboxLoaiTo.TabIndex = 3;
-            this.cboxLoaiTo.Text = "Loại Tổ";
-            this.cboxLoaiTo.UseVisualStyleBackColor = true;
-            this.cboxLoaiTo.CheckedChanged += new System.EventHandler(this.cboxLoaiTo_CheckedChanged);
-            // 
-            // cboxTo
-            // 
-            this.cboxTo.AutoSize = true;
-            this.cboxTo.Location = new System.Drawing.Point(33, 148);
-            this.cboxTo.Name = "cboxTo";
-            this.cboxTo.Size = new System.Drawing.Size(39, 17);
-            this.cboxTo.TabIndex = 3;
-            this.cboxTo.Text = "Tổ";
-            this.cboxTo.UseVisualStyleBackColor = true;
-            this.cboxTo.CheckedChanged += new System.EventHandler(this.cboxTo_CheckedChanged);
-            // 
             // txtNamVaoCang
             // 
             this.txtNamVaoCang.Location = new System.Drawing.Point(414, 146);
             this.txtNamVaoCang.Name = "txtNamVaoCang";
             this.txtNamVaoCang.Size = new System.Drawing.Size(121, 20);
             this.txtNamVaoCang.TabIndex = 0;
-            // 
-            // cboxDoi
-            // 
-            this.cboxDoi.AutoSize = true;
-            this.cboxDoi.Location = new System.Drawing.Point(33, 122);
-            this.cboxDoi.Name = "cboxDoi";
-            this.cboxDoi.Size = new System.Drawing.Size(42, 17);
-            this.cboxDoi.TabIndex = 3;
-            this.cboxDoi.Text = "Đội";
-            this.cboxDoi.UseVisualStyleBackColor = true;
-            this.cboxDoi.CheckedChanged += new System.EventHandler(this.cboxDoi_CheckedChanged);
+            this.txtNamVaoCang.TextChanged += new System.EventHandler(this.txtNamVaoCang_TextChanged);
             // 
             // cboxPhongBan
             // 
@@ -302,6 +258,7 @@
             this.comboTrinhDo.Name = "comboTrinhDo";
             this.comboTrinhDo.Size = new System.Drawing.Size(121, 21);
             this.comboTrinhDo.TabIndex = 2;
+            this.comboTrinhDo.SelectedIndexChanged += new System.EventHandler(this.comboTrinhDo_SelectedIndexChanged);
             // 
             // comboNoiO
             // 
@@ -310,6 +267,7 @@
             this.comboNoiO.Name = "comboNoiO";
             this.comboNoiO.Size = new System.Drawing.Size(121, 21);
             this.comboNoiO.TabIndex = 2;
+            this.comboNoiO.SelectedIndexChanged += new System.EventHandler(this.comboNoiO_SelectedIndexChanged);
             // 
             // comboLoaiHD
             // 
@@ -318,6 +276,7 @@
             this.comboLoaiHD.Name = "comboLoaiHD";
             this.comboLoaiHD.Size = new System.Drawing.Size(121, 21);
             this.comboLoaiHD.TabIndex = 2;
+            this.comboLoaiHD.SelectedIndexChanged += new System.EventHandler(this.comboLoaiHD_SelectedIndexChanged);
             // 
             // comboChucVu
             // 
@@ -326,30 +285,7 @@
             this.comboChucVu.Name = "comboChucVu";
             this.comboChucVu.Size = new System.Drawing.Size(121, 21);
             this.comboChucVu.TabIndex = 2;
-            // 
-            // comboLoaiTo
-            // 
-            this.comboLoaiTo.FormattingEnabled = true;
-            this.comboLoaiTo.Location = new System.Drawing.Point(141, 174);
-            this.comboLoaiTo.Name = "comboLoaiTo";
-            this.comboLoaiTo.Size = new System.Drawing.Size(121, 21);
-            this.comboLoaiTo.TabIndex = 2;
-            // 
-            // comboTo
-            // 
-            this.comboTo.FormattingEnabled = true;
-            this.comboTo.Location = new System.Drawing.Point(141, 147);
-            this.comboTo.Name = "comboTo";
-            this.comboTo.Size = new System.Drawing.Size(121, 21);
-            this.comboTo.TabIndex = 2;
-            // 
-            // comboDoi
-            // 
-            this.comboDoi.FormattingEnabled = true;
-            this.comboDoi.Location = new System.Drawing.Point(141, 120);
-            this.comboDoi.Name = "comboDoi";
-            this.comboDoi.Size = new System.Drawing.Size(121, 21);
-            this.comboDoi.TabIndex = 2;
+            this.comboChucVu.SelectedIndexChanged += new System.EventHandler(this.comboChucVu_SelectedIndexChanged);
             // 
             // comboPhongBan
             // 
@@ -358,6 +294,7 @@
             this.comboPhongBan.Name = "comboPhongBan";
             this.comboPhongBan.Size = new System.Drawing.Size(121, 21);
             this.comboPhongBan.TabIndex = 2;
+            this.comboPhongBan.SelectedIndexChanged += new System.EventHandler(this.comboPhongBan_SelectedIndexChanged);
             // 
             // comboCapBac
             // 
@@ -366,6 +303,7 @@
             this.comboCapBac.Name = "comboCapBac";
             this.comboCapBac.Size = new System.Drawing.Size(121, 21);
             this.comboCapBac.TabIndex = 2;
+            this.comboCapBac.SelectedIndexChanged += new System.EventHandler(this.comboCapBac_SelectedIndexChanged);
             // 
             // comboBienChe
             // 
@@ -374,6 +312,7 @@
             this.comboBienChe.Name = "comboBienChe";
             this.comboBienChe.Size = new System.Drawing.Size(121, 21);
             this.comboBienChe.TabIndex = 2;
+            this.comboBienChe.SelectedIndexChanged += new System.EventHandler(this.comboBienChe_SelectedIndexChanged);
             // 
             // comboDoTuoi
             // 
@@ -390,6 +329,7 @@
             this.comboGioiTinh.Name = "comboGioiTinh";
             this.comboGioiTinh.Size = new System.Drawing.Size(121, 21);
             this.comboGioiTinh.TabIndex = 2;
+            this.comboGioiTinh.SelectedIndexChanged += new System.EventHandler(this.comboGioiTinh_SelectedIndexChanged);
             // 
             // btnInBieu
             // 
@@ -643,6 +583,7 @@
             this.gridDanhsachNVReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDanhsachNVReport.Location = new System.Drawing.Point(3, 16);
             this.gridDanhsachNVReport.Name = "gridDanhsachNVReport";
+            this.gridDanhsachNVReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridDanhsachNVReport.Size = new System.Drawing.Size(735, 280);
             this.gridDanhsachNVReport.TabIndex = 0;
             // 
@@ -730,9 +671,6 @@
         private System.Windows.Forms.CheckBox cboxLoaiHD;
         private System.Windows.Forms.CheckBox cboxChucVu;
         private System.Windows.Forms.CheckBox cboxCapBac;
-        private System.Windows.Forms.CheckBox cboxLoaiTo;
-        private System.Windows.Forms.CheckBox cboxTo;
-        private System.Windows.Forms.CheckBox cboxDoi;
         private System.Windows.Forms.CheckBox cboxPhongBan;
         private System.Windows.Forms.CheckBox cboxBienChe;
         private System.Windows.Forms.CheckBox cboxDoTuoi;
@@ -741,9 +679,6 @@
         private System.Windows.Forms.ComboBox comboNoiO;
         private System.Windows.Forms.ComboBox comboLoaiHD;
         private System.Windows.Forms.ComboBox comboChucVu;
-        private System.Windows.Forms.ComboBox comboLoaiTo;
-        private System.Windows.Forms.ComboBox comboTo;
-        private System.Windows.Forms.ComboBox comboDoi;
         private System.Windows.Forms.ComboBox comboPhongBan;
         private System.Windows.Forms.ComboBox comboCapBac;
         private System.Windows.Forms.ComboBox comboBienChe;
