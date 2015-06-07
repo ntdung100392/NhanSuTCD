@@ -23,10 +23,11 @@ namespace PMNS
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
+        protected readonly ILoaiHopDongServices _loaiHopDongServices;
         private List<ThongTinNhanVIen> _fullEmpList;
         public DanhSachNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices)
+            ICapBacServices capBacServices, IBienCheServices bienCheServices, ILoaiHopDongServices loaiHopDongServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -34,6 +35,7 @@ namespace PMNS
             this._chucVuServices = chucVuServices;
             this._capBacServices = capBacServices;
             this._bienCheServices = bienCheServices;
+            this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
 
@@ -190,7 +192,7 @@ namespace PMNS
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
-            ThongTinCaNhan formDetails = new ThongTinCaNhan(_emp);
+            ThongTinCaNhan formDetails = new ThongTinCaNhan(_loaiHopDongServices, _emp);
             formDetails.ShowDialog(this);
         }
 

@@ -10,6 +10,7 @@ namespace PMNS.Services.Abstract
     public interface ILoaiHopDongServices : IServices<LoaiHopDong>
     {
         List<LoaiHopDong> GettAllLoaiHopDong();
+        LoaiHopDong GetLoaiHopDongById(int id);
         bool AddLoaiHopDong(LoaiHopDong loaiHopDong);
         bool UpdateLoaiHopDong(LoaiHopDong loaiHopDong);
     }

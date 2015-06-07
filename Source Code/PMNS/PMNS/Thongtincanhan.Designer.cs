@@ -33,14 +33,8 @@
             this.lblNoiCongTac = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.lblDoi = new System.Windows.Forms.Label();
-            this.lblLoaiTo = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.lblPhongBan = new System.Windows.Forms.Label();
-            this.lblTo = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.lblCongViecDangLam = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.lblMQHNguoiBaoLanh = new System.Windows.Forms.Label();
@@ -321,38 +315,14 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.lblDoi);
-            this.groupBox5.Controls.Add(this.lblLoaiTo);
             this.groupBox5.Controls.Add(this.label23);
-            this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.lblPhongBan);
-            this.groupBox5.Controls.Add(this.lblTo);
-            this.groupBox5.Controls.Add(this.label25);
-            this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Location = new System.Drawing.Point(529, 19);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(198, 125);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Phòng Ban";
-            // 
-            // lblDoi
-            // 
-            this.lblDoi.AutoSize = true;
-            this.lblDoi.Location = new System.Drawing.Point(37, 50);
-            this.lblDoi.Name = "lblDoi";
-            this.lblDoi.Size = new System.Drawing.Size(33, 13);
-            this.lblDoi.TabIndex = 26;
-            this.lblDoi.Text = "lblDoi";
-            // 
-            // lblLoaiTo
-            // 
-            this.lblLoaiTo.AutoSize = true;
-            this.lblLoaiTo.Location = new System.Drawing.Point(61, 102);
-            this.lblLoaiTo.Name = "lblLoaiTo";
-            this.lblLoaiTo.Size = new System.Drawing.Size(50, 13);
-            this.lblLoaiTo.TabIndex = 30;
-            this.lblLoaiTo.Text = "lblLoaiTo";
             // 
             // label23
             // 
@@ -365,17 +335,6 @@
             this.label23.TabIndex = 23;
             this.label23.Text = "Phòng Ban";
             // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label26.Location = new System.Drawing.Point(5, 102);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(50, 13);
-            this.label26.TabIndex = 29;
-            this.label26.Text = "Loại Tổ";
-            // 
             // lblPhongBan
             // 
             this.lblPhongBan.AutoSize = true;
@@ -384,37 +343,6 @@
             this.lblPhongBan.Size = new System.Drawing.Size(67, 13);
             this.lblPhongBan.TabIndex = 24;
             this.lblPhongBan.Text = "lblPhongBan";
-            // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(36, 76);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(30, 13);
-            this.lblTo.TabIndex = 28;
-            this.lblTo.Text = "lblTo";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label25.Location = new System.Drawing.Point(6, 50);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(26, 13);
-            this.label25.TabIndex = 25;
-            this.label25.Text = "Đội";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label15.Location = new System.Drawing.Point(6, 76);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(22, 13);
-            this.label15.TabIndex = 27;
-            this.label15.Text = "Tổ";
             // 
             // lblCongViecDangLam
             // 
@@ -2489,7 +2417,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 710);
+            this.ClientSize = new System.Drawing.Size(1354, 710);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox7);
@@ -2584,8 +2512,6 @@
         private System.Windows.Forms.Label lblSDTDD;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblDoi;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label lblPhongBan;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblCongViecDangLam;
@@ -2595,10 +2521,6 @@
         private System.Windows.Forms.Label lblNguoiBaoLanh;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label lblLoaiTo;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label lblTo;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label lblThanhPho;

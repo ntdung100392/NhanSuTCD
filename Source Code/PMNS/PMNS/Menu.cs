@@ -25,11 +25,12 @@ namespace PMNS
         protected readonly IBienCheServices _bienCheServices;
         protected readonly IThongTinServices _thongTinServices;
         protected readonly IThongTinTrinhDoServices _trinhDoServices;
+        protected readonly ILoaiHopDongServices _loaiHopDongServices;
 
         public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinServices thongTinServices,
-            IThongTinTrinhDoServices trinhDoServices)
+            IThongTinTrinhDoServices trinhDoServices,ILoaiHopDongServices loaiHopDongServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -39,6 +40,7 @@ namespace PMNS
             this._bienCheServices = bienCheServices;
             this._thongTinServices = thongTinServices;
             this._trinhDoServices = trinhDoServices;
+            this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
 
@@ -69,7 +71,7 @@ namespace PMNS
         private void danhSáchNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DanhSachNhanVien danhSachForm = new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices);
+                _capBacServices, _bienCheServices, _loaiHopDongServices);
             danhSachForm.ShowDialog(this);
         }
 

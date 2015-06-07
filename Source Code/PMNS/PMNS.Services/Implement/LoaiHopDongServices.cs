@@ -18,6 +18,11 @@ namespace PMNS.Services.Implement
             return unitOfWork.Repository<LoaiHopDong>().GetAll().OrderBy(x => x.loaiHopDong1).ToList();
         }
 
+        public LoaiHopDong GetLoaiHopDongById(int id)
+        {
+            return unitOfWork.Repository<LoaiHopDong>().GetById(id);
+        }
+
         public bool AddLoaiHopDong(LoaiHopDong loaiHopDong)
         {
             if (loaiHopDong != null)
