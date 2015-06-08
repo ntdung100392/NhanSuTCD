@@ -39,11 +39,7 @@ namespace PMNS.Entities.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(100);
 
-            this.Property(t => t.hoTenCon)
-                .IsRequired()
-                .HasMaxLength(100);
-
-            this.Property(t => t.ngheNghiepCon)
+            this.Property(t => t.thongTinConCai)
                 .IsRequired()
                 .HasMaxLength(100);
 
@@ -60,9 +56,7 @@ namespace PMNS.Entities.Models.Mapping
             this.Property(t => t.hoTenVoChong).HasColumnName("hoTenVoChong");
             this.Property(t => t.ngheNghiepVoChong).HasColumnName("ngheNghiepVoChong");
             this.Property(t => t.namSinhVoChong).HasColumnName("namSinhVoChong");
-            this.Property(t => t.hoTenCon).HasColumnName("hoTenCon");
-            this.Property(t => t.namSinhCon).HasColumnName("namSinhCon");
-            this.Property(t => t.ngheNghiepCon).HasColumnName("ngheNghiepCon");
+            this.Property(t => t.thongTinConCai).HasColumnName("thongTinConCai");
 
             // Relationships
             this.HasRequired(t => t.ThongTinNhanVIen)

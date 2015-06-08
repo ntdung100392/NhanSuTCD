@@ -54,9 +54,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtNgheNghiepMe = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtConCai = new System.Windows.Forms.TextBox();
-            this.btnFunction = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnFunction = new System.Windows.Forms.Button();
+            this.txtConCai = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,22 +299,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Gia Đình";
             // 
-            // txtConCai
-            // 
-            this.txtConCai.Location = new System.Drawing.Point(578, 257);
-            this.txtConCai.Multiline = true;
-            this.txtConCai.Name = "txtConCai";
-            this.txtConCai.Size = new System.Drawing.Size(166, 101);
-            this.txtConCai.TabIndex = 19;
-            // 
-            // btnFunction
-            // 
-            this.btnFunction.Location = new System.Drawing.Point(578, 364);
-            this.btnFunction.Name = "btnFunction";
-            this.btnFunction.Size = new System.Drawing.Size(85, 23);
-            this.btnFunction.TabIndex = 24;
-            this.btnFunction.UseVisualStyleBackColor = true;
-            // 
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(669, 364);
@@ -324,6 +308,23 @@
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnFunction
+            // 
+            this.btnFunction.Location = new System.Drawing.Point(578, 364);
+            this.btnFunction.Name = "btnFunction";
+            this.btnFunction.Size = new System.Drawing.Size(85, 23);
+            this.btnFunction.TabIndex = 24;
+            this.btnFunction.UseVisualStyleBackColor = true;
+            this.btnFunction.Click += new System.EventHandler(this.btnFunction_Click);
+            // 
+            // txtConCai
+            // 
+            this.txtConCai.Location = new System.Drawing.Point(578, 257);
+            this.txtConCai.Multiline = true;
+            this.txtConCai.Name = "txtConCai";
+            this.txtConCai.Size = new System.Drawing.Size(166, 101);
+            this.txtConCai.TabIndex = 19;
             // 
             // ThongTinGiaDinh
             // 

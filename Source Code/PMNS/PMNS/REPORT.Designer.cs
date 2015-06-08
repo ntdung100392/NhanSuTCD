@@ -52,22 +52,6 @@
             this.comboGioiTinh = new System.Windows.Forms.ComboBox();
             this.btnInBieu = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtCGXD = new System.Windows.Forms.TextBox();
-            this.txtTCLD = new System.Windows.Forms.TextBox();
-            this.txtHCQS = new System.Windows.Forms.TextBox();
-            this.txtKHKD = new System.Windows.Forms.TextBox();
-            this.txtDD = new System.Windows.Forms.TextBox();
-            this.txtCT = new System.Windows.Forms.TextBox();
-            this.txtBanGD = new System.Windows.Forms.TextBox();
-            this.txtTCKT = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtTongQuanSo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,7 +63,11 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.gridDanhsachNVReport = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.phongBanTreeView = new System.Windows.Forms.TreeView();
+            this.comboTongKetPhongBan = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtQuanSoPhongBan = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -339,159 +327,20 @@
             this.btnInBieu.TabIndex = 0;
             this.btnInBieu.Text = "In Biểu";
             this.btnInBieu.UseVisualStyleBackColor = true;
+            this.btnInBieu.Click += new System.EventHandler(this.btnInBieu_Click);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.txtCGXD);
-            this.groupBox4.Controls.Add(this.txtTCLD);
-            this.groupBox4.Controls.Add(this.txtHCQS);
-            this.groupBox4.Controls.Add(this.txtKHKD);
-            this.groupBox4.Controls.Add(this.txtDD);
-            this.groupBox4.Controls.Add(this.txtCT);
-            this.groupBox4.Controls.Add(this.txtBanGD);
-            this.groupBox4.Controls.Add(this.txtTCKT);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.txtQuanSoPhongBan);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.comboTongKetPhongBan);
             this.groupBox4.Location = new System.Drawing.Point(693, 74);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(328, 142);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Phòng Ban";
-            // 
-            // txtCGXD
-            // 
-            this.txtCGXD.Location = new System.Drawing.Point(250, 98);
-            this.txtCGXD.Name = "txtCGXD";
-            this.txtCGXD.Size = new System.Drawing.Size(45, 20);
-            this.txtCGXD.TabIndex = 0;
-            // 
-            // txtTCLD
-            // 
-            this.txtTCLD.Location = new System.Drawing.Point(86, 98);
-            this.txtTCLD.Name = "txtTCLD";
-            this.txtTCLD.Size = new System.Drawing.Size(45, 20);
-            this.txtTCLD.TabIndex = 0;
-            // 
-            // txtHCQS
-            // 
-            this.txtHCQS.Location = new System.Drawing.Point(250, 72);
-            this.txtHCQS.Name = "txtHCQS";
-            this.txtHCQS.Size = new System.Drawing.Size(45, 20);
-            this.txtHCQS.TabIndex = 0;
-            // 
-            // txtKHKD
-            // 
-            this.txtKHKD.Location = new System.Drawing.Point(86, 72);
-            this.txtKHKD.Name = "txtKHKD";
-            this.txtKHKD.Size = new System.Drawing.Size(45, 20);
-            this.txtKHKD.TabIndex = 0;
-            // 
-            // txtDD
-            // 
-            this.txtDD.Location = new System.Drawing.Point(250, 46);
-            this.txtDD.Name = "txtDD";
-            this.txtDD.Size = new System.Drawing.Size(45, 20);
-            this.txtDD.TabIndex = 0;
-            // 
-            // txtCT
-            // 
-            this.txtCT.Location = new System.Drawing.Point(250, 20);
-            this.txtCT.Name = "txtCT";
-            this.txtCT.Size = new System.Drawing.Size(45, 20);
-            this.txtCT.TabIndex = 0;
-            // 
-            // txtBanGD
-            // 
-            this.txtBanGD.Location = new System.Drawing.Point(86, 19);
-            this.txtBanGD.Name = "txtBanGD";
-            this.txtBanGD.Size = new System.Drawing.Size(45, 20);
-            this.txtBanGD.TabIndex = 0;
-            // 
-            // txtTCKT
-            // 
-            this.txtTCKT.Location = new System.Drawing.Point(86, 46);
-            this.txtTCKT.Name = "txtTCKT";
-            this.txtTCKT.Size = new System.Drawing.Size(45, 20);
-            this.txtTCKT.TabIndex = 0;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(204, 23);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(21, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "CT";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(204, 101);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "CGXD";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "BGĐ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(204, 75);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "HCQS";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(40, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "TCLĐ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(204, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "ĐĐ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(40, 75);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "KHKD";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "TCKT";
             // 
             // groupBox3
             // 
@@ -589,7 +438,7 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.treeView1);
+            this.groupBox6.Controls.Add(this.phongBanTreeView);
             this.groupBox6.Location = new System.Drawing.Point(12, 12);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(256, 299);
@@ -597,13 +446,47 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Phòng Ban";
             // 
-            // treeView1
+            // phongBanTreeView
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 16);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(250, 280);
-            this.treeView1.TabIndex = 0;
+            this.phongBanTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.phongBanTreeView.Location = new System.Drawing.Point(3, 16);
+            this.phongBanTreeView.Name = "phongBanTreeView";
+            this.phongBanTreeView.Size = new System.Drawing.Size(250, 280);
+            this.phongBanTreeView.TabIndex = 0;
+            // 
+            // comboTongKetPhongBan
+            // 
+            this.comboTongKetPhongBan.FormattingEnabled = true;
+            this.comboTongKetPhongBan.Location = new System.Drawing.Point(123, 35);
+            this.comboTongKetPhongBan.Name = "comboTongKetPhongBan";
+            this.comboTongKetPhongBan.Size = new System.Drawing.Size(121, 21);
+            this.comboTongKetPhongBan.TabIndex = 0;
+            this.comboTongKetPhongBan.SelectedIndexChanged += new System.EventHandler(this.comboTongKetPhongBan_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Phòng Ban";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Tổng Quân Số";
+            // 
+            // txtQuanSoPhongBan
+            // 
+            this.txtQuanSoPhongBan.Location = new System.Drawing.Point(123, 68);
+            this.txtQuanSoPhongBan.Name = "txtQuanSoPhongBan";
+            this.txtQuanSoPhongBan.Size = new System.Drawing.Size(60, 20);
+            this.txtQuanSoPhongBan.TabIndex = 3;
             // 
             // REPORT
             // 
@@ -639,22 +522,7 @@
         private System.Windows.Forms.ComboBox comboGioiTinh;
         private System.Windows.Forms.Button btnInBieu;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox txtCGXD;
-        private System.Windows.Forms.TextBox txtTCLD;
-        private System.Windows.Forms.TextBox txtHCQS;
-        private System.Windows.Forms.TextBox txtKHKD;
-        private System.Windows.Forms.TextBox txtDD;
-        private System.Windows.Forms.TextBox txtCT;
-        private System.Windows.Forms.TextBox txtTCKT;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtNamVaoCang;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtTongQuanSo;
         private System.Windows.Forms.Label label4;
@@ -664,7 +532,7 @@
         private System.Windows.Forms.TextBox txtNam;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView phongBanTreeView;
         private System.Windows.Forms.CheckBox cboxTrinhDo;
         private System.Windows.Forms.CheckBox cboxNamVaoCang;
         private System.Windows.Forms.CheckBox cboxNoiO;
@@ -683,6 +551,9 @@
         private System.Windows.Forms.ComboBox comboCapBac;
         private System.Windows.Forms.ComboBox comboBienChe;
         private System.Windows.Forms.ComboBox comboDoTuoi;
-        private System.Windows.Forms.TextBox txtBanGD;
+        private System.Windows.Forms.TextBox txtQuanSoPhongBan;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboTongKetPhongBan;
     }
 }

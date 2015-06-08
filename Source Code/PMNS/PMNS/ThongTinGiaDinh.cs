@@ -14,11 +14,14 @@ namespace PMNS
 {
     public partial class ThongTinGiaDinh : Form
     {
+
         #region Constructor Or Destructor
+        protected readonly INhanVienServices _nhanVienServices;
         protected readonly IThongTinGiaDinhServices _thongTinGiaDInhServices;
         private ThongTinNhanVIen _empDetails;
-        public ThongTinGiaDinh(IThongTinGiaDinhServices thongTinGiaDinhServices, ThongTinNhanVIen empDetails)
+        public ThongTinGiaDinh(INhanVienServices nhanVienServices, IThongTinGiaDinhServices thongTinGiaDinhServices, ThongTinNhanVIen empDetails)
         {
+            this._nhanVienServices = nhanVienServices;
             this._thongTinGiaDInhServices = thongTinGiaDinhServices;
             this._empDetails = empDetails;
             InitializeComponent();
@@ -48,6 +51,68 @@ namespace PMNS
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFunction_Click(object sender, EventArgs e)
+        {
+            if (_empDetails != null)
+            {
+                try
+                {
+                    PMNS.Entities.Models.ThongTinGiaDinh updateThongTin =
+                        _thongTinGiaDInhServices.GetThongTinByNhanVienId(_empDetails.idNhanVien);
+                    updateThongTin.hoTenCha = txtHoTenCha.Text;
+                    updateThongTin.namSinhCha = Convert.ToDateTime(txtNamSinhCha.Text);
+                    updateThongTin.ngheNghiepCha = txtNgheNghiepCha.Text;
+                    updateThongTin.hoTenMe = txtHoTenMe.Text;
+                    updateThongTin.namSinhMe = Convert.ToDateTime(txtNamSinhMe.Text);
+                    updateThongTin.ngheNghiepMe = txtNgheNghiepMe.Text;
+                    updateThongTin.thongTinConCai = txtConCai.Text;
+                    if (_thongTinGiaDInhServices.UpdateThongTinGiaDinh(updateThongTin))
+                    {
+                        MessageBox.Show("Đã Chỉnh Sửa Thành Công!", "Thông Báo!", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                try
+                {
+                    PMNS.Entities.Models.ThongTinGiaDinh addThongTin = new Entities.Models.ThongTinGiaDinh
+                    {
+                        idNhanVien = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text).idNhanVien,
+                        hoTenCha = txtHoTenCha.Text,
+                        namSinhCha = Convert.ToDateTime(txtNamSinhCha.Text),
+                        ngheNghiepCha = txtNgheNghiepCha.Text,
+                        hoTenMe = txtHoTenMe.Text,
+                        namSinhMe = Convert.ToDateTime(txtNamSinhMe.Text),
+                        ngheNghiepMe = txtNgheNghiepMe.Text,
+                        thongTinConCai = txtConCai.Text
+                    };
+                    if (_thongTinGiaDInhServices.AddThongTinGiaDinh(addThongTin))
+                    {
+                        MessageBox.Show("Đã Thêm Thông Tin Thành Công!", "Thông Báo!", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

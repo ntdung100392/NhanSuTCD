@@ -123,7 +123,7 @@ namespace PMNS
                 lblHoTenVoChong.Text = giaDinh.hoTenVoChong;
                 lblNgheNghiepVoChong.Text = giaDinh.ngheNghiepVoChong;
                 lblNamSinhVoChong.Text = Convert.ToDateTime(giaDinh.namSinhVoChong).ToString("yyyy");
-                txtConCai.Text = giaDinh.hoTenCon;
+                txtConCai.Text = giaDinh.thongTinConCai;
             }
             else
             {

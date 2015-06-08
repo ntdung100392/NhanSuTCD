@@ -16,9 +16,7 @@ namespace PMNS.Entities.Models
         public string hoTenVoChong { get; set; }
         public string ngheNghiepVoChong { get; set; }
         public string namSinhVoChong { get; set; }
-        public string hoTenCon { get; set; }
-        public System.DateTime namSinhCon { get; set; }
-        public string ngheNghiepCon { get; set; }
+        public string thongTinConCai { get; set; }
         public virtual ThongTinNhanVIen ThongTinNhanVIen { get; set; }
     }
 }

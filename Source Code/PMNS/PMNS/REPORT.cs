@@ -14,6 +14,7 @@ namespace PMNS
 {
     public partial class REPORT : Form
     {
+
         #region Constructor Or Destructor
         protected readonly IBienCheServices _bienCheServices;
         protected readonly ICapBacServices _capBacServices;
@@ -21,7 +22,8 @@ namespace PMNS
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        public REPORT(IBienCheServices bienCheServices,ICapBacServices capBacServices,IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
+        private List<ThongTinNhanVIen> empReportList = new List<ThongTinNhanVIen>();
+        public REPORT(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
             IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
         {
             this._bienCheServices = bienCheServices;
@@ -46,19 +48,15 @@ namespace PMNS
             comboNoiO.Enabled = false;
             comboTrinhDo.Enabled = false;
             txtNamVaoCang.Enabled = false;
-            txtTongQuanSo.Enabled = false;
-            txtNam.Enabled = false;
-            txtNu.Enabled = false;
-            txtTCLD.Enabled = false;
-            txtTCKT.Enabled = false;
-            txtKHKD.Enabled = false;
-            txtDD.Enabled = false;
-            txtBanGD.Enabled = false;
-            txtCGXD.Enabled = false;
-            txtCT.Enabled = false;
-            txtHCQS.Enabled = false;
+            txtTongQuanSo.ReadOnly = true;
+            txtNam.ReadOnly = true;
+            txtNu.ReadOnly = true;
+            txtQuanSoPhongBan.ReadOnly = true;
             InitNhanVien();
             InitReportNumberOfEmp();
+            InitPhongBan();
+            InitBienChe();
+            InitChucVu();
         }
 
         #region Method Event
@@ -186,25 +184,8 @@ namespace PMNS
         #region Method InitData
         private void InitNhanVien()
         {
-            gridDanhsachNVReport.DataSource = _nhanVienServices.GetAllEmployees().Select(x =>
-                new
-                {
-                    ID = x.idNhanVien,
-                    HoTen = x.hoTen,
-                    MaNV = x.MaNV,
-                    NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
-                    CapBac = x.CapBac.capBac1,
-                    ChucVu = x.ChucVu.ChucVu1,
-                    PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                    HeBienChe = x.BienChe.bienChe1,
-                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
-                    NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
-                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
-                    NguoiBaoLanh = x.nguoiBaoLanh,
-                    MoiQuanHe = x.moiQuanHeBaoLanh
-                }).ToList();
-            gridDanhsachNVReport.Columns[0].Visible = false;
-            gridDanhsachNVReport.CurrentCell = null;
+            ReformatDataGridView(_nhanVienServices.GetAllEmployees());
+            empReportList = _nhanVienServices.GetAllEmployees();
         }
 
         private void InitBienChe()
@@ -229,6 +210,10 @@ namespace PMNS
             comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
             comboPhongBan.ValueMember = "idPhongDoiToLoai";
             comboPhongBan.SelectedIndex = -1;
+
+            comboTongKetPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
+            comboTongKetPhongBan.DisplayMember = "tenPhongDoiToLoai";
+            comboTongKetPhongBan.ValueMember = "idPhongDoiToLoai";
         }
 
         private void InitReportNumberOfEmp()
@@ -283,7 +268,51 @@ namespace PMNS
 
         private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtNamVaoCang.Text.Trim()))
+            {
 
+            }
+            else
+            {
+                int year = Convert.ToInt32(txtNamVaoCang.Text.Trim());
+                ReformatDataGridView(empReportList.Where(x => x.ngayVaoCang.Value.Year == year).ToList());
+            }
+            
+        }
+
+        private void btnInBieu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboTongKetPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Method
+        private void ReformatDataGridView(List<ThongTinNhanVIen> rawList)
+        {
+            gridDanhsachNVReport.DataSource = rawList.OrderBy(x => x.hoTen).ToList().Select(x =>
+                new
+                {
+                    ID = x.idNhanVien,
+                    HoTen = x.hoTen,
+                    MaNV = x.MaNV,
+                    NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
+                    CapBac = x.CapBac.capBac1,
+                    ChucVu = x.ChucVu.ChucVu1,
+                    PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
+                    HeBienChe = x.BienChe.bienChe1,
+                    NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
+                    NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
+                    NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
+                    NguoiBaoLanh = x.nguoiBaoLanh,
+                    MoiQuanHe = x.moiQuanHeBaoLanh
+                }).ToList();
+            gridDanhsachNVReport.Columns[0].Visible = false;
+            gridDanhsachNVReport.CurrentCell = null;
         }
         #endregion
     }

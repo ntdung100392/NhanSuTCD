@@ -17,6 +17,8 @@ namespace PMNS
 {
     public partial class DanhSachNhanVien : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
@@ -38,8 +40,9 @@ namespace PMNS
             this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
+        #endregion
 
-        #region Init
+        #region Init Data
         private void InitGridView()
         {
             ReFormatCollumnGridView(_fullEmpList);
