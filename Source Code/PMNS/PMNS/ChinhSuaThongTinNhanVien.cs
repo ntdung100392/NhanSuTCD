@@ -24,12 +24,14 @@ namespace PMNS
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
-        public event OnClosing OnClose;
-
+        protected readonly IThongTinTrinhDoServices _trinhDoServices;
+        protected readonly IThongTinGiaDinhServices _giaDinhServices;
         private ThongTinNhanVIen _empDetails;
+        public event OnClosing OnClose;
         public ChinhSuaThongTinNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices,ThongTinNhanVIen empDetails)
+            ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinTrinhDoServices trinhDoServices, 
+            IThongTinGiaDinhServices giaDinhServices, ThongTinNhanVIen empDetails)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -37,6 +39,8 @@ namespace PMNS
             this._chucVuServices = chucVuServices;
             this._capBacServices = capBacServices;
             this._bienCheServices = bienCheServices;
+            this._trinhDoServices = trinhDoServices;
+            this._giaDinhServices = giaDinhServices;
             this._empDetails = empDetails;
             InitializeComponent();
         }
@@ -309,5 +313,17 @@ namespace PMNS
             txtNamVaoST.Text = datetimeNamVaoST.Text;
         }
         #endregion
+
+        private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
+        {
+            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
+            trinhDoForm.ShowDialog(this);
+        }
+
+        private void btnThongGiaDinh_Click(object sender, EventArgs e)
+        {
+            ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(_nhanVienServices, _giaDinhServices, _empDetails);
+            giaDinhForm.ShowDialog(this);
+        }
     }
 }

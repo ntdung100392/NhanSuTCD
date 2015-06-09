@@ -57,6 +57,9 @@ namespace PMNS
             InitPhongBan();
             InitBienChe();
             InitChucVu();
+            InitThanhPho();
+            InitTreeView();
+
         }
 
         #region Method Event
@@ -204,16 +207,35 @@ namespace PMNS
             comboChucVu.SelectedIndex = -1;
         }
 
-        public void InitPhongBan()
+        private void InitPhongBan()
         {
             comboPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
             comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
             comboPhongBan.ValueMember = "idPhongDoiToLoai";
             comboPhongBan.SelectedIndex = -1;
 
-            comboTongKetPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
+            PhongDoiToLoaiTo firstItem = new PhongDoiToLoaiTo
+            {
+                idPhongDoiToLoai = 0,
+                tenPhongDoiToLoai = "Tất Cả",
+                maPhongDoiToLoai = "All",
+                idCha = 0,
+                ThongTinNhanVIens = null
+            };
+            List<PhongDoiToLoaiTo> listPhongBan = new List<PhongDoiToLoaiTo>();
+            listPhongBan.Add(firstItem);
+            listPhongBan.AddRange(_phongBanServices.GetAllPhongBan());
+            comboTongKetPhongBan.DataSource = listPhongBan;
             comboTongKetPhongBan.DisplayMember = "tenPhongDoiToLoai";
             comboTongKetPhongBan.ValueMember = "idPhongDoiToLoai";
+        }
+
+        private void InitThanhPho()
+        {
+            comboNoiO.DataSource = _thanhPhoServices.GetAllThanhPho();
+            comboNoiO.DisplayMember = "tenTP";
+            comboNoiO.ValueMember = "idThanhPho";
+            comboNoiO.SelectedIndex = -1;
         }
 
         private void InitReportNumberOfEmp()
@@ -222,6 +244,38 @@ namespace PMNS
             txtTongQuanSo.Text = empList.Count.ToString();
             txtNam.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
             txtNu.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
+        }
+        private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
+        {
+            TreeNode node = new TreeNode();
+            for (int i = 0; i < child.Count; i++)
+            {
+                if (child[i].PhongDoiToLoaiTo1.Count != 0)
+                {
+                    node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
+                }
+                else
+                {
+                    node.Nodes.Add(child[i].tenPhongDoiToLoai);
+                }
+            }
+            return node;
+        }
+        private void InitTreeView()
+        {
+            var listPhongBanCha = _phongBanServices.GetAllPhongBan().Where(x => x.idCha == 0).ToList();
+            foreach (var phongBan in listPhongBanCha)
+            {
+                int i = 0;
+                phongBanTreeView.Nodes.Add(phongBan.tenPhongDoiToLoai);
+                if (phongBan.PhongDoiToLoaiTo1.ToList().Count != 0)
+                {
+                    phongBanTreeView.Nodes[i].Nodes.Add(AddChildNode(phongBan.PhongDoiToLoaiTo1.ToList()));
+                }
+                i++;
+            }
+            //phongBanTreeView.Nodes[0].Nodes.Add("Net-informations.com");
+            //phongBanTreeView.Nodes[0].Nodes[0].Nodes.Add("CLR");
         }
         #endregion
 
@@ -277,7 +331,7 @@ namespace PMNS
                 int year = Convert.ToInt32(txtNamVaoCang.Text.Trim());
                 ReformatDataGridView(empReportList.Where(x => x.ngayVaoCang.Value.Year == year).ToList());
             }
-            
+
         }
 
         private void btnInBieu_Click(object sender, EventArgs e)
@@ -286,6 +340,19 @@ namespace PMNS
         }
 
         private void comboTongKetPhongBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((comboTongKetPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai == 0)
+            {
+                txtQuanSoPhongBan.Text = _nhanVienServices.GetAllEmployees().Count.ToString();
+            }
+            else
+            {
+                txtQuanSoPhongBan.Text = _nhanVienServices.GetAllNhanVienByIdPhongBan(
+                    (comboTongKetPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai).Count.ToString();
+            }
+        }
+
+        private void phongBanTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
         }

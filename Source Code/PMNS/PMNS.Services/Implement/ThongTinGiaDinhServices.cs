@@ -15,8 +15,7 @@ namespace PMNS.Services.Implement
 
         public ThongTinGiaDinh GetThongTinByNhanVienId(int id)
         {
-            ThongTinGiaDinh info = unitOfWork.Repository<ThongTinGiaDinh>().GetById(id);
-            return info;
+            return unitOfWork.Repository<ThongTinGiaDinh>().Get().Where(x => x.idNhanVien == id).FirstOrDefault();
         }
 
         public bool AddThongTinGiaDinh(ThongTinGiaDinh info)

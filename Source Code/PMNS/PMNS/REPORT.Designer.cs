@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.cboxTrinhDo = new System.Windows.Forms.CheckBox();
             this.cboxNamVaoCang = new System.Windows.Forms.CheckBox();
             this.cboxNoiO = new System.Windows.Forms.CheckBox();
@@ -52,6 +53,10 @@
             this.comboGioiTinh = new System.Windows.Forms.ComboBox();
             this.btnInBieu = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtQuanSoPhongBan = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboTongKetPhongBan = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtTongQuanSo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,10 +69,6 @@
             this.gridDanhsachNVReport = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.phongBanTreeView = new System.Windows.Forms.TreeView();
-            this.comboTongKetPhongBan = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtQuanSoPhongBan = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -93,6 +94,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnReset);
             this.groupBox5.Controls.Add(this.cboxTrinhDo);
             this.groupBox5.Controls.Add(this.cboxNamVaoCang);
             this.groupBox5.Controls.Add(this.cboxNoiO);
@@ -120,6 +122,15 @@
             this.groupBox5.Size = new System.Drawing.Size(684, 203);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(522, 170);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
             // 
             // cboxTrinhDo
             // 
@@ -342,6 +353,40 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Phòng Ban";
             // 
+            // txtQuanSoPhongBan
+            // 
+            this.txtQuanSoPhongBan.Location = new System.Drawing.Point(123, 68);
+            this.txtQuanSoPhongBan.Name = "txtQuanSoPhongBan";
+            this.txtQuanSoPhongBan.Size = new System.Drawing.Size(60, 20);
+            this.txtQuanSoPhongBan.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Tổng Quân Số";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Phòng Ban";
+            // 
+            // comboTongKetPhongBan
+            // 
+            this.comboTongKetPhongBan.FormattingEnabled = true;
+            this.comboTongKetPhongBan.Location = new System.Drawing.Point(123, 35);
+            this.comboTongKetPhongBan.Name = "comboTongKetPhongBan";
+            this.comboTongKetPhongBan.Size = new System.Drawing.Size(121, 21);
+            this.comboTongKetPhongBan.TabIndex = 0;
+            this.comboTongKetPhongBan.SelectedIndexChanged += new System.EventHandler(this.comboTongKetPhongBan_SelectedIndexChanged);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtTongQuanSo);
@@ -453,40 +498,7 @@
             this.phongBanTreeView.Name = "phongBanTreeView";
             this.phongBanTreeView.Size = new System.Drawing.Size(250, 280);
             this.phongBanTreeView.TabIndex = 0;
-            // 
-            // comboTongKetPhongBan
-            // 
-            this.comboTongKetPhongBan.FormattingEnabled = true;
-            this.comboTongKetPhongBan.Location = new System.Drawing.Point(123, 35);
-            this.comboTongKetPhongBan.Name = "comboTongKetPhongBan";
-            this.comboTongKetPhongBan.Size = new System.Drawing.Size(121, 21);
-            this.comboTongKetPhongBan.TabIndex = 0;
-            this.comboTongKetPhongBan.SelectedIndexChanged += new System.EventHandler(this.comboTongKetPhongBan_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Phòng Ban";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 75);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Tổng Quân Số";
-            // 
-            // txtQuanSoPhongBan
-            // 
-            this.txtQuanSoPhongBan.Location = new System.Drawing.Point(123, 68);
-            this.txtQuanSoPhongBan.Name = "txtQuanSoPhongBan";
-            this.txtQuanSoPhongBan.Size = new System.Drawing.Size(60, 20);
-            this.txtQuanSoPhongBan.TabIndex = 3;
+            this.phongBanTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.phongBanTreeView_NodeMouseClick);
             // 
             // REPORT
             // 
@@ -555,5 +567,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboTongKetPhongBan;
+        private System.Windows.Forms.Button btnReset;
     }
 }

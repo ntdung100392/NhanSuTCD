@@ -17,32 +17,41 @@ namespace PMNS
 {
     public partial class Menu : Form
     {
+        #region Constructor Or Destructor
+        protected readonly IBienCheServices _bienCheServices;
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IChucVuServices _chucVuServices;
+        protected readonly IHopDongServices _hopDongServices;
+        protected readonly IKhenThuongServices _khenThuongServices;
+        protected readonly IKyLuatServices _kyLuatServices;
+        protected readonly ILoaiHopDongServices _loaiHopDongServices;
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IBienCheServices _bienCheServices;
+        protected readonly IThongTinGiaDinhServices _thongTinGiaDinhServices;
         protected readonly IThongTinServices _thongTinServices;
         protected readonly IThongTinTrinhDoServices _trinhDoServices;
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
-
-        public Menu(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
-            IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinServices thongTinServices,
-            IThongTinTrinhDoServices trinhDoServices,ILoaiHopDongServices loaiHopDongServices)
+        public Menu(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
+            IHopDongServices hopDongServices, IKhenThuongServices khenThuongServices, IKyLuatServices kyLuatServices, ILoaiHopDongServices loaiHopDongServices,
+            INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, IThongTinGiaDinhServices thongTinGiaDinhServices,
+            IThongTinServices thongTinServices, IThongTinTrinhDoServices trinhDoServices)
         {
+            this._bienCheServices = bienCheServices;
+            this._capBacServices = capBacServices;
+            this._chucVuServices = chucVuServices;
+            this._hopDongServices = hopDongServices;
+            this._khenThuongServices = khenThuongServices;
+            this._kyLuatServices = kyLuatServices;
+            this._loaiHopDongServices = loaiHopDongServices;
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
             this._thanhPhoServices = thanhPhoServices;
-            this._chucVuServices = chucVuServices;
-            this._capBacServices = capBacServices;
-            this._bienCheServices = bienCheServices;
+            this._thongTinGiaDinhServices = thongTinGiaDinhServices;
             this._thongTinServices = thongTinServices;
             this._trinhDoServices = trinhDoServices;
-            this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
+        #endregion
 
         public void Form1_Load(object sender, EventArgs e)
         {
@@ -71,7 +80,7 @@ namespace PMNS
         private void danhSáchNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DanhSachNhanVien danhSachForm = new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices, _loaiHopDongServices);
+                _capBacServices, _bienCheServices, _loaiHopDongServices, _trinhDoServices, _thongTinGiaDinhServices);
             danhSachForm.ShowDialog(this);
         }
 
@@ -145,6 +154,18 @@ namespace PMNS
         {
             QuanLyPhongBan phongBanForm = new QuanLyPhongBan(_phongBanServices);
             phongBanForm.ShowDialog(this);
+        }
+
+        private void khenThưởngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThongTinKhenThuong khenThuongForm = new ThongTinKhenThuong(_nhanVienServices, _khenThuongServices);
+            khenThuongForm.ShowDialog(this);
+        }
+
+        private void kỷLuậtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(_nhanVienServices, _kyLuatServices);
+            kyLuatForm.ShowDialog(this);
         }
     }
 }

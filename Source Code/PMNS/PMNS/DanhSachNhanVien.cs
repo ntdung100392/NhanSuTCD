@@ -26,10 +26,13 @@ namespace PMNS
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        protected readonly IThongTinTrinhDoServices _trinhDoServices;
+        protected readonly IThongTinGiaDinhServices _giaDinhServices;
         private List<ThongTinNhanVIen> _fullEmpList;
         public DanhSachNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices, ILoaiHopDongServices loaiHopDongServices)
+            ICapBacServices capBacServices, IBienCheServices bienCheServices, ILoaiHopDongServices loaiHopDongServices,
+            IThongTinTrinhDoServices trinhDoServices, IThongTinGiaDinhServices giaDinhServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -38,6 +41,8 @@ namespace PMNS
             this._capBacServices = capBacServices;
             this._bienCheServices = bienCheServices;
             this._loaiHopDongServices = loaiHopDongServices;
+            this._trinhDoServices = trinhDoServices;
+            this._giaDinhServices = giaDinhServices;
             InitializeComponent();
         }
         #endregion
@@ -121,7 +126,7 @@ namespace PMNS
             //{
             var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
             ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
-                _chucVuServices, _capBacServices, _bienCheServices, _emp);
+                _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
             editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
             editEmpInfo.ShowDialog(this);
             //}
@@ -140,7 +145,7 @@ namespace PMNS
 
         private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
         {
-            FilterGridView(txtMaNhanVien.Text.Trim(), txtTenNhanVien.Text.Trim(), 
+            FilterGridView(txtMaNhanVien.Text.Trim(), txtTenNhanVien.Text.Trim(),
                 (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
         }
 
@@ -210,7 +215,7 @@ namespace PMNS
         {
             var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
             ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
-                _chucVuServices, _capBacServices, _bienCheServices, _emp);
+                _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
             editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
             editEmpInfo.ShowDialog(this);
         }

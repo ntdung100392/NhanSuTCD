@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnTrinhDoHocVan = new System.Windows.Forms.Button();
+            this.btnThongGiaDinh = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.cbNguyenQuan = new System.Windows.Forms.ComboBox();
@@ -90,8 +92,6 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
-            this.btnThongGiaDinh = new System.Windows.Forms.Button();
-            this.btnTrinhDoHocVan = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,6 +167,26 @@
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
+            // 
+            // btnTrinhDoHocVan
+            // 
+            this.btnTrinhDoHocVan.Location = new System.Drawing.Point(590, 212);
+            this.btnTrinhDoHocVan.Name = "btnTrinhDoHocVan";
+            this.btnTrinhDoHocVan.Size = new System.Drawing.Size(125, 23);
+            this.btnTrinhDoHocVan.TabIndex = 120;
+            this.btnTrinhDoHocVan.Text = "Sửa Trình Độ Học Vấn";
+            this.btnTrinhDoHocVan.UseVisualStyleBackColor = true;
+            this.btnTrinhDoHocVan.Click += new System.EventHandler(this.btnTrinhDoHocVan_Click);
+            // 
+            // btnThongGiaDinh
+            // 
+            this.btnThongGiaDinh.Location = new System.Drawing.Point(721, 212);
+            this.btnThongGiaDinh.Name = "btnThongGiaDinh";
+            this.btnThongGiaDinh.Size = new System.Drawing.Size(134, 23);
+            this.btnThongGiaDinh.TabIndex = 119;
+            this.btnThongGiaDinh.Text = "Sửa Thông Tin Gia Đình";
+            this.btnThongGiaDinh.UseVisualStyleBackColor = true;
+            this.btnThongGiaDinh.Click += new System.EventHandler(this.btnThongGiaDinh_Click);
             // 
             // btnExit
             // 
@@ -687,24 +707,6 @@
             this.txtManv.Name = "txtManv";
             this.txtManv.Size = new System.Drawing.Size(126, 20);
             this.txtManv.TabIndex = 27;
-            // 
-            // btnThongGiaDinh
-            // 
-            this.btnThongGiaDinh.Location = new System.Drawing.Point(721, 212);
-            this.btnThongGiaDinh.Name = "btnThongGiaDinh";
-            this.btnThongGiaDinh.Size = new System.Drawing.Size(134, 23);
-            this.btnThongGiaDinh.TabIndex = 119;
-            this.btnThongGiaDinh.Text = "Sửa Thông Tin Gia Đình";
-            this.btnThongGiaDinh.UseVisualStyleBackColor = true;
-            // 
-            // btnTrinhDoHocVan
-            // 
-            this.btnTrinhDoHocVan.Location = new System.Drawing.Point(590, 212);
-            this.btnTrinhDoHocVan.Name = "btnTrinhDoHocVan";
-            this.btnTrinhDoHocVan.Size = new System.Drawing.Size(125, 23);
-            this.btnTrinhDoHocVan.TabIndex = 120;
-            this.btnTrinhDoHocVan.Text = "Sửa Trình Độ Học Vấn";
-            this.btnTrinhDoHocVan.UseVisualStyleBackColor = true;
             // 
             // ChinhSuaThongTinNhanVien
             // 
