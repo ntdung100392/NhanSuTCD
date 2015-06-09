@@ -14,14 +14,16 @@ namespace PMNS
 {
     public partial class QuanLyChucVu : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly IChucVuServices _chucVuServices;
+        private ChucVu updateChucVu = new ChucVu();
         public QuanLyChucVu(IChucVuServices chucVuServices)
         {
             this._chucVuServices = chucVuServices;
             InitializeComponent();
         }
-
-        private ChucVu updateChucVu = new ChucVu();
+        #endregion
 
         #region Form's Event
         private void dataGridChucVu_CellClick(object sender, DataGridViewCellEventArgs e)

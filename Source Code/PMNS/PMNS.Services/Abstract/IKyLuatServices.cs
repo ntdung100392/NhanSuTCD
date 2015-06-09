@@ -9,5 +9,9 @@ namespace PMNS.Services.Abstract
 {
     public interface IKyLuatServices : IServices<KyLuat>
     {
+        List<KyLuat> GetAllKyLuat();
+        KyLuat GetKyLuatById(int id);
+        bool AddThongTinKyLuat(KyLuat kyLuat);
+        bool UpdateThongTinKyLuat(KyLuat kyLuat);
     }
 }

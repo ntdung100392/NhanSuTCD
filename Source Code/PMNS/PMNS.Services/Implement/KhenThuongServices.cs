@@ -9,31 +9,31 @@ using PMNS.Services.Abstract;
 
 namespace PMNS.Services.Implement
 {
-    public class KyLuatServices : Services<KyLuat>, IKyLuatServices
+    public class KhenThuongServices : Services<KhenThuong>, IKhenThuongServices
     {
-        public KyLuatServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public KhenThuongServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public List<KyLuat> GetAllKyLuat()
+        public List<KhenThuong> GetAllKhenThuong()
         {
-            return unitOfWork.Repository<KyLuat>().GetAll().ToList();
+            return unitOfWork.Repository<KhenThuong>().GetAll().ToList();
         }
 
-        public KyLuat GetKyLuatById(int id)
+        public KhenThuong GetKhenThuongById(int id)
         {
-            return unitOfWork.Repository<KyLuat>().GetById(id);
+            return unitOfWork.Repository<KhenThuong>().GetById(id);
         }
 
-        public bool AddThongTinKyLuat(KyLuat kyLuat)
+        public bool AddThongTinKhenThuong(KhenThuong khenThuong)
         {
-            if (kyLuat != null)
+            if (khenThuong != null)
             {
                 try
                 {
-                    unitOfWork.Repository<KyLuat>().Insert(kyLuat);
+                    unitOfWork.Repository<KhenThuong>().Insert(khenThuong);
                     unitOfWork.Commit();
                     return true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
@@ -44,13 +44,13 @@ namespace PMNS.Services.Implement
             }
         }
 
-        public bool UpdateThongTinKyLuat(KyLuat kyLuat)
+        public bool UpdateThongTinKhenThuong(KhenThuong khenThuong)
         {
-            if (kyLuat != null)
+            if (khenThuong != null)
             {
                 try
                 {
-                    unitOfWork.Repository<KyLuat>().Update(kyLuat);
+                    unitOfWork.Repository<KhenThuong>().Update(khenThuong);
                     unitOfWork.Commit();
                     return true;
                 }

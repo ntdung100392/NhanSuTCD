@@ -31,7 +31,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridKhenThuong = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.datetimeNgayNhapNgu = new System.Windows.Forms.DateTimePicker();
+            this.datetimeNgayKhenThuong = new System.Windows.Forms.DateTimePicker();
             this.txtNamKhenthuong = new System.Windows.Forms.MaskedTextBox();
             this.txtThanhTichKhenThuong = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +51,8 @@
             this.bntThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.txtCapKhenThuong = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridKhenThuong)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -61,7 +63,7 @@
             this.groupBox2.Controls.Add(this.dataGridKhenThuong);
             this.groupBox2.Location = new System.Drawing.Point(12, 178);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(660, 208);
+            this.groupBox2.Size = new System.Drawing.Size(1005, 208);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh Sách";
@@ -72,12 +74,16 @@
             this.dataGridKhenThuong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridKhenThuong.Location = new System.Drawing.Point(3, 16);
             this.dataGridKhenThuong.Name = "dataGridKhenThuong";
-            this.dataGridKhenThuong.Size = new System.Drawing.Size(654, 189);
+            this.dataGridKhenThuong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridKhenThuong.Size = new System.Drawing.Size(999, 189);
             this.dataGridKhenThuong.TabIndex = 0;
+            this.dataGridKhenThuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridKhenThuong_CellClick);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.datetimeNgayNhapNgu);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtCapKhenThuong);
+            this.groupBox1.Controls.Add(this.datetimeNgayKhenThuong);
             this.groupBox1.Controls.Add(this.txtNamKhenthuong);
             this.groupBox1.Controls.Add(this.txtThanhTichKhenThuong);
             this.groupBox1.Controls.Add(this.label1);
@@ -96,17 +102,18 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(660, 160);
+            this.groupBox1.Size = new System.Drawing.Size(1005, 160);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
             // 
-            // datetimeNgayNhapNgu
+            // datetimeNgayKhenThuong
             // 
-            this.datetimeNgayNhapNgu.Location = new System.Drawing.Point(280, 91);
-            this.datetimeNgayNhapNgu.Name = "datetimeNgayNhapNgu";
-            this.datetimeNgayNhapNgu.Size = new System.Drawing.Size(15, 20);
-            this.datetimeNgayNhapNgu.TabIndex = 101;
+            this.datetimeNgayKhenThuong.Location = new System.Drawing.Point(280, 91);
+            this.datetimeNgayKhenThuong.Name = "datetimeNgayKhenThuong";
+            this.datetimeNgayKhenThuong.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNgayKhenThuong.TabIndex = 101;
+            this.datetimeNgayKhenThuong.ValueChanged += new System.EventHandler(this.datetimeNgayKhenThuong_ValueChanged);
             // 
             // txtNamKhenthuong
             // 
@@ -135,10 +142,13 @@
             // 
             // txtMaNV
             // 
+            this.txtMaNV.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtMaNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtMaNV.Location = new System.Drawing.Point(135, 17);
             this.txtMaNV.Name = "txtMaNV";
             this.txtMaNV.Size = new System.Drawing.Size(160, 20);
             this.txtMaNV.TabIndex = 1;
+            this.txtMaNV.TextChanged += new System.EventHandler(this.txtMaNV_TextChanged);
             // 
             // label2
             // 
@@ -240,36 +250,55 @@
             // 
             // bntThem
             // 
-            this.bntThem.Location = new System.Drawing.Point(435, 389);
+            this.bntThem.Location = new System.Drawing.Point(777, 392);
             this.bntThem.Name = "bntThem";
             this.bntThem.Size = new System.Drawing.Size(75, 23);
             this.bntThem.TabIndex = 20;
             this.bntThem.Text = "Thêm";
             this.bntThem.UseVisualStyleBackColor = true;
+            this.bntThem.Click += new System.EventHandler(this.bntThem_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(516, 389);
+            this.btnSua.Location = new System.Drawing.Point(858, 392);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 21;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(597, 389);
+            this.btnThoat.Location = new System.Drawing.Point(939, 392);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(75, 23);
             this.btnThoat.TabIndex = 22;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // txtCapKhenThuong
+            // 
+            this.txtCapKhenThuong.Location = new System.Drawing.Point(828, 17);
+            this.txtCapKhenThuong.Name = "txtCapKhenThuong";
+            this.txtCapKhenThuong.Size = new System.Drawing.Size(160, 20);
+            this.txtCapKhenThuong.TabIndex = 103;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(694, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(94, 13);
+            this.label9.TabIndex = 104;
+            this.label9.Text = "Cấp Khen Thưởng";
             // 
             // ThongTinKhenThuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 422);
+            this.ClientSize = new System.Drawing.Size(1029, 422);
             this.Controls.Add(this.bntThem);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThoat);
@@ -277,6 +306,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ThongTinKhenThuong";
             this.Text = "Thông Tin Khen Thưởng";
+            this.Load += new System.EventHandler(this.ThongTinKhenThuong_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridKhenThuong)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -305,10 +335,12 @@
         private System.Windows.Forms.TextBox txtLoaiKhenThuong;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker datetimeNgayNhapNgu;
+        private System.Windows.Forms.DateTimePicker datetimeNgayKhenThuong;
         private System.Windows.Forms.MaskedTextBox txtNamKhenthuong;
         private System.Windows.Forms.Button bntThem;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCapKhenThuong;
     }
 }

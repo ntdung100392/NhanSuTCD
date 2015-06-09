@@ -16,13 +16,14 @@ namespace PMNS
     public delegate void OnClosing (bool close);
     public partial class ChinhSuaThongTinNhanVien : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
-
         public event OnClosing OnClose;
 
         private ThongTinNhanVIen _empDetails;
@@ -39,8 +40,9 @@ namespace PMNS
             this._empDetails = empDetails;
             InitializeComponent();
         }
+        #endregion
 
-        #region Form's Event
+        #region Method Event
         private void ChinhSuaThongTinNhanVien_Load(object sender, EventArgs e)
         {
             cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -80,52 +82,59 @@ namespace PMNS
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            int sex = 0;
-            if (rbtnNam.Checked == true)
+            try
             {
-                sex = 0;
+                int sex = 0;
+                if (rbtnNam.Checked == true)
+                {
+                    sex = 0;
+                }
+                if (rBtnNu.Checked == true)
+                {
+                    sex = 1;
+                }
+                _empDetails.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+                _empDetails.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
+                _empDetails.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
+                _empDetails.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
+                _empDetails.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
+                _empDetails.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
+                _empDetails.CongViecDangLam = txtCongViecDangLam.Text.Trim();
+                _empDetails.hoTen = txtTennv.Text;
+                _empDetails.gioiTinh = Convert.ToByte(sex);
+                _empDetails.namSinh = datetimeNgaySinh.Value;
+                _empDetails.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
+                _empDetails.noiOHienNay = txtdiachi.Text;
+                _empDetails.hoKhau = txtHoKhau.Text;
+                _empDetails.CMND = txtCMND.Text;
+                _empDetails.ngayCapCMND = datetimeCMND.Value;
+                _empDetails.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
+                _empDetails.soDienThoaiNha = "";
+                _empDetails.soDienThoaiDiDong = txtSdt.Text.Trim();
+                _empDetails.nguoiBaoLanh = txtNguoiBaoLanh.Text;
+                _empDetails.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
+                _empDetails.noiCongTac = txtNoiCongTac.Text.Trim();
+                _empDetails.ngayVaoCang = datetimeNgayVaoCang.Value;
+                _empDetails.namVaoSongThan = datetimeNamVaoST.Value;
+                _empDetails.ngayNhapNgu = datetimeNgayNhapNgu.Value;
+                _empDetails.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
+                _empDetails.hinhAnhCaNhan = "";
+                if (_nhanVienServices.UpdateEmpInfo(_empDetails))
+                {
+                    MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearAllText(this);
+                    FireEvent(true);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            if (rBtnNu.Checked == true)
+            catch(Exception ex)
             {
-                sex = 1;
-            }
-            _empDetails.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
-            _empDetails.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
-            _empDetails.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
-            _empDetails.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
-            _empDetails.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
-            _empDetails.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
-            _empDetails.CongViecDangLam = txtCongViecDangLam.Text.Trim();
-            _empDetails.hoTen = txtTennv.Text;
-            _empDetails.gioiTinh = Convert.ToByte(sex);
-            _empDetails.namSinh = datetimeNgaySinh.Value;
-            _empDetails.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
-            _empDetails.noiOHienNay = txtdiachi.Text;
-            _empDetails.hoKhau = txtHoKhau.Text;
-            _empDetails.CMND = txtCMND.Text;
-            _empDetails.ngayCapCMND = datetimeCMND.Value;
-            _empDetails.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
-            _empDetails.soDienThoaiNha = "";
-            _empDetails.soDienThoaiDiDong = txtSdt.Text.Trim();
-            _empDetails.nguoiBaoLanh = txtNguoiBaoLanh.Text;
-            _empDetails.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
-            _empDetails.noiCongTac = txtNoiCongTac.Text.Trim();
-            _empDetails.ngayVaoCang = datetimeNgayVaoCang.Value;
-            _empDetails.namVaoSongThan = datetimeNamVaoST.Value;
-            _empDetails.ngayNhapNgu = datetimeNgayNhapNgu.Value;
-            _empDetails.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
-            _empDetails.hinhAnhCaNhan = "";
-            if (_nhanVienServices.UpdateEmpInfo(_empDetails))
-            {
-                MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearAllText(this);
-                FireEvent(true);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void ClearAllText(Control con)

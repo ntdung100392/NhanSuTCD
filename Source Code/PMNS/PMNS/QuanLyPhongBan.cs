@@ -15,6 +15,8 @@ namespace PMNS
 {
     public partial class QuanLyPhongBan : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly IPhongBanServices _phongBanServices;
         private PhongDoiToLoaiTo updatePhongBan = new PhongDoiToLoaiTo();
         public QuanLyPhongBan(IPhongBanServices phongBanServices)
@@ -22,7 +24,9 @@ namespace PMNS
             this._phongBanServices = phongBanServices;
             InitializeComponent();
         }
+        #endregion
 
+        #region Method Event
         private void QuanLyPhongBan_Load(object sender, EventArgs e)
         {
             btnSua.Enabled = false;
@@ -43,72 +47,86 @@ namespace PMNS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtTenPB.Text.Trim()) || String.IsNullOrEmpty(txtMaPB.Text.Trim()))
+            try
             {
-                MessageBox.Show("Thông Tin Chưa Đầy Đủ!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (_phongBanServices.FindPhongBanByNameAndCode(txtMaPB.Text.Trim(), txtTenPB.Text.Trim()) == null)
+                if (String.IsNullOrEmpty(txtTenPB.Text.Trim()) || String.IsNullOrEmpty(txtMaPB.Text.Trim()))
                 {
-                    PhongDoiToLoaiTo insertPhongBan = new PhongDoiToLoaiTo
-                    {
-                        idCha = (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai,
-                        maPhongDoiToLoai = txtMaPB.Text.Trim(),
-                        tenPhongDoiToLoai = txtTenPB.Text.Trim()
-                    };
-                    if (_phongBanServices.AddPhongBan(insertPhongBan))
-                    {
-                        MessageBox.Show("Đã Thêm Phòng Ban Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                        InitGridView();
-                        dataGridPhongBan.Refresh();
-                        ClearAllText(this);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Error!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Thông Tin Chưa Đầy Đủ!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Thông Tin Phòng Ban Đã Có Trong Dữ Liệu!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (_phongBanServices.FindPhongBanByNameAndCode(txtMaPB.Text.Trim(), txtTenPB.Text.Trim()) == null)
+                    {
+                        PhongDoiToLoaiTo insertPhongBan = new PhongDoiToLoaiTo
+                        {
+                            idCha = (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai,
+                            maPhongDoiToLoai = txtMaPB.Text.Trim(),
+                            tenPhongDoiToLoai = txtTenPB.Text.Trim()
+                        };
+                        if (_phongBanServices.AddPhongBan(insertPhongBan))
+                        {
+                            MessageBox.Show("Đã Thêm Phòng Ban Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                            InitGridView();
+                            dataGridPhongBan.Refresh();
+                            ClearAllText(this);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thông Tin Phòng Ban Đã Có Trong Dữ Liệu!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtTenPB.Text.Trim()) || String.IsNullOrEmpty(txtMaPB.Text.Trim()))
+            try
             {
-                MessageBox.Show("Thông Tin Chưa Đầy Đủ!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (_phongBanServices.FindPhongBanByNameAndCode(txtMaPB.Text.Trim(), txtTenPB.Text.Trim()) == null)
+                if (String.IsNullOrEmpty(txtTenPB.Text.Trim()) || String.IsNullOrEmpty(txtMaPB.Text.Trim()))
                 {
-                    updatePhongBan.idCha = (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai;
-                    updatePhongBan.maPhongDoiToLoai = txtMaPB.Text.Trim();
-                    updatePhongBan.tenPhongDoiToLoai = txtTenPB.Text.Trim();
-                    if (_phongBanServices.UpdatePhongBan(updatePhongBan))
-                    {
-                        MessageBox.Show("Đã Chỉnh Sử Thông Tin Phòng Ban Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                        InitGridView();
-                        dataGridPhongBan.Refresh();
-                        btnSua.Enabled = false;
-                        btnAdd.Enabled = true;
-                        ClearAllText(this);
-                        updatePhongBan = null;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Thông Tin Chưa Đầy Đủ!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Thông Tin Phòng Ban Chỉnh Sửa Bị Trùng!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (_phongBanServices.FindPhongBanByNameAndCode(txtMaPB.Text.Trim(), txtTenPB.Text.Trim()) == null)
+                    {
+                        updatePhongBan.idCha = (cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai;
+                        updatePhongBan.maPhongDoiToLoai = txtMaPB.Text.Trim();
+                        updatePhongBan.tenPhongDoiToLoai = txtTenPB.Text.Trim();
+                        if (_phongBanServices.UpdatePhongBan(updatePhongBan))
+                        {
+                            MessageBox.Show("Đã Chỉnh Sử Thông Tin Phòng Ban Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                            InitGridView();
+                            dataGridPhongBan.Refresh();
+                            btnSua.Enabled = false;
+                            btnAdd.Enabled = true;
+                            ClearAllText(this);
+                            updatePhongBan = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thông Tin Phòng Ban Chỉnh Sửa Bị Trùng!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -116,7 +134,6 @@ namespace PMNS
         {
             this.Close();
         }
-
 
         private void ClearAllText(Control con)
         {
@@ -128,6 +145,7 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+        #endregion
 
         #region Init
         private void InitGridView()

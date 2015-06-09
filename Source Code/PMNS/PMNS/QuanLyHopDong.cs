@@ -14,12 +14,13 @@ namespace PMNS
 {
     public partial class QuanLyHopDong : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IHopDongServices _hopDongServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
         private HopDongLaoDong updateHopDong;
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
-
         public QuanLyHopDong(INhanVienServices nhanVienServices, IHopDongServices hopDongServices,
             ILoaiHopDongServices loaiHopDongServices)
         {
@@ -28,7 +29,9 @@ namespace PMNS
             this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
+        #endregion
 
+        #region Method Event
         private void HopDongLaoDong_Load(object sender, EventArgs e)
         {
             cbLoaiHopDong.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -47,32 +50,39 @@ namespace PMNS
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
-            if (emp != null)
+            try
             {
-                updateHopDong.idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong;
-                updateHopDong.chucDanh = txtChucDanh.Text.Trim();
-                updateHopDong.ngayBatDau = datetimeNgayBatDau.Value;
-                updateHopDong.ngayKetThuc = dateTimeNgayKetThuc.Value;
-                updateHopDong.nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim();
-                updateHopDong.soHopDong_TTHDLD = txtSoHopDong.Text.Trim();
-                updateHopDong.ghiChu = txtGhiChu.Text.Trim();
-                if (_hopDongServices.UpdateHopDongLaoDong(updateHopDong))
+                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                if (emp != null)
                 {
-                    MessageBox.Show("Đã Chỉnh Sửa Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                    InitGridView();
-                    dataGridHDLD.Refresh();
-                    ClearAllText(this);
-                    txtMaNv.ReadOnly = false;
-                    btnAdd.Enabled = true;
-                    btnClear.Enabled = false;
-                    btnEdit.Enabled = false;
+                    updateHopDong.idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong;
+                    updateHopDong.chucDanh = txtChucDanh.Text.Trim();
+                    updateHopDong.ngayBatDau = datetimeNgayBatDau.Value;
+                    updateHopDong.ngayKetThuc = dateTimeNgayKetThuc.Value;
+                    updateHopDong.nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim();
+                    updateHopDong.soHopDong_TTHDLD = txtSoHopDong.Text.Trim();
+                    updateHopDong.ghiChu = txtGhiChu.Text.Trim();
+                    if (_hopDongServices.UpdateHopDongLaoDong(updateHopDong))
+                    {
+                        MessageBox.Show("Đã Chỉnh Sửa Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                        InitGridView();
+                        dataGridHDLD.Refresh();
+                        ClearAllText(this);
+                        txtMaNv.ReadOnly = false;
+                        btnAdd.Enabled = true;
+                        btnClear.Enabled = false;
+                        btnEdit.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -87,32 +97,39 @@ namespace PMNS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
-            if (emp != null)
+            try
             {
-                HopDongLaoDong hopDong = new HopDongLaoDong
+                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                if (emp != null)
                 {
-                    idNhanVien = emp.idNhanVien,
-                    idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong,
-                    chucDanh = txtChucDanh.Text.Trim(),
-                    ngayBatDau = datetimeNgayBatDau.Value,
-                    ngayKetThuc = dateTimeNgayKetThuc.Value,
-                    nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim(),
-                    soHopDong_TTHDLD = txtSoHopDong.Text.Trim(),
-                    ghiChu = txtGhiChu.Text.Trim()
-                };
-                if (_hopDongServices.AddHopDongLaoDong(hopDong))
-                {
-                    MessageBox.Show("Đã Thêm Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                    InitGridView();
-                    dataGridHDLD.Refresh();
-                    ClearAllText(this);
+                    HopDongLaoDong hopDong = new HopDongLaoDong
+                    {
+                        idNhanVien = emp.idNhanVien,
+                        idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong,
+                        chucDanh = txtChucDanh.Text.Trim(),
+                        ngayBatDau = datetimeNgayBatDau.Value,
+                        ngayKetThuc = dateTimeNgayKetThuc.Value,
+                        nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim(),
+                        soHopDong_TTHDLD = txtSoHopDong.Text.Trim(),
+                        ghiChu = txtGhiChu.Text.Trim()
+                    };
+                    if (_hopDongServices.AddHopDongLaoDong(hopDong))
+                    {
+                        MessageBox.Show("Đã Thêm Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                        InitGridView();
+                        dataGridHDLD.Refresh();
+                        ClearAllText(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,6 +189,7 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+        #endregion
 
         #region DateTime Picker
         private void datetimeNgayBatDau_ValueChanged(object sender, EventArgs e)
@@ -189,7 +207,7 @@ namespace PMNS
         }
         #endregion
 
-        #region Init
+        #region Method Init
         private void InitAutoComplete(string maNV)
         {
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());

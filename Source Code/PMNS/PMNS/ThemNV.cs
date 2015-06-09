@@ -17,13 +17,14 @@ namespace PMNS
 {
     public partial class ThemNV : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly IChucVuServices _chucVuServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
-
         private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
 
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
@@ -38,6 +39,7 @@ namespace PMNS
             this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
+        #endregion
 
         #region DateTimePicker
 
@@ -74,7 +76,6 @@ namespace PMNS
         }
         #endregion
 
-
         #region Form's Event
         private void ThemNV_Load(object sender, EventArgs e)
         {
@@ -105,108 +106,122 @@ namespace PMNS
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
-            int sex = 0;
-            if (rbtnNam.Checked == true)
+            try
             {
-                sex = 0;
+                int sex = 0;
+                if (rbtnNam.Checked == true)
+                {
+                    sex = 0;
+                }
+                if (rBtnNu.Checked == true)
+                {
+                    sex = 1;
+                }
+                ThongTinNhanVIen emp = new ThongTinNhanVIen
+                {
+                    MaNV = txtManv.Text.Trim(),
+                    idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai),
+                    userName = txtUserName.Text.Trim(),
+                    password = "12345678x@X",
+                    permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
+                    idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe),
+                    idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
+                    idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu),
+                    idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho),
+                    CongViecDangLam = txtCongViecDangLam.Text.Trim(),
+                    hoTen = txtTennv.Text,
+                    gioiTinh = Convert.ToByte(sex),
+                    namSinh = datetimeNgaySinh.Value,
+                    nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP,
+                    noiOHienNay = txtdiachi.Text,
+                    hoKhau = txtHoKhau.Text,
+                    CMND = txtCMND.Text,
+                    ngayCapCMND = datetimeCMND.Value,
+                    noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP,
+                    soDienThoaiNha = "",
+                    soDienThoaiDiDong = txtSdt.Text.Trim(),
+                    nguoiBaoLanh = txtNguoiBaoLanh.Text,
+                    moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text,
+                    noiCongTac = txtNoiCongTac.Text.Trim(),
+                    ngayVaoCang = datetimeNgayVaoCang.Value,
+                    namVaoSongThan = datetimeNamVaoST.Value,
+                    ngayNhapNgu = datetimeNgayNhapNgu.Value,
+                    tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text,
+                    hinhAnhCaNhan = ""
+                };
+                if (_nhanVienServices.AddNhanVien(emp))
+                {
+                    MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearAllText(this);
+                    InitEmployees();
+                    dataGridNhanVien.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            if (rBtnNu.Checked == true)
+            catch (Exception ex)
             {
-                sex = 1;
-            }
-            ThongTinNhanVIen emp = new ThongTinNhanVIen
-            {
-                MaNV = txtManv.Text.Trim(),
-                idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai),
-                userName = txtUserName.Text.Trim(),
-                password = "12345678x@X",
-                permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value),
-                idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe),
-                idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac),
-                idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu),
-                idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho),
-                CongViecDangLam = txtCongViecDangLam.Text.Trim(),
-                hoTen = txtTennv.Text,
-                gioiTinh = Convert.ToByte(sex),
-                namSinh = datetimeNgaySinh.Value,
-                nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP,
-                noiOHienNay = txtdiachi.Text,
-                hoKhau = txtHoKhau.Text,
-                CMND = txtCMND.Text,
-                ngayCapCMND = datetimeCMND.Value,
-                noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP,
-                soDienThoaiNha = "",
-                soDienThoaiDiDong = txtSdt.Text.Trim(),
-                nguoiBaoLanh = txtNguoiBaoLanh.Text,
-                moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text,
-                noiCongTac = txtNoiCongTac.Text.Trim(),
-                ngayVaoCang = datetimeNgayVaoCang.Value,
-                namVaoSongThan = datetimeNamVaoST.Value,
-                ngayNhapNgu = datetimeNgayNhapNgu.Value,
-                tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text,
-                hinhAnhCaNhan = ""
-            };
-            if (_nhanVienServices.AddNhanVien(emp))
-            {
-                MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearAllText(this);
-                InitEmployees();
-                dataGridNhanVien.Refresh();
-            }
-            else
-            {
-                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            int sex = 0;
-            if (rbtnNam.Checked == true)
+            try
             {
-                sex = 0;
+                int sex = 0;
+                if (rbtnNam.Checked == true)
+                {
+                    sex = 0;
+                }
+                if (rBtnNu.Checked == true)
+                {
+                    sex = 1;
+                }
+                empUpdate.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+                empUpdate.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
+                empUpdate.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
+                empUpdate.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
+                empUpdate.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
+                empUpdate.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
+                empUpdate.CongViecDangLam = txtCongViecDangLam.Text.Trim();
+                empUpdate.hoTen = txtTennv.Text;
+                empUpdate.gioiTinh = Convert.ToByte(sex);
+                empUpdate.namSinh = datetimeNgaySinh.Value;
+                empUpdate.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
+                empUpdate.noiOHienNay = txtdiachi.Text;
+                empUpdate.hoKhau = txtHoKhau.Text;
+                empUpdate.CMND = txtCMND.Text;
+                empUpdate.ngayCapCMND = datetimeCMND.Value;
+                empUpdate.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
+                empUpdate.soDienThoaiNha = "";
+                empUpdate.soDienThoaiDiDong = txtSdt.Text.Trim();
+                empUpdate.nguoiBaoLanh = txtNguoiBaoLanh.Text;
+                empUpdate.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
+                empUpdate.noiCongTac = txtNoiCongTac.Text.Trim();
+                empUpdate.ngayVaoCang = datetimeNgayVaoCang.Value;
+                empUpdate.namVaoSongThan = datetimeNamVaoST.Value;
+                empUpdate.ngayNhapNgu = datetimeNgayNhapNgu.Value;
+                empUpdate.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
+                empUpdate.hinhAnhCaNhan = "";
+                if (_nhanVienServices.UpdateEmpInfo(empUpdate))
+                {
+                    MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearAllText(this);
+                    InitEmployees();
+                    dataGridNhanVien.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            if (rBtnNu.Checked == true)
+            catch (Exception ex) 
             {
-                sex = 1;
-            }
-            empUpdate.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
-            empUpdate.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
-            empUpdate.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
-            empUpdate.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
-            empUpdate.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
-            empUpdate.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
-            empUpdate.CongViecDangLam = txtCongViecDangLam.Text.Trim();
-            empUpdate.hoTen = txtTennv.Text;
-            empUpdate.gioiTinh = Convert.ToByte(sex);
-            empUpdate.namSinh = datetimeNgaySinh.Value;
-            empUpdate.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
-            empUpdate.noiOHienNay = txtdiachi.Text;
-            empUpdate.hoKhau = txtHoKhau.Text;
-            empUpdate.CMND = txtCMND.Text;
-            empUpdate.ngayCapCMND = datetimeCMND.Value;
-            empUpdate.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
-            empUpdate.soDienThoaiNha = "";
-            empUpdate.soDienThoaiDiDong = txtSdt.Text.Trim();
-            empUpdate.nguoiBaoLanh = txtNguoiBaoLanh.Text;
-            empUpdate.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
-            empUpdate.noiCongTac = txtNoiCongTac.Text.Trim();
-            empUpdate.ngayVaoCang = datetimeNgayVaoCang.Value;
-            empUpdate.namVaoSongThan = datetimeNamVaoST.Value;
-            empUpdate.ngayNhapNgu = datetimeNgayNhapNgu.Value;
-            empUpdate.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
-            empUpdate.hinhAnhCaNhan = "";
-            if (_nhanVienServices.UpdateEmpInfo(empUpdate))
-            {
-                MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearAllText(this);
-                InitEmployees();
-                dataGridNhanVien.Refresh();
-            }
-            else
-            {
-                MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void btnClear_Click(object sender, EventArgs e)

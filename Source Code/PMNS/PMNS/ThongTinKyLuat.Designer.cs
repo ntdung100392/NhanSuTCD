@@ -47,10 +47,12 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.bntThem = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.datetimeNgayKyLuat = new System.Windows.Forms.DateTimePicker();
+            this.txtNgayKL = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridKyLuat = new System.Windows.Forms.DataGridView();
-            this.datetimeNgayNhapNgu = new System.Windows.Forms.DateTimePicker();
-            this.txtNgayKL = new System.Windows.Forms.MaskedTextBox();
+            this.txtCapKyLuat = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridKyLuat)).BeginInit();
@@ -67,10 +69,13 @@
             // 
             // txtMaNV
             // 
+            this.txtMaNV.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtMaNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtMaNV.Location = new System.Drawing.Point(135, 17);
             this.txtMaNV.Name = "txtMaNV";
             this.txtMaNV.Size = new System.Drawing.Size(160, 20);
             this.txtMaNV.TabIndex = 1;
+            this.txtMaNV.TextChanged += new System.EventHandler(this.txtMaNV_TextChanged);
             // 
             // txtTenNV
             // 
@@ -179,34 +184,39 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(597, 392);
+            this.btnThoat.Location = new System.Drawing.Point(864, 392);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(75, 23);
             this.btnThoat.TabIndex = 15;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(516, 392);
+            this.btnSua.Location = new System.Drawing.Point(783, 392);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 15;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // bntThem
             // 
-            this.bntThem.Location = new System.Drawing.Point(435, 392);
+            this.bntThem.Location = new System.Drawing.Point(702, 392);
             this.bntThem.Name = "bntThem";
             this.bntThem.Size = new System.Drawing.Size(75, 23);
             this.bntThem.TabIndex = 15;
             this.bntThem.Text = "Thêm";
             this.bntThem.UseVisualStyleBackColor = true;
+            this.bntThem.Click += new System.EventHandler(this.bntThem_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.datetimeNgayNhapNgu);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtCapKyLuat);
+            this.groupBox1.Controls.Add(this.datetimeNgayKyLuat);
             this.groupBox1.Controls.Add(this.txtNgayKL);
             this.groupBox1.Controls.Add(this.txtLoaiKL);
             this.groupBox1.Controls.Add(this.label1);
@@ -225,36 +235,18 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(660, 160);
+            this.groupBox1.Size = new System.Drawing.Size(927, 160);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
             // 
-            // groupBox2
+            // datetimeNgayKyLuat
             // 
-            this.groupBox2.Controls.Add(this.dataGridKyLuat);
-            this.groupBox2.Location = new System.Drawing.Point(12, 178);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(660, 208);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Danh Sách";
-            // 
-            // dataGridKyLuat
-            // 
-            this.dataGridKyLuat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridKyLuat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridKyLuat.Location = new System.Drawing.Point(3, 16);
-            this.dataGridKyLuat.Name = "dataGridKyLuat";
-            this.dataGridKyLuat.Size = new System.Drawing.Size(654, 189);
-            this.dataGridKyLuat.TabIndex = 0;
-            // 
-            // datetimeNgayNhapNgu
-            // 
-            this.datetimeNgayNhapNgu.Location = new System.Drawing.Point(280, 91);
-            this.datetimeNgayNhapNgu.Name = "datetimeNgayNhapNgu";
-            this.datetimeNgayNhapNgu.Size = new System.Drawing.Size(15, 20);
-            this.datetimeNgayNhapNgu.TabIndex = 99;
+            this.datetimeNgayKyLuat.Location = new System.Drawing.Point(280, 91);
+            this.datetimeNgayKyLuat.Name = "datetimeNgayKyLuat";
+            this.datetimeNgayKyLuat.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNgayKyLuat.TabIndex = 99;
+            this.datetimeNgayKyLuat.ValueChanged += new System.EventHandler(this.datetimeNgayNhapNgu_ValueChanged);
             // 
             // txtNgayKL
             // 
@@ -265,11 +257,48 @@
             this.txtNgayKL.TabIndex = 100;
             this.txtNgayKL.ValidatingType = typeof(System.DateTime);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridKyLuat);
+            this.groupBox2.Location = new System.Drawing.Point(12, 178);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(927, 208);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Danh Sách";
+            // 
+            // dataGridKyLuat
+            // 
+            this.dataGridKyLuat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridKyLuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridKyLuat.Location = new System.Drawing.Point(3, 16);
+            this.dataGridKyLuat.Name = "dataGridKyLuat";
+            this.dataGridKyLuat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridKyLuat.Size = new System.Drawing.Size(921, 189);
+            this.dataGridKyLuat.TabIndex = 0;
+            this.dataGridKyLuat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridKyLuat_CellClick);
+            // 
+            // txtCapKyLuat
+            // 
+            this.txtCapKyLuat.Location = new System.Drawing.Point(761, 17);
+            this.txtCapKyLuat.Name = "txtCapKyLuat";
+            this.txtCapKyLuat.Size = new System.Drawing.Size(160, 20);
+            this.txtCapKyLuat.TabIndex = 101;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(672, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 13);
+            this.label9.TabIndex = 102;
+            this.label9.Text = "Cấp Kỷ Luật";
+            // 
             // ThongTinKyLuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 422);
+            this.ClientSize = new System.Drawing.Size(951, 422);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bntThem);
@@ -277,6 +306,7 @@
             this.Controls.Add(this.btnThoat);
             this.Name = "ThongTinKyLuat";
             this.Text = "Thông Tin Kỷ Luật";
+            this.Load += new System.EventHandler(this.ThongTinKyLuat_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -308,7 +338,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridKyLuat;
-        private System.Windows.Forms.DateTimePicker datetimeNgayNhapNgu;
+        private System.Windows.Forms.DateTimePicker datetimeNgayKyLuat;
         private System.Windows.Forms.MaskedTextBox txtNgayKL;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCapKyLuat;
     }
 }

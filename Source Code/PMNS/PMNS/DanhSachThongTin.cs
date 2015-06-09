@@ -14,6 +14,8 @@ namespace PMNS
 {
     public partial class DanhSachThongTin : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly IThongTinServices _thongTinServices;
         protected readonly string _loaiThongTin;
         public DanhSachThongTin(IThongTinServices thongTinServices, string loaiThongTin)
@@ -22,7 +24,9 @@ namespace PMNS
             this._loaiThongTin = loaiThongTin;
             InitializeComponent();
         }
+        #endregion
 
+        #region Method Event
         private void DanhSachThongTin_Load(object sender, EventArgs e)
         {
             txtLenh.Text = _loaiThongTin;
@@ -84,5 +88,6 @@ namespace PMNS
                 dataGridThongTin.CurrentCell = null;
             }
         }
+        #endregion
     }
 }

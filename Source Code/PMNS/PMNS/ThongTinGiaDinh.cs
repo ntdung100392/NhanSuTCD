@@ -28,6 +28,7 @@ namespace PMNS
         }
         #endregion
 
+        #region Method Event
         private void ThongTinGiaDinh_Load(object sender, EventArgs e)
         {
             if (_empDetails != null)
@@ -114,5 +115,6 @@ namespace PMNS
                 }
             }
         }
+        #endregion
     }
 }

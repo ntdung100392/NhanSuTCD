@@ -14,6 +14,8 @@ namespace PMNS
 {
     public partial class ThongTin_TuyenDung : Form
     {
+
+        #region Constructor Or Destructor
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IThongTinServices _thongTinServices;
         protected readonly string _loaiThongTin;
@@ -26,6 +28,7 @@ namespace PMNS
             this._loaiThongTin = loaiThongTin;
             InitializeComponent();
         }
+        #endregion
 
         #region Form's Event
         private void ThongTin_TuyenDung_Load(object sender, EventArgs e)
