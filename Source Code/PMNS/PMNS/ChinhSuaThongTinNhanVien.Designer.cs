@@ -92,11 +92,13 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
+            this.btnSuaHDLD = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnSuaHDLD);
             this.groupBox2.Controls.Add(this.btnTrinhDoHocVan);
             this.groupBox2.Controls.Add(this.btnThongGiaDinh);
             this.groupBox2.Controls.Add(this.btnExit);
@@ -708,6 +710,16 @@
             this.txtManv.Size = new System.Drawing.Size(126, 20);
             this.txtManv.TabIndex = 27;
             // 
+            // btnSuaHDLD
+            // 
+            this.btnSuaHDLD.Location = new System.Drawing.Point(424, 212);
+            this.btnSuaHDLD.Name = "btnSuaHDLD";
+            this.btnSuaHDLD.Size = new System.Drawing.Size(155, 23);
+            this.btnSuaHDLD.TabIndex = 121;
+            this.btnSuaHDLD.Text = "Sửa Hợp Đồng Lao Động";
+            this.btnSuaHDLD.UseVisualStyleBackColor = true;
+            this.btnSuaHDLD.Click += new System.EventHandler(this.btnSuaHDLD_Click);
+            // 
             // ChinhSuaThongTinNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -789,5 +801,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnTrinhDoHocVan;
         private System.Windows.Forms.Button btnThongGiaDinh;
+        private System.Windows.Forms.Button btnSuaHDLD;
     }
 }

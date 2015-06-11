@@ -122,6 +122,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(126, 20);
             this.txtSearch.TabIndex = 28;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label8
             // 
@@ -675,6 +676,7 @@
             this.rbtnNam.TabStop = true;
             this.rbtnNam.Text = "Nam";
             this.rbtnNam.UseVisualStyleBackColor = true;
+            this.rbtnNam.CheckedChanged += new System.EventHandler(this.rbtnNam_CheckedChanged);
             // 
             // label7
             // 

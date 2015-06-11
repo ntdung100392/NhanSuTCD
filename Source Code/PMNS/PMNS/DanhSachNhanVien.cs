@@ -122,19 +122,19 @@ namespace PMNS
 
         private void dataGridDanhSachNV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (UserProfile.permission == 1)
-            //{
-            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
-            ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
-                _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
-            editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
-            editEmpInfo.ShowDialog(this);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Bạn Không Có Quyền Đăng Nhập Vào Chức Năng Này!", "Permission Denied!",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            if (UserProfile.permission == 1)
+            {
+                var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+                ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
+                    _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
+                editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
+                editEmpInfo.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Đăng Nhập Vào Chức Năng Này!", "Permission Denied!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtMaNhanVien_TextChanged(object sender, EventArgs e)
@@ -199,16 +199,30 @@ namespace PMNS
 
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
-            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
-            ThongTinCaNhan formDetails = new ThongTinCaNhan(_loaiHopDongServices, _emp);
-            formDetails.ShowDialog(this);
+            try
+            { 
+                var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+                ThongTinCaNhan formDetails = new ThongTinCaNhan(_loaiHopDongServices, _emp);
+                formDetails.ShowDialog(this);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
 
         private void dataGridDanhSachNV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
-            btnViewDetails.Enabled = true;
-            btnEditDetails.Enabled = true;
+            try
+            {
+                var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+                btnViewDetails.Enabled = true;
+                btnEditDetails.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
 
         private void btnEditDetails_Click(object sender, EventArgs e)

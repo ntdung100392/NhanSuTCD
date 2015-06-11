@@ -26,7 +26,6 @@ namespace PMNS
         protected readonly ICapBacServices _capBacServices;
         protected readonly IBienCheServices _bienCheServices;
         private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
-
         public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices)
@@ -104,18 +103,27 @@ namespace PMNS
             InitPermission();
         }
 
+
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             try
             {
-                int sex = 0;
+                int sex ;
                 if (rbtnNam.Checked == true)
                 {
                     sex = 0;
                 }
+                else
+                {
+                    sex = 1;
+                }
                 if (rBtnNu.Checked == true)
                 {
                     sex = 1;
+                }
+                else
+                {
+                    sex = 0;
                 }
                 ThongTinNhanVIen emp = new ThongTinNhanVIen
                 {
@@ -268,7 +276,7 @@ namespace PMNS
             cbCapBac.SelectedValue = empUpdate.idCapBac;
             cbBienChe.SelectedValue = empUpdate.idBienChe;
             cbMaCV.SelectedValue = empUpdate.idChucVu;
-            if (empUpdate.gioiTinh == 0)
+            if (empUpdate.gioiTinh == 1)
             {
                 rBtnNu.Checked = true;
             }
@@ -409,5 +417,16 @@ namespace PMNS
         }
 
         #endregion
+
+        private void rbtnNam_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+      
     }
 }

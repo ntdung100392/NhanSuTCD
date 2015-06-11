@@ -88,14 +88,22 @@ namespace PMNS
         {
             try
             {
-                int sex = 0;
+                int sex;
                 if (rbtnNam.Checked == true)
                 {
                     sex = 0;
                 }
+                else
+                {
+                    sex = 1;
+                }
                 if (rBtnNu.Checked == true)
                 {
                     sex = 1;
+                }
+                else
+                {
+                    sex = 0;
                 }
                 _empDetails.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
                 _empDetails.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
@@ -164,7 +172,7 @@ namespace PMNS
             cbCapBac.SelectedValue = _empDetails.idCapBac;
             cbBienChe.SelectedValue = _empDetails.idBienChe;
             cbMaCV.SelectedValue = _empDetails.idChucVu;
-            if (_empDetails.gioiTinh == 0)
+            if (_empDetails.gioiTinh == 1)
             {
                 rBtnNu.Checked = true;
             }
@@ -324,6 +332,10 @@ namespace PMNS
         {
             ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(_nhanVienServices, _giaDinhServices, _empDetails);
             giaDinhForm.ShowDialog(this);
+        }
+
+        private void btnSuaHDLD_Click(object sender, EventArgs e)
+        {
         }
     }
 }

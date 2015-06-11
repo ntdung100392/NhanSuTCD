@@ -167,5 +167,11 @@ namespace PMNS
             ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(_nhanVienServices, _kyLuatServices);
             kyLuatForm.ShowDialog(this);
         }
+
+        private void trìnhĐộToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
+            trinhdoForm.ShowDialog(this);
+        }
     }
 }

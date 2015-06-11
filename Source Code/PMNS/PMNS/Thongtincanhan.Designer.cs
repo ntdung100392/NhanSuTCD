@@ -111,6 +111,7 @@
             this.label40 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.txtConCai = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label44 = new System.Windows.Forms.Label();
             this.lblNgheNghiepVoChong = new System.Windows.Forms.Label();
@@ -206,7 +207,6 @@
             this.label74 = new System.Windows.Forms.Label();
             this.lblSoQDKyLuat = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtConCai = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -244,6 +244,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.Silver;
             this.groupBox4.Controls.Add(this.lblNoiCongTac);
             this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.groupBox5);
@@ -275,7 +276,7 @@
             // lblNoiCongTac
             // 
             this.lblNoiCongTac.AutoSize = true;
-            this.lblNoiCongTac.Location = new System.Drawing.Point(389, 102);
+            this.lblNoiCongTac.Location = new System.Drawing.Point(367, 103);
             this.lblNoiCongTac.Name = "lblNoiCongTac";
             this.lblNoiCongTac.Size = new System.Drawing.Size(77, 13);
             this.lblNoiCongTac.TabIndex = 24;
@@ -286,7 +287,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label29.Location = new System.Drawing.Point(290, 102);
+            this.label29.Location = new System.Drawing.Point(268, 103);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(85, 13);
             this.label29.TabIndex = 23;
@@ -296,9 +297,9 @@
             // 
             this.groupBox5.Controls.Add(this.label23);
             this.groupBox5.Controls.Add(this.lblPhongBan);
-            this.groupBox5.Location = new System.Drawing.Point(529, 19);
+            this.groupBox5.Location = new System.Drawing.Point(452, 19);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(198, 125);
+            this.groupBox5.Size = new System.Drawing.Size(275, 125);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Phòng Ban";
@@ -348,9 +349,9 @@
             this.lblMQHNguoiBaoLanh.AutoSize = true;
             this.lblMQHNguoiBaoLanh.Location = new System.Drawing.Point(360, 126);
             this.lblMQHNguoiBaoLanh.Name = "lblMQHNguoiBaoLanh";
-            this.lblMQHNguoiBaoLanh.Size = new System.Drawing.Size(113, 13);
+            this.lblMQHNguoiBaoLanh.Size = new System.Drawing.Size(42, 13);
             this.lblMQHNguoiBaoLanh.TabIndex = 20;
-            this.lblMQHNguoiBaoLanh.Text = "lblMQHNguoiBaoLanh";
+            this.lblMQHNguoiBaoLanh.Text = "lblMQH";
             // 
             // label21
             // 
@@ -386,7 +387,7 @@
             // lblNamNhapNgu
             // 
             this.lblNamNhapNgu.AutoSize = true;
-            this.lblNamNhapNgu.Location = new System.Drawing.Point(391, 78);
+            this.lblNamNhapNgu.Location = new System.Drawing.Point(369, 79);
             this.lblNamNhapNgu.Name = "lblNamNhapNgu";
             this.lblNamNhapNgu.Size = new System.Drawing.Size(85, 13);
             this.lblNamNhapNgu.TabIndex = 16;
@@ -404,7 +405,7 @@
             // lblNamVaoST
             // 
             this.lblNamVaoST.AutoSize = true;
-            this.lblNamVaoST.Location = new System.Drawing.Point(391, 54);
+            this.lblNamVaoST.Location = new System.Drawing.Point(369, 55);
             this.lblNamVaoST.Name = "lblNamVaoST";
             this.lblNamVaoST.Size = new System.Drawing.Size(72, 13);
             this.lblNamVaoST.TabIndex = 15;
@@ -422,7 +423,7 @@
             // lblNamVaoCang
             // 
             this.lblNamVaoCang.AutoSize = true;
-            this.lblNamVaoCang.Location = new System.Drawing.Point(391, 31);
+            this.lblNamVaoCang.Location = new System.Drawing.Point(369, 32);
             this.lblNamVaoCang.Name = "lblNamVaoCang";
             this.lblNamVaoCang.Size = new System.Drawing.Size(83, 13);
             this.lblNamVaoCang.TabIndex = 14;
@@ -442,7 +443,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label30.Location = new System.Drawing.Point(290, 54);
+            this.label30.Location = new System.Drawing.Point(268, 55);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(78, 13);
             this.label30.TabIndex = 10;
@@ -453,7 +454,7 @@
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label24.Location = new System.Drawing.Point(290, 31);
+            this.label24.Location = new System.Drawing.Point(268, 32);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(91, 13);
             this.label24.TabIndex = 8;
@@ -475,7 +476,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label13.Location = new System.Drawing.Point(290, 78);
+            this.label13.Location = new System.Drawing.Point(268, 79);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(93, 13);
             this.label13.TabIndex = 9;
@@ -505,6 +506,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Silver;
             this.groupBox2.Controls.Add(this.lblHonNhan);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.lblUser);
@@ -561,7 +563,7 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(636, 107);
+            this.lblUser.Location = new System.Drawing.Point(684, 107);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(39, 13);
             this.lblUser.TabIndex = 23;
@@ -572,7 +574,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label28.Location = new System.Drawing.Point(535, 107);
+            this.label28.Location = new System.Drawing.Point(588, 107);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 13);
             this.label28.TabIndex = 22;
@@ -581,7 +583,7 @@
             // lblThanhPho
             // 
             this.lblThanhPho.AutoSize = true;
-            this.lblThanhPho.Location = new System.Drawing.Point(435, 126);
+            this.lblThanhPho.Location = new System.Drawing.Point(517, 126);
             this.lblThanhPho.Name = "lblThanhPho";
             this.lblThanhPho.Size = new System.Drawing.Size(67, 13);
             this.lblThanhPho.TabIndex = 21;
@@ -592,7 +594,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label27.Location = new System.Drawing.Point(360, 126);
+            this.label27.Location = new System.Drawing.Point(449, 126);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(69, 13);
             this.label27.TabIndex = 20;
@@ -601,11 +603,11 @@
             // lblPermission
             // 
             this.lblPermission.AutoSize = true;
-            this.lblPermission.Location = new System.Drawing.Point(610, 126);
+            this.lblPermission.Location = new System.Drawing.Point(692, 126);
             this.lblPermission.Name = "lblPermission";
-            this.lblPermission.Size = new System.Drawing.Size(67, 13);
+            this.lblPermission.Size = new System.Drawing.Size(27, 13);
             this.lblPermission.TabIndex = 19;
-            this.lblPermission.Text = "lblPermission";
+            this.lblPermission.Text = "user";
             // 
             // groupBox3
             // 
@@ -687,7 +689,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label16.Location = new System.Drawing.Point(535, 126);
+            this.label16.Location = new System.Drawing.Point(610, 126);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(76, 13);
             this.label16.TabIndex = 18;
@@ -736,7 +738,7 @@
             // lblNoiOHienNay
             // 
             this.lblNoiOHienNay.AutoSize = true;
-            this.lblNoiOHienNay.Location = new System.Drawing.Point(111, 126);
+            this.lblNoiOHienNay.Location = new System.Drawing.Point(100, 126);
             this.lblNoiOHienNay.Name = "lblNoiOHienNay";
             this.lblNoiOHienNay.Size = new System.Drawing.Size(82, 13);
             this.lblNoiOHienNay.TabIndex = 13;
@@ -879,7 +881,7 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox6.BackColor = System.Drawing.Color.Pink;
             this.groupBox6.Controls.Add(this.label43);
             this.groupBox6.Controls.Add(this.lblBangCapPhu);
             this.groupBox6.Controls.Add(this.label41);
@@ -1043,7 +1045,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.groupBox7.Controls.Add(this.groupBox9);
             this.groupBox7.Controls.Add(this.groupBox11);
             this.groupBox7.Controls.Add(this.groupBox10);
@@ -1139,6 +1141,15 @@
             this.groupBox11.TabIndex = 25;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Con Cái";
+            // 
+            // txtConCai
+            // 
+            this.txtConCai.Location = new System.Drawing.Point(7, 20);
+            this.txtConCai.Multiline = true;
+            this.txtConCai.Name = "txtConCai";
+            this.txtConCai.ReadOnly = true;
+            this.txtConCai.Size = new System.Drawing.Size(187, 191);
+            this.txtConCai.TabIndex = 0;
             // 
             // groupBox10
             // 
@@ -1292,7 +1303,7 @@
             // 
             // groupBox12
             // 
-            this.groupBox12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox12.BackColor = System.Drawing.Color.Khaki;
             this.groupBox12.Controls.Add(this.label35);
             this.groupBox12.Controls.Add(this.lblGhiChu);
             this.groupBox12.Controls.Add(this.label38);
@@ -1456,7 +1467,7 @@
             // 
             // groupBox13
             // 
-            this.groupBox13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox13.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.groupBox13.Controls.Add(this.groupBox19);
             this.groupBox13.Controls.Add(this.groupBox21);
             this.groupBox13.Controls.Add(this.groupBox20);
@@ -1532,7 +1543,7 @@
             // lblViTriCuBN
             // 
             this.lblViTriCuBN.AutoSize = true;
-            this.lblViTriCuBN.Location = new System.Drawing.Point(96, 46);
+            this.lblViTriCuBN.Location = new System.Drawing.Point(68, 46);
             this.lblViTriCuBN.Name = "lblViTriCuBN";
             this.lblViTriCuBN.Size = new System.Drawing.Size(66, 13);
             this.lblViTriCuBN.TabIndex = 29;
@@ -1550,7 +1561,7 @@
             // lblViTriMoiBN
             // 
             this.lblViTriMoiBN.AutoSize = true;
-            this.lblViTriMoiBN.Location = new System.Drawing.Point(96, 70);
+            this.lblViTriMoiBN.Location = new System.Drawing.Point(68, 70);
             this.lblViTriMoiBN.Name = "lblViTriMoiBN";
             this.lblViTriMoiBN.Size = new System.Drawing.Size(70, 13);
             this.lblViTriMoiBN.TabIndex = 31;
@@ -1560,7 +1571,7 @@
             // 
             this.lblNamBN.AutoSize = true;
             this.lblNamBN.ForeColor = System.Drawing.Color.Maroon;
-            this.lblNamBN.Location = new System.Drawing.Point(96, 23);
+            this.lblNamBN.Location = new System.Drawing.Point(70, 23);
             this.lblNamBN.Name = "lblNamBN";
             this.lblNamBN.Size = new System.Drawing.Size(54, 13);
             this.lblNamBN.TabIndex = 27;
@@ -1727,7 +1738,7 @@
             // 
             this.lblNamDD.AutoSize = true;
             this.lblNamDD.ForeColor = System.Drawing.Color.Maroon;
-            this.lblNamDD.Location = new System.Drawing.Point(96, 23);
+            this.lblNamDD.Location = new System.Drawing.Point(68, 23);
             this.lblNamDD.Name = "lblNamDD";
             this.lblNamDD.Size = new System.Drawing.Size(55, 13);
             this.lblNamDD.TabIndex = 27;
@@ -1758,7 +1769,7 @@
             // lblViTriMoiDD
             // 
             this.lblViTriMoiDD.AutoSize = true;
-            this.lblViTriMoiDD.Location = new System.Drawing.Point(96, 70);
+            this.lblViTriMoiDD.Location = new System.Drawing.Point(68, 70);
             this.lblViTriMoiDD.Name = "lblViTriMoiDD";
             this.lblViTriMoiDD.Size = new System.Drawing.Size(71, 13);
             this.lblViTriMoiDD.TabIndex = 31;
@@ -1767,7 +1778,7 @@
             // lblViTriCuDD
             // 
             this.lblViTriCuDD.AutoSize = true;
-            this.lblViTriCuDD.Location = new System.Drawing.Point(96, 46);
+            this.lblViTriCuDD.Location = new System.Drawing.Point(68, 47);
             this.lblViTriCuDD.Name = "lblViTriCuDD";
             this.lblViTriCuDD.Size = new System.Drawing.Size(67, 13);
             this.lblViTriCuDD.TabIndex = 29;
@@ -1844,7 +1855,7 @@
             // lblViTriMoiTD
             // 
             this.lblViTriMoiTD.AutoSize = true;
-            this.lblViTriMoiTD.Location = new System.Drawing.Point(96, 52);
+            this.lblViTriMoiTD.Location = new System.Drawing.Point(70, 52);
             this.lblViTriMoiTD.Name = "lblViTriMoiTD";
             this.lblViTriMoiTD.Size = new System.Drawing.Size(70, 13);
             this.lblViTriMoiTD.TabIndex = 31;
@@ -1865,7 +1876,7 @@
             // 
             this.lblNamTD.AutoSize = true;
             this.lblNamTD.ForeColor = System.Drawing.Color.Maroon;
-            this.lblNamTD.Location = new System.Drawing.Point(96, 29);
+            this.lblNamTD.Location = new System.Drawing.Point(70, 29);
             this.lblNamTD.Name = "lblNamTD";
             this.lblNamTD.Size = new System.Drawing.Size(54, 13);
             this.lblNamTD.TabIndex = 27;
@@ -1884,7 +1895,7 @@
             // 
             // groupBox14
             // 
-            this.groupBox14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.groupBox14.Controls.Add(this.label89);
             this.groupBox14.Controls.Add(this.label71);
             this.groupBox14.Controls.Add(this.label73);
@@ -2046,7 +2057,7 @@
             // 
             // groupBox15
             // 
-            this.groupBox15.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.groupBox15.Controls.Add(this.label95);
             this.groupBox15.Controls.Add(this.lblNguoiKyQD);
             this.groupBox15.Controls.Add(this.label81);
@@ -2174,15 +2185,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(318, 136);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // txtConCai
-            // 
-            this.txtConCai.Location = new System.Drawing.Point(7, 20);
-            this.txtConCai.Multiline = true;
-            this.txtConCai.Name = "txtConCai";
-            this.txtConCai.ReadOnly = true;
-            this.txtConCai.Size = new System.Drawing.Size(187, 191);
-            this.txtConCai.TabIndex = 0;
             // 
             // ThongTinCaNhan
             // 
