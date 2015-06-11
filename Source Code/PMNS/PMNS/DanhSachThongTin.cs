@@ -61,9 +61,9 @@ namespace PMNS
 
         private void datetimeNgayKy_ValueChanged(object sender, EventArgs e)
         {
-            datetimeNgayKy.Format = DateTimePickerFormat.Custom;
-            datetimeNgayKy.CustomFormat = "dd/MM/yyyy";
-            txtNamThucHien.Text = datetimeNgayKy.Text;
+            //datetimeNgayKy.Format = DateTimePickerFormat.Custom;
+            //datetimeNgayKy.CustomFormat = "dd/MM/yyyy";
+            //txtNamThucHien.Text = datetimeNgayKy.Text;
         }
 
         private void txtTenNV_TextChanged(object sender, EventArgs e)

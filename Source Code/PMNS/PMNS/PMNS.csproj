@@ -71,6 +71,12 @@
     <Compile Include="ChinhSuaThongTinNhanVien.Designer.cs">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="KiemTraHDLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KiemTraHDLD.Designer.cs">
+      <DependentUpon>KiemTraHDLD.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </Compile>
     <EmbeddedResource Include="ChinhSuaThongTinNhanVien.resx">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KiemTraHDLD.resx">
+      <DependentUpon>KiemTraHDLD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyHopDong.resx">
       <DependentUpon>QuanLyHopDong.cs</DependentUpon>
