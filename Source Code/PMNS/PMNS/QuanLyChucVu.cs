@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -26,6 +27,7 @@ namespace PMNS
         #endregion
 
         #region Form's Event
+
         private void dataGridChucVu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             updateChucVu = _chucVuServices.GetChucVuById(Convert.ToInt32(dataGridChucVu.CurrentRow.Cells[0].Value.ToString()));
@@ -49,31 +51,45 @@ namespace PMNS
             }
             else
             {
-                if (_chucVuServices.FindChucVu(txtChucVu.Text.Trim(), txtMaChucVu.Text.Trim()) == null)
+                try
                 {
-                    ChucVu chucVu = new ChucVu
+                    if (_chucVuServices.FindChucVu(txtChucVu.Text.Trim(), txtMaChucVu.Text.Trim()) == null)
                     {
-                        MaChucVu = txtChucVu.Text.Trim(),
-                        ChucVu1 = txtMaChucVu.Text.Trim()
-                    };
-                    if (_chucVuServices.AddChucVu(chucVu))
-                    {
-                        MessageBox.Show("Đã Thêm Chức Vụ Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                        InitGridView();
-                        dataGridChucVu.Refresh();
-                        ClearAllText(this);
+                        ChucVu chucVu = new ChucVu
+                        {
+                            MaChucVu = txtChucVu.Text.Trim(),
+                            ChucVu1 = txtMaChucVu.Text.Trim()
+                        };
+                        if (_chucVuServices.AddChucVu(chucVu))
+                        {
+                            MessageBox.Show("Đã Thêm Chức Vụ Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                            InitGridView();
+                            dataGridChucVu.Refresh();
+                            ClearAllText(this);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!", 
+                        MessageBox.Show("Lỗi! Thông Tin Chức Vụ Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi! Thông Tin Chức Vụ Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    if (UserProfile.permission == 1)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }                
             }
         }
 
@@ -85,31 +101,46 @@ namespace PMNS
             }
             else
             {
-                if (_chucVuServices.FindChucVu(txtChucVu.Text.Trim(), txtMaChucVu.Text.Trim()) == null)
+                try
                 {
-                    updateChucVu.ChucVu1 = txtChucVu.Text.Trim();
-                    updateChucVu.MaChucVu = txtMaChucVu.Text.Trim();
-                    if (_chucVuServices.UpdateChucVu(updateChucVu))
+                    if (_chucVuServices.FindChucVu(txtChucVu.Text.Trim(), txtMaChucVu.Text.Trim()) == null)
                     {
-                        MessageBox.Show("Đã Sửa Chức Vụ Thành Công!", "Thông Báo", MessageBoxButtons.OK);
-                        InitGridView();
-                        dataGridChucVu.Refresh();
-                        ClearAllText(this);
-                        btnSuaChucVu.Enabled = false;
-                        btnThemChucVu.Enabled = true;
-                        updateChucVu = null;
+                        updateChucVu.ChucVu1 = txtChucVu.Text.Trim();
+                        updateChucVu.MaChucVu = txtMaChucVu.Text.Trim();
+                        if (_chucVuServices.UpdateChucVu(updateChucVu))
+                        {
+                            MessageBox.Show("Đã Sửa Chức Vụ Thành Công!", "Thông Báo", MessageBoxButtons.OK);
+                            InitGridView();
+                            dataGridChucVu.Refresh();
+                            ClearAllText(this);
+                            btnSuaChucVu.Enabled = false;
+                            btnThemChucVu.Enabled = true;
+                            updateChucVu = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Lỗi! Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Error!",
+                        MessageBox.Show("Lỗi! Thông Tin Chức Vụ Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi! Thông Tin Chức Vụ Bị Trùng, Vui Lòng Kiểm Tra Lại!", "Error!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (UserProfile.permission == 1)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+                
             }
         }
 

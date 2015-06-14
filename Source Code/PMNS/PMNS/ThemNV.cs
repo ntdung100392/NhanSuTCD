@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
 using PMNS.Model;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -19,16 +20,16 @@ namespace PMNS
     {
 
         #region Constructor Or Destructor
+
+        protected readonly IBienCheServices _bienCheServices;
+        protected readonly ICapBacServices _capBacServices;
+        protected readonly IChucVuServices _chucVuServices;
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IBienCheServices _bienCheServices;
         private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
-        public ThemNV(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
-            IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices)
+        public ThemNV(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
+            INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
@@ -38,9 +39,10 @@ namespace PMNS
             this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
+
         #endregion
 
-        #region DateTimePicker
+        #region Method DateTimePicker
 
         private void datetimeNgaySinh_ValueChanged(object sender, EventArgs e)
         {
@@ -75,8 +77,15 @@ namespace PMNS
         }
         #endregion
 
-        #region Form's Event
+        #region Method Event
+
         private void ThemNV_Load(object sender, EventArgs e)
+        {
+            EventLoading();
+            MainInit();
+        }
+
+        private void EventLoading()
         {
             txtUserName.Enabled = false;
             txtMoiQuanHeNBL.Enabled = false;
@@ -91,39 +100,45 @@ namespace PMNS
             cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
             cbThanhPho.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTinhTrangHonNhan.DropDownStyle = ComboBoxStyle.DropDownList;
-            InitPhongBan();
-            InitCbThanhPho();
-            InitCbNoiCapCMND();
-            InitCbNguyenQuan();
-            InitChucVu();
-            InitHonNhan();
-            InitEmployees();
-            InitCapBac();
-            InitBienChe();
-            InitPermission();
         }
-
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             try
             {
-                int sex ;
+                int sex = 0;
                 if (rbtnNam.Checked == true)
                 {
                     sex = 0;
-                }
-                else
-                {
-                    sex = 1;
                 }
                 if (rBtnNu.Checked == true)
                 {
                     sex = 1;
                 }
-                else
+                string nguoiBaoLanh = txtNguoiBaoLanh.Text.Trim();
+                if (String.IsNullOrEmpty(nguoiBaoLanh))
                 {
-                    sex = 0;
+                    nguoiBaoLanh = "Chưa Cập Nhật";
+                }
+                string moiQuanHe = txtMoiQuanHeNBL.Text.Trim();
+                if (String.IsNullOrEmpty(moiQuanHe))
+                {
+                    moiQuanHe = "Chưa Cập Nhật";
+                }
+                string hoKhau = txtHoKhau.Text.Trim();
+                if (String.IsNullOrEmpty(hoKhau))
+                {
+                    hoKhau = "Chưa Cập Nhật";
+                }
+                string soDT = txtSdt.Text.Trim();
+                if (String.IsNullOrEmpty(soDT))
+                {
+                    soDT = "Chưa Cập Nhật";
+                }
+                string diaChi = txtdiachi.Text.Trim();
+                if (String.IsNullOrEmpty(diaChi))
+                {
+                    diaChi = "Chưa Cập Nhật";
                 }
                 ThongTinNhanVIen emp = new ThongTinNhanVIen
                 {
@@ -141,15 +156,15 @@ namespace PMNS
                     gioiTinh = Convert.ToByte(sex),
                     namSinh = datetimeNgaySinh.Value,
                     nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP,
-                    noiOHienNay = txtdiachi.Text,
-                    hoKhau = txtHoKhau.Text,
+                    noiOHienNay = diaChi,
+                    hoKhau = hoKhau,
                     CMND = txtCMND.Text,
                     ngayCapCMND = datetimeCMND.Value,
                     noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP,
                     soDienThoaiNha = "",
                     soDienThoaiDiDong = txtSdt.Text.Trim(),
-                    nguoiBaoLanh = txtNguoiBaoLanh.Text,
-                    moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text,
+                    nguoiBaoLanh = nguoiBaoLanh,
+                    moiQuanHeBaoLanh = moiQuanHe,
                     noiCongTac = txtNoiCongTac.Text.Trim(),
                     ngayVaoCang = datetimeNgayVaoCang.Value,
                     namVaoSongThan = datetimeNamVaoST.Value,
@@ -171,7 +186,14 @@ namespace PMNS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -220,16 +242,19 @@ namespace PMNS
                     ClearAllText(this);
                     InitEmployees();
                     dataGridNhanVien.Refresh();
+                    btnThem.Enabled = true;
+                    btnSua.Enabled = false;
+                    btnClear.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -301,13 +326,31 @@ namespace PMNS
             cbPhanQuyen.SelectedValue = empUpdate.permission;
             txtNguoiBaoLanh.Text = empUpdate.nguoiBaoLanh;
             txtMoiQuanHeNBL.Text = empUpdate.moiQuanHeBaoLanh;
-            btnSua.Enabled = true;
             cbPhongBan.SelectedValue = empUpdate.idPhongDoiToLoai;
+            btnSua.Enabled = true;
+            btnThem.Enabled = false;
+            btnClear.Enabled = false;
         }
+
         #endregion
 
-        #region Init
-        public void InitPermission()
+        #region Method Init
+
+        private void MainInit()
+        {
+            InitPhongBan();
+            InitCbThanhPho();
+            InitCbNoiCapCMND();
+            InitCbNguyenQuan();
+            InitChucVu();
+            InitHonNhan();
+            InitEmployees();
+            InitCapBac();
+            InitBienChe();
+            InitPermission();
+        }
+
+        private void InitPermission()
         {
             List<ComboBoxItem> item = new List<ComboBoxItem> 
             {
@@ -319,7 +362,8 @@ namespace PMNS
             cbPhanQuyen.DisplayMember = "Text";
             cbPhanQuyen.ValueMember = "Value";
         }
-        public void InitEmployees()
+
+        private void InitEmployees()
         {
             var listNhanVien = _nhanVienServices.GetAllEmployees();
             dataGridNhanVien.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
@@ -343,7 +387,7 @@ namespace PMNS
             dataGridNhanVien.CurrentCell = null;
         }
 
-        public void InitPhongBan()
+        private void InitPhongBan()
         {
             cbPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
             cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
@@ -351,7 +395,7 @@ namespace PMNS
             cbPhongBan.SelectedIndex = -1;
         }
 
-        public void InitChucVu()
+        private void InitChucVu()
         {
             cbMaCV.DataSource = _chucVuServices.GetAllChucVu();
             cbMaCV.DisplayMember = "ChucVu1";
@@ -359,7 +403,7 @@ namespace PMNS
             cbMaCV.SelectedIndex = -1;
         }
 
-        public void InitCbNoiCapCMND()
+        private void InitCbNoiCapCMND()
         {
             cbNoiCapCMND.DataSource = _thanhPhoServices.GetAllThanhPho();
             cbNoiCapCMND.DisplayMember = "tenTP";
@@ -367,7 +411,7 @@ namespace PMNS
             cbNoiCapCMND.SelectedIndex = -1;
         }
 
-        public void InitCbNguyenQuan()
+        private void InitCbNguyenQuan()
         {
             cbNguyenQuan.DataSource = _thanhPhoServices.GetAllThanhPho();
             cbNguyenQuan.DisplayMember = "tenTP";
@@ -375,7 +419,7 @@ namespace PMNS
             cbNguyenQuan.SelectedIndex = -1;
         }
 
-        public void InitCbThanhPho()
+        private void InitCbThanhPho()
         {
             cbThanhPho.DataSource = _thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DisplayMember = "tenTP";
@@ -383,7 +427,7 @@ namespace PMNS
             cbThanhPho.SelectedIndex = -1;
         }
 
-        public void InitHonNhan()
+        private void InitHonNhan()
         {
 
             List<ComboBoxItem> item = new List<ComboBoxItem> 
@@ -402,14 +446,14 @@ namespace PMNS
             cbTinhTrangHonNhan.SelectedIndex = 0;
         }
 
-        public void InitCapBac()
+        private void InitCapBac()
         {
             cbCapBac.DataSource = _capBacServices.GetAllCapBac();
             cbCapBac.DisplayMember = "capBac1";
             cbCapBac.ValueMember = "idCapBac";
         }
 
-        public void InitBienChe()
+        private void InitBienChe()
         {
             cbBienChe.DataSource = _bienCheServices.GetAllBienChe();
             cbBienChe.ValueMember = "idBienChe";
@@ -417,16 +461,5 @@ namespace PMNS
         }
 
         #endregion
-
-        private void rbtnNam_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-      
     }
 }

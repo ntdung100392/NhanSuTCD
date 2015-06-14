@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -96,24 +95,9 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -122,7 +106,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(126, 20);
             this.txtSearch.TabIndex = 28;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label8
             // 
@@ -676,7 +659,6 @@
             this.rbtnNam.TabStop = true;
             this.rbtnNam.Text = "Nam";
             this.rbtnNam.UseVisualStyleBackColor = true;
-            this.rbtnNam.CheckedChanged += new System.EventHandler(this.rbtnNam_CheckedChanged);
             // 
             // label7
             // 
@@ -763,34 +745,6 @@
             this.txtManv.TabIndex = 27;
             this.txtManv.TextChanged += new System.EventHandler(this.txtManv_TextChanged);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // errorProvider2
-            // 
-            this.errorProvider2.ContainerControl = this;
-            // 
-            // errorProvider3
-            // 
-            this.errorProvider3.ContainerControl = this;
-            // 
-            // errorProvider5
-            // 
-            this.errorProvider5.ContainerControl = this;
-            // 
-            // errorProvider6
-            // 
-            this.errorProvider6.ContainerControl = this;
-            // 
-            // errorProvider4
-            // 
-            this.errorProvider4.ContainerControl = this;
-            // 
-            // errorProvider7
-            // 
-            this.errorProvider7.ContainerControl = this;
-            // 
             // ThemNV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -806,13 +760,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -875,15 +822,7 @@
         private System.Windows.Forms.ComboBox cbMaCV;
         private System.Windows.Forms.DateTimePicker datetimeNgaySinh;
         private System.Windows.Forms.MaskedTextBox txtNgaySinh;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ErrorProvider errorProvider2;
-        private System.Windows.Forms.ErrorProvider errorProvider3;
-        private System.Windows.Forms.ErrorProvider errorProvider5;
-        private System.Windows.Forms.ErrorProvider errorProvider6;
-        private System.Windows.Forms.ErrorProvider errorProvider4;
-        private System.Windows.Forms.ErrorProvider errorProvider7;
         private System.Windows.Forms.ComboBox cbTinhTrangHonNhan;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lbUserName;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label30;

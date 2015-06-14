@@ -19,6 +19,7 @@ namespace PMNS
     {
 
         #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
@@ -45,6 +46,7 @@ namespace PMNS
             this._giaDinhServices = giaDinhServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Init Data
@@ -104,6 +106,7 @@ namespace PMNS
         #endregion
 
         #region Form's Event
+
         private void DanhSachNhanVien_Load(object sender, EventArgs e)
         {
             this._fullEmpList = _nhanVienServices.GetAllEmployees();
@@ -200,12 +203,12 @@ namespace PMNS
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
                 ThongTinCaNhan formDetails = new ThongTinCaNhan(_loaiHopDongServices, _emp);
                 formDetails.ShowDialog(this);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
@@ -227,12 +230,21 @@ namespace PMNS
 
         private void btnEditDetails_Click(object sender, EventArgs e)
         {
-            var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
-            ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
-                _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
-            editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
-            editEmpInfo.ShowDialog(this);
+            if (UserProfile.permission == 1)
+            {
+                var _emp = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
+                ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices,
+                    _chucVuServices, _capBacServices, _bienCheServices, _trinhDoServices, _giaDinhServices, _emp);
+                editEmpInfo.OnClose += new OnClosing(InitRefreshGridView);
+                editEmpInfo.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Đăng Nhập Vào Chức Năng Này!", "Permission Denied!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         #endregion
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Services.Abstract;
 using PMNS.Entities.Models;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -16,6 +17,7 @@ namespace PMNS
     {
 
         #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IKhenThuongServices _khenThuongServices;
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
@@ -26,6 +28,7 @@ namespace PMNS
             this._khenThuongServices = khenThuongServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
@@ -73,7 +76,14 @@ namespace PMNS
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString(), "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (UserProfile.permission == 1)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
@@ -112,7 +122,14 @@ namespace PMNS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

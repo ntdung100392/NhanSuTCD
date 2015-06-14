@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -16,6 +17,7 @@ namespace PMNS
     {
 
         #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IHopDongServices _hopDongServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
@@ -29,9 +31,11 @@ namespace PMNS
             this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
+
         private void HopDongLaoDong_Load(object sender, EventArgs e)
         {
             cbLoaiHopDong.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -82,7 +86,14 @@ namespace PMNS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }  
             }
         }
 
@@ -129,7 +140,14 @@ namespace PMNS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }  
             }
         }
 
@@ -189,6 +207,7 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
         #endregion
 
         #region DateTime Picker

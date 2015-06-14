@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Services.Abstract;
 using PMNS.Entities.Models;
+using PMNS.Services.Models;
 
 namespace PMNS
 {
@@ -26,6 +27,7 @@ namespace PMNS
         #endregion
 
         #region Form's Event
+
         private void QuanLyBienChe_Load(object sender, EventArgs e)
         {
             btnSuaBienChe.Enabled = false;
@@ -71,7 +73,14 @@ namespace PMNS
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }                        
         }
 
@@ -105,7 +114,14 @@ namespace PMNS
             }
             catch (Exception ex) 
             {
-                MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }                        
         }
 
