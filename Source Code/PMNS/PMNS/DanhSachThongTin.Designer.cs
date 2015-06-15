@@ -31,6 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridThongTin = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboNam = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnInBieu = new System.Windows.Forms.Button();
-            this.comboNam = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridThongTin)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -67,6 +67,8 @@
             this.dataGridThongTin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridThongTin.Location = new System.Drawing.Point(3, 16);
             this.dataGridThongTin.Name = "dataGridThongTin";
+            this.dataGridThongTin.ReadOnly = true;
+            this.dataGridThongTin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridThongTin.Size = new System.Drawing.Size(709, 211);
             this.dataGridThongTin.TabIndex = 0;
             // 
@@ -91,6 +93,16 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm Kiếm";
+            // 
+            // comboNam
+            // 
+            this.comboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboNam.FormattingEnabled = true;
+            this.comboNam.Location = new System.Drawing.Point(293, 25);
+            this.comboNam.Name = "comboNam";
+            this.comboNam.Size = new System.Drawing.Size(95, 21);
+            this.comboNam.TabIndex = 126;
+            this.comboNam.SelectedIndexChanged += new System.EventHandler(this.comboNam_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -212,16 +224,6 @@
             this.btnInBieu.Text = "In Biểu";
             this.btnInBieu.UseVisualStyleBackColor = true;
             this.btnInBieu.Click += new System.EventHandler(this.btnInBieu_Click);
-            // 
-            // comboNam
-            // 
-            this.comboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboNam.FormattingEnabled = true;
-            this.comboNam.Location = new System.Drawing.Point(293, 25);
-            this.comboNam.Name = "comboNam";
-            this.comboNam.Size = new System.Drawing.Size(95, 21);
-            this.comboNam.TabIndex = 126;
-            this.comboNam.SelectedIndexChanged += new System.EventHandler(this.comboNam_SelectedIndexChanged);
             // 
             // DanhSachThongTin
             // 

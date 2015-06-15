@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
+using System.IO;
+using OfficeOpenXml;
 
 namespace PMNS
 {
@@ -16,6 +18,7 @@ namespace PMNS
     {
 
         #region Constructor Or Destructor
+
         protected readonly IBienCheServices _bienCheServices;
         protected readonly ICapBacServices _capBacServices;
         protected readonly IChucVuServices _chucVuServices;
@@ -34,9 +37,18 @@ namespace PMNS
             this._thanhPhoServices = thanhPhoServices;
             InitializeComponent();
         }
+
         #endregion
 
+        #region Method Event
+
         private void REPORT_Load(object sender, EventArgs e)
+        {
+            EventLoading();
+            InitMain();
+        }
+
+        private void EventLoading()
         {
             comboGioiTinh.Enabled = false;
             comboDoTuoi.Enabled = false;
@@ -52,17 +64,8 @@ namespace PMNS
             txtNam.ReadOnly = true;
             txtNu.ReadOnly = true;
             txtQuanSoPhongBan.ReadOnly = true;
-            InitNhanVien();
-            InitReportNumberOfEmp();
-            InitPhongBan();
-            InitBienChe();
-            InitChucVu();
-            InitThanhPho();
-            InitTreeView();
-
         }
 
-        #region Method Event
         private void cboxGioiTinh_CheckedChanged(object sender, EventArgs e)
         {
             if (cboxGioiTinh.Checked == true)
@@ -182,9 +185,22 @@ namespace PMNS
                 txtNamVaoCang.Enabled = false;
             }
         }
+
         #endregion
 
-        #region Method InitData
+        #region Method Init Data
+
+        private void InitMain()
+        {
+            InitNhanVien();
+            InitReportNumberOfEmp();
+            InitPhongBan();
+            InitBienChe();
+            InitChucVu();
+            InitThanhPho();
+            InitTreeView();
+        }
+
         private void InitNhanVien()
         {
             ReformatDataGridView(_nhanVienServices.GetAllEmployees());
@@ -245,22 +261,7 @@ namespace PMNS
             txtNam.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
             txtNu.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
         }
-        private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
-        {
-            TreeNode node = new TreeNode();
-            for (int i = 0; i < child.Count; i++)
-            {
-                if (child[i].PhongDoiToLoaiTo1.Count != 0)
-                {
-                    node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
-                }
-                else
-                {
-                    node.Nodes.Add(child[i].tenPhongDoiToLoai);
-                }
-            }
-            return node;
-        }
+
         private void InitTreeView()
         {
             var listPhongBanCha = _phongBanServices.GetAllPhongBan().Where(x => x.idCha == 0).ToList();
@@ -274,12 +275,12 @@ namespace PMNS
                 }
                 i++;
             }
-            //phongBanTreeView.Nodes[0].Nodes.Add("Net-informations.com");
-            //phongBanTreeView.Nodes[0].Nodes[0].Nodes.Add("CLR");
         }
+
         #endregion
 
         #region Report Event
+
         private void comboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -359,6 +360,45 @@ namespace PMNS
         #endregion
 
         #region Method
+        
+        private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
+        {
+            TreeNode node = new TreeNode();
+            for (int i = 0; i < child.Count; i++)
+            {
+                if (child[i].PhongDoiToLoaiTo1.Count != 0)
+                {
+                    node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
+                }
+                else
+                {
+                    node.Nodes.Add(child[i].tenPhongDoiToLoai);
+                }
+            }
+            return node;
+        }
+
+        private void ExportToExcel(DataTable dataList)
+        {
+            var dia = new System.Windows.Forms.SaveFileDialog();
+            dia.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dia.Filter = "Excel Worksheets (*.xlsx)|*.xlsx|xls file (*.xls)|*.xls|All files (*.*)|*.*";
+            if (dia.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                var excel = new ExcelPackage();
+                var ws = excel.Workbook.Worksheets.Add("worksheet-name");
+                // you can also use LoadFromCollection with an `IEnumerable<SomeType>`
+                ws.Cells["A1"].LoadFromDataTable(dataList, true, OfficeOpenXml.Table.TableStyles.Light1);
+                ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
+
+                using (var file = File.Create(dia.FileName))
+                {
+                    excel.SaveAs(file);
+                    MessageBox.Show("Trích Xuất Excel Thành Công!", "Thông Báo!", MessageBoxButtons.OK);
+                }
+            }
+        }
+
         private void ReformatDataGridView(List<ThongTinNhanVIen> rawList)
         {
             gridDanhsachNVReport.DataSource = rawList.OrderBy(x => x.hoTen).ToList().Select(x =>
@@ -381,6 +421,7 @@ namespace PMNS
             gridDanhsachNVReport.Columns[0].Visible = false;
             gridDanhsachNVReport.CurrentCell = null;
         }
+
         #endregion
     }
 }

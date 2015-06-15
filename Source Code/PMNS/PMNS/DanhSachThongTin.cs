@@ -12,7 +12,6 @@ using PMNS.Entities.Models;
 using PMNS.Model;
 using PMNS.Services.Models;
 using PMNS.Controller;
-using System.Reflection;
 using System.IO;
 using OfficeOpenXml;
 
@@ -252,7 +251,7 @@ namespace PMNS
             dia.Filter = "Excel Worksheets (*.xlsx)|*.xlsx|xls file (*.xls)|*.xls|All files (*.*)|*.*";
             if (dia.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                var excel = new OfficeOpenXml.ExcelPackage();
+                var excel = new ExcelPackage();
                 var ws = excel.Workbook.Worksheets.Add("worksheet-name");
                 // you can also use LoadFromCollection with an `IEnumerable<SomeType>`
                 ws.Cells["A1"].LoadFromDataTable(dataList, true, OfficeOpenXml.Table.TableStyles.Light1);
