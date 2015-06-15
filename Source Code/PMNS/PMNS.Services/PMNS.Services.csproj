@@ -80,7 +80,7 @@
     <Compile Include="Implement\ThongTinGiaDinhServices.cs" />
     <Compile Include="Implement\ThongTinServices.cs" />
     <Compile Include="Implement\ThongTinTrinhDoServices.cs" />
-    <Compile Include="Models\EncryptedSecurity.cs" />
+    <Compile Include="Method\EncryptedSecurity.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

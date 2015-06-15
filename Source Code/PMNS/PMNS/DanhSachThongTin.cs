@@ -11,6 +11,7 @@ using PMNS.Services.Abstract;
 using PMNS.Entities.Models;
 using PMNS.Model;
 using PMNS.Services.Models;
+using PMNS.Controller;
 using System.Reflection;
 using System.IO;
 using OfficeOpenXml;
@@ -43,12 +44,8 @@ namespace PMNS
 
         private void DanhSachThongTin_Load(object sender, EventArgs e)
         {
-            EventLoading();
-            InitPhongBan();
-            InitThang();
-            InitQuy();
-            InitNam();
-            InitGridView();
+            EventLoading();            
+            InitMain();
         }
 
         private void EventLoading()
@@ -64,22 +61,8 @@ namespace PMNS
 
         private void txtTenNV_TextChanged(object sender, EventArgs e)
         {
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-                    {
-                        id = x.idTDDDBNTV,
-                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                        PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                        NguoiKyQuyetDinh = x.hoTenDD,
-                        NamThucHien = x.namThucHien.Year,
-                        NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                        NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                        SoQuyetDinh = x.soQuyetDinh,
-                        ViTriCu = x.viTriCu,
-                        ViTriMoi = x.viTriMoi
-                    }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            var listData = SearchingFilterData(_listThongTin);
+            ReformatDataGridView(listData);
         }
 
         private List<TD_DD_BN_TV> SearchingFilterData(List<TD_DD_BN_TV> filterList)
@@ -108,227 +91,55 @@ namespace PMNS
             return filterList;
         }
 
-
-        private void txtNamThucHien_TextChanged(object sender, EventArgs e)
-        {
-            //dataGridThongTin.DataSource = SearchingFilterData(_thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList())
-            //        .Where(x => x.ThongTinNhanVIen.hoTen.Contains(txtTenNV.Text.Trim())).ToList().Select(x => new
-            //        {
-            //            id = x.idTDDDBNTV,
-            //            MaNhanVien = x.ThongTinNhanVIen.MaNV,
-            //            TenNhanVien = x.ThongTinNhanVIen.hoTen,
-            //PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-            //            NguoiKyQuyetDinh = x.hoTenDD,
-            //            NamThucHien = x.namThucHien.Year,
-            //            NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-            //            NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-            //            SoQuyetDinh = x.soQuyetDinh,
-            //            ViTriCu = x.viTriCu,
-            //            ViTriMoi = x.viTriMoi
-            //        }).ToList();
-            //dataGridThongTin.Columns[0].Visible = false;
-            //dataGridThongTin.CurrentCell = null;
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-                    {
-                        id = x.idTDDDBNTV,
-                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                        PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                        NguoiKyQuyetDinh = x.hoTenDD,
-                        NamThucHien = x.namThucHien.Year,
-                        NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                        NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                        SoQuyetDinh = x.soQuyetDinh,
-                        ViTriCu = x.viTriCu,
-                        ViTriMoi = x.viTriMoi
-                    }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
-        }
-
         private void comboThang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //dataGridThongTin.DataSource = SearchingFilterData(_thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList())
-            //        .Where(x => x.ThongTinNhanVIen.hoTen.Contains(txtTenNV.Text.Trim())).ToList().Select(x => new
-            //        {
-            //            id = x.idTDDDBNTV,
-            //            MaNhanVien = x.ThongTinNhanVIen.MaNV,
-            //            TenNhanVien = x.ThongTinNhanVIen.hoTen,
-            //PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-            //            NguoiKyQuyetDinh = x.hoTenDD,
-            //            NamThucHien = x.namThucHien.Year,
-            //            NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-            //            NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-            //            SoQuyetDinh = x.soQuyetDinh,
-            //            ViTriCu = x.viTriCu,
-            //            ViTriMoi = x.viTriMoi
-            //        }).ToList();
-            //dataGridThongTin.Columns[0].Visible = false;
-            //dataGridThongTin.CurrentCell = null;
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-                    {
-                        id = x.idTDDDBNTV,
-                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                        PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                        NguoiKyQuyetDinh = x.hoTenDD,
-                        NamThucHien = x.namThucHien.Year,
-                        NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                        NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                        SoQuyetDinh = x.soQuyetDinh,
-                        ViTriCu = x.viTriCu,
-                        ViTriMoi = x.viTriMoi
-                    }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            var listData = SearchingFilterData(_listThongTin);
+            ReformatDataGridView(listData);
         }
 
         private void comboBoxPhongBan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //dataGridThongTin.DataSource = SearchingFilterData(_thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList())
-            //        .Where(x => x.ThongTinNhanVIen.hoTen.Contains(txtTenNV.Text.Trim())).ToList().Select(x => new
-            //        {
-            //            id = x.idTDDDBNTV,
-            //            MaNhanVien = x.ThongTinNhanVIen.MaNV,
-            //            TenNhanVien = x.ThongTinNhanVIen.hoTen,
-            //PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-            //            NguoiKyQuyetDinh = x.hoTenDD,
-            //            NamThucHien = x.namThucHien.Year,
-            //            NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-            //            NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-            //            SoQuyetDinh = x.soQuyetDinh,
-            //            ViTriCu = x.viTriCu,
-            //            ViTriMoi = x.viTriMoi
-            //        }).ToList();
-            //dataGridThongTin.Columns[0].Visible = false;
-            //dataGridThongTin.CurrentCell = null;
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-                    {
-                        id = x.idTDDDBNTV,
-                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                        PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                        NguoiKyQuyetDinh = x.hoTenDD,
-                        NamThucHien = x.namThucHien.Year,
-                        NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                        NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                        SoQuyetDinh = x.soQuyetDinh,
-                        ViTriCu = x.viTriCu,
-                        ViTriMoi = x.viTriMoi
-                    }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            var listData = SearchingFilterData(_listThongTin);
+            ReformatDataGridView(listData);
         }
 
         private void comboQuy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //dataGridThongTin.DataSource = SearchingFilterData(_thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList())
-            //        .Where(x => x.ThongTinNhanVIen.hoTen.Contains(txtTenNV.Text.Trim())).ToList().Select(x => new
-            //        {
-            //            id = x.idTDDDBNTV,
-            //            MaNhanVien = x.ThongTinNhanVIen.MaNV,
-            //            TenNhanVien = x.ThongTinNhanVIen.hoTen,
-            //PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-            //            NguoiKyQuyetDinh = x.hoTenDD,
-            //            NamThucHien = x.namThucHien.Year,
-            //            NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-            //            NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-            //            SoQuyetDinh = x.soQuyetDinh,
-            //            ViTriCu = x.viTriCu,
-            //            ViTriMoi = x.viTriMoi
-            //        }).ToList();
-            //dataGridThongTin.Columns[0].Visible = false;
-            //dataGridThongTin.CurrentCell = null;
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-                    {
-                        id = x.idTDDDBNTV,
-                        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                        PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                        NguoiKyQuyetDinh = x.hoTenDD,
-                        NamThucHien = x.namThucHien.Year,
-                        NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                        NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                        SoQuyetDinh = x.soQuyetDinh,
-                        ViTriCu = x.viTriCu,
-                        ViTriMoi = x.viTriMoi
-                    }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            var listData = SearchingFilterData(_listThongTin);
+            ReformatDataGridView(listData);
         }
 
         private void comboNam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridThongTin.DataSource = SearchingFilterData(_listThongTin).Select(x => new
-            {
-                id = x.idTDDDBNTV,
-                MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                NguoiKyQuyetDinh = x.hoTenDD,
-                NamThucHien = x.namThucHien.Year,
-                NgayKy = Convert.ToDateTime(x.ngayKyQD).ToString("dd/MM/yyyy"),
-                NgayHieuLuc = Convert.ToDateTime(x.ngayHieuLuc).ToString("dd/MM/yyyy"),
-                SoQuyetDinh = x.soQuyetDinh,
-                ViTriCu = x.viTriCu,
-                ViTriMoi = x.viTriMoi
-            }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            var listData = SearchingFilterData(_listThongTin);
+            ReformatDataGridView(listData);
         }
 
-        public DataTable DataGridView2DataTable(DataGridView dgv, int minRow=0)
-        {
-
-            DataTable dt = new DataTable();
-
-            // Header columns
-            foreach (DataGridViewColumn column in dgv.Columns)
-            {
-                DataColumn dc = new DataColumn(column.Name.ToString());
-                dt.Columns.Add(dc);
-            }
-
-            // Data cells
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                DataGridViewRow row = dgv.Rows[i];
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < dgv.Columns.Count; j++)
-                {
-                    dr[j] = (row.Cells[j].Value == null) ? "" : row.Cells[j].Value.ToString();
-                }
-                dt.Rows.Add(dr);
-            }
-
-            // Related to the bug arround min size when using ExcelLibrary for export
-            for (int i = dgv.Rows.Count; i < minRow; i++)
-            {
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < dt.Columns.Count; j++)
-                {
-                    dr[j] = "  ";
-                }
-                dt.Rows.Add(dr);
-            }
-            return dt;
-        }
         private void btnInBieu_Click(object sender, EventArgs e)
         {
-            var dia = new System.Windows.Forms.SaveFileDialog();
-            dia.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            dia.Filter = "Excel Worksheets (*.xlsx)|*.xlsx|xls file (*.xls)|*.xls|All files (*.*)|*.*";
-            if (dia.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                DataTable data = DataGridView2DataTable(dataGridThongTin);// use the DataSource of the DataGridView here
-                var excel = new OfficeOpenXml.ExcelPackage();
-                var ws = excel.Workbook.Worksheets.Add("worksheet-name");
-                // you can also use LoadFromCollection with an `IEnumerable<SomeType>`
-                ws.Cells["A1"].LoadFromDataTable(data, true, OfficeOpenXml.Table.TableStyles.Light1);
-                ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
-
-                using (var file = File.Create(dia.FileName))
-                    excel.SaveAs(file);
+                //Convert to datatable for export to excel
+                DataTable dataList = ConverterMethod.ConvertDataGridViewToDataTable(dataGridThongTin);
+                if (dataList.Rows.Count != 0)
+                {
+                    ExportToExcel(dataList);
+                }
+                else
+                {
+                    MessageBox.Show("Không Có Thông Tin Để Trích Xuất", "Thông Báo!", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Trích Xuất Excel Không Thành Công!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -336,43 +147,19 @@ namespace PMNS
 
         #region Method Init
 
+        private void InitMain()
+        {
+            InitPhongBan();
+            InitThang();
+            InitQuy();
+            InitNam();
+            InitGridView();
+        }
+
         private void InitGridView()
         {
-            //dataGridThongTin.DataSource = _thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList()
-            //    .Select(x => new
-            //    {
-            //        id = x.idTDDDBNTV,
-            //        MaNhanVien = x.ThongTinNhanVIen.MaNV,
-            //        TenNhanVien = x.ThongTinNhanVIen.hoTen,
-            //PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-            //        NguoiKyQuyetDinh = x.hoTenDD,
-            //        NamThucHien = x.namThucHien.Year,
-            //        NgayKy = x.ngayKyQD,
-            //        NgayHieuLuc = x.ngayHieuLuc,
-            //        SoQuyetDinh = x.soQuyetDinh,
-            //        ViTriCu = x.viTriCu,
-            //        ViTriMoi = x.viTriMoi
-            //    }).ToList();
-            //dataGridThongTin.Columns[0].Visible = false;
-            //dataGridThongTin.CurrentCell = null;
-            _listThongTin = _thongTinServices.GetAllThongTin();
-            dataGridThongTin.DataSource = _listThongTin
-                .Select(x => new
-                {
-                    id = x.idTDDDBNTV,
-                    MaNhanVien = x.ThongTinNhanVIen.MaNV,
-                    TenNhanVien = x.ThongTinNhanVIen.hoTen,
-                    PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
-                    NguoiKyQuyetDinh = x.hoTenDD,
-                    NamThucHien = x.namThucHien.Year,
-                    NgayKy = x.ngayKyQD,
-                    NgayHieuLuc = x.ngayHieuLuc,
-                    SoQuyetDinh = x.soQuyetDinh,
-                    ViTriCu = x.viTriCu,
-                    ViTriMoi = x.viTriMoi
-                }).ToList();
-            dataGridThongTin.Columns[0].Visible = false;
-            dataGridThongTin.CurrentCell = null;
+            _listThongTin = _thongTinServices.GetAllThongTin().Where(x => x.noiDung.Equals(_loaiThongTin)).ToList();
+            ReformatDataGridView(_listThongTin);
         }
 
         private void InitPhongBan()
@@ -457,6 +244,49 @@ namespace PMNS
         #endregion
 
         #region Method
+
+        private void ExportToExcel(DataTable dataList)
+        {
+            var dia = new System.Windows.Forms.SaveFileDialog();
+            dia.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dia.Filter = "Excel Worksheets (*.xlsx)|*.xlsx|xls file (*.xls)|*.xls|All files (*.*)|*.*";
+            if (dia.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                var excel = new OfficeOpenXml.ExcelPackage();
+                var ws = excel.Workbook.Worksheets.Add("worksheet-name");
+                // you can also use LoadFromCollection with an `IEnumerable<SomeType>`
+                ws.Cells["A1"].LoadFromDataTable(dataList, true, OfficeOpenXml.Table.TableStyles.Light1);
+                ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
+
+                using (var file = File.Create(dia.FileName))
+                {
+                    excel.SaveAs(file);
+                    MessageBox.Show("Trích Xuất Excel Thành Công!", "Thông Báo!", MessageBoxButtons.OK);
+                }
+            }
+        }
+
+        private void ReformatDataGridView(List<TD_DD_BN_TV> listData)
+        {
+            dataGridThongTin.DataSource = listData
+                .Select(x => new
+                {
+                    id = x.idTDDDBNTV,
+                    MaNhanVien = x.ThongTinNhanVIen.MaNV,
+                    TenNhanVien = x.ThongTinNhanVIen.hoTen,
+                    PhongBan = x.ThongTinNhanVIen.PhongDoiToLoaiTo.tenPhongDoiToLoai,
+                    NguoiKyQuyetDinh = x.hoTenDD,
+                    NamThucHien = x.namThucHien.Year,
+                    NgayKy = (Convert.ToDateTime(x.ngayKyQD)).ToString("dd/MM/yyyy"),
+                    NgayHieuLuc = (Convert.ToDateTime(x.ngayHieuLuc)).ToString("dd/MM/yyyy"),
+                    SoQuyetDinh = x.soQuyetDinh,
+                    ViTriCu = x.viTriCu,
+                    ViTriMoi = x.viTriMoi
+                }).ToList();
+            dataGridThongTin.Columns[0].Visible = false;
+            dataGridThongTin.CurrentCell = null;
+        }
+
         #endregion
     }
 }

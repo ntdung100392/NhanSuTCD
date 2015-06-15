@@ -7,6 +7,7 @@ using PMNS.Services.Abstract;
 using PMNS.DAL.Abstract;
 using PMNS.Entities.Models;
 using PMNS.Services.Models;
+using PMNS.Services.Method;
 using System.Security.Cryptography;
 
 namespace PMNS.Services.Implement

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMNS.Services.Models
+namespace PMNS.Services.Method
 {
     public static class EncryptedSecurity
     {

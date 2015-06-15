@@ -74,6 +74,7 @@
     <Compile Include="ChinhSuaThongTinNhanVien.Designer.cs">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ConverterMethod.cs" />
     <Compile Include="KiemTraHDLD.cs">
       <SubType>Form</SubType>
     </Compile>
