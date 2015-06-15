@@ -31,20 +31,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridThongTin = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.comboBoxPhongBan = new System.Windows.Forms.ComboBox();
             this.comboThang = new System.Windows.Forms.ComboBox();
             this.comboQuy = new System.Windows.Forms.ComboBox();
-            this.txtNamThucHien = new System.Windows.Forms.TextBox();
             this.txtTenNV = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtLenh = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnInBieu = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.comboNam = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridThongTin)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,6 +72,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboNam);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label3);
@@ -79,7 +80,6 @@
             this.groupBox2.Controls.Add(this.comboBoxPhongBan);
             this.groupBox2.Controls.Add(this.comboThang);
             this.groupBox2.Controls.Add(this.comboQuy);
-            this.groupBox2.Controls.Add(this.txtNamThucHien);
             this.groupBox2.Controls.Add(this.txtTenNV);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtLenh);
@@ -92,8 +92,45 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm Kiếm";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(409, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 125;
+            this.label6.Text = "Phòng Ban";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(431, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 124;
+            this.label5.Text = "Tháng";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(243, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 13);
+            this.label3.TabIndex = 123;
+            this.label3.Text = "Quý";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(249, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 122;
+            this.label2.Text = "Năm";
+            // 
             // comboBoxPhongBan
             // 
+            this.comboBoxPhongBan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPhongBan.FormattingEnabled = true;
             this.comboBoxPhongBan.Location = new System.Drawing.Point(484, 65);
             this.comboBoxPhongBan.Name = "comboBoxPhongBan";
@@ -103,6 +140,7 @@
             // 
             // comboThang
             // 
+            this.comboThang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboThang.FormattingEnabled = true;
             this.comboThang.Location = new System.Drawing.Point(484, 25);
             this.comboThang.Name = "comboThang";
@@ -112,20 +150,13 @@
             // 
             // comboQuy
             // 
+            this.comboQuy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboQuy.FormattingEnabled = true;
             this.comboQuy.Location = new System.Drawing.Point(293, 66);
             this.comboQuy.Name = "comboQuy";
             this.comboQuy.Size = new System.Drawing.Size(95, 21);
             this.comboQuy.TabIndex = 117;
             this.comboQuy.SelectedIndexChanged += new System.EventHandler(this.comboQuy_SelectedIndexChanged);
-            // 
-            // txtNamThucHien
-            // 
-            this.txtNamThucHien.Location = new System.Drawing.Point(293, 27);
-            this.txtNamThucHien.Name = "txtNamThucHien";
-            this.txtNamThucHien.Size = new System.Drawing.Size(95, 20);
-            this.txtNamThucHien.TabIndex = 116;
-            this.txtNamThucHien.TextChanged += new System.EventHandler(this.txtNamThucHien_TextChanged);
             // 
             // txtTenNV
             // 
@@ -180,42 +211,17 @@
             this.btnInBieu.TabIndex = 118;
             this.btnInBieu.Text = "In Biểu";
             this.btnInBieu.UseVisualStyleBackColor = true;
+            this.btnInBieu.Click += new System.EventHandler(this.btnInBieu_Click);
             // 
-            // label2
+            // comboNam
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(249, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 122;
-            this.label2.Text = "Năm";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 123;
-            this.label3.Text = "Quý";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(431, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 124;
-            this.label5.Text = "Tháng";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(409, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 125;
-            this.label6.Text = "Phòng Ban";
+            this.comboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboNam.FormattingEnabled = true;
+            this.comboNam.Location = new System.Drawing.Point(293, 25);
+            this.comboNam.Name = "comboNam";
+            this.comboNam.Size = new System.Drawing.Size(95, 21);
+            this.comboNam.TabIndex = 126;
+            this.comboNam.SelectedIndexChanged += new System.EventHandler(this.comboNam_SelectedIndexChanged);
             // 
             // DanhSachThongTin
             // 
@@ -250,11 +256,11 @@
         private System.Windows.Forms.ComboBox comboBoxPhongBan;
         private System.Windows.Forms.ComboBox comboThang;
         private System.Windows.Forms.ComboBox comboQuy;
-        private System.Windows.Forms.TextBox txtNamThucHien;
         private System.Windows.Forms.Button btnInBieu;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboNam;
     }
 }
