@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -100,41 +98,23 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(98, 19);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(126, 20);
-            this.txtSearch.TabIndex = 28;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Tìm kiếm";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSua);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnThem);
             this.groupBox1.Controls.Add(this.dataGridNhanVien);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 223);
+            this.groupBox1.Location = new System.Drawing.Point(0, 226);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1028, 278);
+            this.groupBox1.Size = new System.Drawing.Size(1028, 298);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách nhân viên";
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(866, 19);
+            this.btnSua.Location = new System.Drawing.Point(860, 19);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 33;
@@ -144,7 +124,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(947, 19);
+            this.btnClear.Location = new System.Drawing.Point(941, 19);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 32;
@@ -154,7 +134,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(785, 19);
+            this.btnThem.Location = new System.Drawing.Point(779, 19);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 31;
@@ -166,11 +146,11 @@
             // 
             this.dataGridNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridNhanVien.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridNhanVien.Location = new System.Drawing.Point(3, 63);
+            this.dataGridNhanVien.Location = new System.Drawing.Point(3, 48);
             this.dataGridNhanVien.MultiSelect = false;
             this.dataGridNhanVien.Name = "dataGridNhanVien";
             this.dataGridNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridNhanVien.Size = new System.Drawing.Size(1022, 212);
+            this.dataGridNhanVien.Size = new System.Drawing.Size(1022, 247);
             this.dataGridNhanVien.TabIndex = 30;
             this.dataGridNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridNhanVien_CellClick);
             // 
@@ -238,7 +218,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1028, 217);
+            this.groupBox2.Size = new System.Drawing.Size(1028, 220);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
@@ -690,7 +670,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 189);
+            this.label4.Location = new System.Drawing.Point(12, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 34;
@@ -749,14 +729,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 501);
+            this.ClientSize = new System.Drawing.Size(1028, 524);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ThemNV";
             this.Text = "QUẢN LÝ NHÂN VIÊN";
             this.Load += new System.EventHandler(this.ThemNV_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridNhanVien)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -766,8 +745,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnThem;

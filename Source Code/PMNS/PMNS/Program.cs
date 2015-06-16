@@ -37,10 +37,10 @@ namespace PMNS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new REPORT(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices));
-            //Application.Run(new Dang_nhap(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
-            //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
-            Application.Run(new Menu(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
+            Application.Run(new Dang_nhap(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
                         _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
+            //Application.Run(new Menu(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
+            //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
             //Application.Run(new ThemNV(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices));
         }
     }

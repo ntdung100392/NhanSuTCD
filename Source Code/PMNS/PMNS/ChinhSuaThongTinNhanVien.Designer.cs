@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnSuaHDLD = new System.Windows.Forms.Button();
             this.btnTrinhDoHocVan = new System.Windows.Forms.Button();
             this.btnThongGiaDinh = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -92,7 +93,6 @@
             this.txtTennv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtManv = new System.Windows.Forms.TextBox();
-            this.btnSuaHDLD = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,6 +169,16 @@
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
+            // 
+            // btnSuaHDLD
+            // 
+            this.btnSuaHDLD.Location = new System.Drawing.Point(424, 212);
+            this.btnSuaHDLD.Name = "btnSuaHDLD";
+            this.btnSuaHDLD.Size = new System.Drawing.Size(155, 23);
+            this.btnSuaHDLD.TabIndex = 121;
+            this.btnSuaHDLD.Text = "Sửa Hợp Đồng Lao Động";
+            this.btnSuaHDLD.UseVisualStyleBackColor = true;
+            this.btnSuaHDLD.Click += new System.EventHandler(this.btnSuaHDLD_Click);
             // 
             // btnTrinhDoHocVan
             // 
@@ -656,7 +666,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 189);
+            this.label4.Location = new System.Drawing.Point(12, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 34;
@@ -709,16 +719,6 @@
             this.txtManv.Name = "txtManv";
             this.txtManv.Size = new System.Drawing.Size(126, 20);
             this.txtManv.TabIndex = 27;
-            // 
-            // btnSuaHDLD
-            // 
-            this.btnSuaHDLD.Location = new System.Drawing.Point(424, 212);
-            this.btnSuaHDLD.Name = "btnSuaHDLD";
-            this.btnSuaHDLD.Size = new System.Drawing.Size(155, 23);
-            this.btnSuaHDLD.TabIndex = 121;
-            this.btnSuaHDLD.Text = "Sửa Hợp Đồng Lao Động";
-            this.btnSuaHDLD.UseVisualStyleBackColor = true;
-            this.btnSuaHDLD.Click += new System.EventHandler(this.btnSuaHDLD_Click);
             // 
             // ChinhSuaThongTinNhanVien
             // 

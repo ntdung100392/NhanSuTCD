@@ -77,6 +77,9 @@ namespace PMNS
                     Menu form = new Menu(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
                         _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices);
                     form.Show();
+                    DanhSachNhanVien danhSachForm = new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
+                        _capBacServices, _bienCheServices, _loaiHopDongServices, _trinhDoServices, _thongTinGiaDinhServices);
+                    danhSachForm.ShowDialog(this);
                 }
                 else
                 {
