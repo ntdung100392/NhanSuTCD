@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class QuanLyCapBac : Form
     {
 
@@ -26,7 +30,8 @@ namespace PMNS
         }
         #endregion
 
-        #region Init Data
+        #region Method Init
+
         public void InitGridView()
         {
             dataGridCapBac.DataSource = _capBacServices.GetAllCapBac().ToList().OrderBy(x => x.maCapBac).Select(x =>
@@ -39,9 +44,10 @@ namespace PMNS
             dataGridCapBac.Columns[0].Visible = false;
             dataGridCapBac.CurrentCell = null;
         }
+
         #endregion
 
-        #region Form's Event
+        #region Method Event
 
         private void btnThemCapBac_Click(object sender, EventArgs e)
         {

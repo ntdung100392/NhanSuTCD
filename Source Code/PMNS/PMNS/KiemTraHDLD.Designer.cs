@@ -41,8 +41,8 @@
             this.txtMaNv = new System.Windows.Forms.TextBox();
             this.cBoxNamBatDau = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbCoThoiHan = new System.Windows.Forms.RadioButton();
+            this.rbKhongThoiHan = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHDLD)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +113,7 @@
             this.cbLoaiHopDong.Name = "cbLoaiHopDong";
             this.cbLoaiHopDong.Size = new System.Drawing.Size(138, 21);
             this.cbLoaiHopDong.TabIndex = 110;
+            this.cbLoaiHopDong.SelectedIndexChanged += new System.EventHandler(this.cbLoaiHopDong_SelectedIndexChanged);
             // 
             // txtTenNV
             // 
@@ -157,6 +158,7 @@
             this.cBoxNamBatDau.Name = "cBoxNamBatDau";
             this.cBoxNamBatDau.Size = new System.Drawing.Size(116, 21);
             this.cBoxNamBatDau.TabIndex = 110;
+            this.cBoxNamBatDau.SelectedIndexChanged += new System.EventHandler(this.cBoxNamBatDau_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -167,35 +169,37 @@
             this.label3.TabIndex = 109;
             this.label3.Text = "Thời hạn";
             // 
-            // radioButton1
+            // rbCoThoiHan
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(319, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 117;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Có Thời Hạn";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbCoThoiHan.AutoSize = true;
+            this.rbCoThoiHan.Location = new System.Drawing.Point(319, 19);
+            this.rbCoThoiHan.Name = "rbCoThoiHan";
+            this.rbCoThoiHan.Size = new System.Drawing.Size(85, 17);
+            this.rbCoThoiHan.TabIndex = 117;
+            this.rbCoThoiHan.TabStop = true;
+            this.rbCoThoiHan.Text = "Có Thời Hạn";
+            this.rbCoThoiHan.UseVisualStyleBackColor = true;
+            this.rbCoThoiHan.CheckedChanged += new System.EventHandler(this.rbCoThoiHan_CheckedChanged);
             // 
-            // radioButton2
+            // rbKhongThoiHan
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(410, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(103, 17);
-            this.radioButton2.TabIndex = 118;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Không Thời Hạn";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbKhongThoiHan.AutoSize = true;
+            this.rbKhongThoiHan.Location = new System.Drawing.Point(410, 19);
+            this.rbKhongThoiHan.Name = "rbKhongThoiHan";
+            this.rbKhongThoiHan.Size = new System.Drawing.Size(103, 17);
+            this.rbKhongThoiHan.TabIndex = 118;
+            this.rbKhongThoiHan.TabStop = true;
+            this.rbKhongThoiHan.Text = "Không Thời Hạn";
+            this.rbKhongThoiHan.UseVisualStyleBackColor = true;
+            this.rbKhongThoiHan.CheckedChanged += new System.EventHandler(this.rbKhongThoiHan_CheckedChanged);
             // 
             // KiemTraHDLD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 429);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbKhongThoiHan);
+            this.Controls.Add(this.rbCoThoiHan);
             this.Controls.Add(this.txtTenNV);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -233,7 +237,7 @@
         private System.Windows.Forms.TextBox txtMaNv;
         private System.Windows.Forms.ComboBox cBoxNamBatDau;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbCoThoiHan;
+        private System.Windows.Forms.RadioButton rbKhongThoiHan;
     }
 }

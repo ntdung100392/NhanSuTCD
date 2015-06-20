@@ -1,32 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Model;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Model;
+
+    #endregion
+
     public partial class QuanLyPhongBan : Form
     {
+        #region Properties
+
+        private PhongDoiToLoaiTo updatePhongBan = new PhongDoiToLoaiTo();
+
+        #endregion
 
         #region Constructor Or Destructor
+
         protected readonly IPhongBanServices _phongBanServices;
-        private PhongDoiToLoaiTo updatePhongBan = new PhongDoiToLoaiTo();
         public QuanLyPhongBan(IPhongBanServices phongBanServices)
         {
             this._phongBanServices = phongBanServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
+
         private void QuanLyPhongBan_Load(object sender, EventArgs e)
         {
             btnSua.Enabled = false;
@@ -145,9 +156,11 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
         #endregion
 
-        #region Init
+        #region Method Init
+
         private void InitGridView()
         {
             var phongBanList = _phongBanServices.GetAllPhongBan();
@@ -194,6 +207,7 @@ namespace PMNS
             cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
             cbPhongBan.ValueMember = "idPhongDoiToLoai";
         }
+
         #endregion
     }
 }

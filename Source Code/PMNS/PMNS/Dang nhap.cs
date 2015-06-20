@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class Dang_nhap : Form
     {
         #region Constructor Or Destructor
@@ -50,6 +54,8 @@ namespace PMNS
             InitializeComponent();
         }
         #endregion
+
+        #region Method Event
 
         private void Dang_nhap_Load(object sender, EventArgs e)
         {
@@ -95,5 +101,7 @@ namespace PMNS
                 buttonX1.PerformClick();
             }
         }
+
+        #endregion
     }
 }

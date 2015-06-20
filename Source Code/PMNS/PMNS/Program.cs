@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Services.Implement;
-using PMNS.DAL.Abstract;
-using PMNS.DAL.Implement;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Services.Implement;
+    using PMNS.DAL.Abstract;
+    using PMNS.DAL.Implement;
+    using PMNS.Services.Models;
+
+    #endregion
+
     static class Program
     {
         /// <summary>
@@ -19,6 +23,8 @@ namespace PMNS
         [STAThread]
         static void Main()
         {
+            #region Implement Services
+
             IUnitOfWork unitOfWork = new UnitOfWork();
             IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
             ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
@@ -34,12 +40,15 @@ namespace PMNS
             IThongTinServices _thongTinServices = new ThongTinServices(unitOfWork);
             IThongTinTrinhDoServices _trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
 
+            #endregion
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dang_nhap(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
-                        _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
+            //Application.Run(new Dang_nhap(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
+            //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
             //Application.Run(new Menu(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
             //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
+            Application.Run(new KiemTraHDLD());
         }
     }
 }

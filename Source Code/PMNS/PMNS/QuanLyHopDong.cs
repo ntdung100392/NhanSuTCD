@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class QuanLyHopDong : Form
     {
 
@@ -210,7 +214,8 @@ namespace PMNS
 
         #endregion
 
-        #region DateTime Picker
+        #region Method DateTime Picker
+
         private void datetimeNgayBatDau_ValueChanged(object sender, EventArgs e)
         {
             datetimeNgayBatDau.Format = DateTimePickerFormat.Custom;
@@ -224,9 +229,11 @@ namespace PMNS
             dateTimeNgayKetThuc.CustomFormat = "dd/MM/yyyy";
             txtNgayKetThuc.Text = dateTimeNgayKetThuc.Text;
         }
+
         #endregion
 
         #region Method Init
+
         private void InitAutoComplete(string maNV)
         {
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
@@ -275,6 +282,7 @@ namespace PMNS
             cbLoaiHopDong.DisplayMember = "loaiHopDong1";
             cbLoaiHopDong.ValueMember = "idLoaiHopDong";
         }
+
         #endregion
     }
 }

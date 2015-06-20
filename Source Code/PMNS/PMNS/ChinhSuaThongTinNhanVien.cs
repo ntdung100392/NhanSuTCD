@@ -1,23 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Model;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Model;
+
+    #endregion
+
     public delegate void OnClosing (bool close);
+
     public partial class ChinhSuaThongTinNhanVien : Form
     {
+        #region Properties
+
+        private ThongTinNhanVIen _empDetails;
+        public event OnClosing OnClose;
+
+        #endregion
 
         #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
@@ -26,8 +38,6 @@ namespace PMNS
         protected readonly IBienCheServices _bienCheServices;
         protected readonly IThongTinTrinhDoServices _trinhDoServices;
         protected readonly IThongTinGiaDinhServices _giaDinhServices;
-        private ThongTinNhanVIen _empDetails;
-        public event OnClosing OnClose;
         public ChinhSuaThongTinNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinTrinhDoServices trinhDoServices, 
@@ -44,20 +54,19 @@ namespace PMNS
             this._empDetails = empDetails;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
+
         private void ChinhSuaThongTinNhanVien_Load(object sender, EventArgs e)
         {
-            cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbMaCV.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbNguyenQuan.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbNoiCapCMND.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbPhanQuyen.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbThanhPho.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbTinhTrangHonNhan.DropDownStyle = ComboBoxStyle.DropDownList;
+            InitMain();
+            EventLoading();
+        }
+
+        private void InitMain()
+        {
             InitPhongBan();
             InitCbThanhPho();
             InitCbNoiCapCMND();
@@ -68,6 +77,19 @@ namespace PMNS
             InitBienChe();
             InitPermission();
             InitEmpInfo();
+        }
+
+        private void EventLoading()
+        {
+            cbBienChe.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbMaCV.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbNguyenQuan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbNoiCapCMND.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPhanQuyen.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPhongBan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbThanhPho.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTinhTrangHonNhan.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         protected virtual void FireEvent(bool close)
@@ -159,9 +181,27 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
+        private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
+        {
+            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
+            trinhDoForm.ShowDialog(this);
+        }
+
+        private void btnThongGiaDinh_Click(object sender, EventArgs e)
+        {
+            ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(_nhanVienServices, _giaDinhServices, _empDetails);
+            giaDinhForm.ShowDialog(this);
+        }
+
+        private void btnSuaHDLD_Click(object sender, EventArgs e)
+        {
+        }
+
         #endregion
 
-        #region Init
+        #region Method Init
+
         private void InitEmpInfo()
         {
             txtManv.Text = _empDetails.MaNV;
@@ -286,9 +326,11 @@ namespace PMNS
             cbBienChe.ValueMember = "idBienChe";
             cbBienChe.DisplayMember = "bienChe1";
         }
+
         #endregion
 
-        #region DateTimePicker
+        #region Method DateTimePicker
+
         private void datetimeNgaySinh_ValueChanged(object sender, EventArgs e)
         {
             datetimeNgaySinh.Format = DateTimePickerFormat.Custom;
@@ -320,22 +362,7 @@ namespace PMNS
             datetimeNamVaoST.CustomFormat = "dd/MM/yyyy";
             txtNamVaoST.Text = datetimeNamVaoST.Text;
         }
+
         #endregion
-
-        private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
-        {
-            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
-            trinhDoForm.ShowDialog(this);
-        }
-
-        private void btnThongGiaDinh_Click(object sender, EventArgs e)
-        {
-            ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(_nhanVienServices, _giaDinhServices, _empDetails);
-            giaDinhForm.ShowDialog(this);
-        }
-
-        private void btnSuaHDLD_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

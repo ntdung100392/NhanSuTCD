@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class QuanLyChucVu : Form
     {
 
         #region Constructor Or Destructor
+
         protected readonly IChucVuServices _chucVuServices;
         private ChucVu updateChucVu = new ChucVu();
         public QuanLyChucVu(IChucVuServices chucVuServices)
@@ -24,9 +29,10 @@ namespace PMNS
             this._chucVuServices = chucVuServices;
             InitializeComponent();
         }
+
         #endregion
 
-        #region Form's Event
+        #region Method Event
 
         private void dataGridChucVu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -156,7 +162,8 @@ namespace PMNS
         }
         #endregion
 
-        #region Init
+        #region Method Init
+
         public void InitGridView()
         {
             dataGridChucVu.DataSource = _chucVuServices.GetAllChucVu().OrderBy(x => x.MaChucVu).ToList().Select(
@@ -169,6 +176,7 @@ namespace PMNS
             dataGridChucVu.Columns[0].Visible = false;
             dataGridChucVu.CurrentCell = null;
         }
+
         #endregion
     }
 }

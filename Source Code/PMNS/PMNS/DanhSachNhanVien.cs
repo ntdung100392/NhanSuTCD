@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Services.Models;
-using PMNS.Model;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Services.Models;
+    using PMNS.Model;
+
+    #endregion
+
     public partial class DanhSachNhanVien : Form
     {
 
@@ -49,7 +53,8 @@ namespace PMNS
 
         #endregion
 
-        #region Init Data
+        #region Method Init
+
         private void InitGridView()
         {
             ReFormatCollumnGridView(_fullEmpList);
@@ -103,9 +108,10 @@ namespace PMNS
             dataGridDanhSachNV.Columns[0].Visible = false;
             dataGridDanhSachNV.CurrentCell = null;
         }
+
         #endregion
 
-        #region Form's Event
+        #region Event Method
 
         private void DanhSachNhanVien_Load(object sender, EventArgs e)
         {

@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Model;
-using PMNS.Services.Models;
-using PMNS.Controller;
-using System.IO;
-using OfficeOpenXml;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Model;
+    using PMNS.Services.Models;
+    using PMNS.Controller;
+    using System.IO;
+    using OfficeOpenXml;
+
+    #endregion
+
     public partial class DanhSachThongTin : Form
     {
 
@@ -39,7 +43,7 @@ namespace PMNS
 
         #endregion
 
-        #region Method Event
+        #region Event Method
 
         private void DanhSachThongTin_Load(object sender, EventArgs e)
         {
@@ -144,7 +148,7 @@ namespace PMNS
 
         #endregion
 
-        #region Method Init
+        #region Init Method
 
         private void InitMain()
         {
