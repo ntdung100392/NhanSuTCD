@@ -87,150 +87,100 @@ namespace PMNS
 
         private void thêmTTTDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    ThongTin_TuyenDung tuyenDungForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng");
-                    tuyenDungForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                ThongTin_TuyenDung tuyenDungForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng");
+                tuyenDungForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
         private void thêmTTĐĐToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
+                try
                 {
-                    try
-                    {
-                        ThongTin_TuyenDung dieuDongForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Điều Động");
-                        dieuDongForm.ShowDialog(this);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi: " + ex);
-                    }
+                    ThongTin_TuyenDung dieuDongForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Điều Động");
+                    dieuDongForm.ShowDialog(this);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi: " + ex);
                 }
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void thêmTTBNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    ThongTin_TuyenDung boNhiemForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Bổ Nhiệm");
-                    boNhiemForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                ThongTin_TuyenDung boNhiemForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Bổ Nhiệm");
+                boNhiemForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void thêmTTTVToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    ThongTin_TuyenDung thoiViecForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Thôi Việc");
-                    thoiViecForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                ThongTin_TuyenDung thoiViecForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Thôi Việc");
+                thoiViecForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void quảnLýBiênChếToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    QuanLyBienChe bienCheForm = new QuanLyBienChe(_bienCheServices);
-                    bienCheForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                QuanLyBienChe bienCheForm = new QuanLyBienChe(_bienCheServices);
+                bienCheForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void quảnLýCấpBậcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    QuanLyCapBac capBacForm = new QuanLyCapBac(_capBacServices);
-                    capBacForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                QuanLyCapBac capBacForm = new QuanLyCapBac(_capBacServices);
+                capBacForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void quảnLýChứcVụToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            if (UserProfile.permission == 1)
             {
-                if (UserProfile.permission == 1)
-                {
-                    QuanLyChucVu chucVuForm = new QuanLyChucVu(_chucVuServices);
-                    chucVuForm.ShowDialog(this);
-                }
-                else
-                {
-                    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                QuanLyChucVu chucVuForm = new QuanLyChucVu(_chucVuServices);
+                chucVuForm.ShowDialog(this);
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex);
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -312,15 +262,29 @@ namespace PMNS
 
         private void thêmHĐLĐToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (UserProfile.permission == 1)
-            //{
-            QuanLyHopDong hopDongForm = new QuanLyHopDong(_nhanVienServices, _hopDongServices, _loaiHopDongServices);
-            hopDongForm.ShowDialog(this);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            if (UserProfile.permission == 1)
+            {
+                QuanLyHopDong hopDongForm = new QuanLyHopDong(_nhanVienServices, _hopDongServices, _loaiHopDongServices);
+                hopDongForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void thôngTinPhầnMềmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                REPORT reportForm = new REPORT(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices,
+                    _loaiHopDongServices);
+                reportForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

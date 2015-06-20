@@ -16,5 +16,35 @@ namespace PMNS
         {
             InitializeComponent();
         }
+
+        private void KiemTraHDLD_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaNv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenNV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInBieu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

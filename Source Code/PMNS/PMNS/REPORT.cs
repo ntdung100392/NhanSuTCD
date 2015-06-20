@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PMNS.Entities.Models;
 using PMNS.Services.Abstract;
+using PMNS.Controller;
+using PMNS.Services.Models;
+using PMNS.Model;
 using System.IO;
 using OfficeOpenXml;
 
@@ -25,9 +28,10 @@ namespace PMNS
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        private List<ThongTinNhanVIen> empReportList = new List<ThongTinNhanVIen>();
+        protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        private List<ThongTinNhanVIen> _empReportList = new List<ThongTinNhanVIen>();
         public REPORT(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
-            IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
+            IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, ILoaiHopDongServices loaiHopDongServices)
         {
             this._bienCheServices = bienCheServices;
             this._capBacServices = capBacServices;
@@ -35,6 +39,7 @@ namespace PMNS
             this._nhanVienServices = nhanVienServices;
             this._phongBanServices = phongBanServices;
             this._thanhPhoServices = thanhPhoServices;
+            this._loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
 
@@ -44,146 +49,16 @@ namespace PMNS
 
         private void REPORT_Load(object sender, EventArgs e)
         {
-            EventLoading();
             InitMain();
+            EventLoading();
         }
 
         private void EventLoading()
         {
-            comboGioiTinh.Enabled = false;
-            comboDoTuoi.Enabled = false;
-            comboBienChe.Enabled = false;
-            comboPhongBan.Enabled = false;
-            comboCapBac.Enabled = false;
-            comboChucVu.Enabled = false;
-            comboLoaiHD.Enabled = false;
-            comboNoiO.Enabled = false;
-            comboTrinhDo.Enabled = false;
-            txtNamVaoCang.Enabled = false;
             txtTongQuanSo.ReadOnly = true;
             txtNam.ReadOnly = true;
             txtNu.ReadOnly = true;
             txtQuanSoPhongBan.ReadOnly = true;
-        }
-
-        private void cboxGioiTinh_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxGioiTinh.Checked == true)
-            {
-                comboGioiTinh.Enabled = true;
-            }
-            else
-            {
-                comboGioiTinh.Enabled = false;
-            }
-        }
-
-        private void cboxDoTuoi_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxDoTuoi.Checked == true)
-            {
-                comboDoTuoi.Enabled = true;
-            }
-            else
-            {
-                comboDoTuoi.Enabled = false;
-            }
-        }
-
-        private void cboxBienChe_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxBienChe.Checked == true)
-            {
-                comboBienChe.Enabled = true;
-            }
-            else
-            {
-                comboBienChe.Enabled = false;
-            }
-        }
-
-        private void cboxPhongBan_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxPhongBan.Checked == true)
-            {
-                comboPhongBan.Enabled = true;
-            }
-            else
-            {
-                comboPhongBan.Enabled = false;
-            }
-        }
-
-        private void cboxCapBac_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxCapBac.Checked == true)
-            {
-                comboCapBac.Enabled = true;
-            }
-            else
-            {
-                comboCapBac.Enabled = false;
-            }
-        }
-
-        private void cboxChucVu_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxChucVu.Checked == true)
-            {
-                comboChucVu.Enabled = true;
-            }
-            else
-            {
-                comboChucVu.Enabled = false;
-            }
-        }
-
-        private void cboxLoaiHD_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxLoaiHD.Checked == true)
-            {
-                comboLoaiHD.Enabled = true;
-            }
-            else
-            {
-                comboLoaiHD.Enabled = false;
-            }
-        }
-
-        private void cboxNoiO_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxNoiO.Checked == true)
-            {
-                comboNoiO.Enabled = true;
-            }
-            else
-            {
-                comboNoiO.Enabled = false;
-            }
-        }
-
-        private void cboxTrinhDo_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxTrinhDo.Checked == true)
-            {
-                comboTrinhDo.Enabled = true;
-            }
-            else
-            {
-                comboTrinhDo.Enabled = false;
-            }
-        }
-
-        private void cboxNamVaoCang_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxNamVaoCang.Checked == true)
-            {
-                txtNamVaoCang.Enabled = true;
-            }
-            else
-            {
-                txtNamVaoCang.Enabled = false;
-            }
         }
 
         #endregion
@@ -192,44 +67,61 @@ namespace PMNS
 
         private void InitMain()
         {
+            InitGioiTinh();
+            InitDoTuoi();
+            InitBienChe();
+            InitPhongBan();
+            InitTongKetPhongBan();
+            InitCapBac();
+            InitChucVu();
+            InitLoaiHopDong();
+            InitThanhPho();
+            //InitTreeView();
             InitNhanVien();
             InitReportNumberOfEmp();
-            InitPhongBan();
-            InitBienChe();
-            InitChucVu();
-            InitThanhPho();
-            InitTreeView();
         }
 
         private void InitNhanVien()
         {
             ReformatDataGridView(_nhanVienServices.GetAllEmployees());
-            empReportList = _nhanVienServices.GetAllEmployees();
+            _empReportList = _nhanVienServices.GetAllEmployees();
         }
 
         private void InitBienChe()
         {
-            comboBienChe.DataSource = _bienCheServices.GetAllBienChe();
+            BienChe firstItem = new BienChe { idBienChe = 0, maBienChe = "All", bienChe1 = "Tất Cả", ThongTinNhanVIens = null };
+            List<BienChe> listBienChe = new List<BienChe>();
+            listBienChe.Add(firstItem);
+            listBienChe.AddRange(_bienCheServices.GetAllBienChe());
+            comboBienChe.DataSource = listBienChe;
             comboBienChe.ValueMember = "idBienChe";
             comboBienChe.DisplayMember = "bienChe1";
-            comboBienChe.SelectedIndex = -1;
         }
 
         private void InitChucVu()
         {
-            comboChucVu.DataSource = _chucVuServices.GetAllChucVu();
+            ChucVu firstItem = new ChucVu { idChucVu = 0, MaChucVu = "All", ChucVu1 = "Tất Cả", ThongTinNhanVIens = null };
+            List<ChucVu> listChucVu = new List<ChucVu>();
+            listChucVu.Add(firstItem);
+            listChucVu.AddRange(_chucVuServices.GetAllChucVu());
+            comboChucVu.DataSource = listChucVu;
             comboChucVu.DisplayMember = "ChucVu1";
             comboChucVu.ValueMember = "idChucVu";
-            comboChucVu.SelectedIndex = -1;
+        }
+
+        private void InitCapBac()
+        {
+            CapBac firstItem = new CapBac { idCapBac = 0, maCapBac = "All", capBac1 = "Tất Cả", ThongTinNhanVIens = null };
+            List<CapBac> listCapBac = new List<CapBac>();
+            listCapBac.Add(firstItem);
+            listCapBac.AddRange(_capBacServices.GetAllCapBac());
+            comboCapBac.DataSource = listCapBac;
+            comboCapBac.DisplayMember = "capBac1";
+            comboCapBac.ValueMember = "idCapBac";
         }
 
         private void InitPhongBan()
         {
-            comboPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
-            comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
-            comboPhongBan.ValueMember = "idPhongDoiToLoai";
-            comboPhongBan.SelectedIndex = -1;
-
             PhongDoiToLoaiTo firstItem = new PhongDoiToLoaiTo
             {
                 idPhongDoiToLoai = 0,
@@ -246,12 +138,71 @@ namespace PMNS
             comboTongKetPhongBan.ValueMember = "idPhongDoiToLoai";
         }
 
+        private void InitLoaiHopDong()
+        {
+            LoaiHopDong firstItem = new LoaiHopDong { idLoaiHopDong = 0, idCha = 0, loaiHopDong1 = "Tất Cả", HopDongLaoDongs = null };
+            var listLoaiHopDong = _loaiHopDongServices.GettAllLoaiHopDong();
+            if (listLoaiHopDong.Count != 0)
+            {
+                foreach (var loaiHd in _loaiHopDongServices.GettAllLoaiHopDong())
+                {
+                    if (loaiHd.idCha != 0)
+                    {
+                        foreach (var removeHd in listLoaiHopDong)
+                        {
+                            if (loaiHd.idCha == removeHd.idLoaiHopDong)
+                            {
+                                listLoaiHopDong.Remove(removeHd);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            listLoaiHopDong.Add(firstItem);
+            comboLoaiHD.DataSource = listLoaiHopDong.OrderBy(hd => hd.idLoaiHopDong).ToList();
+            comboLoaiHD.DisplayMember = "loaiHopDong1";
+            comboLoaiHD.ValueMember = "idLoaiHopDong";
+        }
+
+        private void InitGioiTinh()
+        {
+            List<ComboBoxItem> listGioiTinh = new List<ComboBoxItem>();
+            listGioiTinh.Add(new ComboBoxItem { Text = "Tất Cả", Value = 2 });
+            listGioiTinh.Add(new ComboBoxItem { Text = "Nam", Value = 1 });
+            listGioiTinh.Add(new ComboBoxItem { Text = "Nữ", Value = 0 });
+            comboGioiTinh.DataSource = listGioiTinh;
+            comboGioiTinh.DisplayMember = "Text";
+            comboGioiTinh.ValueMember = "Value";
+        }
+
+        private void InitTongKetPhongBan()
+        {
+            PhongDoiToLoaiTo firstItem = new PhongDoiToLoaiTo
+            {
+                idPhongDoiToLoai = 0,
+                tenPhongDoiToLoai = "Tất Cả",
+                maPhongDoiToLoai = "All",
+                idCha = 0,
+                ThongTinNhanVIens = null
+            };
+            List<PhongDoiToLoaiTo> listPhongBan = new List<PhongDoiToLoaiTo>();
+            listPhongBan.Add(firstItem);
+            listPhongBan.AddRange(_phongBanServices.GetAllPhongBan());
+            comboPhongBan.DataSource = listPhongBan;
+            comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
+            comboPhongBan.ValueMember = "idPhongDoiToLoai";
+        }
+
         private void InitThanhPho()
         {
-            comboNoiO.DataSource = _thanhPhoServices.GetAllThanhPho();
+            ThanhPho firstItem = new ThanhPho { idThanhPho = 0, maTP = "All", tenTP = "Tất Cả", ThongTinNhanVIens = null };
+            List<ThanhPho> listThanhPho = new List<ThanhPho>();
+            listThanhPho.Add(firstItem);
+            listThanhPho.AddRange(_thanhPhoServices.GetAllThanhPho());
+            comboNoiO.DataSource = listThanhPho;
             comboNoiO.DisplayMember = "tenTP";
             comboNoiO.ValueMember = "idThanhPho";
-            comboNoiO.SelectedIndex = -1;
         }
 
         private void InitReportNumberOfEmp()
@@ -262,19 +213,34 @@ namespace PMNS
             txtNu.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
         }
 
+        private void InitDoTuoi()
+        {
+            List<ComboBoxItem> listItem = new List<ComboBoxItem>();
+            ComboBoxItem firstItem = new ComboBoxItem { Text = "Tất Cả", Value = 0 };
+            listItem.Add(firstItem);
+            for (int i = 18; i <= 65; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem { Text = i.ToString(), Value = i };
+                listItem.Add(item);
+            }
+            comboDoTuoi.DataSource = listItem;
+            comboDoTuoi.DisplayMember = "Text";
+            comboDoTuoi.ValueMember = "Value";
+        }
+
         private void InitTreeView()
         {
-            var listPhongBanCha = _phongBanServices.GetAllPhongBan().Where(x => x.idCha == 0).ToList();
-            foreach (var phongBan in listPhongBanCha)
-            {
-                int i = 0;
-                phongBanTreeView.Nodes.Add(phongBan.tenPhongDoiToLoai);
-                if (phongBan.PhongDoiToLoaiTo1.ToList().Count != 0)
-                {
-                    phongBanTreeView.Nodes[i].Nodes.Add(AddChildNode(phongBan.PhongDoiToLoaiTo1.ToList()));
-                }
-                i++;
-            }
+            //var listPhongBanCha = _phongBanServices.GetAllPhongBan().Where(x => x.idCha == 0).ToList();
+            //foreach (var phongBan in listPhongBanCha)
+            //{
+            //    int i = 0;
+            //    phongBanTreeView.Nodes.Add(phongBan.tenPhongDoiToLoai);
+            //    if (phongBan.PhongDoiToLoaiTo1.ToList().Count != 0)
+            //    {
+            //        phongBanTreeView.Nodes[i].Nodes.Add(AddChildNode(phongBan.PhongDoiToLoaiTo1.ToList()));
+            //    }
+            //    i++;
+            //}
         }
 
         #endregion
@@ -283,61 +249,96 @@ namespace PMNS
 
         private void comboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboBienChe_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboPhongBan_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboCapBac_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboLoaiHD_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboNoiO_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void comboTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtNamVaoCang.Text.Trim()))
-            {
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
+        }
 
-            }
-            else
-            {
-                int year = Convert.ToInt32(txtNamVaoCang.Text.Trim());
-                ReformatDataGridView(empReportList.Where(x => x.ngayVaoCang.Value.Year == year).ToList());
-            }
+        private void comboDoTuoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
+        }
 
+        private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
+        {
+            var filterList = SearchingFilterData(_empReportList);
+            ReformatDataGridView(filterList);
         }
 
         private void btnInBieu_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                //Convert to datatable for export to excel
+                DataTable dataList = ConverterMethod.ConvertDataGridViewToDataTable(datagridReport);
+                if (dataList.Rows.Count != 0)
+                {
+                    ExportToExcel(dataList);
+                }
+                else
+                {
+                    MessageBox.Show("Không Có Thông Tin Để Trích Xuất", "Thông Báo!", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (UserProfile.permission == 1)
+                {
+                    MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Trích Xuất Excel Không Thành Công!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void comboTongKetPhongBan_SelectedIndexChanged(object sender, EventArgs e)
@@ -357,26 +358,91 @@ namespace PMNS
         {
 
         }
+
+        private void txtNamVaoCang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Allow numeric only
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            comboGioiTinh.SelectedIndex = 0;
+            comboDoTuoi.SelectedIndex = 0;
+            comboBienChe.SelectedIndex = 0;
+            comboPhongBan.SelectedIndex = 0;
+            comboCapBac.SelectedIndex = 0;
+            comboChucVu.SelectedIndex = 0;
+            comboLoaiHD.SelectedIndex = 0;
+            comboNoiO.SelectedIndex = 0;
+            //comboTrinhDo.SelectedIndex = 0;
+            txtNamVaoCang.Text = "";
+        }
+
         #endregion
 
         #region Method
-        
-        private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
+
+        private List<ThongTinNhanVIen> SearchingFilterData(List<ThongTinNhanVIen> empList)
         {
-            TreeNode node = new TreeNode();
-            for (int i = 0; i < child.Count; i++)
+            if (empList.Count != 0)
             {
-                if (child[i].PhongDoiToLoaiTo1.Count != 0)
-                {
-                    node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
-                }
-                else
-                {
-                    node.Nodes.Add(child[i].tenPhongDoiToLoai);
-                }
+                //Filter by name
+                if (!String.IsNullOrEmpty(txtTenNhanVien.Text.Trim()))
+                    empList = empList.Where(e => e.hoTen.Contains(txtTenNhanVien.Text.Trim())).ToList();
+                //Filter by sex
+                if (Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value) != 2)
+                    empList = empList.Where(e => e.gioiTinh == Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value)).ToList();
+                //Filter by age
+                if (Convert.ToInt32((comboDoTuoi.SelectedItem as ComboBoxItem).Value) != 0)
+                    empList = empList.Where(e => e.namSinh.Year == (DateTime.Now.Year - Convert.ToInt32((comboDoTuoi.SelectedItem as ComboBoxItem)
+                        .Value))).ToList();
+                //Filter by BienChe
+                if (Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe) != 0)
+                    empList = empList.Where(e => e.idBienChe == Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe)).ToList();
+                //Filter by PhongBan
+                if (Convert.ToInt32((comboPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai) != 0)
+                    empList = empList.Where(e => e.idPhongDoiToLoai == Convert.ToInt32((comboPhongBan.SelectedItem as PhongDoiToLoaiTo)
+                        .idPhongDoiToLoai)).ToList();
+                //Filter by CapBac
+                if (Convert.ToInt32((comboCapBac.SelectedItem as CapBac).idCapBac) != 0)
+                    empList = empList.Where(e => e.idCapBac == Convert.ToInt32((comboCapBac.SelectedItem as CapBac).idCapBac)).ToList();
+                //Filter by ChucVu
+                if (Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu) != 0)
+                    empList = empList.Where(e => e.idChucVu == Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu)).ToList();
+                //Filter by LoaiHopDong
+                if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
+                    empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
+                        .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
+                //Filter by Living Place
+                if (Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho) != 0)
+                    empList = empList.Where(e => e.idTP == Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho)).ToList();
+                //Filter by NamVaoCang
+                if (!String.IsNullOrEmpty(txtNamVaoCang.Text.Trim()))
+                    empList = empList.Where(e => e.ngayVaoCang.Value.Year == Convert.ToInt32(txtNamVaoCang.Text.Trim())).ToList();
             }
-            return node;
+            return empList;
         }
+
+        //private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
+        //{
+        //TreeNode node = new TreeNode();
+        //for (int i = 0; i < child.Count; i++)
+        //{
+        //    if (child[i].PhongDoiToLoaiTo1.Count != 0)
+        //    {
+        //        node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
+        //    }
+        //    else
+        //    {
+        //        node.Nodes.Add(child[i].tenPhongDoiToLoai);
+        //    }
+        //}
+        //return node;
+        //}
 
         private void ExportToExcel(DataTable dataList)
         {
@@ -401,25 +467,29 @@ namespace PMNS
 
         private void ReformatDataGridView(List<ThongTinNhanVIen> rawList)
         {
-            gridDanhsachNVReport.DataSource = rawList.OrderBy(x => x.hoTen).ToList().Select(x =>
+            datagridReport.DataSource = rawList.OrderBy(x => x.MaNV).ToList().Select(x =>
                 new
                 {
-                    ID = x.idNhanVien,
-                    HoTen = x.hoTen,
                     MaNV = x.MaNV,
+                    HoTen = x.hoTen,
                     NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
+                    SoDienThoai = x.soDienThoaiDiDong,
+                    TinhTrangHonNhan = x.tinhTrangHonNhan,
+                    //TrinhDo = x.TrinhDoes.OrderByDescending(td => td.thoiGianTotNghiep).FirstOrDefault().trinhDo1,
+                    CongViecDangLam = x.CongViecDangLam,
+                    NoiCongTac = x.noiCongTac,
                     CapBac = x.CapBac.capBac1,
                     ChucVu = x.ChucVu.ChucVu1,
                     PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
                     HeBienChe = x.BienChe.bienChe1,
+                    //LoaiHopDong = x.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).ToList().FirstOrDefault().LoaiHopDong.loaiHopDong1,
                     NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
                     NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
                     NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
                     NguoiBaoLanh = x.nguoiBaoLanh,
                     MoiQuanHe = x.moiQuanHeBaoLanh
                 }).ToList();
-            gridDanhsachNVReport.Columns[0].Visible = false;
-            gridDanhsachNVReport.CurrentCell = null;
+            datagridReport.CurrentCell = null;
         }
 
         #endregion
