@@ -1,26 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+
+    #endregion
+
     public partial class ThongTin_TuyenDung : Form
     {
+        #region Properties
 
-        #region Constructor Or Destructor
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IThongTinServices _thongTinServices;
         protected readonly string _loaiThongTin;
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
         private TD_DD_BN_TV thongTinUpdate = new TD_DD_BN_TV();
+
+        #endregion
+
+        #region Constructor Or Destructor
+
+        protected readonly INhanVienServices _nhanVienServices;
+        protected readonly IThongTinServices _thongTinServices;
         public ThongTin_TuyenDung(INhanVienServices nhanVienServices, IThongTinServices thongTinServices, string loaiThongTin)
         {
             this._nhanVienServices = nhanVienServices;
@@ -28,9 +37,11 @@ namespace PMNS
             this._loaiThongTin = loaiThongTin;
             InitializeComponent();
         }
+
         #endregion
 
-        #region Form's Event
+        #region Method Event
+
         private void ThongTin_TuyenDung_Load(object sender, EventArgs e)
         {
             txtHoTen.ReadOnly = true;
@@ -172,9 +183,11 @@ namespace PMNS
             btnThem.Enabled = false;
             btnSua.Enabled = true;
         }
+
         #endregion
 
-        #region Init
+        #region Method Init
+
         private void InitGridView()
         {
             dataGridThongTin.DataSource = _thongTinServices.GetAllThongTin().Select(x =>
@@ -220,9 +233,11 @@ namespace PMNS
             dataGridThongTin.Columns[0].Visible = false;
             dataGridThongTin.CurrentCell = null;
         }
+
         #endregion
 
-        #region DateTimePicker
+        #region Method DateTimePicker
+
         private void dateTimeNgayKy_ValueChanged(object sender, EventArgs e)
         {
             dateTimeNgayKy.Format = DateTimePickerFormat.Custom;
@@ -243,6 +258,7 @@ namespace PMNS
             datetimeNamThucHien.CustomFormat = "dd/MM/yyyy";
             txtNamThucHien.Text = datetimeNamThucHien.Text;
         }
+
         #endregion
     }
 }

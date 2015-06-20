@@ -19,11 +19,15 @@
 
     public partial class QuanLyChucVu : Form
     {
+        #region Properties
+
+        private ChucVu updateChucVu = new ChucVu();
+
+        #endregion
 
         #region Constructor Or Destructor
 
         protected readonly IChucVuServices _chucVuServices;
-        private ChucVu updateChucVu = new ChucVu();
         public QuanLyChucVu(IChucVuServices chucVuServices)
         {
             this._chucVuServices = chucVuServices;

@@ -1,24 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Controller;
-using PMNS.Services.Models;
-using PMNS.Model;
-using System.IO;
-using OfficeOpenXml;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Controller;
+    using PMNS.Services.Models;
+    using PMNS.Model;
+    using System.IO;
+    using OfficeOpenXml;
+
+    #endregion
+
     public partial class REPORT : Form
     {
+
+        #region Properties
+
+        private List<ThongTinNhanVIen> _empReportList = new List<ThongTinNhanVIen>();
+
+        #endregion
 
         #region Constructor Or Destructor
 
@@ -29,7 +39,6 @@ namespace PMNS
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
-        private List<ThongTinNhanVIen> _empReportList = new List<ThongTinNhanVIen>();
         public REPORT(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
             IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, ILoaiHopDongServices loaiHopDongServices)
         {

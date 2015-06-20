@@ -19,15 +19,21 @@
 
     public partial class QuanLyCapBac : Form
     {
+        #region Properties
+
+        private CapBac updateCapBac = new CapBac();
+
+        #endregion
 
         #region Constructor Or Destructor
+
         protected readonly ICapBacServices _capBacServices;
-        private CapBac updateCapBac = new CapBac();
         public QuanLyCapBac(ICapBacServices capBacServices)
         {
             this._capBacServices = capBacServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Init

@@ -1,23 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using System.Data.SqlClient;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Model;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using System.IO;
+    using System.Data.SqlClient;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Model;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class ThemNV : Form
     {
+
+        #region Properties
+
+        private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
+
+        #endregion
 
         #region Constructor Or Destructor
 
@@ -27,7 +37,6 @@ namespace PMNS
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IPhongBanServices _phongBanServices;
         protected readonly IThanhPhoServices _thanhPhoServices;
-        private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
         public ThemNV(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
         {

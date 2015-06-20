@@ -1,34 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+
+    #endregion
+
     public partial class ThongTinKyLuat : Form
     {
+        #region Properties
 
-        #region Constructor Or Destructor
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IKyLuatServices _kyLuatServices;
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
         private KyLuat updateKyLuat = new KyLuat();
+
+        #endregion
+
+        #region Constructor Or Destructor
+
+        protected readonly INhanVienServices _nhanVienServices;
+        protected readonly IKyLuatServices _kyLuatServices;
         public ThongTinKyLuat(INhanVienServices nhanVienServices, IKyLuatServices kyLuatServices)
         {
             this._nhanVienServices = nhanVienServices;
             this._kyLuatServices = kyLuatServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
+
         private void ThongTinKyLuat_Load(object sender, EventArgs e)
         {
             txtTenNV.ReadOnly = true;
@@ -147,18 +158,22 @@ namespace PMNS
                 MessageBox.Show(ex.ToString(), "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         #endregion
 
-        #region DateTimePicker
+        #region Method DateTimePicker
+
         private void datetimeNgayNhapNgu_ValueChanged(object sender, EventArgs e)
         {
             datetimeNgayKyLuat.Format = DateTimePickerFormat.Custom;
             datetimeNgayKyLuat.CustomFormat = "dd/MM/yyyy";
             txtNgayKL.Text = datetimeNgayKyLuat.Text;
         }
+
         #endregion
 
         #region Method Init
+
         private void InitGridView()
         {
             dataGridKyLuat.DataSource = _kyLuatServices.GetAllKyLuat().OrderByDescending(x => x.ngayKyLuat).ToList().Select(x =>
@@ -179,6 +194,7 @@ namespace PMNS
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNV.AutoCompleteCustomSource = listMaNV;
         }
+
         #endregion
     }
 }

@@ -19,14 +19,18 @@
 
     public partial class QuanLyHopDong : Form
     {
+        #region Properties
+
+        private HopDongLaoDong updateHopDong;
+        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
+
+        #endregion
 
         #region Constructor Or Destructor
 
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IHopDongServices _hopDongServices;
         protected readonly ILoaiHopDongServices _loaiHopDongServices;
-        private HopDongLaoDong updateHopDong;
-        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
         public QuanLyHopDong(INhanVienServices nhanVienServices, IHopDongServices hopDongServices,
             ILoaiHopDongServices loaiHopDongServices)
         {

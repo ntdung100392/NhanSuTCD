@@ -1,27 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class ThongTinKhenThuong : Form
     {
+        #region Properties
+
+        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
+        private KhenThuong updateKhenThuong = new KhenThuong();
+
+        #endregion
 
         #region Constructor Or Destructor
 
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IKhenThuongServices _khenThuongServices;
-        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
-        private KhenThuong updateKhenThuong = new KhenThuong();
         public ThongTinKhenThuong(INhanVienServices nhanVienServices, IKhenThuongServices khenThuongServices)
         {
             this._nhanVienServices = nhanVienServices;
@@ -32,6 +40,7 @@ namespace PMNS
         #endregion
 
         #region Method Event
+
         private void ThongTinKhenThuong_Load(object sender, EventArgs e)
         {
             btnSua.Enabled = false;
@@ -173,9 +182,11 @@ namespace PMNS
                     ClearAllText(c);
             }
         }
+
         #endregion
 
         #region Method Init
+
         private void InitGridView()
         {
             dataGridKhenThuong.DataSource = _khenThuongServices.GetAllKhenThuong().OrderByDescending(x => x.namKhenThuong).ToList().Select(
@@ -197,15 +208,18 @@ namespace PMNS
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNV.AutoCompleteCustomSource = listMaNV;
         }
+
         #endregion
 
-        #region DateTimePicker
+        #region Method DateTimePicker
+
         private void datetimeNgayKhenThuong_ValueChanged(object sender, EventArgs e)
         {
             datetimeNgayKhenThuong.Format = DateTimePickerFormat.Custom;
             datetimeNgayKhenThuong.CustomFormat = "dd/MM/yyyy";
             txtNamKhenthuong.Text = datetimeNgayKhenThuong.Text;
         }
+
         #endregion
     }
 }

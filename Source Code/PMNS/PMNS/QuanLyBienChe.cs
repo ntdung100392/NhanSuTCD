@@ -13,21 +13,27 @@
     using System.Windows.Forms;
     using PMNS.Services.Abstract;
     using PMNS.Entities.Models;
-    using PMNS.Services.Models
+    using PMNS.Services.Models;
 
     #endregion
 
     public partial class QuanLyBienChe : Form
     {
+        #region Properties
+
+        private BienChe updateBienChe = new BienChe();
+
+        #endregion
 
         #region Constructor Or Destructor
-        protected readonly IBienCheServices _bienCheServices;
-        private BienChe updateBienChe = new BienChe();
+
+        protected readonly IBienCheServices _bienCheServices;        
         public QuanLyBienChe(IBienCheServices bienCheServices)
         {
             this._bienCheServices = bienCheServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event

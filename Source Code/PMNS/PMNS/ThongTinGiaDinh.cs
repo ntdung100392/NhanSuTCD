@@ -1,25 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class ThongTinGiaDinh : Form
     {
+        #region Properties
+
+        private ThongTinNhanVIen _empDetails;
+
+        #endregion
 
         #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IThongTinGiaDinhServices _thongTinGiaDInhServices;
-        private ThongTinNhanVIen _empDetails;
         public ThongTinGiaDinh(INhanVienServices nhanVienServices, IThongTinGiaDinhServices thongTinGiaDinhServices, ThongTinNhanVIen empDetails)
         {
             this._nhanVienServices = nhanVienServices;
@@ -27,9 +36,11 @@ namespace PMNS
             this._empDetails = empDetails;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
+
         private void ThongTinGiaDinh_Load(object sender, EventArgs e)
         {
             if (_empDetails != null)
@@ -130,6 +141,7 @@ namespace PMNS
                 }
             }
         }
+
         #endregion
     }
 }

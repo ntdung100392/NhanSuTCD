@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+
+    #endregion
+
     public partial class ThongTinCaNhan : Form
     {
-        #region Constructor
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        #region Properties
+
         private ThongTinNhanVIen _empDetails;
+
+        #endregion
+
+        #region Constructor Or Destructor
+
+        protected readonly ILoaiHopDongServices _loaiHopDongServices;
         public ThongTinCaNhan(ILoaiHopDongServices loaiHopDongServices, ThongTinNhanVIen empDetails)
         {
             this._loaiHopDongServices = loaiHopDongServices;
@@ -24,11 +34,14 @@ namespace PMNS
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Method Event
+
         private void ThongTinCaNhan_Load(object sender, EventArgs e)
         {
             Main();
         }
-        #endregion
 
         private void Main()
         {
@@ -64,7 +77,10 @@ namespace PMNS
             InitKhenThuong(khenThuong);
         }
 
+        #endregion
+
         #region Method Init
+
         private void InitEmpDetails(ThongTinNhanVIen emp)
         {
             lblTenNV.Text = _empDetails.hoTen;
@@ -318,6 +334,7 @@ namespace PMNS
                 lblGhiChuKhen.Text = "Chưa Cập Nhật";
             }
         }
+
         #endregion
     }
 }

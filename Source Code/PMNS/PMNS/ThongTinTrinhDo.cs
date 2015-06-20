@@ -1,25 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PMNS.Entities.Models;
-using PMNS.Services.Abstract;
-using PMNS.Model;
-using PMNS.Services.Models;
-
-namespace PMNS
+﻿namespace PMNS
 {
+    #region References
+
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Abstract;
+    using PMNS.Model;
+    using PMNS.Services.Models;
+
+    #endregion
+
     public partial class ThongTinTrinhDo : Form
     {
+        #region Properties
+
+        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
+        private TrinhDo updateTrinhDo = new TrinhDo();
+
+        #endregion
+
+        #region Constructor Or Destructor
+
         protected readonly INhanVienServices _nhanVienServices;
         protected readonly IThongTinTrinhDoServices _trinhDoServices;
-        private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
-
+        
         public ThongTinTrinhDo(INhanVienServices nhanVienServices, IThongTinTrinhDoServices trinhDoServices)
         {
             this._nhanVienServices = nhanVienServices;
@@ -27,18 +39,21 @@ namespace PMNS
             InitializeComponent();
         }
 
-        private TrinhDo updateTrinhDo = new TrinhDo();
+        #endregion
 
-        #region DatetimePicker
+        #region Method DatetimePicker
+
         private void datetimeTotNghiep_ValueChanged(object sender, EventArgs e)
         {
             datetimeTotNghiep.Format = DateTimePickerFormat.Custom;
             datetimeTotNghiep.CustomFormat = "dd/MM/yyyy";
             txtThoiGianTotNghiep.Text = datetimeTotNghiep.Text;
         }
+
         #endregion
 
-        #region Init
+        #region Method Init
+
         private void InitAutoComplete(string maNV)
         {
             listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
@@ -63,9 +78,11 @@ namespace PMNS
             dataGridTrinhDo.Columns[0].Visible = false;
             dataGridTrinhDo.CurrentCell = null;
         }
+
         #endregion
 
-        #region Form's Event
+        #region Method Event
+
         private void txtMaNV_TextChanged(object sender, EventArgs e)
         {
             if (txtMaNV.Text.Trim() != null)
@@ -210,6 +227,7 @@ namespace PMNS
             btnClear.Enabled = false;
             txtMaNV.ReadOnly = false;
         }
+
         #endregion
     }
 }
