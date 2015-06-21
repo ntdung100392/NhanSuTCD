@@ -61,6 +61,39 @@
 
         public void Form1_Load(object sender, EventArgs e) {}
 
+        #region Application Method
+
+        private void thôngTinPhầnMềmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                REPORT reportForm = new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices,
+                    loaiHopDongServices);
+                reportForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dang_nhap dangNhapForm = new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
+                kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
+                thongTinServices, trinhDoServices);
+            UserProfile.hoTen = null;
+            UserProfile.idNhanVien = 0;
+            UserProfile.MaNV = null;
+            UserProfile.permission = 0;
+            UserProfile.userName = null;
+            dangNhapForm.Show();
+        }
+
+        #endregion
+
+        #region Emp Management
+
         public void thêmNhânViênMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserProfile.permission == 1)
@@ -80,6 +113,72 @@
                 capBacServices, bienCheServices, loaiHopDongServices, trinhDoServices, thongTinGiaDinhServices);
             danhSachForm.ShowDialog(this);
         }
+
+        #endregion
+
+        #region Emp Informations
+
+        private void khenThưởngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                ThongTinKhenThuong khenThuongForm = new ThongTinKhenThuong(nhanVienServices, khenThuongServices);
+                khenThuongForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void kỷLuậtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(nhanVienServices, kyLuatServices);
+                kyLuatForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void trìnhĐộToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
+                trinhdoForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void thêmHĐLĐToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UserProfile.permission == 1)
+            {
+                QuanLyHopDong hopDongForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices);
+                hopDongForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void kiểmTraThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KiemTraHDLD hopDongListForm = new KiemTraHDLD(hopDongServices, loaiHopDongServices, nhanVienServices);
+            hopDongListForm.ShowDialog(this);
+        }
+
+        #endregion
+
+        #region Informations Management
 
         private void thêmTTTDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -141,6 +240,34 @@
             }
         }
 
+        private void danhSáchTuyểnDụngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Tuyển Dụng");
+            danhSachTuyenDung.ShowDialog(this);
+        }
+
+        private void danhSáchĐiềuĐộngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DanhSachThongTin danhSachDieuDong = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Điều Động");
+            danhSachDieuDong.ShowDialog(this);
+        }
+
+        private void danhSáchBổNhiệmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DanhSachThongTin danhSachBoNhiem = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Bổ Nhiệm");
+            danhSachBoNhiem.ShowDialog(this);
+        }
+
+        private void danhSáchThôiViệcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DanhSachThongTin danhSachThoiViec = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Thôi Việc");
+            danhSachThoiViec.ShowDialog(this);
+        }
+
+        #endregion
+
+        #region General Management
+
         private void quảnLýBiênChếToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserProfile.permission == 1)
@@ -180,30 +307,6 @@
             }
         }
 
-        private void danhSáchTuyểnDụngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Tuyển Dụng");
-            danhSachTuyenDung.ShowDialog(this);
-        }
-
-        private void danhSáchĐiềuĐộngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DanhSachThongTin danhSachDieuDong = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Điều Động");
-            danhSachDieuDong.ShowDialog(this);
-        }
-
-        private void danhSáchBổNhiệmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DanhSachThongTin danhSachBoNhiem = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Bổ Nhiệm");
-            danhSachBoNhiem.ShowDialog(this);
-        }
-
-        private void danhSáchThôiViệcToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DanhSachThongTin danhSachThoiViec = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Thôi Việc");
-            danhSachThoiViec.ShowDialog(this);
-        }
-
         private void quảnLýPhòngBanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserProfile.permission == 1)
@@ -217,89 +320,6 @@
             }
         }
 
-        private void khenThưởngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UserProfile.permission == 1)
-            {
-                ThongTinKhenThuong khenThuongForm = new ThongTinKhenThuong(nhanVienServices, khenThuongServices);
-                khenThuongForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void kỷLuậtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UserProfile.permission == 1)
-            {
-                ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(nhanVienServices, kyLuatServices);
-                kyLuatForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void trìnhĐộToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (UserProfile.permission == 1)
-            {
-                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
-                trinhdoForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void thêmHĐLĐToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UserProfile.permission == 1)
-            {
-                QuanLyHopDong hopDongForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices);
-                hopDongForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void thôngTinPhầnMềmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UserProfile.permission == 1)
-            {
-                REPORT reportForm = new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices,
-                    loaiHopDongServices);
-                reportForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void kiểmTraThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KiemTraHDLD hopDongListForm = new KiemTraHDLD(hopDongServices, loaiHopDongServices, nhanVienServices);
-            hopDongListForm.ShowDialog(this);
-        }
-
-        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dang_nhap dangNhapForm = new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
-                kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
-                thongTinServices, trinhDoServices);
-            UserProfile.hoTen = null;
-            UserProfile.idNhanVien = 0;
-            UserProfile.MaNV = null;
-            UserProfile.permission = 0;
-            UserProfile.userName = null;
-            dangNhapForm.Show();
-        }
+        #endregion
     }
 }
