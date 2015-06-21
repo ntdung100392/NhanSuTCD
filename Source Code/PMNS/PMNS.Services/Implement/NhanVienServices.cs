@@ -81,6 +81,12 @@ namespace PMNS.Services.Implement
                 .Select(x => x.MaNV).ToList();
         }
 
+        public List<string> FindEmpByName(string name)
+        {
+            return unitOfWork.Repository<ThongTinNhanVIen>().Get().Where(x => x.hoTen.Contains(name)).ToList()
+                .Select(x => x.hoTen).ToList();
+        }
+
         public ThongTinNhanVIen GetEmpById(int id)
         {
             return unitOfWork.Repository<ThongTinNhanVIen>().GetById(id);

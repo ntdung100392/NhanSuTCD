@@ -26,29 +26,27 @@
             #region Implement Services
 
             IUnitOfWork unitOfWork = new UnitOfWork();
-            IBienCheServices _bienCheServices = new BienCheServices(unitOfWork);
-            ICapBacServices _capBacServices = new CapBacServices(unitOfWork);
-            IChucVuServices _chucVuServices = new ChucVuServices(unitOfWork);
-            IHopDongServices _hopDongServices = new HopDongServices(unitOfWork);
-            IKhenThuongServices _khenThuongServices = new KhenThuongServices(unitOfWork);
-            IKyLuatServices _kyLuatServices = new KyLuatServices(unitOfWork);
-            ILoaiHopDongServices _loaiHopDongServices = new LoaiHopDongServices(unitOfWork);
-            INhanVienServices _nhanVienServices = new NhanVienServices(unitOfWork);
-            IPhongBanServices _phongBanServices = new PhongBanServices(unitOfWork);
-            IThanhPhoServices _thanhPhoServices = new ThanhPhoServices(unitOfWork);
-            IThongTinGiaDinhServices _thongTinGiaDinhServices = new ThongTinGiaDinhServices(unitOfWork);
-            IThongTinServices _thongTinServices = new ThongTinServices(unitOfWork);
-            IThongTinTrinhDoServices _trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            IBienCheServices bienCheServices = new BienCheServices(unitOfWork);
+            ICapBacServices capBacServices = new CapBacServices(unitOfWork);
+            IChucVuServices chucVuServices = new ChucVuServices(unitOfWork);
+            IHopDongServices hopDongServices = new HopDongServices(unitOfWork);
+            IKhenThuongServices khenThuongServices = new KhenThuongServices(unitOfWork);
+            IKyLuatServices kyLuatServices = new KyLuatServices(unitOfWork);
+            ILoaiHopDongServices loaiHopDongServices = new LoaiHopDongServices(unitOfWork);
+            INhanVienServices nhanVienServices = new NhanVienServices(unitOfWork);
+            IPhongBanServices phongBanServices = new PhongBanServices(unitOfWork);
+            IThanhPhoServices thanhPhoServices = new ThanhPhoServices(unitOfWork);
+            IThongTinGiaDinhServices thongTinGiaDinhServices = new ThongTinGiaDinhServices(unitOfWork);
+            IThongTinServices thongTinServices = new ThongTinServices(unitOfWork);
+            IThongTinTrinhDoServices trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
 
             #endregion
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Dang_nhap(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
-            //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
-            //Application.Run(new Menu(_bienCheServices, _capBacServices, _chucVuServices, _hopDongServices, _khenThuongServices, _kyLuatServices,
-            //            _loaiHopDongServices, _nhanVienServices, _phongBanServices, _thanhPhoServices, _thongTinGiaDinhServices, _thongTinServices, _trinhDoServices));
-            Application.Run(new KiemTraHDLD());
+            Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
+                kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
+                thongTinServices, trinhDoServices));
         }
     }
 }

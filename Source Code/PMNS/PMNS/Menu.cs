@@ -23,52 +23,49 @@
     {
         #region Constructor Or Destructor
 
-        protected readonly IBienCheServices _bienCheServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly IHopDongServices _hopDongServices;
-        protected readonly IKhenThuongServices _khenThuongServices;
-        protected readonly IKyLuatServices _kyLuatServices;
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IThanhPhoServices _thanhPhoServices;
-        protected readonly IThongTinGiaDinhServices _thongTinGiaDinhServices;
-        protected readonly IThongTinServices _thongTinServices;
-        protected readonly IThongTinTrinhDoServices _trinhDoServices;
+        protected readonly IBienCheServices bienCheServices;
+        protected readonly ICapBacServices capBacServices;
+        protected readonly IChucVuServices chucVuServices;
+        protected readonly IHopDongServices hopDongServices;
+        protected readonly IKhenThuongServices khenThuongServices;
+        protected readonly IKyLuatServices kyLuatServices;
+        protected readonly ILoaiHopDongServices loaiHopDongServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IPhongBanServices phongBanServices;
+        protected readonly IThanhPhoServices thanhPhoServices;
+        protected readonly IThongTinGiaDinhServices thongTinGiaDinhServices;
+        protected readonly IThongTinServices thongTinServices;
+        protected readonly IThongTinTrinhDoServices trinhDoServices;
         public Menu(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
             IHopDongServices hopDongServices, IKhenThuongServices khenThuongServices, IKyLuatServices kyLuatServices, ILoaiHopDongServices loaiHopDongServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, IThongTinGiaDinhServices thongTinGiaDinhServices,
             IThongTinServices thongTinServices, IThongTinTrinhDoServices trinhDoServices)
         {
-            this._bienCheServices = bienCheServices;
-            this._capBacServices = capBacServices;
-            this._chucVuServices = chucVuServices;
-            this._hopDongServices = hopDongServices;
-            this._khenThuongServices = khenThuongServices;
-            this._kyLuatServices = kyLuatServices;
-            this._loaiHopDongServices = loaiHopDongServices;
-            this._nhanVienServices = nhanVienServices;
-            this._phongBanServices = phongBanServices;
-            this._thanhPhoServices = thanhPhoServices;
-            this._thongTinGiaDinhServices = thongTinGiaDinhServices;
-            this._thongTinServices = thongTinServices;
-            this._trinhDoServices = trinhDoServices;
+            this.bienCheServices = bienCheServices;
+            this.capBacServices = capBacServices;
+            this.chucVuServices = chucVuServices;
+            this.hopDongServices = hopDongServices;
+            this.khenThuongServices = khenThuongServices;
+            this.kyLuatServices = kyLuatServices;
+            this.loaiHopDongServices = loaiHopDongServices;
+            this.nhanVienServices = nhanVienServices;
+            this.phongBanServices = phongBanServices;
+            this.thanhPhoServices = thanhPhoServices;
+            this.thongTinGiaDinhServices = thongTinGiaDinhServices;
+            this.thongTinServices = thongTinServices;
+            this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
 
         #endregion
 
-        public void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        public void Form1_Load(object sender, EventArgs e) {}
 
         public void thêmNhânViênMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UserProfile.permission == 1)
             {
-                ThemNV addEmpForm = new ThemNV(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices);
+                ThemNV addEmpForm = new ThemNV(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices);
                 addEmpForm.ShowDialog(this);
             }
             else
@@ -77,15 +74,10 @@
             }
         }
 
-        private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void danhSáchNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachNhanVien danhSachForm = new DanhSachNhanVien(_nhanVienServices, _phongBanServices, _thanhPhoServices, _chucVuServices,
-                _capBacServices, _bienCheServices, _loaiHopDongServices, _trinhDoServices, _thongTinGiaDinhServices);
+            DanhSachNhanVien danhSachForm = new DanhSachNhanVien(hopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices,
+                capBacServices, bienCheServices, loaiHopDongServices, trinhDoServices, thongTinGiaDinhServices);
             danhSachForm.ShowDialog(this);
         }
 
@@ -93,7 +85,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTin_TuyenDung tuyenDungForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Tuyển Dụng");
+                ThongTin_TuyenDung tuyenDungForm = new ThongTin_TuyenDung(nhanVienServices, thongTinServices, "Tuyển Dụng");
                 tuyenDungForm.ShowDialog(this);
             }
             else
@@ -109,7 +101,7 @@
             {
                 try
                 {
-                    ThongTin_TuyenDung dieuDongForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Điều Động");
+                    ThongTin_TuyenDung dieuDongForm = new ThongTin_TuyenDung(nhanVienServices, thongTinServices, "Điều Động");
                     dieuDongForm.ShowDialog(this);
                 }
                 catch (Exception ex)
@@ -127,7 +119,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTin_TuyenDung boNhiemForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Bổ Nhiệm");
+                ThongTin_TuyenDung boNhiemForm = new ThongTin_TuyenDung(nhanVienServices, thongTinServices, "Bổ Nhiệm");
                 boNhiemForm.ShowDialog(this);
             }
             else
@@ -140,7 +132,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTin_TuyenDung thoiViecForm = new ThongTin_TuyenDung(_nhanVienServices, _thongTinServices, "Thôi Việc");
+                ThongTin_TuyenDung thoiViecForm = new ThongTin_TuyenDung(nhanVienServices, thongTinServices, "Thôi Việc");
                 thoiViecForm.ShowDialog(this);
             }
             else
@@ -153,7 +145,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyBienChe bienCheForm = new QuanLyBienChe(_bienCheServices);
+                QuanLyBienChe bienCheForm = new QuanLyBienChe(bienCheServices);
                 bienCheForm.ShowDialog(this);
             }
             else
@@ -166,7 +158,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyCapBac capBacForm = new QuanLyCapBac(_capBacServices);
+                QuanLyCapBac capBacForm = new QuanLyCapBac(capBacServices);
                 capBacForm.ShowDialog(this);
             }
             else
@@ -179,7 +171,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyChucVu chucVuForm = new QuanLyChucVu(_chucVuServices);
+                QuanLyChucVu chucVuForm = new QuanLyChucVu(chucVuServices);
                 chucVuForm.ShowDialog(this);
             }
             else
@@ -190,25 +182,25 @@
 
         private void danhSáchTuyểnDụngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(_nhanVienServices, _phongBanServices, _thongTinServices, "Tuyển Dụng");
+            DanhSachThongTin danhSachTuyenDung = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Tuyển Dụng");
             danhSachTuyenDung.ShowDialog(this);
         }
 
         private void danhSáchĐiềuĐộngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachThongTin danhSachDieuDong = new DanhSachThongTin(_nhanVienServices, _phongBanServices, _thongTinServices, "Điều Động");
+            DanhSachThongTin danhSachDieuDong = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Điều Động");
             danhSachDieuDong.ShowDialog(this);
         }
 
         private void danhSáchBổNhiệmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachThongTin danhSachBoNhiem = new DanhSachThongTin(_nhanVienServices, _phongBanServices, _thongTinServices, "Bổ Nhiệm");
+            DanhSachThongTin danhSachBoNhiem = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Bổ Nhiệm");
             danhSachBoNhiem.ShowDialog(this);
         }
 
         private void danhSáchThôiViệcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DanhSachThongTin danhSachThoiViec = new DanhSachThongTin(_nhanVienServices, _phongBanServices, _thongTinServices, "Thôi Việc");
+            DanhSachThongTin danhSachThoiViec = new DanhSachThongTin(nhanVienServices, phongBanServices, thongTinServices, "Thôi Việc");
             danhSachThoiViec.ShowDialog(this);
         }
 
@@ -216,7 +208,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyPhongBan phongBanForm = new QuanLyPhongBan(_phongBanServices);
+                QuanLyPhongBan phongBanForm = new QuanLyPhongBan(phongBanServices);
                 phongBanForm.ShowDialog(this);
             }
             else
@@ -229,7 +221,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTinKhenThuong khenThuongForm = new ThongTinKhenThuong(_nhanVienServices, _khenThuongServices);
+                ThongTinKhenThuong khenThuongForm = new ThongTinKhenThuong(nhanVienServices, khenThuongServices);
                 khenThuongForm.ShowDialog(this);
             }
             else
@@ -242,7 +234,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(_nhanVienServices, _kyLuatServices);
+                ThongTinKyLuat kyLuatForm = new ThongTinKyLuat(nhanVienServices, kyLuatServices);
                 kyLuatForm.ShowDialog(this);
             }
             else
@@ -255,7 +247,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
+                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
                 trinhdoForm.ShowDialog(this);
             }
             else
@@ -268,7 +260,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyHopDong hopDongForm = new QuanLyHopDong(_nhanVienServices, _hopDongServices, _loaiHopDongServices);
+                QuanLyHopDong hopDongForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices);
                 hopDongForm.ShowDialog(this);
             }
             else
@@ -281,14 +273,33 @@
         {
             if (UserProfile.permission == 1)
             {
-                REPORT reportForm = new REPORT(_bienCheServices, _capBacServices, _chucVuServices, _nhanVienServices, _phongBanServices, _thanhPhoServices,
-                    _loaiHopDongServices);
+                REPORT reportForm = new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices,
+                    loaiHopDongServices);
                 reportForm.ShowDialog(this);
             }
             else
             {
                 MessageBox.Show("Bạn Không Có Quyền Sử Dụng Chức Năng Này", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void kiểmTraThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KiemTraHDLD hopDongListForm = new KiemTraHDLD(hopDongServices, loaiHopDongServices, nhanVienServices);
+            hopDongListForm.ShowDialog(this);
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dang_nhap dangNhapForm = new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
+                kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
+                thongTinServices, trinhDoServices);
+            UserProfile.hoTen = null;
+            UserProfile.idNhanVien = 0;
+            UserProfile.MaNV = null;
+            UserProfile.permission = 0;
+            UserProfile.userName = null;
+            dangNhapForm.Show();
         }
     }
 }

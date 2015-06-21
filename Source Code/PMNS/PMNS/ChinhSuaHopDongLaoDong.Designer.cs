@@ -1,6 +1,6 @@
 ﻿namespace PMNS
 {
-    partial class QuanLyHopDong
+    partial class ChinhSuaHopDongLaoDong
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,18 +51,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaNv = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridHDLD = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHDLD)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label8);
@@ -89,40 +81,20 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(731, 180);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(736, 180);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(569, 150);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 106;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(488, 150);
+            this.btnEdit.Location = new System.Drawing.Point(569, 150);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 105;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(407, 150);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 104;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnExit
             // 
@@ -215,6 +187,7 @@
             // 
             // cbLoaiHopDong
             // 
+            this.cbLoaiHopDong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiHopDong.FormattingEnabled = true;
             this.cbLoaiHopDong.Location = new System.Drawing.Point(471, 15);
             this.cbLoaiHopDong.Name = "cbLoaiHopDong";
@@ -273,6 +246,7 @@
             // 
             this.txtTenNV.Location = new System.Drawing.Point(190, 51);
             this.txtTenNV.Name = "txtTenNV";
+            this.txtTenNV.ReadOnly = true;
             this.txtTenNV.Size = new System.Drawing.Size(126, 20);
             this.txtTenNV.TabIndex = 28;
             // 
@@ -300,48 +274,21 @@
             this.txtMaNv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtMaNv.Location = new System.Drawing.Point(190, 18);
             this.txtMaNv.Name = "txtMaNv";
+            this.txtMaNv.ReadOnly = true;
             this.txtMaNv.Size = new System.Drawing.Size(126, 20);
             this.txtMaNv.TabIndex = 25;
-            this.txtMaNv.TextChanged += new System.EventHandler(this.txtMaNv_TextChanged);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dataGridHDLD);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 186);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(731, 292);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Danh Sách";
-            // 
-            // dataGridHDLD
-            // 
-            this.dataGridHDLD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHDLD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridHDLD.Location = new System.Drawing.Point(3, 16);
-            this.dataGridHDLD.MultiSelect = false;
-            this.dataGridHDLD.Name = "dataGridHDLD";
-            this.dataGridHDLD.ReadOnly = true;
-            this.dataGridHDLD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridHDLD.Size = new System.Drawing.Size(725, 273);
-            this.dataGridHDLD.TabIndex = 0;
-            this.dataGridHDLD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHDLD_CellClick);
-            // 
-            // QuanLyHopDong
+            // ChinhSuaHopDongLaoDong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 478);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(736, 180);
             this.Controls.Add(this.groupBox1);
-            this.Name = "QuanLyHopDong";
-            this.Text = "Hợp Đồng Lao Động";
-            this.Load += new System.EventHandler(this.HopDongLaoDong_Load);
+            this.Name = "ChinhSuaHopDongLaoDong";
+            this.Text = "ChinhSuaHopDongLaoDong";
+            this.Load += new System.EventHandler(this.ChinhSuaHopDongLaoDong_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHDLD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,8 +296,20 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridHDLD;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimeNgayKetThuc;
+        private System.Windows.Forms.MaskedTextBox txtNgayKetThuc;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker datetimeNgayBatDau;
+        private System.Windows.Forms.MaskedTextBox txtNgayBatDau;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cbLoaiHopDong;
+        private System.Windows.Forms.TextBox txtChucDanh;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNguoiBaoLanh;
         private System.Windows.Forms.TextBox txtSoHopDong;
         private System.Windows.Forms.Label label4;
@@ -359,21 +318,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMaNv;
-        private System.Windows.Forms.TextBox txtChucDanh;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbLoaiHopDong;
-        private System.Windows.Forms.DateTimePicker dateTimeNgayKetThuc;
-        private System.Windows.Forms.MaskedTextBox txtNgayKetThuc;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker datetimeNgayBatDau;
-        private System.Windows.Forms.MaskedTextBox txtNgayBatDau;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtGhiChu;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnClear;
     }
 }

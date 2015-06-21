@@ -17,41 +17,49 @@
 
     #endregion
 
-    public delegate void OnClosing (bool close);
+    #region Delegate
+
+    public delegate void OnClosingEmpModifier(bool close);
+
+    #endregion
 
     public partial class ChinhSuaThongTinNhanVien : Form
     {
         #region Properties
 
-        private ThongTinNhanVIen _empDetails;
-        public event OnClosing OnClose;
+        private ThongTinNhanVIen empDetails;
+        public event OnClosingEmpModifier OnClose;
 
         #endregion
 
         #region Constructor Or Destructor
 
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IThanhPhoServices _thanhPhoServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IBienCheServices _bienCheServices;
-        protected readonly IThongTinTrinhDoServices _trinhDoServices;
-        protected readonly IThongTinGiaDinhServices _giaDinhServices;
-        public ChinhSuaThongTinNhanVien(INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
-            IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
-            ICapBacServices capBacServices, IBienCheServices bienCheServices, IThongTinTrinhDoServices trinhDoServices, 
-            IThongTinGiaDinhServices giaDinhServices, ThongTinNhanVIen empDetails)
+        protected readonly IHopDongServices hopDongServices;
+        protected readonly ILoaiHopDongServices loaiHopDongServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IPhongBanServices phongBanServices;
+        protected readonly IThanhPhoServices thanhPhoServices;
+        protected readonly IChucVuServices chucVuServices;
+        protected readonly ICapBacServices capBacServices;
+        protected readonly IBienCheServices bienCheServices;
+        protected readonly IThongTinTrinhDoServices trinhDoServices;
+        protected readonly IThongTinGiaDinhServices giaDinhServices;
+        public ChinhSuaThongTinNhanVien(IHopDongServices hopDongServices, ILoaiHopDongServices loaiHopDongServices,
+            INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices,
+            IChucVuServices chucVuServices, ICapBacServices capBacServices, IBienCheServices bienCheServices,
+            IThongTinTrinhDoServices trinhDoServices, IThongTinGiaDinhServices giaDinhServices, ThongTinNhanVIen empDetails)
         {
-            this._nhanVienServices = nhanVienServices;
-            this._phongBanServices = phongBanServices;
-            this._thanhPhoServices = thanhPhoServices;
-            this._chucVuServices = chucVuServices;
-            this._capBacServices = capBacServices;
-            this._bienCheServices = bienCheServices;
-            this._trinhDoServices = trinhDoServices;
-            this._giaDinhServices = giaDinhServices;
-            this._empDetails = empDetails;
+            this.hopDongServices = hopDongServices;
+            this.loaiHopDongServices = loaiHopDongServices;
+            this.nhanVienServices = nhanVienServices;
+            this.phongBanServices = phongBanServices;
+            this.thanhPhoServices = thanhPhoServices;
+            this.chucVuServices = chucVuServices;
+            this.capBacServices = capBacServices;
+            this.bienCheServices = bienCheServices;
+            this.trinhDoServices = trinhDoServices;
+            this.giaDinhServices = giaDinhServices;
+            this.empDetails = empDetails;
             InitializeComponent();
         }
 
@@ -127,33 +135,33 @@
                 {
                     sex = 0;
                 }
-                _empDetails.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
-                _empDetails.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
-                _empDetails.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
-                _empDetails.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
-                _empDetails.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
-                _empDetails.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
-                _empDetails.CongViecDangLam = txtCongViecDangLam.Text.Trim();
-                _empDetails.hoTen = txtTennv.Text;
-                _empDetails.gioiTinh = Convert.ToByte(sex);
-                _empDetails.namSinh = datetimeNgaySinh.Value;
-                _empDetails.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
-                _empDetails.noiOHienNay = txtdiachi.Text;
-                _empDetails.hoKhau = txtHoKhau.Text;
-                _empDetails.CMND = txtCMND.Text;
-                _empDetails.ngayCapCMND = datetimeCMND.Value;
-                _empDetails.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
-                _empDetails.soDienThoaiNha = "";
-                _empDetails.soDienThoaiDiDong = txtSdt.Text.Trim();
-                _empDetails.nguoiBaoLanh = txtNguoiBaoLanh.Text;
-                _empDetails.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
-                _empDetails.noiCongTac = txtNoiCongTac.Text.Trim();
-                _empDetails.ngayVaoCang = datetimeNgayVaoCang.Value;
-                _empDetails.namVaoSongThan = datetimeNamVaoST.Value;
-                _empDetails.ngayNhapNgu = datetimeNgayNhapNgu.Value;
-                _empDetails.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
-                _empDetails.hinhAnhCaNhan = "";
-                if (_nhanVienServices.UpdateEmpInfo(_empDetails))
+                empDetails.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+                empDetails.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
+                empDetails.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
+                empDetails.idCapBac = Convert.ToInt32((cbCapBac.SelectedItem as CapBac).idCapBac);
+                empDetails.idChucVu = Convert.ToInt32((cbMaCV.SelectedItem as ChucVu).idChucVu);
+                empDetails.idTP = Convert.ToInt32((cbThanhPho.SelectedItem as ThanhPho).idThanhPho);
+                empDetails.CongViecDangLam = txtCongViecDangLam.Text.Trim();
+                empDetails.hoTen = txtTennv.Text;
+                empDetails.gioiTinh = Convert.ToByte(sex);
+                empDetails.namSinh = datetimeNgaySinh.Value;
+                empDetails.nguyenQuan = (cbNguyenQuan.SelectedItem as ThanhPho).tenTP;
+                empDetails.noiOHienNay = txtdiachi.Text;
+                empDetails.hoKhau = txtHoKhau.Text;
+                empDetails.CMND = txtCMND.Text;
+                empDetails.ngayCapCMND = datetimeCMND.Value;
+                empDetails.noiCapCMND = (cbNoiCapCMND.SelectedItem as ThanhPho).tenTP;
+                empDetails.soDienThoaiNha = "";
+                empDetails.soDienThoaiDiDong = txtSdt.Text.Trim();
+                empDetails.nguoiBaoLanh = txtNguoiBaoLanh.Text;
+                empDetails.moiQuanHeBaoLanh = txtMoiQuanHeNBL.Text;
+                empDetails.noiCongTac = txtNoiCongTac.Text.Trim();
+                empDetails.ngayVaoCang = datetimeNgayVaoCang.Value;
+                empDetails.namVaoSongThan = datetimeNamVaoST.Value;
+                empDetails.ngayNhapNgu = datetimeNgayNhapNgu.Value;
+                empDetails.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
+                empDetails.hinhAnhCaNhan = "";
+                if (nhanVienServices.UpdateEmpInfo(empDetails))
                 {
                     MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearAllText(this);
@@ -165,10 +173,10 @@
                     MessageBox.Show("Đã Có Lỗi! Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            }
         }
 
         private void ClearAllText(Control con)
@@ -184,18 +192,30 @@
 
         private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
         {
-            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(_nhanVienServices, _trinhDoServices);
+            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
             trinhDoForm.ShowDialog(this);
         }
 
         private void btnThongGiaDinh_Click(object sender, EventArgs e)
         {
-            ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(_nhanVienServices, _giaDinhServices, _empDetails);
+            ThongTinGiaDinh giaDinhForm = new ThongTinGiaDinh(nhanVienServices, giaDinhServices, empDetails);
             giaDinhForm.ShowDialog(this);
         }
 
         private void btnSuaHDLD_Click(object sender, EventArgs e)
         {
+            var hopDongDetails = hopDongServices.GetHopDongByEmpId(empDetails.idNhanVien)
+                .OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault();
+            if (hopDongDetails != null)
+            {
+                ChinhSuaHopDongLaoDong editorContractForm = new ChinhSuaHopDongLaoDong(hopDongServices, loaiHopDongServices,
+                nhanVienServices, hopDongDetails);
+                editorContractForm.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Không Tìm Thấy Thông Tin Hợp Đồng!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -204,15 +224,15 @@
 
         private void InitEmpInfo()
         {
-            txtManv.Text = _empDetails.MaNV;
+            txtManv.Text = empDetails.MaNV;
             txtManv.ReadOnly = true;
-            txtTennv.Text = _empDetails.hoTen;
+            txtTennv.Text = empDetails.hoTen;
             txtTennv.ReadOnly = true;
-            txtSdt.Text = _empDetails.soDienThoaiDiDong;
-            cbCapBac.SelectedValue = _empDetails.idCapBac;
-            cbBienChe.SelectedValue = _empDetails.idBienChe;
-            cbMaCV.SelectedValue = _empDetails.idChucVu;
-            if (_empDetails.gioiTinh == 1)
+            txtSdt.Text = empDetails.soDienThoaiDiDong;
+            cbCapBac.SelectedValue = empDetails.idCapBac;
+            cbBienChe.SelectedValue = empDetails.idBienChe;
+            cbMaCV.SelectedValue = empDetails.idChucVu;
+            if (empDetails.gioiTinh == 1)
             {
                 rBtnNu.Checked = true;
             }
@@ -220,25 +240,25 @@
             {
                 rbtnNam.Checked = true;
             }
-            cbThanhPho.SelectedValue = _empDetails.idTP;
-            cbNoiCapCMND.Text = _empDetails.noiCapCMND;
-            cbNguyenQuan.Text = _empDetails.nguyenQuan;
-            txtdiachi.Text = _empDetails.noiOHienNay;
-            txtHoKhau.Text = _empDetails.hoKhau;
-            txtCMND.Text = _empDetails.CMND;
-            datetimeCMND.Value = Convert.ToDateTime(_empDetails.ngayCapCMND);
-            datetimeNamVaoST.Value = Convert.ToDateTime(_empDetails.namVaoSongThan);
-            datetimeNgaySinh.Value = Convert.ToDateTime(_empDetails.namSinh);
-            datetimeNgayNhapNgu.Value = Convert.ToDateTime(_empDetails.ngayNhapNgu);
-            datetimeNgayVaoCang.Value = Convert.ToDateTime(_empDetails.ngayVaoCang);
-            txtNoiCongTac.Text = _empDetails.noiCongTac;
-            txtCongViecDangLam.Text = _empDetails.CongViecDangLam;
-            cbTinhTrangHonNhan.Text = _empDetails.tinhTrangHonNhan.ToString();
-            cbPhanQuyen.SelectedValue = _empDetails.permission;
-            txtNguoiBaoLanh.Text = _empDetails.nguoiBaoLanh;
-            txtMoiQuanHeNBL.Text = _empDetails.moiQuanHeBaoLanh;
+            cbThanhPho.SelectedValue = empDetails.idTP;
+            cbNoiCapCMND.Text = empDetails.noiCapCMND;
+            cbNguyenQuan.Text = empDetails.nguyenQuan;
+            txtdiachi.Text = empDetails.noiOHienNay;
+            txtHoKhau.Text = empDetails.hoKhau;
+            txtCMND.Text = empDetails.CMND;
+            datetimeCMND.Value = Convert.ToDateTime(empDetails.ngayCapCMND);
+            datetimeNamVaoST.Value = Convert.ToDateTime(empDetails.namVaoSongThan);
+            datetimeNgaySinh.Value = Convert.ToDateTime(empDetails.namSinh);
+            datetimeNgayNhapNgu.Value = Convert.ToDateTime(empDetails.ngayNhapNgu);
+            datetimeNgayVaoCang.Value = Convert.ToDateTime(empDetails.ngayVaoCang);
+            txtNoiCongTac.Text = empDetails.noiCongTac;
+            txtCongViecDangLam.Text = empDetails.CongViecDangLam;
+            cbTinhTrangHonNhan.Text = empDetails.tinhTrangHonNhan.ToString();
+            cbPhanQuyen.SelectedValue = empDetails.permission;
+            txtNguoiBaoLanh.Text = empDetails.nguoiBaoLanh;
+            txtMoiQuanHeNBL.Text = empDetails.moiQuanHeBaoLanh;
             btnSua.Enabled = true;
-            cbPhongBan.SelectedValue = _empDetails.idPhongDoiToLoai;
+            cbPhongBan.SelectedValue = empDetails.idPhongDoiToLoai;
         }
 
         public void InitPermission()
@@ -256,7 +276,7 @@
 
         public void InitPhongBan()
         {
-            cbPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
+            cbPhongBan.DataSource = phongBanServices.GetAllPhongBan();
             cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
             cbPhongBan.ValueMember = "idPhongDoiToLoai";
             cbPhongBan.SelectedIndex = -1;
@@ -264,7 +284,7 @@
 
         public void InitChucVu()
         {
-            cbMaCV.DataSource = _chucVuServices.GetAllChucVu();
+            cbMaCV.DataSource = chucVuServices.GetAllChucVu();
             cbMaCV.DisplayMember = "ChucVu1";
             cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
@@ -272,7 +292,7 @@
 
         public void InitCbNoiCapCMND()
         {
-            cbNoiCapCMND.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbNoiCapCMND.DataSource = thanhPhoServices.GetAllThanhPho();
             cbNoiCapCMND.DisplayMember = "tenTP";
             cbNoiCapCMND.ValueMember = "idThanhPho";
             cbNoiCapCMND.SelectedIndex = -1;
@@ -280,7 +300,7 @@
 
         public void InitCbNguyenQuan()
         {
-            cbNguyenQuan.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbNguyenQuan.DataSource = thanhPhoServices.GetAllThanhPho();
             cbNguyenQuan.DisplayMember = "tenTP";
             cbNguyenQuan.ValueMember = "idThanhPho";
             cbNguyenQuan.SelectedIndex = -1;
@@ -288,7 +308,7 @@
 
         public void InitCbThanhPho()
         {
-            cbThanhPho.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbThanhPho.DataSource = thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DisplayMember = "tenTP";
             cbThanhPho.ValueMember = "idThanhPho";
             cbThanhPho.SelectedIndex = -1;
@@ -315,14 +335,14 @@
 
         public void InitCapBac()
         {
-            cbCapBac.DataSource = _capBacServices.GetAllCapBac();
+            cbCapBac.DataSource = capBacServices.GetAllCapBac();
             cbCapBac.DisplayMember = "capBac1";
             cbCapBac.ValueMember = "idCapBac";
         }
 
         public void InitBienChe()
         {
-            cbBienChe.DataSource = _bienCheServices.GetAllBienChe();
+            cbBienChe.DataSource = bienCheServices.GetAllBienChe();
             cbBienChe.ValueMember = "idBienChe";
             cbBienChe.DisplayMember = "bienChe1";
         }

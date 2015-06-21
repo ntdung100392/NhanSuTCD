@@ -20,7 +20,7 @@
     {
         #region Properties
 
-        protected readonly string _loaiThongTin;
+        protected readonly string loaiThongTin;
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
         private TD_DD_BN_TV thongTinUpdate = new TD_DD_BN_TV();
 
@@ -28,13 +28,13 @@
 
         #region Constructor Or Destructor
 
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IThongTinServices _thongTinServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IThongTinServices thongTinServices;
         public ThongTin_TuyenDung(INhanVienServices nhanVienServices, IThongTinServices thongTinServices, string loaiThongTin)
         {
-            this._nhanVienServices = nhanVienServices;
-            this._thongTinServices = thongTinServices;
-            this._loaiThongTin = loaiThongTin;
+            this.nhanVienServices = nhanVienServices;
+            this.thongTinServices = thongTinServices;
+            this.loaiThongTin = loaiThongTin;
             InitializeComponent();
         }
 
@@ -46,7 +46,7 @@
         {
             txtHoTen.ReadOnly = true;
             btnSua.Enabled = false;
-            txtNoiDung.Text = _loaiThongTin;
+            txtNoiDung.Text = loaiThongTin;
             InitGridView();
             InitAutoComplete("");
         }
@@ -54,7 +54,7 @@
         private void btnThem_Click(object sender, EventArgs e)
         {
             string maNV = txtMaNv.Text.Trim();
-            var emp = _nhanVienServices.GetEmpByMaNV(maNV);
+            var emp = nhanVienServices.GetEmpByMaNV(maNV);
             if (emp != null)
             {
                 TD_DD_BN_TV thongTin = new TD_DD_BN_TV
@@ -72,7 +72,7 @@
                     ngayHieuLuc = dateTimeNgayHieuLuc.Value,
                     ghiChu = txtGhiChu.Text
                 };
-                if (_thongTinServices.AddThongTin(thongTin))
+                if (thongTinServices.AddThongTin(thongTin))
                 {
                     MessageBox.Show("Đã Thêm Thành Công!", "Thông Báo!", MessageBoxButtons.OK);
                     ClearAllText(this);
@@ -100,7 +100,7 @@
             thongTinUpdate.soQuyetDinh = txtSoQuyetDinh.Text.Trim();
             thongTinUpdate.viTriCu = txtViTriCu.Text.Trim();
             thongTinUpdate.viTriMoi = txtViTriMoi.Text.Trim();
-            if (_thongTinServices.UpdateThongTin(thongTinUpdate))
+            if (thongTinServices.UpdateThongTin(thongTinUpdate))
             {
                 MessageBox.Show("Đã Sửa Thông Tin Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                 InitGridView();
@@ -108,7 +108,7 @@
                 txtHoTen.ReadOnly = false;
                 txtMaNv.ReadOnly = false;
                 ClearAllText(this);
-                txtNoiDung.Text = _loaiThongTin;
+                txtNoiDung.Text = loaiThongTin;
                 thongTinUpdate = null;
                 btnSua.Enabled = false;
                 btnThem.Enabled = true;
@@ -135,7 +135,7 @@
             {
                 InitSearch(txtSearch.Text.Trim());
                 dataGridThongTin.Refresh();
-            }            
+            }
         }
 
         private void ClearAllText(Control con)
@@ -153,8 +153,7 @@
         {
             if (txtMaNv.Text.Trim() != null)
             {
-                InitAutoComplete(txtMaNv.Text.Trim());
-                var emp=_nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                var emp = nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
                 if (emp != null)
                 {
                     txtHoTen.Text = emp.hoTen;
@@ -164,7 +163,7 @@
 
         private void dataGridThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            thongTinUpdate = _thongTinServices.GetThongTinById(Convert.ToInt32(dataGridThongTin.CurrentRow.Cells[0].Value.ToString()));
+            thongTinUpdate = thongTinServices.GetThongTinById(Convert.ToInt32(dataGridThongTin.CurrentRow.Cells[0].Value.ToString()));
             txtMaNv.Text = thongTinUpdate.ThongTinNhanVIen.MaNV;
             txtHoTen.Text = thongTinUpdate.ThongTinNhanVIen.hoTen;
             txtHoTen.ReadOnly = true;
@@ -190,7 +189,7 @@
 
         private void InitGridView()
         {
-            dataGridThongTin.DataSource = _thongTinServices.GetAllThongTin().Select(x =>
+            dataGridThongTin.DataSource = thongTinServices.GetAllThongTin().Select(x =>
                     new
                     {
                         id = x.idTDDDBNTV,
@@ -209,14 +208,14 @@
         }
 
         private void InitAutoComplete(string maNV)
-        {            
-            listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
+        {
+            listMaNV.AddRange(nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNv.AutoCompleteCustomSource = listMaNV;
         }
 
         private void InitSearch(string maNV)
         {
-            dataGridThongTin.DataSource = _thongTinServices.FindThongTin(maNV).Select(x =>
+            dataGridThongTin.DataSource = thongTinServices.FindThongTin(maNV).Select(x =>
                     new
                     {
                         id = x.idTDDDBNTV,

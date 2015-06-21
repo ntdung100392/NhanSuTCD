@@ -16,6 +16,7 @@ namespace PMNS.Services.Abstract
         bool AddNhanVien(ThongTinNhanVIen emp);
         ThongTinNhanVIen GetEmpByMaNV(string maNV);
         List<string> FindEmpByMaNV(string maNV);
+        List<string> FindEmpByName(string name);
         ThongTinNhanVIen GetEmpById(int id);
         bool UpdateEmpInfo(ThongTinNhanVIen emp);
         List<ThongTinNhanVIen> GetAllNhanVienByIdPhongBan(int id);

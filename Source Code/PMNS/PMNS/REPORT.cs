@@ -85,7 +85,6 @@
             InitChucVu();
             InitLoaiHopDong();
             InitThanhPho();
-            //InitTreeView();
             InitNhanVien();
             InitReportNumberOfEmp();
         }
@@ -237,21 +236,6 @@
             comboDoTuoi.ValueMember = "Value";
         }
 
-        private void InitTreeView()
-        {
-            //var listPhongBanCha = _phongBanServices.GetAllPhongBan().Where(x => x.idCha == 0).ToList();
-            //foreach (var phongBan in listPhongBanCha)
-            //{
-            //    int i = 0;
-            //    phongBanTreeView.Nodes.Add(phongBan.tenPhongDoiToLoai);
-            //    if (phongBan.PhongDoiToLoaiTo1.ToList().Count != 0)
-            //    {
-            //        phongBanTreeView.Nodes[i].Nodes.Add(AddChildNode(phongBan.PhongDoiToLoaiTo1.ToList()));
-            //    }
-            //    i++;
-            //}
-        }
-
         #endregion
 
         #region Report Event
@@ -363,11 +347,6 @@
             }
         }
 
-        private void phongBanTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-        }
-
         private void txtNamVaoCang_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Allow numeric only
@@ -436,23 +415,6 @@
             return empList;
         }
 
-        //private TreeNode AddChildNode(List<PhongDoiToLoaiTo> child)
-        //{
-        //TreeNode node = new TreeNode();
-        //for (int i = 0; i < child.Count; i++)
-        //{
-        //    if (child[i].PhongDoiToLoaiTo1.Count != 0)
-        //    {
-        //        node.Nodes[i].Nodes.Add(AddChildNode(child[i].PhongDoiToLoaiTo1.ToList()));
-        //    }
-        //    else
-        //    {
-        //        node.Nodes.Add(child[i].tenPhongDoiToLoai);
-        //    }
-        //}
-        //return node;
-        //}
-
         private void ExportToExcel(DataTable dataList)
         {
             var dia = new System.Windows.Forms.SaveFileDialog();
@@ -491,7 +453,7 @@
                     ChucVu = x.ChucVu.ChucVu1,
                     PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
                     HeBienChe = x.BienChe.bienChe1,
-                    //LoaiHopDong = x.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).ToList().FirstOrDefault().LoaiHopDong.loaiHopDong1,
+                    LoaiHopDong = x.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).ToList().FirstOrDefault().LoaiHopDong.loaiHopDong1,
                     NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
                     NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
                     NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),

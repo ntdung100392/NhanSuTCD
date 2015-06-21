@@ -28,15 +28,15 @@
 
         #region Constructor Or Destructor
 
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IHopDongServices _hopDongServices;
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IHopDongServices hopDongServices;
+        protected readonly ILoaiHopDongServices loaiHopDongServices;
         public QuanLyHopDong(INhanVienServices nhanVienServices, IHopDongServices hopDongServices,
             ILoaiHopDongServices loaiHopDongServices)
         {
-            this._nhanVienServices = nhanVienServices;
-            this._hopDongServices = hopDongServices;
-            this._loaiHopDongServices = loaiHopDongServices;
+            this.nhanVienServices = nhanVienServices;
+            this.hopDongServices = hopDongServices;
+            this.loaiHopDongServices = loaiHopDongServices;
             InitializeComponent();
         }
 
@@ -64,7 +64,7 @@
         {
             try
             {
-                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                var emp = nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
                 if (emp != null)
                 {
                     updateHopDong.idLoaiHopDong = (cbLoaiHopDong.SelectedItem as LoaiHopDong).idLoaiHopDong;
@@ -74,7 +74,7 @@
                     updateHopDong.nguoiBaoLanh_TTHDLD = txtNguoiBaoLanh.Text.Trim();
                     updateHopDong.soHopDong_TTHDLD = txtSoHopDong.Text.Trim();
                     updateHopDong.ghiChu = txtGhiChu.Text.Trim();
-                    if (_hopDongServices.UpdateHopDongLaoDong(updateHopDong))
+                    if (hopDongServices.UpdateHopDongLaoDong(updateHopDong))
                     {
                         MessageBox.Show("Đã Chỉnh Sửa Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                         InitGridView();
@@ -118,7 +118,7 @@
         {
             try
             {
-                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                var emp = nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
                 if (emp != null)
                 {
                     HopDongLaoDong hopDong = new HopDongLaoDong
@@ -132,7 +132,7 @@
                         soHopDong_TTHDLD = txtSoHopDong.Text.Trim(),
                         ghiChu = txtGhiChu.Text.Trim()
                     };
-                    if (_hopDongServices.AddHopDongLaoDong(hopDong))
+                    if (hopDongServices.AddHopDongLaoDong(hopDong))
                     {
                         MessageBox.Show("Đã Thêm Hợp Đồng Thành Công!", "Thông Báo", MessageBoxButtons.OK);
                         InitGridView();
@@ -161,7 +161,7 @@
 
         private void dataGridHDLD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            updateHopDong = _hopDongServices.GetHopDongById(Convert.ToInt32(dataGridHDLD.CurrentRow.Cells[0].Value.ToString()));
+            updateHopDong = hopDongServices.GetHopDongById(Convert.ToInt32(dataGridHDLD.CurrentRow.Cells[0].Value.ToString()));
             txtMaNv.Text = updateHopDong.ThongTinNhanVIen.MaNV;
             txtMaNv.ReadOnly = true;
             txtTenNV.Text = updateHopDong.ThongTinNhanVIen.hoTen;
@@ -181,7 +181,7 @@
             if (!String.IsNullOrEmpty(txtMaNv.Text.Trim()))
             {
                 InitAutoComplete(txtMaNv.Text.Trim());
-                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
+                var emp = nhanVienServices.GetEmpByMaNV(txtMaNv.Text.Trim());
                 if (emp != null)
                 {
                     txtTenNV.Text = emp.hoTen;
@@ -240,13 +240,13 @@
 
         private void InitAutoComplete(string maNV)
         {
-            listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
+            listMaNV.AddRange(nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNv.AutoCompleteCustomSource = listMaNV;
         }
 
         private void InitGridView()
         {
-            dataGridHDLD.DataSource = _hopDongServices.GetAllHopDong().Select(x =>
+            dataGridHDLD.DataSource = hopDongServices.GetAllHopDong().Select(x =>
                 new
                 {
                     ID = x.idHopDongLaoDong,
@@ -264,10 +264,10 @@
 
         private void InitLoaiHopDong()
         {
-            var listLoaiHopDong = _loaiHopDongServices.GettAllLoaiHopDong();
+            var listLoaiHopDong = loaiHopDongServices.GettAllLoaiHopDong();
             if (listLoaiHopDong.Count != 0)
             {
-                foreach (var loaiHd in _loaiHopDongServices.GettAllLoaiHopDong())
+                foreach (var loaiHd in loaiHopDongServices.GettAllLoaiHopDong())
                 {
                     if (loaiHd.idCha != 0)
                     {

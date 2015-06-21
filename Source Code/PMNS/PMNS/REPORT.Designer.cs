@@ -30,6 +30,8 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtTenNhanVien = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -67,10 +69,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.datagridReport = new System.Windows.Forms.DataGridView();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.phongBanTreeView = new System.Windows.Forms.TreeView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtTenNhanVien = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -78,7 +76,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridReport)).BeginInit();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -126,6 +123,23 @@
             this.groupBox5.Size = new System.Drawing.Size(684, 203);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
+            // 
+            // txtTenNhanVien
+            // 
+            this.txtTenNhanVien.Location = new System.Drawing.Point(141, 122);
+            this.txtTenNhanVien.Name = "txtTenNhanVien";
+            this.txtTenNhanVien.Size = new System.Drawing.Size(121, 20);
+            this.txtTenNhanVien.TabIndex = 16;
+            this.txtTenNhanVien.TextChanged += new System.EventHandler(this.txtTenNhanVien_TextChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(46, 122);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(79, 13);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "Tên Nhân Viên";
             // 
             // label15
             // 
@@ -449,7 +463,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox7);
-            this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
@@ -460,9 +473,9 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.datagridReport);
-            this.groupBox7.Location = new System.Drawing.Point(274, 12);
+            this.groupBox7.Location = new System.Drawing.Point(6, 12);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(741, 299);
+            this.groupBox7.Size = new System.Drawing.Size(1009, 299);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Danh sách nhân viên";
@@ -474,44 +487,8 @@
             this.datagridReport.Location = new System.Drawing.Point(3, 16);
             this.datagridReport.Name = "datagridReport";
             this.datagridReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridReport.Size = new System.Drawing.Size(735, 280);
+            this.datagridReport.Size = new System.Drawing.Size(1003, 280);
             this.datagridReport.TabIndex = 0;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.phongBanTreeView);
-            this.groupBox6.Location = new System.Drawing.Point(12, 12);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(256, 299);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Phòng Ban";
-            // 
-            // phongBanTreeView
-            // 
-            this.phongBanTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.phongBanTreeView.Location = new System.Drawing.Point(3, 16);
-            this.phongBanTreeView.Name = "phongBanTreeView";
-            this.phongBanTreeView.Size = new System.Drawing.Size(250, 280);
-            this.phongBanTreeView.TabIndex = 0;
-            this.phongBanTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.phongBanTreeView_NodeMouseClick);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(46, 122);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(79, 13);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "Tên Nhân Viên";
-            // 
-            // txtTenNhanVien
-            // 
-            this.txtTenNhanVien.Location = new System.Drawing.Point(141, 122);
-            this.txtTenNhanVien.Name = "txtTenNhanVien";
-            this.txtTenNhanVien.Size = new System.Drawing.Size(121, 20);
-            this.txtTenNhanVien.TabIndex = 16;
-            this.txtTenNhanVien.TextChanged += new System.EventHandler(this.txtTenNhanVien_TextChanged);
             // 
             // REPORT
             // 
@@ -533,7 +510,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridReport)).EndInit();
-            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -556,8 +532,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNam;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TreeView phongBanTreeView;
         private System.Windows.Forms.ComboBox comboTrinhDo;
         private System.Windows.Forms.ComboBox comboNoiO;
         private System.Windows.Forms.ComboBox comboLoaiHD;
