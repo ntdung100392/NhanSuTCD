@@ -177,8 +177,8 @@
         {
             List<ComboBoxItem> listGioiTinh = new List<ComboBoxItem>();
             listGioiTinh.Add(new ComboBoxItem { Text = "Tất Cả", Value = 2 });
-            listGioiTinh.Add(new ComboBoxItem { Text = "Nam", Value = 1 });
-            listGioiTinh.Add(new ComboBoxItem { Text = "Nữ", Value = 0 });
+            listGioiTinh.Add(new ComboBoxItem { Text = "Nam", Value = 0 });
+            listGioiTinh.Add(new ComboBoxItem { Text = "Nữ", Value = 1 });
             comboGioiTinh.DataSource = listGioiTinh;
             comboGioiTinh.DisplayMember = "Text";
             comboGioiTinh.ValueMember = "Value";
@@ -217,8 +217,8 @@
         {
             var empList = _nhanVienServices.GetAllEmployees();
             txtTongQuanSo.Text = empList.Count.ToString();
-            txtNam.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
-            txtNu.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
+            txtNam.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
+            txtNu.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
         }
 
         private void InitDoTuoi()
@@ -368,6 +368,7 @@
             comboNoiO.SelectedIndex = 0;
             //comboTrinhDo.SelectedIndex = 0;
             txtNamVaoCang.Text = "";
+            txtTenNhanVien.Text = "";
         }
 
         #endregion
@@ -460,9 +461,11 @@
                     NguoiBaoLanh = x.nguoiBaoLanh,
                     MoiQuanHe = x.moiQuanHeBaoLanh
                 }).ToList();
+            datagridReport.Columns[0].Visible = false;
             datagridReport.CurrentCell = null;
         }
 
         #endregion
+
     }
 }

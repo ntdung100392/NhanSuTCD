@@ -67,14 +67,16 @@
             // label25
             // 
             this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(12, 15);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(60, 13);
+            this.label25.Size = new System.Drawing.Size(60, 15);
             this.label25.TabIndex = 104;
             this.label25.Text = "Phòng Ban";
             // 
             // btnViewDetails
             // 
+            this.btnViewDetails.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetails.Location = new System.Drawing.Point(862, 10);
             this.btnViewDetails.Name = "btnViewDetails";
             this.btnViewDetails.Size = new System.Drawing.Size(120, 23);
@@ -94,9 +96,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(281, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.Size = new System.Drawing.Size(75, 15);
             this.label1.TabIndex = 109;
             this.label1.Text = "Mã Nhân Viên";
             // 
@@ -111,14 +114,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(567, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 111;
             this.label2.Text = "Tên Nhân Viên";
             // 
             // btnEditDetails
             // 
+            this.btnEditDetails.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditDetails.Location = new System.Drawing.Point(1026, 10);
             this.btnEditDetails.Name = "btnEditDetails";
             this.btnEditDetails.Size = new System.Drawing.Size(120, 23);

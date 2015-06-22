@@ -1045,7 +1045,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.groupBox7.BackColor = System.Drawing.Color.DarkKhaki;
             this.groupBox7.Controls.Add(this.groupBox9);
             this.groupBox7.Controls.Add(this.groupBox11);
             this.groupBox7.Controls.Add(this.groupBox10);

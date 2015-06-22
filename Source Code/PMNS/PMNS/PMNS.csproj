@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChinhSuaHopDongLaoDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     <Compile Include="ThongTinTrinhDo.Designer.cs">
       <DependentUpon>ThongTinTrinhDo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChinhSuaHopDongLaoDong.resx">
       <DependentUpon>ChinhSuaHopDongLaoDong.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\EPPlus.dll" />
+    <None Include="Resources\logo - Copy %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

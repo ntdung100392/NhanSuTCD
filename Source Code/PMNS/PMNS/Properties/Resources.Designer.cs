@@ -103,6 +103,16 @@ namespace PMNS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo___Copy__2_ {
+            get {
+                object obj = ResourceManager.GetObject("logo - Copy (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo1 {
             get {
                 object obj = ResourceManager.GetObject("logo1", resourceCulture);

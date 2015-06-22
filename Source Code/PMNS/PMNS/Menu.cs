@@ -321,5 +321,11 @@
         }
 
         #endregion
+
+        private void thôngTinPhầnMềmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            About thongtinPhanMem = new About();
+            thongtinPhanMem.ShowDialog(this);
+        }
     }
 }
