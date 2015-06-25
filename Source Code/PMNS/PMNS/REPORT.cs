@@ -77,7 +77,8 @@
         private void InitMain()
         {
             InitGioiTinh();
-            InitDoTuoi();
+            InitDoTuoiLon();
+            InitDoTuoiNho();
             InitBienChe();
             InitPhongBan();
             InitTongKetPhongBan();
@@ -221,7 +222,7 @@
             txtNu.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
         }
 
-        private void InitDoTuoi()
+        private void InitDoTuoiNho()
         {
             List<ComboBoxItem> listItem = new List<ComboBoxItem>();
             ComboBoxItem firstItem = new ComboBoxItem { Text = "Tất Cả", Value = 0 };
@@ -231,9 +232,24 @@
                 ComboBoxItem item = new ComboBoxItem { Text = i.ToString(), Value = i };
                 listItem.Add(item);
             }
-            comboDoTuoi.DataSource = listItem;
-            comboDoTuoi.DisplayMember = "Text";
-            comboDoTuoi.ValueMember = "Value";
+            comboDoTuoiNho.DataSource = listItem;
+            comboDoTuoiNho.DisplayMember = "Text";
+            comboDoTuoiNho.ValueMember = "Value";
+        }
+
+        private void InitDoTuoiLon()
+        {
+            List<ComboBoxItem> listItem = new List<ComboBoxItem>();
+            ComboBoxItem firstItem = new ComboBoxItem { Text = "Tất Cả", Value = 0 };
+            listItem.Add(firstItem);
+            for (int i = 19; i <= 65; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem { Text = i.ToString(), Value = i };
+                listItem.Add(item);
+            }
+            comboDoTuoiLon.DataSource = listItem;
+            comboDoTuoiLon.DisplayMember = "Text";
+            comboDoTuoiLon.ValueMember = "Value";
         }
 
         #endregion
@@ -294,16 +310,74 @@
             ReformatDataGridView(filterList);
         }
 
-        private void comboDoTuoi_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
         {
             var filterList = SearchingFilterData(_empReportList);
             ReformatDataGridView(filterList);
         }
 
-        private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
+        private void comboDoTuoiNho_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
-            ReformatDataGridView(filterList);
+            if (!String.IsNullOrEmpty(comboDoTuoiNho.Text) && !String.IsNullOrEmpty(comboDoTuoiLon.Text))
+            {
+                if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                {
+                    if (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) == 65 && Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65)
+                    {
+                        comboDoTuoiNho.Text = (65 - 1).ToString();
+
+                    }
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 && 
+                        Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                    {
+                        comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value)).ToString();
+                    }
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0 && 
+                        Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0 && 
+                        Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                    {
+                        comboDoTuoiNho.Text = (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) - 1).ToString();
+                    }
+                    else
+                    {
+                        comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) + 1).ToString();
+                    }
+                }
+                var filterList = SearchingFilterData(_empReportList);
+                ReformatDataGridView(filterList);
+            }
+        }
+
+        private void comboDoTuoiLon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(comboDoTuoiNho.Text) && !String.IsNullOrEmpty(comboDoTuoiLon.Text))
+            {
+                if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                {
+                    if (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) == 65 && Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65)
+                    {
+                        comboDoTuoiNho.Text = (65 - 1).ToString();
+
+                    }
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 && 
+                        Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                    {
+                        comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value)).ToString();
+                    }
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0 &&
+                        Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0 &&
+                        Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
+                    {
+                        comboDoTuoiNho.Text = (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) - 1).ToString();
+                    }
+                    else
+                    {
+                        comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) + 1).ToString();
+                    }
+                }
+                var filterList = SearchingFilterData(_empReportList);
+                ReformatDataGridView(filterList);
+            }
         }
 
         private void btnInBieu_Click(object sender, EventArgs e)
@@ -359,7 +433,7 @@
         private void btnReset_Click(object sender, EventArgs e)
         {
             comboGioiTinh.SelectedIndex = 0;
-            comboDoTuoi.SelectedIndex = 0;
+            comboDoTuoiNho.SelectedIndex = 0;
             comboBienChe.SelectedIndex = 0;
             comboPhongBan.SelectedIndex = 0;
             comboCapBac.SelectedIndex = 0;
@@ -386,8 +460,11 @@
                 if (Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value) != 2)
                     empList = empList.Where(e => e.gioiTinh == Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value)).ToList();
                 //Filter by age
-                if (Convert.ToInt32((comboDoTuoi.SelectedItem as ComboBoxItem).Value) != 0)
-                    empList = empList.Where(e => e.namSinh.Year == (DateTime.Now.Year - Convert.ToInt32((comboDoTuoi.SelectedItem as ComboBoxItem)
+                if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0)
+                    empList = empList.Where(e => e.namSinh.Year <= (DateTime.Now.Year - Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem)
+                        .Value))).ToList();
+                if (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0)
+                    empList = empList.Where(e => e.namSinh.Year >= (DateTime.Now.Year - Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem)
                         .Value))).ToList();
                 //Filter by BienChe
                 if (Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe) != 0)
@@ -447,14 +524,12 @@
                     NamSinh = x.namSinh.ToString("dd/MM/yyyy"),
                     SoDienThoai = x.soDienThoaiDiDong,
                     TinhTrangHonNhan = x.tinhTrangHonNhan,
-                    //TrinhDo = x.TrinhDoes.OrderByDescending(td => td.thoiGianTotNghiep).FirstOrDefault().trinhDo1,
                     CongViecDangLam = x.CongViecDangLam,
                     NoiCongTac = x.noiCongTac,
                     CapBac = x.CapBac.capBac1,
                     ChucVu = x.ChucVu.ChucVu1,
                     PhongBan = x.PhongDoiToLoaiTo.tenPhongDoiToLoai,
                     HeBienChe = x.BienChe.bienChe1,
-                    LoaiHopDong = x.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).ToList().FirstOrDefault().LoaiHopDong.loaiHopDong1,
                     NgayVaoCang = Convert.ToDateTime(x.ngayVaoCang).ToString("dd/MM/yyyy"),
                     NamVaoST = Convert.ToDateTime(x.namVaoSongThan).Year,
                     NgayNhapNgu = Convert.ToDateTime(x.ngayNhapNgu).ToString("dd/MM/yyyy"),
@@ -466,6 +541,5 @@
         }
 
         #endregion
-
     }
 }
