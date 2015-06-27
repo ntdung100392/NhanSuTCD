@@ -51,8 +51,8 @@
             HopDongLaoDong hopDong = _empDetails.HopDongLaoDongs.ToList().OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
             InitHopDongLaoDong(hopDong);
 
-            TrinhDo trinhDo = _empDetails.TrinhDoes.ToList().OrderByDescending(x => x.thoiGianTotNghiep).FirstOrDefault();
-            InitThongTinHocVan(trinhDo);
+            PMNS.Entities.Models.ThongTinTrinhDo thongTinTrinhDo = _empDetails.ThongTinTrinhDoes.ToList().OrderByDescending(x => x.thoiGianTotNghiep).FirstOrDefault();
+            InitThongTinHocVan(thongTinTrinhDo);
 
             TD_DD_BN_TV tuyenDung = _empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
                 .Where(x => x.noiDung.Equals("Tuyển Dụng")).FirstOrDefault();
@@ -156,12 +156,11 @@
             }
         }
 
-        private void InitThongTinHocVan(TrinhDo trinhDo)
+        private void InitThongTinHocVan(PMNS.Entities.Models.ThongTinTrinhDo trinhDo)
         {
             if (trinhDo != null)
             {
-                lblVanHoa.Text = trinhDo.vanHoa;
-                lblTrinhDo.Text = trinhDo.trinhDo1;
+                lblTrinhDo.Text = trinhDo.TrinhDo.TrinhDo1;
                 lblNoiDaoTao.Text = trinhDo.noiDaoTao;
                 lblChuyenNganh.Text = trinhDo.chuyenNganh;
                 lblLoaiHinh.Text = trinhDo.loaiHinh;

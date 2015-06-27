@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-using PMNS.DAL.Abstract;
-using PMNS.Services.Abstract;
-
-namespace PMNS.Services.Implement
+﻿namespace PMNS.Services.Implement
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+    using PMNS.DAL.Abstract;
+    using PMNS.Services.Abstract;
+    using PMNS.Infrastructures.Implement;
+
     public class BienCheServices : Services<BienChe>, IBienCheServices
     {
         public BienCheServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }

@@ -12,7 +12,7 @@ namespace PMNS.Entities.Models
             this.KyLuats = new List<KyLuat>();
             this.TD_DD_BN_TV = new List<TD_DD_BN_TV>();
             this.ThongTinGiaDinhs = new List<ThongTinGiaDinh>();
-            this.TrinhDoes = new List<TrinhDo>();
+            this.ThongTinTrinhDoes = new List<ThongTinTrinhDo>();
         }
 
         public int idNhanVien { get; set; }
@@ -55,6 +55,6 @@ namespace PMNS.Entities.Models
         public virtual ICollection<TD_DD_BN_TV> TD_DD_BN_TV { get; set; }
         public virtual ThanhPho ThanhPho { get; set; }
         public virtual ICollection<ThongTinGiaDinh> ThongTinGiaDinhs { get; set; }
-        public virtual ICollection<TrinhDo> TrinhDoes { get; set; }
+        public virtual ICollection<ThongTinTrinhDo> ThongTinTrinhDoes { get; set; }
     }
 }

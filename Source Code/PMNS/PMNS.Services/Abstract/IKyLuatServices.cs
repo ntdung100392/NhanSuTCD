@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-
-namespace PMNS.Services.Abstract
+﻿namespace PMNS.Services.Abstract
 {
-    public interface IKyLuatServices : IServices<KyLuat>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+    using PMNS.Infrastructures;
+
+    public interface IKyLuatServices
     {
         List<KyLuat> GetAllKyLuat();
         KyLuat GetKyLuatById(int id);

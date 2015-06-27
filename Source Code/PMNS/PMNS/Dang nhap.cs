@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -14,8 +12,6 @@
     using PMNS.Services.Abstract;
     using PMNS.Entities.Models;
     using PMNS.Services.Models;
-
-    #endregion
 
     public partial class Dang_nhap : Form
     {
@@ -32,11 +28,13 @@
         protected readonly IThanhPhoServices thanhPhoServices;
         protected readonly IThongTinGiaDinhServices thongTinGiaDinhServices;
         protected readonly IThongTinServices thongTinServices;
-        protected readonly IThongTinTrinhDoServices trinhDoServices;
+        protected readonly IThongTinTrinhDoServices thongTinTrinhDoServices;
+        protected readonly ITrinhDoServices trinhDoServices;
+
         public Dang_nhap(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
             IHopDongServices hopDongServices, IKhenThuongServices khenThuongServices, IKyLuatServices kyLuatServices, ILoaiHopDongServices loaiHopDongServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, IThongTinGiaDinhServices thongTinGiaDinhServices,
-            IThongTinServices thongTinServices, IThongTinTrinhDoServices trinhDoServices)
+            IThongTinServices thongTinServices, IThongTinTrinhDoServices thongTinTrinhDoServices, ITrinhDoServices trinhDoServices)
         {
             this.bienCheServices = bienCheServices;
             this.capBacServices = capBacServices;
@@ -50,6 +48,7 @@
             this.thanhPhoServices = thanhPhoServices;
             this.thongTinGiaDinhServices = thongTinGiaDinhServices;
             this.thongTinServices = thongTinServices;
+            this.thongTinTrinhDoServices = thongTinTrinhDoServices;
             this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
@@ -81,7 +80,8 @@
                 {
                     MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
                     Menu form = new Menu(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices, kyLuatServices,
-                        loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices, thongTinServices, trinhDoServices);
+                        loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices, thongTinServices, thongTinTrinhDoServices,
+                        trinhDoServices);
                     form.Show();
                 }
                 else

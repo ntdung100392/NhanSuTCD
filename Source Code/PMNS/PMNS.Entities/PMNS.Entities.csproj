@@ -69,6 +69,7 @@
     <Compile Include="Models\Mapping\ThanhPhoMap.cs" />
     <Compile Include="Models\Mapping\ThongTinGiaDinhMap.cs" />
     <Compile Include="Models\Mapping\ThongTinNhanVIenMap.cs" />
+    <Compile Include="Models\Mapping\ThongTinTrinhDoMap.cs" />
     <Compile Include="Models\Mapping\TrinhDoMap.cs" />
     <Compile Include="Models\NhanSuTCDContext.cs" />
     <Compile Include="Models\PhongDoiToLoaiTo.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Models\ThanhPho.cs" />
     <Compile Include="Models\ThongTinGiaDinh.cs" />
     <Compile Include="Models\ThongTinNhanVIen.cs" />
+    <Compile Include="Models\ThongTinTrinhDo.cs" />
     <Compile Include="Models\TrinhDo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

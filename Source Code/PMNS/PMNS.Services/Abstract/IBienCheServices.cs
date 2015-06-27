@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-
-namespace PMNS.Services.Abstract
+﻿namespace PMNS.Services.Abstract
 {
-    public interface IBienCheServices : IServices<BienChe>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+
+    public interface IBienCheServices
     {
         bool AddBienChe(BienChe bienChe);
         BienChe GetBienCheById(int id);

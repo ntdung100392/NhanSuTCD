@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.DAL.Abstract;
-using PMNS.Entities.Models;
-
-namespace PMNS.Services.Abstract
+﻿namespace PMNS.Services.Abstract
 {
-    public interface IHopDongServices : IServices<HopDongLaoDong>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.DAL.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Infrastructures;
+
+    public interface IHopDongServices
     {
         List<HopDongLaoDong> GetAllHopDong();
         List<HopDongLaoDong> GetHopDongByEmpId(int id);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.datetimeTotNghiep = new System.Windows.Forms.DateTimePicker();
@@ -37,7 +38,6 @@
             this.txtLoaiHinh = new System.Windows.Forms.TextBox();
             this.txtChuyenNganh = new System.Windows.Forms.TextBox();
             this.txtNoiDaoTao = new System.Windows.Forms.TextBox();
-            this.txtTrinhDo = new System.Windows.Forms.TextBox();
             this.txtVanHoa = new System.Windows.Forms.TextBox();
             this.txtTenNV = new System.Windows.Forms.TextBox();
             this.txtMaNV = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridTrinhDo = new System.Windows.Forms.DataGridView();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.cbTrinhDo = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTrinhDo)).BeginInit();
@@ -60,6 +60,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbTrinhDo);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnSua);
             this.groupBox1.Controls.Add(this.btnThem);
@@ -69,7 +70,6 @@
             this.groupBox1.Controls.Add(this.txtLoaiHinh);
             this.groupBox1.Controls.Add(this.txtChuyenNganh);
             this.groupBox1.Controls.Add(this.txtNoiDaoTao);
-            this.groupBox1.Controls.Add(this.txtTrinhDo);
             this.groupBox1.Controls.Add(this.txtVanHoa);
             this.groupBox1.Controls.Add(this.txtTenNV);
             this.groupBox1.Controls.Add(this.txtMaNV);
@@ -89,6 +89,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(715, 139);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 97;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSua
             // 
@@ -154,13 +164,6 @@
             this.txtNoiDaoTao.Name = "txtNoiDaoTao";
             this.txtNoiDaoTao.Size = new System.Drawing.Size(411, 20);
             this.txtNoiDaoTao.TabIndex = 13;
-            // 
-            // txtTrinhDo
-            // 
-            this.txtTrinhDo.Location = new System.Drawing.Point(109, 115);
-            this.txtTrinhDo.Name = "txtTrinhDo";
-            this.txtTrinhDo.Size = new System.Drawing.Size(201, 20);
-            this.txtTrinhDo.TabIndex = 12;
             // 
             // txtVanHoa
             // 
@@ -292,15 +295,14 @@
             this.dataGridTrinhDo.TabIndex = 0;
             this.dataGridTrinhDo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTrinhDo_CellClick);
             // 
-            // btnClear
+            // cbTrinhDo
             // 
-            this.btnClear.Location = new System.Drawing.Point(715, 139);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 97;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.cbTrinhDo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTrinhDo.FormattingEnabled = true;
+            this.cbTrinhDo.Location = new System.Drawing.Point(109, 113);
+            this.cbTrinhDo.Name = "cbTrinhDo";
+            this.cbTrinhDo.Size = new System.Drawing.Size(201, 21);
+            this.cbTrinhDo.TabIndex = 98;
             // 
             // ThongTinTrinhDo
             // 
@@ -339,7 +341,6 @@
         private System.Windows.Forms.TextBox txtLoaiHinh;
         private System.Windows.Forms.TextBox txtChuyenNganh;
         private System.Windows.Forms.TextBox txtNoiDaoTao;
-        private System.Windows.Forms.TextBox txtTrinhDo;
         private System.Windows.Forms.TextBox txtVanHoa;
         private System.Windows.Forms.TextBox txtTenNV;
         private System.Windows.Forms.DateTimePicker datetimeTotNghiep;
@@ -347,5 +348,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ComboBox cbTrinhDo;
     }
 }

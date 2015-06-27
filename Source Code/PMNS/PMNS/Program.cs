@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,8 +10,6 @@
     using PMNS.DAL.Abstract;
     using PMNS.DAL.Implement;
     using PMNS.Services.Models;
-
-    #endregion
 
     static class Program
     {
@@ -38,7 +34,8 @@
             IThanhPhoServices thanhPhoServices = new ThanhPhoServices(unitOfWork);
             IThongTinGiaDinhServices thongTinGiaDinhServices = new ThongTinGiaDinhServices(unitOfWork);
             IThongTinServices thongTinServices = new ThongTinServices(unitOfWork);
-            IThongTinTrinhDoServices trinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            IThongTinTrinhDoServices thongTintrinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            ITrinhDoServices trinhDoServices = new TrinhDoServices(unitOfWork);
 
             #endregion
 
@@ -46,7 +43,7 @@
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
             //    kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
-            //    thongTinServices, trinhDoServices));
+            //    thongTinServices, thongTintrinhDoServices, trinhDoServices));
             Application.Run(new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices, loaiHopDongServices));
         }
     }

@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-
-namespace PMNS.Services.Abstract
+﻿namespace PMNS.Services.Abstract
 {
-    public interface ILoaiHopDongServices : IServices<LoaiHopDong>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+    using PMNS.Infrastructures;
+
+    public interface ILoaiHopDongServices
     {
         List<LoaiHopDong> GettAllLoaiHopDong();
         LoaiHopDong GetLoaiHopDongById(int id);

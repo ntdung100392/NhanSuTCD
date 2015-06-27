@@ -7,7 +7,6 @@ namespace PMNS.Entities.Models
     {
         public PhongDoiToLoaiTo()
         {
-            this.PhongDoiToLoaiTo1 = new List<PhongDoiToLoaiTo>();
             this.ThongTinNhanVIens = new List<ThongTinNhanVIen>();
         }
 
@@ -15,8 +14,6 @@ namespace PMNS.Entities.Models
         public string maPhongDoiToLoai { get; set; }
         public string tenPhongDoiToLoai { get; set; }
         public int idCha { get; set; }
-        public virtual ICollection<PhongDoiToLoaiTo> PhongDoiToLoaiTo1 { get; set; }
-        public virtual PhongDoiToLoaiTo PhongDoiToLoaiTo2 { get; set; }
         public virtual ICollection<ThongTinNhanVIen> ThongTinNhanVIens { get; set; }
     }
 }

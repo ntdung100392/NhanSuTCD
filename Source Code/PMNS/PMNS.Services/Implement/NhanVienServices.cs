@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Services.Abstract;
-using PMNS.DAL.Abstract;
-using PMNS.Entities.Models;
-using PMNS.Services.Models;
-using PMNS.Services.Method;
-using System.Security.Cryptography;
-
-namespace PMNS.Services.Implement
+﻿namespace PMNS.Services.Implement
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Security.Cryptography;
+
+    using PMNS.Services.Abstract;
+    using PMNS.DAL.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.Services.Models;
+    using PMNS.Services.Method;
+    using PMNS.Infrastructures.Implement;
+
     public class NhanVienServices : Services<ThongTinNhanVIen>, INhanVienServices
     {
         public NhanVienServices(IUnitOfWork unitOfWork)

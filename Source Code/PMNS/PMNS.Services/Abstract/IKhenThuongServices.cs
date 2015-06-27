@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-
-namespace PMNS.Services.Abstract
+﻿namespace PMNS.Services.Abstract
 {
-    public interface IKhenThuongServices:IServices<KhenThuong>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+    using PMNS.Infrastructures;
+
+    public interface IKhenThuongServices
     {
         List<KhenThuong> GetAllKhenThuong();
         KhenThuong GetKhenThuongById(int id);

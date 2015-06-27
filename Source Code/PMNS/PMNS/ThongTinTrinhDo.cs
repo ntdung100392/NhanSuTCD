@@ -23,19 +23,22 @@
         #region Properties
 
         private AutoCompleteStringCollection listMaNV = new AutoCompleteStringCollection();
-        private TrinhDo updateTrinhDo = new TrinhDo();
+        private PMNS.Entities.Models.ThongTinTrinhDo updateTrinhDo = new PMNS.Entities.Models.ThongTinTrinhDo();
 
         #endregion
 
         #region Constructor Or Destructor
 
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IThongTinTrinhDoServices _trinhDoServices;
-        
-        public ThongTinTrinhDo(INhanVienServices nhanVienServices, IThongTinTrinhDoServices trinhDoServices)
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IThongTinTrinhDoServices thongTinTrinhDoServices;
+        protected readonly ITrinhDoServices trinhDoServices;
+
+        public ThongTinTrinhDo(INhanVienServices nhanVienServices, IThongTinTrinhDoServices thongTinTrinhDoServices,
+            ITrinhDoServices trinhDoServices)
         {
-            this._nhanVienServices = nhanVienServices;
-            this._trinhDoServices = trinhDoServices;
+            this.nhanVienServices = nhanVienServices;
+            this.thongTinTrinhDoServices = thongTinTrinhDoServices;
+            this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
 
@@ -56,19 +59,18 @@
 
         private void InitAutoComplete(string maNV)
         {
-            listMaNV.AddRange(_nhanVienServices.FindEmpByMaNV(maNV).ToArray());
+            listMaNV.AddRange(nhanVienServices.FindEmpByMaNV(maNV).ToArray());
             txtMaNV.AutoCompleteCustomSource = listMaNV;
         }
 
         private void InitGridView()
         {
-            dataGridTrinhDo.DataSource = _trinhDoServices.GetAllThongTinTrinhDo().Select(x => new
+            dataGridTrinhDo.DataSource = thongTinTrinhDoServices.GetAllThongTinTrinhDo().Select(x => new
             {
                 ID = x.idTrinhDo,
                 TenNhanVien = x.ThongTinNhanVIen.hoTen,
                 MaNV = x.ThongTinNhanVIen.MaNV,
-                VanHoa = x.vanHoa,
-                TrinhDo = x.trinhDo1,
+                TrinhDo = x.TrinhDo.TrinhDo1,
                 ChuyenNganh = x.chuyenNganh,
                 LoaiHinh = x.loaiHinh,
                 NoiDaoTao = x.noiDaoTao,
@@ -77,6 +79,13 @@
             }).ToList();
             dataGridTrinhDo.Columns[0].Visible = false;
             dataGridTrinhDo.CurrentCell = null;
+        }
+
+        private void InitComboTrinhDo()
+        {
+            cbTrinhDo.DataSource = trinhDoServices.GetAllTrinhDo();
+            cbTrinhDo.DisplayMember = "TrinhDo1";
+            cbTrinhDo.ValueMember = "idTrinhDo";
         }
 
         #endregion
@@ -88,7 +97,7 @@
             if (txtMaNV.Text.Trim() != null)
             {
                 InitAutoComplete(txtMaNV.Text.Trim());
-                var emp = _nhanVienServices.GetEmpByMaNV(txtMaNV.Text.Trim());
+                var emp = nhanVienServices.GetEmpByMaNV(txtMaNV.Text.Trim());
                 if (emp != null)
                 {
                     txtTenNV.Text = emp.hoTen;
@@ -106,14 +115,13 @@
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            TrinhDo trinhDo = null;
+            PMNS.Entities.Models.ThongTinTrinhDo trinhDo = null;
             try
             {
-                trinhDo = new TrinhDo
+                trinhDo = new PMNS.Entities.Models.ThongTinTrinhDo
                 {
-                    idNhanVien = _nhanVienServices.GetEmpByMaNV(txtMaNV.Text.Trim()).idNhanVien,
-                    vanHoa = txtVanHoa.Text,
-                    trinhDo1 = txtTrinhDo.Text,
+                    idNhanVien = nhanVienServices.GetEmpByMaNV(txtMaNV.Text.Trim()).idNhanVien,
+                    idTrinhDo = Convert.ToInt32((cbTrinhDo.SelectedItem as TrinhDo).idTrinhDo),
                     noiDaoTao = txtNoiDaoTao.Text,
                     chuyenNganh = txtChuyenNganh.Text,
                     loaiHinh = txtLoaiHinh.Text,
@@ -132,7 +140,7 @@
                     MessageBox.Show("Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            if (_trinhDoServices.AddThongTinTrinhDo(trinhDo))
+            if (thongTinTrinhDoServices.AddThongTinTrinhDo(trinhDo))
             {
                 MessageBox.Show("Đã Thêm Thông Tin Trình Độ Thành Công!", "Thành Công!", MessageBoxButtons.OK);
                 InitGridView();
@@ -149,8 +157,7 @@
         {
             try
             {
-                updateTrinhDo.vanHoa = txtVanHoa.Text;
-                updateTrinhDo.trinhDo1 = txtTrinhDo.Text;
+                updateTrinhDo.idTrinhDo = Convert.ToInt32((cbTrinhDo.SelectedItem as TrinhDo).idTrinhDo);
                 updateTrinhDo.noiDaoTao = txtNoiDaoTao.Text;
                 updateTrinhDo.chuyenNganh = txtChuyenNganh.Text;
                 updateTrinhDo.loaiHinh = txtLoaiHinh.Text;
@@ -168,7 +175,7 @@
                     MessageBox.Show("Lỗi!", "Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            if (_trinhDoServices.UpdateThongTinTrinhDo(updateTrinhDo))
+            if (thongTinTrinhDoServices.UpdateThongTinTrinhDo(updateTrinhDo))
             {
                 MessageBox.Show("Thành Công!", "Đã Cập Nhật Thông Tin Trình Độ Thành Công!", MessageBoxButtons.OK);
                 InitGridView();
@@ -200,13 +207,12 @@
 
         private void dataGridTrinhDo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            updateTrinhDo = _trinhDoServices.GetThongTinTrinhDoById(Convert.ToInt32(dataGridTrinhDo.CurrentRow.Cells[0].Value.ToString()));
+            updateTrinhDo = thongTinTrinhDoServices.GetThongTinTrinhDoById(Convert.ToInt32(dataGridTrinhDo.CurrentRow.Cells[0].Value.ToString()));
             if (updateTrinhDo != null)
             {
                 txtMaNV.Text = updateTrinhDo.ThongTinNhanVIen.MaNV;
                 txtTenNV.Text = updateTrinhDo.ThongTinNhanVIen.hoTen;
-                txtVanHoa.Text = updateTrinhDo.vanHoa;
-                txtTrinhDo.Text = updateTrinhDo.trinhDo1;
+                cbTrinhDo.SelectedValue = updateTrinhDo.idTrinhDo;
                 txtNoiDaoTao.Text = updateTrinhDo.noiDaoTao;
                 txtChuyenNganh.Text = updateTrinhDo.chuyenNganh;
                 txtLoaiHinh.Text = updateTrinhDo.loaiHinh;

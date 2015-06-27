@@ -145,6 +145,12 @@
     <Compile Include="QuanLyBienChe.Designer.cs">
       <DependentUpon>QuanLyBienChe.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyLoaiTrinhDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyLoaiTrinhDo.Designer.cs">
+      <DependentUpon>QuanLyLoaiTrinhDo.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyPhongBan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     <EmbeddedResource Include="QuanLyBienChe.resx">
       <DependentUpon>QuanLyBienChe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyLoaiTrinhDo.resx">
+      <DependentUpon>QuanLyLoaiTrinhDo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLyPhongBan.resx">
       <DependentUpon>QuanLyPhongBan.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +317,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructures\PMNS.Infrastructures.csproj">
+      <Project>{ab2858e3-71e4-401c-86ec-bc515800ad83}</Project>
+      <Name>PMNS.Infrastructures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMNS.DAL\PMNS.DAL.csproj">
       <Project>{105e6642-5a14-4952-afa9-c4cc7fdac9ee}</Project>
       <Name>PMNS.DAL</Name>

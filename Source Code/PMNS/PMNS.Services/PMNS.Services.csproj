@@ -61,11 +61,11 @@
     <Compile Include="Abstract\ILoaiHopDongServices.cs" />
     <Compile Include="Abstract\INhanVienServices.cs" />
     <Compile Include="Abstract\IPhongBanServices.cs" />
-    <Compile Include="Abstract\IServices.cs" />
     <Compile Include="Abstract\IThanhPhoServices.cs" />
     <Compile Include="Abstract\IThongTinGiaDinhServices.cs" />
     <Compile Include="Abstract\IThongTinServices.cs" />
     <Compile Include="Abstract\IThongTinTrinhDoServices.cs" />
+    <Compile Include="Abstract\ITrinhDoServices.cs" />
     <Compile Include="Implement\BienCheServices.cs" />
     <Compile Include="Implement\CapBacServices.cs" />
     <Compile Include="Implement\ChucVuServices.cs" />
@@ -75,11 +75,11 @@
     <Compile Include="Implement\LoaiHopDongServices.cs" />
     <Compile Include="Implement\NhanVienServices.cs" />
     <Compile Include="Implement\PhongBanServices.cs" />
-    <Compile Include="Implement\Services.cs" />
     <Compile Include="Implement\ThanhPhoServices.cs" />
     <Compile Include="Implement\ThongTinGiaDinhServices.cs" />
     <Compile Include="Implement\ThongTinServices.cs" />
     <Compile Include="Implement\ThongTinTrinhDoServices.cs" />
+    <Compile Include="Implement\TrinhDoServices.cs" />
     <Compile Include="Method\EncryptedSecurity.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructures\PMNS.Infrastructures.csproj">
+      <Project>{ab2858e3-71e4-401c-86ec-bc515800ad83}</Project>
+      <Name>PMNS.Infrastructures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMNS.DAL\PMNS.DAL.csproj">
       <Project>{105e6642-5a14-4952-afa9-c4cc7fdac9ee}</Project>
       <Name>PMNS.DAL</Name>

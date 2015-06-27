@@ -1,41 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Entities.Models;
-using PMNS.DAL.Abstract;
-using PMNS.Services.Abstract;
-
-namespace PMNS.Services.Implement
+﻿namespace PMNS.Services.Implement
 {
-    public class ThongTinTrinhDoServices : Services<TrinhDo>, IThongTinTrinhDoServices
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Entities.Models;
+    using PMNS.DAL.Abstract;
+    using PMNS.Services.Abstract;
+    using PMNS.Infrastructures.Implement;
+
+    public class ThongTinTrinhDoServices : Services<ThongTinTrinhDo>, IThongTinTrinhDoServices
     {
         public ThongTinTrinhDoServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public List<TrinhDo> GetThongTinTrinhDoByEmpId(int empId)
+        public List<ThongTinTrinhDo> GetThongTinTrinhDoByEmpId(int empId)
         {
-            return unitOfWork.Repository<TrinhDo>().GetAll().Where(x => x.idNhanVien == empId).ToList().
+            return unitOfWork.Repository<ThongTinTrinhDo>().GetAll().Where(x => x.idNhanVien == empId).ToList().
                 OrderByDescending(x => x.thoiGianTotNghiep).ToList();
         }
 
-        public List<TrinhDo> GetAllThongTinTrinhDo()
+        public List<ThongTinTrinhDo> GetAllThongTinTrinhDo()
         {
-            return unitOfWork.Repository<TrinhDo>().GetAll().OrderBy(x => x.ThongTinNhanVIen.MaNV).ToList();
+            return unitOfWork.Repository<ThongTinTrinhDo>().GetAll().OrderBy(x => x.ThongTinNhanVIen.MaNV).ToList();
         }
 
-        public TrinhDo GetThongTinTrinhDoById(int id)
+        public ThongTinTrinhDo GetThongTinTrinhDoById(int id)
         {
-            return unitOfWork.Repository<TrinhDo>().GetById(id);
+            return unitOfWork.Repository<ThongTinTrinhDo>().GetById(id);
         }
 
-        public bool AddThongTinTrinhDo(TrinhDo trinhDo)
+        public bool AddThongTinTrinhDo(ThongTinTrinhDo trinhDo)
         {
             if (trinhDo != null)
             {
                 try
                 {
-                    unitOfWork.Repository<TrinhDo>().Insert(trinhDo);
+                    unitOfWork.Repository<ThongTinTrinhDo>().Insert(trinhDo);
                     unitOfWork.Commit();
                     return true;
                 }
@@ -50,13 +52,13 @@ namespace PMNS.Services.Implement
             }
         }
 
-        public bool UpdateThongTinTrinhDo(TrinhDo trinhDo)
+        public bool UpdateThongTinTrinhDo(ThongTinTrinhDo trinhDo)
         {
             if (trinhDo != null)
             {
                 try
                 {
-                    unitOfWork.Repository<TrinhDo>().Update(trinhDo);
+                    unitOfWork.Repository<ThongTinTrinhDo>().Update(trinhDo);
                     unitOfWork.Commit();
                     return true;
                 }
@@ -71,13 +73,13 @@ namespace PMNS.Services.Implement
             }
         }
 
-        public bool DeleteThongTinTrinhDo(TrinhDo trinhDo)
+        public bool DeleteThongTinTrinhDo(ThongTinTrinhDo trinhDo)
         {
             if (trinhDo != null)
             {
                 try
                 {
-                    unitOfWork.Repository<TrinhDo>().Delete(trinhDo);
+                    unitOfWork.Repository<ThongTinTrinhDo>().Delete(trinhDo);
                     unitOfWork.Commit();
                     return true;
                 }

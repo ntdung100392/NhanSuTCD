@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -16,8 +14,6 @@
     using PMNS.Services.Abstract;
     using PMNS.DAL.Abstract;
     using PMNS.Services.Models;
-
-    #endregion
 
     public partial class Menu : Form
     {
@@ -35,11 +31,13 @@
         protected readonly IThanhPhoServices thanhPhoServices;
         protected readonly IThongTinGiaDinhServices thongTinGiaDinhServices;
         protected readonly IThongTinServices thongTinServices;
-        protected readonly IThongTinTrinhDoServices trinhDoServices;
+        protected readonly IThongTinTrinhDoServices thongTinTrinhDoServices;
+        protected readonly ITrinhDoServices trinhDoServices;
+
         public Menu(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
             IHopDongServices hopDongServices, IKhenThuongServices khenThuongServices, IKyLuatServices kyLuatServices, ILoaiHopDongServices loaiHopDongServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, IThongTinGiaDinhServices thongTinGiaDinhServices,
-            IThongTinServices thongTinServices, IThongTinTrinhDoServices trinhDoServices)
+            IThongTinServices thongTinServices, IThongTinTrinhDoServices thongTinTrinhDoServices, ITrinhDoServices trinhDoServices)
         {
             this.bienCheServices = bienCheServices;
             this.capBacServices = capBacServices;
@@ -53,13 +51,14 @@
             this.thanhPhoServices = thanhPhoServices;
             this.thongTinGiaDinhServices = thongTinGiaDinhServices;
             this.thongTinServices = thongTinServices;
+            this.thongTinTrinhDoServices = thongTinTrinhDoServices;
             this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
 
         #endregion
 
-        public void Form1_Load(object sender, EventArgs e) {}
+        public void Form1_Load(object sender, EventArgs e) { }
 
         #region Application Method
 
@@ -81,7 +80,7 @@
         {
             Dang_nhap dangNhapForm = new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
                 kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
-                thongTinServices, trinhDoServices);
+                thongTinServices, thongTinTrinhDoServices, trinhDoServices);
             UserProfile.hoTen = null;
             UserProfile.idNhanVien = 0;
             UserProfile.MaNV = null;
@@ -110,7 +109,7 @@
         private void danhSáchNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DanhSachNhanVien danhSachForm = new DanhSachNhanVien(hopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices,
-                capBacServices, bienCheServices, loaiHopDongServices, trinhDoServices, thongTinGiaDinhServices);
+                capBacServices, bienCheServices, loaiHopDongServices, thongTinTrinhDoServices, thongTinGiaDinhServices, trinhDoServices);
             danhSachForm.ShowDialog(this);
         }
 
@@ -148,7 +147,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
+                ThongTinTrinhDo trinhdoForm = new ThongTinTrinhDo(nhanVienServices, thongTinTrinhDoServices, trinhDoServices);
                 trinhdoForm.ShowDialog(this);
             }
             else

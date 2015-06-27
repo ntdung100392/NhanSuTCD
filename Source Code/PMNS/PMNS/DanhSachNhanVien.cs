@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -16,8 +14,6 @@
     using PMNS.Services.Abstract;
     using PMNS.Services.Models;
     using PMNS.Model;
-
-    #endregion
 
     public partial class DanhSachNhanVien : Form
     {
@@ -37,12 +33,14 @@
         protected readonly ICapBacServices capBacServices;
         protected readonly IBienCheServices bienCheServices;
         protected readonly ILoaiHopDongServices loaiHopDongServices;
-        protected readonly IThongTinTrinhDoServices trinhDoServices;
+        protected readonly IThongTinTrinhDoServices thongTinTrinhDoServices;
         protected readonly IThongTinGiaDinhServices giaDinhServices;
+        protected readonly ITrinhDoServices trinhDoServices;
+
         public DanhSachNhanVien(IHopDongServices hopDongServices, INhanVienServices nhanVienServices, IPhongBanServices phongBanServices,
             IThanhPhoServices thanhPhoServices, IChucVuServices chucVuServices,
             ICapBacServices capBacServices, IBienCheServices bienCheServices, ILoaiHopDongServices loaiHopDongServices,
-            IThongTinTrinhDoServices trinhDoServices, IThongTinGiaDinhServices giaDinhServices)
+            IThongTinTrinhDoServices thongTinTrinhDoServices, IThongTinGiaDinhServices giaDinhServices, ITrinhDoServices trinhDoServices)
         {
             this.hopDongServices = hopDongServices;
             this.nhanVienServices = nhanVienServices;
@@ -52,8 +50,9 @@
             this.capBacServices = capBacServices;
             this.bienCheServices = bienCheServices;
             this.loaiHopDongServices = loaiHopDongServices;
-            this.trinhDoServices = trinhDoServices;
+            this.thongTinTrinhDoServices = thongTinTrinhDoServices;
             this.giaDinhServices = giaDinhServices;
+            this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
 
@@ -142,7 +141,7 @@
                 var emp = nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
                 ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(hopDongServices, loaiHopDongServices,
                     nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices,
-                    trinhDoServices, giaDinhServices, emp);
+                    thongTinTrinhDoServices, trinhDoServices, giaDinhServices, emp);
                 editEmpInfo.OnClose += new OnClosingEmpModifier(InitRefreshGridView);
                 editEmpInfo.ShowDialog(this);
             }
@@ -247,8 +246,8 @@
             {
                 var emp = nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
                 ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(hopDongServices, loaiHopDongServices,
-                    nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices, 
-                    trinhDoServices, giaDinhServices, emp);
+                    nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices,
+                    thongTinTrinhDoServices, trinhDoServices, giaDinhServices, emp);
                 editEmpInfo.OnClose += new OnClosingEmpModifier(InitRefreshGridView);
                 editEmpInfo.ShowDialog(this);
             }

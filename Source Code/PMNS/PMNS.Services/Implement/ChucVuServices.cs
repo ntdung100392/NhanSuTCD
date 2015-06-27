@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PMNS.Services.Abstract;
-using PMNS.Entities.Models;
-using PMNS.DAL.Abstract;
-
-namespace PMNS.Services.Implement
+﻿namespace PMNS.Services.Implement
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using PMNS.Services.Abstract;
+    using PMNS.Entities.Models;
+    using PMNS.DAL.Abstract;
+    using PMNS.Infrastructures.Implement;
+
     public class ChucVuServices : Services<ChucVu>, IChucVuServices
     {
         public ChucVuServices(IUnitOfWork unitOfWork) : base(unitOfWork) { }

@@ -29,6 +29,7 @@ namespace PMNS.Entities.Models
         public DbSet<ThanhPho> ThanhPhoes { get; set; }
         public DbSet<ThongTinGiaDinh> ThongTinGiaDinhs { get; set; }
         public DbSet<ThongTinNhanVIen> ThongTinNhanVIens { get; set; }
+        public DbSet<ThongTinTrinhDo> ThongTinTrinhDoes { get; set; }
         public DbSet<TrinhDo> TrinhDoes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -46,6 +47,7 @@ namespace PMNS.Entities.Models
             modelBuilder.Configurations.Add(new ThanhPhoMap());
             modelBuilder.Configurations.Add(new ThongTinGiaDinhMap());
             modelBuilder.Configurations.Add(new ThongTinNhanVIenMap());
+            modelBuilder.Configurations.Add(new ThongTinTrinhDoMap());
             modelBuilder.Configurations.Add(new TrinhDoMap());
         }
     }

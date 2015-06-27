@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -14,8 +12,6 @@
     using PMNS.Services.Abstract;
     using PMNS.Entities.Models;
     using PMNS.Model;
-
-    #endregion
 
     #region Delegate
 
@@ -42,12 +38,15 @@
         protected readonly IChucVuServices chucVuServices;
         protected readonly ICapBacServices capBacServices;
         protected readonly IBienCheServices bienCheServices;
-        protected readonly IThongTinTrinhDoServices trinhDoServices;
+        protected readonly IThongTinTrinhDoServices thongTinTrinhDoServices;
         protected readonly IThongTinGiaDinhServices giaDinhServices;
+        protected readonly ITrinhDoServices trinhDoServices;
+
         public ChinhSuaThongTinNhanVien(IHopDongServices hopDongServices, ILoaiHopDongServices loaiHopDongServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices,
             IChucVuServices chucVuServices, ICapBacServices capBacServices, IBienCheServices bienCheServices,
-            IThongTinTrinhDoServices trinhDoServices, IThongTinGiaDinhServices giaDinhServices, ThongTinNhanVIen empDetails)
+            IThongTinTrinhDoServices thongTinTrinhDoServices, ITrinhDoServices trinhDoServices
+            , IThongTinGiaDinhServices giaDinhServices, ThongTinNhanVIen empDetails)
         {
             this.hopDongServices = hopDongServices;
             this.loaiHopDongServices = loaiHopDongServices;
@@ -57,8 +56,9 @@
             this.chucVuServices = chucVuServices;
             this.capBacServices = capBacServices;
             this.bienCheServices = bienCheServices;
-            this.trinhDoServices = trinhDoServices;
+            this.thongTinTrinhDoServices = thongTinTrinhDoServices;
             this.giaDinhServices = giaDinhServices;
+            this.trinhDoServices = trinhDoServices;
             this.empDetails = empDetails;
             InitializeComponent();
         }
@@ -192,7 +192,7 @@
 
         private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
         {
-            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(nhanVienServices, trinhDoServices);
+            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(nhanVienServices, thongTinTrinhDoServices, trinhDoServices);
             trinhDoForm.ShowDialog(this);
         }
 
