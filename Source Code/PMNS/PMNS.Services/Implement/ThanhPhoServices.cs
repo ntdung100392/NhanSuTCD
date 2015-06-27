@@ -9,7 +9,7 @@
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
     using PMNS.DAL.Abstract;
-    using PMNS.Infrastructures.Implement;
+    using PMNS.Infranstructures.Implement;
 
     public class ThanhPhoServices : Services<ThanhPho>, IThanhPhoServices
     {

@@ -9,7 +9,6 @@
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
     using PMNS.DAL.Abstract;
-    using PMNS.Infrastructures;
 
     public interface INhanVienServices
     {

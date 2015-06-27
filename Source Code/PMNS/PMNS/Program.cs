@@ -44,7 +44,7 @@
             //Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
             //    kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
             //    thongTinServices, thongTintrinhDoServices, trinhDoServices));
-            Application.Run(new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices, loaiHopDongServices));
+            Application.Run(new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices, loaiHopDongServices, trinhDoServices));
         }
     }
 }

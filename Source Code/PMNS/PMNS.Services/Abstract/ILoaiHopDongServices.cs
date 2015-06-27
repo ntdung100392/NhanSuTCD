@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
 
     using PMNS.Entities.Models;
-    using PMNS.Infrastructures;
 
     public interface ILoaiHopDongServices
     {

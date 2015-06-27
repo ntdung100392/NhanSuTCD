@@ -67,7 +67,7 @@
             if (UserProfile.permission == 1)
             {
                 REPORT reportForm = new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices,
-                    loaiHopDongServices);
+                    loaiHopDongServices, trinhDoServices);
                 reportForm.ShowDialog(this);
             }
             else

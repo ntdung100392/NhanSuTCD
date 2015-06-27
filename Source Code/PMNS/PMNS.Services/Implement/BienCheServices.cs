@@ -9,7 +9,7 @@
     using PMNS.Entities.Models;
     using PMNS.DAL.Abstract;
     using PMNS.Services.Abstract;
-    using PMNS.Infrastructures.Implement;
+    using PMNS.Infranstructures.Implement;
 
     public class BienCheServices : Services<BienChe>, IBienCheServices
     {

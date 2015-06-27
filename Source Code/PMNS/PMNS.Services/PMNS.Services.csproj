@@ -89,10 +89,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructures\PMNS.Infrastructures.csproj">
-      <Project>{ab2858e3-71e4-401c-86ec-bc515800ad83}</Project>
-      <Name>PMNS.Infrastructures</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PMNS.DAL\PMNS.DAL.csproj">
       <Project>{105e6642-5a14-4952-afa9-c4cc7fdac9ee}</Project>
       <Name>PMNS.DAL</Name>
@@ -100,6 +96,10 @@
     <ProjectReference Include="..\PMNS.Entities\PMNS.Entities.csproj">
       <Project>{94173f41-b6e9-4b7f-b063-f45c959139d0}</Project>
       <Name>PMNS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMNS.Infranstructures\PMNS.Infranstructures.csproj">
+      <Project>{216b4d0b-9908-4101-a5b5-7b01ea1c0338}</Project>
+      <Name>PMNS.Infranstructures</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,6 @@
 
     using PMNS.DAL.Abstract;
     using PMNS.Entities.Models;
-    using PMNS.Infrastructures;
 
     public interface IHopDongServices
     {

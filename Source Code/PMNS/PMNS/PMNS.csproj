@@ -317,10 +317,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructures\PMNS.Infrastructures.csproj">
-      <Project>{ab2858e3-71e4-401c-86ec-bc515800ad83}</Project>
-      <Name>PMNS.Infrastructures</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PMNS.DAL\PMNS.DAL.csproj">
       <Project>{105e6642-5a14-4952-afa9-c4cc7fdac9ee}</Project>
       <Name>PMNS.DAL</Name>
@@ -328,6 +324,10 @@
     <ProjectReference Include="..\PMNS.Entities\PMNS.Entities.csproj">
       <Project>{94173f41-b6e9-4b7f-b063-f45c959139d0}</Project>
       <Name>PMNS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMNS.Infranstructures\PMNS.Infranstructures.csproj">
+      <Project>{216b4d0b-9908-4101-a5b5-7b01ea1c0338}</Project>
+      <Name>PMNS.Infranstructures</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMNS.Services\PMNS.Services.csproj">
       <Project>{631cd10d-9f8d-4551-bc99-d223a6aede14}</Project>

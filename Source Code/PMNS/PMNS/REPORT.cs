@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -19,36 +17,37 @@
     using System.IO;
     using OfficeOpenXml;
 
-    #endregion
-
     public partial class REPORT : Form
     {
 
         #region Properties
 
-        private List<ThongTinNhanVIen> _empReportList = new List<ThongTinNhanVIen>();
+        private List<ThongTinNhanVIen> empReportList = new List<ThongTinNhanVIen>();
 
         #endregion
 
         #region Constructor Or Destructor
 
-        protected readonly IBienCheServices _bienCheServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IThanhPhoServices _thanhPhoServices;
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        protected readonly IBienCheServices bienCheServices;
+        protected readonly ICapBacServices capBacServices;
+        protected readonly IChucVuServices chucVuServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IPhongBanServices phongBanServices;
+        protected readonly IThanhPhoServices thanhPhoServices;
+        protected readonly ILoaiHopDongServices loaiHopDongServices;
+        protected readonly ITrinhDoServices trinhDoServices;
         public REPORT(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices, INhanVienServices nhanVienServices,
-            IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, ILoaiHopDongServices loaiHopDongServices)
+            IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices, ILoaiHopDongServices loaiHopDongServices,
+            ITrinhDoServices trinhDoServices)
         {
-            this._bienCheServices = bienCheServices;
-            this._capBacServices = capBacServices;
-            this._chucVuServices = chucVuServices;
-            this._nhanVienServices = nhanVienServices;
-            this._phongBanServices = phongBanServices;
-            this._thanhPhoServices = thanhPhoServices;
-            this._loaiHopDongServices = loaiHopDongServices;
+            this.bienCheServices = bienCheServices;
+            this.capBacServices = capBacServices;
+            this.chucVuServices = chucVuServices;
+            this.nhanVienServices = nhanVienServices;
+            this.phongBanServices = phongBanServices;
+            this.thanhPhoServices = thanhPhoServices;
+            this.loaiHopDongServices = loaiHopDongServices;
+            this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
 
@@ -92,8 +91,8 @@
 
         private void InitNhanVien()
         {
-            ReformatDataGridView(_nhanVienServices.GetAllEmployees());
-            _empReportList = _nhanVienServices.GetAllEmployees();
+            ReformatDataGridView(nhanVienServices.GetAllEmployees());
+            empReportList = nhanVienServices.GetAllEmployees();
         }
 
         private void InitBienChe()
@@ -101,7 +100,7 @@
             BienChe firstItem = new BienChe { idBienChe = 0, maBienChe = "All", bienChe1 = "Tất Cả", ThongTinNhanVIens = null };
             List<BienChe> listBienChe = new List<BienChe>();
             listBienChe.Add(firstItem);
-            listBienChe.AddRange(_bienCheServices.GetAllBienChe());
+            listBienChe.AddRange(bienCheServices.GetAllBienChe());
             comboBienChe.DataSource = listBienChe;
             comboBienChe.ValueMember = "idBienChe";
             comboBienChe.DisplayMember = "bienChe1";
@@ -112,7 +111,7 @@
             ChucVu firstItem = new ChucVu { idChucVu = 0, MaChucVu = "All", ChucVu1 = "Tất Cả", ThongTinNhanVIens = null };
             List<ChucVu> listChucVu = new List<ChucVu>();
             listChucVu.Add(firstItem);
-            listChucVu.AddRange(_chucVuServices.GetAllChucVu());
+            listChucVu.AddRange(chucVuServices.GetAllChucVu());
             comboChucVu.DataSource = listChucVu;
             comboChucVu.DisplayMember = "ChucVu1";
             comboChucVu.ValueMember = "idChucVu";
@@ -123,10 +122,16 @@
             CapBac firstItem = new CapBac { idCapBac = 0, maCapBac = "All", capBac1 = "Tất Cả", ThongTinNhanVIens = null };
             List<CapBac> listCapBac = new List<CapBac>();
             listCapBac.Add(firstItem);
-            listCapBac.AddRange(_capBacServices.GetAllCapBac());
+            listCapBac.AddRange(capBacServices.GetAllCapBac());
             comboCapBac.DataSource = listCapBac;
             comboCapBac.DisplayMember = "capBac1";
             comboCapBac.ValueMember = "idCapBac";
+        }
+
+        private void InitTrinhDo()
+        {
+            comboTrinhDo.DataSource = trinhDoServices.GetAllTrinhDo();
+            comboTrinhDo.DisplayMember = "";
         }
 
         private void InitPhongBan()
@@ -141,7 +146,7 @@
             };
             List<PhongDoiToLoaiTo> listPhongBan = new List<PhongDoiToLoaiTo>();
             listPhongBan.Add(firstItem);
-            listPhongBan.AddRange(_phongBanServices.GetAllPhongBan());
+            listPhongBan.AddRange(phongBanServices.GetAllPhongBan());
             comboTongKetPhongBan.DataSource = listPhongBan;
             comboTongKetPhongBan.DisplayMember = "tenPhongDoiToLoai";
             comboTongKetPhongBan.ValueMember = "idPhongDoiToLoai";
@@ -150,10 +155,10 @@
         private void InitLoaiHopDong()
         {
             LoaiHopDong firstItem = new LoaiHopDong { idLoaiHopDong = 0, idCha = 0, loaiHopDong1 = "Tất Cả", HopDongLaoDongs = null };
-            var listLoaiHopDong = _loaiHopDongServices.GettAllLoaiHopDong();
+            var listLoaiHopDong = loaiHopDongServices.GettAllLoaiHopDong();
             if (listLoaiHopDong.Count != 0)
             {
-                foreach (var loaiHd in _loaiHopDongServices.GettAllLoaiHopDong())
+                foreach (var loaiHd in loaiHopDongServices.GettAllLoaiHopDong())
                 {
                     if (loaiHd.idCha != 0)
                     {
@@ -197,7 +202,7 @@
             };
             List<PhongDoiToLoaiTo> listPhongBan = new List<PhongDoiToLoaiTo>();
             listPhongBan.Add(firstItem);
-            listPhongBan.AddRange(_phongBanServices.GetAllPhongBan());
+            listPhongBan.AddRange(phongBanServices.GetAllPhongBan());
             comboPhongBan.DataSource = listPhongBan;
             comboPhongBan.DisplayMember = "tenPhongDoiToLoai";
             comboPhongBan.ValueMember = "idPhongDoiToLoai";
@@ -208,7 +213,7 @@
             ThanhPho firstItem = new ThanhPho { idThanhPho = 0, maTP = "All", tenTP = "Tất Cả", ThongTinNhanVIens = null };
             List<ThanhPho> listThanhPho = new List<ThanhPho>();
             listThanhPho.Add(firstItem);
-            listThanhPho.AddRange(_thanhPhoServices.GetAllThanhPho());
+            listThanhPho.AddRange(thanhPhoServices.GetAllThanhPho());
             comboNoiO.DataSource = listThanhPho;
             comboNoiO.DisplayMember = "tenTP";
             comboNoiO.ValueMember = "idThanhPho";
@@ -216,7 +221,7 @@
 
         private void InitReportNumberOfEmp()
         {
-            var empList = _nhanVienServices.GetAllEmployees();
+            var empList = nhanVienServices.GetAllEmployees();
             txtTongQuanSo.Text = empList.Count.ToString();
             txtNam.Text = empList.Where(x => x.gioiTinh == 0).ToList().Count.ToString();
             txtNu.Text = empList.Where(x => x.gioiTinh == 1).ToList().Count.ToString();
@@ -258,61 +263,61 @@
 
         private void comboGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboBienChe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboPhongBan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboCapBac_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboLoaiHD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboNoiO_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void comboTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
         private void txtTenNhanVien_TextChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(_empReportList);
+            var filterList = SearchingFilterData(empReportList);
             ReformatDataGridView(filterList);
         }
 
@@ -343,7 +348,7 @@
                         comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) + 1).ToString();
                     }
                 }
-                var filterList = SearchingFilterData(_empReportList);
+                var filterList = SearchingFilterData(empReportList);
                 ReformatDataGridView(filterList);
             }
         }
@@ -375,7 +380,7 @@
                         comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) + 1).ToString();
                     }
                 }
-                var filterList = SearchingFilterData(_empReportList);
+                var filterList = SearchingFilterData(empReportList);
                 ReformatDataGridView(filterList);
             }
         }
@@ -412,11 +417,11 @@
         {
             if ((comboTongKetPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai == 0)
             {
-                txtQuanSoPhongBan.Text = _nhanVienServices.GetAllEmployees().Count.ToString();
+                txtQuanSoPhongBan.Text = nhanVienServices.GetAllEmployees().Count.ToString();
             }
             else
             {
-                txtQuanSoPhongBan.Text = _nhanVienServices.GetAllNhanVienByIdPhongBan(
+                txtQuanSoPhongBan.Text = nhanVienServices.GetAllNhanVienByIdPhongBan(
                     (comboTongKetPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai).Count.ToString();
             }
         }

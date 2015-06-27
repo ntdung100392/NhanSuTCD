@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Infrastructures")]
+[assembly: AssemblyTitle("PMNS.Infranstructures")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Infrastructures")]
+[assembly: AssemblyProduct("PMNS.Infranstructures")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b68c065d-b0d9-40ce-be58-4ef3f1103822")]
+[assembly: Guid("a40ecf4f-cd5c-41b5-8feb-616be6fd2052")]
 
 // Version information for an assembly consists of the following four values:
 //

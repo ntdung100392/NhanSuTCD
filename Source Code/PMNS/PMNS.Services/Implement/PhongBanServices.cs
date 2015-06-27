@@ -10,7 +10,7 @@
     using PMNS.Services.Abstract;
     using PMNS.Entities.Models;
     using PMNS.DAL.Abstract;
-    using PMNS.Infrastructures.Implement;
+    using PMNS.Infranstructures.Implement;
 
     public class PhongBanServices : Services<PhongDoiToLoaiTo>, IPhongBanServices
     {

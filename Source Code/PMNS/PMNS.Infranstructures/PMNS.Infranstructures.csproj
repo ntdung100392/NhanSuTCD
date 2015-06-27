@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB2858E3-71E4-401C-86EC-BC515800AD83}</ProjectGuid>
+    <ProjectGuid>{216B4D0B-9908-4101-A5B5-7B01EA1C0338}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PMNS.Infrastructures</RootNamespace>
-    <AssemblyName>PMNS.Infrastructures</AssemblyName>
+    <RootNamespace>PMNS.Infranstructures</RootNamespace>
+    <AssemblyName>PMNS.Infranstructures</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,7 +48,6 @@
       <Name>PMNS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

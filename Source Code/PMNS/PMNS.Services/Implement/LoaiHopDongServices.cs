@@ -9,7 +9,7 @@
     using PMNS.Services.Abstract;
     using PMNS.DAL.Abstract;
     using PMNS.Entities.Models;
-    using PMNS.Infrastructures.Implement;
+    using PMNS.Infranstructures.Implement;
 
     public class LoaiHopDongServices : Services<LoaiHopDong>, ILoaiHopDongServices
     {

@@ -1,4 +1,4 @@
-﻿namespace PMNS.Infrastructures.Implement
+﻿namespace PMNS.Infranstructures.Implement
 {
     using System;
     using System.Collections.Generic;

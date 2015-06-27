@@ -12,7 +12,7 @@
     using PMNS.Entities.Models;
     using PMNS.Services.Models;
     using PMNS.Services.Method;
-    using PMNS.Infrastructures.Implement;
+    using PMNS.Infranstructures.Implement;
 
     public class NhanVienServices : Services<ThongTinNhanVIen>, INhanVienServices
     {
