@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -15,8 +13,6 @@
     using PMNS.Services.Abstract;
     using PMNS.Model;
     using PMNS.Services.Models;
-
-    #endregion
 
     public partial class ThongTinTrinhDo : Form
     {
@@ -115,10 +111,9 @@
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            PMNS.Entities.Models.ThongTinTrinhDo trinhDo = null;
             try
             {
-                trinhDo = new PMNS.Entities.Models.ThongTinTrinhDo
+                PMNS.Entities.Models.ThongTinTrinhDo trinhDo = new PMNS.Entities.Models.ThongTinTrinhDo
                 {
                     idNhanVien = nhanVienServices.GetEmpByMaNV(txtMaNV.Text.Trim()).idNhanVien,
                     idTrinhDo = Convert.ToInt32((cbTrinhDo.SelectedItem as TrinhDo).idTrinhDo),
@@ -128,8 +123,19 @@
                     thoiGianTotNghiep = datetimeTotNghiep.Value,
                     bangCapPhu_CC = txtChungChi.Text
                 };
+                if (thongTinTrinhDoServices.AddThongTinTrinhDo(trinhDo))
+                {
+                    MessageBox.Show("Đã Thêm Thông Tin Trình Độ Thành Công!", "Thành Công!", MessageBoxButtons.OK);
+                    InitGridView();
+                    dataGridTrinhDo.Refresh();
+                    ClearAllText(this);
+                }
+                else
+                {
+                    MessageBox.Show("Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (NullReferenceException ex)
+            catch (InvalidOperationException ex)
             {
                 if (UserProfile.permission == 1)
                 {
@@ -139,17 +145,6 @@
                 {
                     MessageBox.Show("Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            if (thongTinTrinhDoServices.AddThongTinTrinhDo(trinhDo))
-            {
-                MessageBox.Show("Đã Thêm Thông Tin Trình Độ Thành Công!", "Thành Công!", MessageBoxButtons.OK);
-                InitGridView();
-                dataGridTrinhDo.Refresh();
-                ClearAllText(this);
-            }
-            else
-            {
-                MessageBox.Show("Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -163,8 +158,23 @@
                 updateTrinhDo.loaiHinh = txtLoaiHinh.Text;
                 updateTrinhDo.thoiGianTotNghiep = datetimeTotNghiep.Value;
                 updateTrinhDo.bangCapPhu_CC = txtChungChi.Text;
+                if (thongTinTrinhDoServices.UpdateThongTinTrinhDo(updateTrinhDo))
+                {
+                    MessageBox.Show("Thành Công!", "Đã Cập Nhật Thông Tin Trình Độ Thành Công!", MessageBoxButtons.OK);
+                    InitGridView();
+                    dataGridTrinhDo.Refresh();
+                    ClearAllText(this);
+                    btnThem.Enabled = true;
+                    btnSua.Enabled = false;
+                    btnClear.Enabled = false;
+                    txtMaNV.ReadOnly = false;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi!", "Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (NullReferenceException ex)
+            catch (InvalidOperationException ex)
             {
                 if (UserProfile.permission == 1)
                 {
@@ -174,21 +184,6 @@
                 {
                     MessageBox.Show("Lỗi!", "Vui Lòng Kiểm Tra Thông Tin Đầu Vào!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            if (thongTinTrinhDoServices.UpdateThongTinTrinhDo(updateTrinhDo))
-            {
-                MessageBox.Show("Thành Công!", "Đã Cập Nhật Thông Tin Trình Độ Thành Công!", MessageBoxButtons.OK);
-                InitGridView();
-                dataGridTrinhDo.Refresh();
-                ClearAllText(this);
-                btnThem.Enabled = true;
-                btnSua.Enabled = false;
-                btnClear.Enabled = false;
-                txtMaNV.ReadOnly = false;
-            }
-            else
-            {
-                MessageBox.Show("Lỗi!", "Vui Lòng Kiểm Tra Lại Thông Tin Đầu Vào!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

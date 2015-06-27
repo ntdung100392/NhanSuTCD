@@ -34,7 +34,7 @@
             IThanhPhoServices thanhPhoServices = new ThanhPhoServices(unitOfWork);
             IThongTinGiaDinhServices thongTinGiaDinhServices = new ThongTinGiaDinhServices(unitOfWork);
             IThongTinServices thongTinServices = new ThongTinServices(unitOfWork);
-            IThongTinTrinhDoServices thongTintrinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
+            IThongTinTrinhDoServices thongTinTrinhDoServices = new ThongTinTrinhDoServices(unitOfWork);
             ITrinhDoServices trinhDoServices = new TrinhDoServices(unitOfWork);
 
             #endregion
@@ -44,7 +44,8 @@
             //Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
             //    kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
             //    thongTinServices, thongTintrinhDoServices, trinhDoServices));
-            Application.Run(new REPORT(bienCheServices, capBacServices, chucVuServices, nhanVienServices, phongBanServices, thanhPhoServices, loaiHopDongServices, trinhDoServices));
+            Application.Run(new DanhSachNhanVien(hopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices, loaiHopDongServices, thongTinTrinhDoServices,
+                thongTinGiaDinhServices, trinhDoServices));
         }
     }
 }

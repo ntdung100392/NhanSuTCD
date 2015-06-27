@@ -242,20 +242,20 @@
 
         private void btnEditDetails_Click(object sender, EventArgs e)
         {
-            if (UserProfile.permission == 1)
-            {
+            //if (UserProfile.permission == 1)
+            //{
                 var emp = nhanVienServices.GetEmpById(Convert.ToInt32(dataGridDanhSachNV.CurrentRow.Cells[0].Value.ToString()));
                 ChinhSuaThongTinNhanVien editEmpInfo = new ChinhSuaThongTinNhanVien(hopDongServices, loaiHopDongServices,
                     nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices,
                     thongTinTrinhDoServices, trinhDoServices, giaDinhServices, emp);
                 editEmpInfo.OnClose += new OnClosingEmpModifier(InitRefreshGridView);
                 editEmpInfo.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Bạn Không Có Quyền Đăng Nhập Vào Chức Năng Này!", "Permission Denied!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Bạn Không Có Quyền Đăng Nhập Vào Chức Năng Này!", "Permission Denied!",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         #endregion

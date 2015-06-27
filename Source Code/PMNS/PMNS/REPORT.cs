@@ -130,8 +130,13 @@
 
         private void InitTrinhDo()
         {
-            comboTrinhDo.DataSource = trinhDoServices.GetAllTrinhDo();
-            comboTrinhDo.DisplayMember = "";
+            TrinhDo firstItem = new TrinhDo { idTrinhDo = 0, TrinhDo1 = "Tất Cả", ThongTinTrinhDoes = null };
+            List<TrinhDo> listTrinhDo = new List<TrinhDo>();
+            listTrinhDo.Add(firstItem);
+            listTrinhDo.AddRange(trinhDoServices.GetAllTrinhDo());
+            comboTrinhDo.DataSource = listTrinhDo;
+            comboTrinhDo.DisplayMember = "TrinhDo1";
+            comboTrinhDo.ValueMember = "idTrinhDo";
         }
 
         private void InitPhongBan()
@@ -332,13 +337,13 @@
                         comboDoTuoiNho.Text = (65 - 1).ToString();
 
                     }
-                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 && 
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 &&
                         Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
                     {
                         comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value)).ToString();
                     }
-                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0 && 
-                        Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0 && 
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0 &&
+                        Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0 &&
                         Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
                     {
                         comboDoTuoiNho.Text = (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) - 1).ToString();
@@ -364,7 +369,7 @@
                         comboDoTuoiNho.Text = (65 - 1).ToString();
 
                     }
-                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 && 
+                    else if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) == 65 &&
                         Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) > Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))
                     {
                         comboDoTuoiLon.Text = (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value)).ToString();
@@ -463,14 +468,15 @@
                     empList = empList.Where(e => e.hoTen.Contains(txtTenNhanVien.Text.Trim())).ToList();
                 //Filter by sex
                 if (Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value) != 2)
-                    empList = empList.Where(e => e.gioiTinh == Convert.ToInt32((comboGioiTinh.SelectedItem as ComboBoxItem).Value)).ToList();
+                    empList = empList.Where(e => e.gioiTinh == Convert.ToInt32(
+                        (comboGioiTinh.SelectedItem as ComboBoxItem).Value)).ToList();
                 //Filter by age
                 if (Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem).Value) != 0)
-                    empList = empList.Where(e => e.namSinh.Year <= (DateTime.Now.Year - Convert.ToInt32((comboDoTuoiNho.SelectedItem as ComboBoxItem)
-                        .Value))).ToList();
+                    empList = empList.Where(e => e.namSinh.Year <= (DateTime.Now.Year - Convert.ToInt32(
+                        (comboDoTuoiNho.SelectedItem as ComboBoxItem).Value))).ToList();
                 if (Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem).Value) != 0)
-                    empList = empList.Where(e => e.namSinh.Year >= (DateTime.Now.Year - Convert.ToInt32((comboDoTuoiLon.SelectedItem as ComboBoxItem)
-                        .Value))).ToList();
+                    empList = empList.Where(e => e.namSinh.Year >= (DateTime.Now.Year - Convert.ToInt32(
+                        (comboDoTuoiLon.SelectedItem as ComboBoxItem).Value))).ToList();
                 //Filter by BienChe
                 if (Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe) != 0)
                     empList = empList.Where(e => e.idBienChe == Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe)).ToList();
@@ -494,6 +500,10 @@
                 //Filter by NamVaoCang
                 if (!String.IsNullOrEmpty(txtNamVaoCang.Text.Trim()))
                     empList = empList.Where(e => e.ngayVaoCang.Value.Year == Convert.ToInt32(txtNamVaoCang.Text.Trim())).ToList();
+                //Filter by TrinhDo
+                if (Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo) != 0)
+                    empList = empList.Where(e => e.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo == 
+                        Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo)).ToList();
             }
             return empList;
         }

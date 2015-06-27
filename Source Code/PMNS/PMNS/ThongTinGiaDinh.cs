@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,17 +9,16 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+
     using PMNS.Services.Abstract;
     using PMNS.Entities.Models;
     using PMNS.Services.Models;
-
-    #endregion
 
     public partial class ThongTinGiaDinh : Form
     {
         #region Properties
 
-        private ThongTinNhanVIen _empDetails;
+        private ThongTinNhanVIen empDetails;
 
         #endregion
 
@@ -33,7 +30,7 @@
         {
             this._nhanVienServices = nhanVienServices;
             this._thongTinGiaDInhServices = thongTinGiaDinhServices;
-            this._empDetails = empDetails;
+            this.empDetails = empDetails;
             InitializeComponent();
         }
 
@@ -43,20 +40,21 @@
 
         private void ThongTinGiaDinh_Load(object sender, EventArgs e)
         {
-            if (_empDetails != null)
+            if (empDetails != null)
             {
                 btnFunction.Text = "Sửa";
                 PMNS.Entities.Models.ThongTinGiaDinh thongTin =
-                    _thongTinGiaDInhServices.GetThongTinByNhanVienId(_empDetails.idNhanVien);
+                    _thongTinGiaDInhServices.GetThongTinByNhanVienId(empDetails.idNhanVien);
                 txtMaNv.ReadOnly = true;
-                txtMaNv.Text = _empDetails.MaNV;
+                txtMaNv.Text = empDetails.MaNV;
                 txtTenNv.ReadOnly = true;
-                txtTenNv.Text = _empDetails.hoTen;
+                txtTenNv.Text = empDetails.hoTen;
                 txtNoiCongTac.ReadOnly = true;
-                txtNoiCongTac.Text = _empDetails.noiCongTac;
+                txtNoiCongTac.Text = empDetails.noiCongTac;
             }
             else
             {
+                MessageBox.Show("Nhân Viên Này Chưa Có Thông Tin Học Vấn! Vui Lòng Thêm Thông Tin!","Thông Báo!",MessageBoxButtons.OK);
                 btnFunction.Text = "Thêm";
             }
         }
@@ -68,12 +66,12 @@
 
         private void btnFunction_Click(object sender, EventArgs e)
         {
-            if (_empDetails != null)
+            if (empDetails != null)
             {
                 try
                 {
                     PMNS.Entities.Models.ThongTinGiaDinh updateThongTin =
-                        _thongTinGiaDInhServices.GetThongTinByNhanVienId(_empDetails.idNhanVien);
+                        _thongTinGiaDInhServices.GetThongTinByNhanVienId(empDetails.idNhanVien);
                     updateThongTin.hoTenCha = txtHoTenCha.Text;
                     updateThongTin.namSinhCha = Convert.ToDateTime(txtNamSinhCha.Text);
                     updateThongTin.ngheNghiepCha = txtNgheNghiepCha.Text;

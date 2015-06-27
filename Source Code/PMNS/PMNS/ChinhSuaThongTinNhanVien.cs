@@ -192,7 +192,7 @@
 
         private void btnTrinhDoHocVan_Click(object sender, EventArgs e)
         {
-            ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(nhanVienServices, thongTinTrinhDoServices, trinhDoServices);
+            ChinhSuaThongTinTrinhDo trinhDoForm = new ChinhSuaThongTinTrinhDo(thongTinTrinhDoServices, trinhDoServices, empDetails);
             trinhDoForm.ShowDialog(this);
         }
 

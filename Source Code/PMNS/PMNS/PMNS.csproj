@@ -86,6 +86,12 @@
     <Compile Include="ChinhSuaThongTinNhanVien.Designer.cs">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChinhSuaThongTinTrinhDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChinhSuaThongTinTrinhDo.Designer.cs">
+      <DependentUpon>ChinhSuaThongTinTrinhDo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller\ConverterMethod.cs" />
     <Compile Include="KiemTraHDLD.cs">
       <SubType>Form</SubType>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChinhSuaThongTinNhanVien.resx">
       <DependentUpon>ChinhSuaThongTinNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChinhSuaThongTinTrinhDo.resx">
+      <DependentUpon>ChinhSuaThongTinTrinhDo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KiemTraHDLD.resx">
       <DependentUpon>KiemTraHDLD.cs</DependentUpon>
