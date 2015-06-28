@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -12,40 +10,38 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.IO;
-    using System.Data.SqlClient;
+
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
     using PMNS.Model;
     using PMNS.Services.Models;
-
-    #endregion
 
     public partial class ThemNV : Form
     {
 
         #region Properties
 
-        private ThongTinNhanVIen empUpdate = new ThongTinNhanVIen();
+        private int idEmpUpdate = 0;
 
         #endregion
 
         #region Constructor Or Destructor
 
-        protected readonly IBienCheServices _bienCheServices;
-        protected readonly ICapBacServices _capBacServices;
-        protected readonly IChucVuServices _chucVuServices;
-        protected readonly INhanVienServices _nhanVienServices;
-        protected readonly IPhongBanServices _phongBanServices;
-        protected readonly IThanhPhoServices _thanhPhoServices;
+        protected readonly IBienCheServices bienCheServices;
+        protected readonly ICapBacServices capBacServices;
+        protected readonly IChucVuServices chucVuServices;
+        protected readonly INhanVienServices nhanVienServices;
+        protected readonly IPhongBanServices phongBanServices;
+        protected readonly IThanhPhoServices thanhPhoServices;
         public ThemNV(IBienCheServices bienCheServices, ICapBacServices capBacServices, IChucVuServices chucVuServices,
             INhanVienServices nhanVienServices, IPhongBanServices phongBanServices, IThanhPhoServices thanhPhoServices)
         {
-            this._nhanVienServices = nhanVienServices;
-            this._phongBanServices = phongBanServices;
-            this._thanhPhoServices = thanhPhoServices;
-            this._chucVuServices = chucVuServices;
-            this._capBacServices = capBacServices;
-            this._bienCheServices = bienCheServices;
+            this.nhanVienServices = nhanVienServices;
+            this.phongBanServices = phongBanServices;
+            this.thanhPhoServices = thanhPhoServices;
+            this.chucVuServices = chucVuServices;
+            this.capBacServices = capBacServices;
+            this.bienCheServices = bienCheServices;
             InitializeComponent();
         }
 
@@ -149,7 +145,7 @@
                 {
                     diaChi = "Chưa Cập Nhật";
                 }
-                ThongTinNhanVIen emp = new ThongTinNhanVIen
+                var emp = new ThongTinNhanVIen
                 {
                     MaNV = txtManv.Text.Trim(),
                     idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai),
@@ -181,7 +177,7 @@
                     tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text,
                     hinhAnhCaNhan = ""
                 };
-                if (_nhanVienServices.AddNhanVien(emp))
+                if (nhanVienServices.AddNhanVien(emp))
                 {
                     MessageBox.Show("Bạn đã thêm nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearAllText(this);
@@ -218,7 +214,8 @@
                 if (rBtnNu.Checked == true)
                 {
                     sex = 1;
-                }
+                } 
+                var empUpdate = nhanVienServices.GetEmpById(idEmpUpdate);
                 empUpdate.idPhongDoiToLoai = Convert.ToInt32((cbPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
                 empUpdate.permission = Convert.ToInt32((cbPhanQuyen.SelectedItem as ComboBoxItem).Value);
                 empUpdate.idBienChe = Convert.ToInt32((cbBienChe.SelectedItem as BienChe).idBienChe);
@@ -245,7 +242,7 @@
                 empUpdate.ngayNhapNgu = datetimeNgayNhapNgu.Value;
                 empUpdate.tinhTrangHonNhan = (cbTinhTrangHonNhan.SelectedItem as ComboBoxItem).Text;
                 empUpdate.hinhAnhCaNhan = "";
-                if (_nhanVienServices.UpdateEmpInfo(empUpdate))
+                if (nhanVienServices.UpdateEmpInfo(empUpdate))
                 {
                     MessageBox.Show("Bạn đã cập nhật thông tin nhân viên thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearAllText(this);
@@ -301,7 +298,8 @@
 
         private void dataGridNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            empUpdate = _nhanVienServices.GetEmpById(Convert.ToInt32(dataGridNhanVien.CurrentRow.Cells[0].Value.ToString()));
+            var empUpdate = nhanVienServices.GetEmpById(Convert.ToInt32(dataGridNhanVien.CurrentRow.Cells[0].Value.ToString()));
+            idEmpUpdate = empUpdate.idNhanVien;
             txtManv.Text = empUpdate.MaNV;
             txtManv.ReadOnly = true;
             txtTennv.Text = empUpdate.hoTen;
@@ -374,7 +372,7 @@
 
         private void InitEmployees()
         {
-            var listNhanVien = _nhanVienServices.GetAllEmployees();
+            var listNhanVien = nhanVienServices.GetAllEmployees();
             dataGridNhanVien.DataSource = listNhanVien.OrderBy(x => x.hoTen).ToList().Select(x =>
                 new
                 {
@@ -398,7 +396,7 @@
 
         private void InitPhongBan()
         {
-            cbPhongBan.DataSource = _phongBanServices.GetAllPhongBan();
+            cbPhongBan.DataSource = phongBanServices.GetAllPhongBan();
             cbPhongBan.DisplayMember = "tenPhongDoiToLoai";
             cbPhongBan.ValueMember = "idPhongDoiToLoai";
             cbPhongBan.SelectedIndex = -1;
@@ -406,7 +404,7 @@
 
         private void InitChucVu()
         {
-            cbMaCV.DataSource = _chucVuServices.GetAllChucVu();
+            cbMaCV.DataSource = chucVuServices.GetAllChucVu();
             cbMaCV.DisplayMember = "ChucVu1";
             cbMaCV.ValueMember = "idChucVu";
             cbMaCV.SelectedIndex = -1;
@@ -414,7 +412,7 @@
 
         private void InitCbNoiCapCMND()
         {
-            cbNoiCapCMND.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbNoiCapCMND.DataSource = thanhPhoServices.GetAllThanhPho();
             cbNoiCapCMND.DisplayMember = "tenTP";
             cbNoiCapCMND.ValueMember = "idThanhPho";
             cbNoiCapCMND.SelectedIndex = -1;
@@ -422,7 +420,7 @@
 
         private void InitCbNguyenQuan()
         {
-            cbNguyenQuan.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbNguyenQuan.DataSource = thanhPhoServices.GetAllThanhPho();
             cbNguyenQuan.DisplayMember = "tenTP";
             cbNguyenQuan.ValueMember = "idThanhPho";
             cbNguyenQuan.SelectedIndex = -1;
@@ -430,7 +428,7 @@
 
         private void InitCbThanhPho()
         {
-            cbThanhPho.DataSource = _thanhPhoServices.GetAllThanhPho();
+            cbThanhPho.DataSource = thanhPhoServices.GetAllThanhPho();
             cbThanhPho.DisplayMember = "tenTP";
             cbThanhPho.ValueMember = "idThanhPho";
             cbThanhPho.SelectedIndex = -1;
@@ -457,14 +455,14 @@
 
         private void InitCapBac()
         {
-            cbCapBac.DataSource = _capBacServices.GetAllCapBac();
+            cbCapBac.DataSource = capBacServices.GetAllCapBac();
             cbCapBac.DisplayMember = "capBac1";
             cbCapBac.ValueMember = "idCapBac";
         }
 
         private void InitBienChe()
         {
-            cbBienChe.DataSource = _bienCheServices.GetAllBienChe();
+            cbBienChe.DataSource = bienCheServices.GetAllBienChe();
             cbBienChe.ValueMember = "idBienChe";
             cbBienChe.DisplayMember = "bienChe1";
         }

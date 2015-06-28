@@ -13,5 +13,6 @@
         ThongTinGiaDinh GetThongTinByNhanVienId(int id);
         bool AddThongTinGiaDinh(ThongTinGiaDinh info);
         bool UpdateThongTinGiaDinh(ThongTinGiaDinh info);
+        void CommitThongTinGiaDinh();
     }
 }

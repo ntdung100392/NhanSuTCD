@@ -10,6 +10,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
     using PMNS.DAL.Abstract;
@@ -87,6 +88,7 @@
             UserProfile.permission = 0;
             UserProfile.userName = null;
             dangNhapForm.Show();
+            this.Close();
         }
 
         #endregion
@@ -160,7 +162,7 @@
         {
             if (UserProfile.permission == 1)
             {
-                QuanLyHopDong hopDongForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices);
+                QuanLyHopDong hopDongForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices, null);
                 hopDongForm.ShowDialog(this);
             }
             else
@@ -319,12 +321,12 @@
             }
         }
 
-        #endregion
-
         private void thôngTinPhầnMềmToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             About thongtinPhanMem = new About();
             thongtinPhanMem.ShowDialog(this);
         }
+
+        #endregion
     }
 }

@@ -38,7 +38,6 @@
             this.txtLoaiHinh = new System.Windows.Forms.TextBox();
             this.txtChuyenNganh = new System.Windows.Forms.TextBox();
             this.txtNoiDaoTao = new System.Windows.Forms.TextBox();
-            this.txtVanHoa = new System.Windows.Forms.TextBox();
             this.txtTenNV = new System.Windows.Forms.TextBox();
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -47,7 +46,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -64,7 +62,6 @@
             this.groupBox1.Controls.Add(this.txtLoaiHinh);
             this.groupBox1.Controls.Add(this.txtChuyenNganh);
             this.groupBox1.Controls.Add(this.txtNoiDaoTao);
-            this.groupBox1.Controls.Add(this.txtVanHoa);
             this.groupBox1.Controls.Add(this.txtTenNV);
             this.groupBox1.Controls.Add(this.txtMaNV);
             this.groupBox1.Controls.Add(this.label9);
@@ -73,7 +70,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -88,7 +84,7 @@
             // 
             this.cbTrinhDo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTrinhDo.FormattingEnabled = true;
-            this.cbTrinhDo.Location = new System.Drawing.Point(109, 113);
+            this.cbTrinhDo.Location = new System.Drawing.Point(109, 88);
             this.cbTrinhDo.Name = "cbTrinhDo";
             this.cbTrinhDo.Size = new System.Drawing.Size(201, 21);
             this.cbTrinhDo.TabIndex = 98;
@@ -118,6 +114,7 @@
             this.datetimeTotNghiep.Name = "datetimeTotNghiep";
             this.datetimeTotNghiep.Size = new System.Drawing.Size(15, 20);
             this.datetimeTotNghiep.TabIndex = 93;
+            this.datetimeTotNghiep.ValueChanged += new System.EventHandler(this.datetimeTotNghiep_ValueChanged_1);
             // 
             // txtThoiGianTotNghiep
             // 
@@ -151,17 +148,10 @@
             // 
             // txtNoiDaoTao
             // 
-            this.txtNoiDaoTao.Location = new System.Drawing.Point(109, 141);
+            this.txtNoiDaoTao.Location = new System.Drawing.Point(109, 115);
             this.txtNoiDaoTao.Name = "txtNoiDaoTao";
-            this.txtNoiDaoTao.Size = new System.Drawing.Size(411, 20);
+            this.txtNoiDaoTao.Size = new System.Drawing.Size(201, 20);
             this.txtNoiDaoTao.TabIndex = 13;
-            // 
-            // txtVanHoa
-            // 
-            this.txtVanHoa.Location = new System.Drawing.Point(109, 88);
-            this.txtVanHoa.Name = "txtVanHoa";
-            this.txtVanHoa.Size = new System.Drawing.Size(201, 20);
-            this.txtVanHoa.TabIndex = 11;
             // 
             // txtTenNV
             // 
@@ -219,7 +209,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 144);
+            this.label5.Location = new System.Drawing.Point(12, 118);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 4;
@@ -228,20 +218,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 118);
+            this.label4.Location = new System.Drawing.Point(12, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Trình Độ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Văn Hoá";
             // 
             // label2
             // 
@@ -288,7 +269,6 @@
         private System.Windows.Forms.TextBox txtLoaiHinh;
         private System.Windows.Forms.TextBox txtChuyenNganh;
         private System.Windows.Forms.TextBox txtNoiDaoTao;
-        private System.Windows.Forms.TextBox txtVanHoa;
         private System.Windows.Forms.TextBox txtTenNV;
         private System.Windows.Forms.TextBox txtMaNV;
         private System.Windows.Forms.Label label9;
@@ -297,7 +277,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }

@@ -189,7 +189,7 @@
 
         private void InitGridView()
         {
-            dataGridThongTin.DataSource = thongTinServices.GetAllThongTin().Select(x =>
+            dataGridThongTin.DataSource = thongTinServices.GetAllThongTin().Where(tt=>tt.noiDung.Equals(loaiThongTin)).ToList().Select(x =>
                     new
                     {
                         id = x.idTDDDBNTV,

@@ -16,5 +16,6 @@
         bool AddThongTinTrinhDo(ThongTinTrinhDo trinhDo);
         bool UpdateThongTinTrinhDo(ThongTinTrinhDo trinhDo);
         bool DeleteThongTinTrinhDo(ThongTinTrinhDo trinhDo);
+        void CommitThongTinTrinhDo();
     }
 }

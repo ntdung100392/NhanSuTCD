@@ -12,6 +12,7 @@
 
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
+    using PMNS.Services.Models;
 
     public partial class ChinhSuaThongTinTrinhDo : Form
     {
@@ -44,12 +45,19 @@
             InitData();
             if (empDetails.ThongTinTrinhDoes.Count != 0)
             {
+                var info = empDetails.ThongTinTrinhDoes.FirstOrDefault();
+                cbTrinhDo.SelectedValue = info.idTrinhDo;
+                txtNoiDaoTao.Text = info.noiDaoTao;
+                datetimeTotNghiep.Value = info.thoiGianTotNghiep;
+                txtChuyenNganh.Text = info.chuyenNganh;
+                txtLoaiHinh.Text = info.loaiHinh;
+                txtChungChi.Text = info.bangCapPhu_CC;
                 btnFunction.Text = "Sửa";
             }
             else
             {
                 MessageBox.Show("Nhân Viên Này Chưa Cập Nhật Thông Tin Học Vấn. Vui Lòng Thêm Thông Tin.",
-                    "Thông Báo!",MessageBoxButtons.OK);
+                    "Thông Báo!", MessageBoxButtons.OK);
                 btnFunction.Text = "Thêm";
             }
         }
@@ -58,11 +66,63 @@
         {
             if (empDetails.ThongTinTrinhDoes.Count != 0)
             {
-                
+                try
+                {
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo = Convert.ToInt32((cbTrinhDo.SelectedItem as TrinhDo).idTrinhDo);
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().loaiHinh = txtLoaiHinh.Text.Trim();
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().noiDaoTao = txtNoiDaoTao.Text.Trim();
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().thoiGianTotNghiep = datetimeTotNghiep.Value;
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().chuyenNganh = txtChuyenNganh.Text.Trim();
+                    empDetails.ThongTinTrinhDoes.FirstOrDefault().bangCapPhu_CC = txtChungChi.Text.Trim();
+                    thongTinTrinhDoServices.CommitThongTinTrinhDo();
+                    MessageBox.Show("Đã Chỉnh Sửa Thông Tin Thành Công!", "Thành Công!", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    if (UserProfile.permission == 1)
+                    {
+                        MessageBox.Show(ex.ToString(), "Lỗi!"
+                            , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Lỗi!"
+                            , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             else
             {
-                
+                try
+                {
+                    var trinhDoInfo = new PMNS.Entities.Models.ThongTinTrinhDo
+                    {
+                        idTrinhDo = Convert.ToInt32((cbTrinhDo.SelectedItem as TrinhDo).idTrinhDo),
+                        loaiHinh = txtLoaiHinh.Text.Trim(),
+                        noiDaoTao = txtNoiDaoTao.Text.Trim(),
+                        thoiGianTotNghiep = datetimeTotNghiep.Value,
+                        chuyenNganh = txtChuyenNganh.Text.Trim(),
+                        bangCapPhu_CC = txtChungChi.Text.Trim()
+                    };
+                    empDetails.ThongTinTrinhDoes.Add(trinhDoInfo);
+                    thongTinTrinhDoServices.CommitThongTinTrinhDo();
+                    MessageBox.Show("Đã Thêm Thông Tin Thành Công!", "Thành Công!", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    if (UserProfile.permission == 1)
+                    {
+                        MessageBox.Show(ex.ToString(), "Lỗi!"
+                            , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã Có Lỗi Xảy Ra! Vui Lòng Kiểm Tra Lại Thông Tin!", "Lỗi!"
+                            , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -81,6 +141,7 @@
             txtTenNV.ReadOnly = true;
             txtMaNV.Text = empDetails.MaNV;
             txtTenNV.Text = empDetails.hoTen;
+            InitLoaiTrinhDo();
         }
 
         private void InitLoaiTrinhDo()
@@ -94,7 +155,7 @@
 
         #region Method DatetimePicker
 
-        private void datetimeTotNghiep_ValueChanged(object sender, EventArgs e)
+        private void datetimeTotNghiep_ValueChanged_1(object sender, EventArgs e)
         {
             datetimeTotNghiep.Format = DateTimePickerFormat.Custom;
             datetimeTotNghiep.CustomFormat = "dd/MM/yyyy";

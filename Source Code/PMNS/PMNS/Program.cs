@@ -41,11 +41,9 @@
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
-            //    kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
-            //    thongTinServices, thongTintrinhDoServices, trinhDoServices));
-            Application.Run(new DanhSachNhanVien(hopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, chucVuServices, capBacServices, bienCheServices, loaiHopDongServices, thongTinTrinhDoServices,
-                thongTinGiaDinhServices, trinhDoServices));
+            Application.Run(new Dang_nhap(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices,
+                kyLuatServices, loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices,
+                thongTinServices, thongTinTrinhDoServices, trinhDoServices));
         }
     }
 }

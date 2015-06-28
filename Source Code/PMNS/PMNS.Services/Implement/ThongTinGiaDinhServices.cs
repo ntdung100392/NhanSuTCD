@@ -56,5 +56,17 @@
             }
             return false;
         }
+
+        public void CommitThongTinGiaDinh()
+        {
+            try
+            {
+                unitOfWork.Commit();
+            }
+            catch(InvalidOperationException e)
+            {
+                throw e;
+            }
+        }
     }
 }

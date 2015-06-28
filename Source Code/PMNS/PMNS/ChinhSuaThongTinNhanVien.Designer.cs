@@ -174,13 +174,13 @@
             // btnSuaHDLD
             // 
             this.btnSuaHDLD.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaHDLD.Location = new System.Drawing.Point(424, 212);
+            this.btnSuaHDLD.Location = new System.Drawing.Point(412, 212);
             this.btnSuaHDLD.Name = "btnSuaHDLD";
-            this.btnSuaHDLD.Size = new System.Drawing.Size(155, 23);
+            this.btnSuaHDLD.Size = new System.Drawing.Size(167, 23);
             this.btnSuaHDLD.TabIndex = 121;
-            this.btnSuaHDLD.Text = "Sửa Hợp Đồng Lao Động";
+            this.btnSuaHDLD.Text = "Danh Sách Hợp Đồng Đã Ký";
             this.btnSuaHDLD.UseVisualStyleBackColor = true;
-            this.btnSuaHDLD.Click += new System.EventHandler(this.btnSuaHDLD_Click);
+            this.btnSuaHDLD.Click += new System.EventHandler(this.btnHopDongList_Click);
             // 
             // btnTrinhDoHocVan
             // 

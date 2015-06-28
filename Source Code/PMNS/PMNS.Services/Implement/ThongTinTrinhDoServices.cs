@@ -93,5 +93,17 @@
                 return false;
             }
         }
+
+        public void CommitThongTinTrinhDo()
+        {
+            try
+            {
+                unitOfWork.Commit();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw e;
+            }
+        }
     }
 }

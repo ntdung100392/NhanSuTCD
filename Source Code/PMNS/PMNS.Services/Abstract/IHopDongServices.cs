@@ -16,5 +16,6 @@
         HopDongLaoDong GetHopDongById(int id);
         bool AddHopDongLaoDong(HopDongLaoDong hopDong);
         bool UpdateHopDongLaoDong(HopDongLaoDong hopDong);
+        void CommitHopDongLaoDong();
     }
 }

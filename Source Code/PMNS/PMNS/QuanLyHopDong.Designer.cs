@@ -215,6 +215,7 @@
             // 
             // cbLoaiHopDong
             // 
+            this.cbLoaiHopDong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiHopDong.FormattingEnabled = true;
             this.cbLoaiHopDong.Location = new System.Drawing.Point(471, 15);
             this.cbLoaiHopDong.Name = "cbLoaiHopDong";

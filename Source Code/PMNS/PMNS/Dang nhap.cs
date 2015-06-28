@@ -16,6 +16,7 @@
     public partial class Dang_nhap : Form
     {
         #region Constructor Or Destructor
+
         protected readonly IBienCheServices bienCheServices;
         protected readonly ICapBacServices capBacServices;
         protected readonly IChucVuServices chucVuServices;
@@ -52,37 +53,38 @@
             this.trinhDoServices = trinhDoServices;
             InitializeComponent();
         }
+
         #endregion
 
         #region Method Event
 
         private void Dang_nhap_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = textBoxX1;
+            this.ActiveControl = txtUserName;
         }
         private void buttonX2_Click(object sender, EventArgs e)
         {
-            Dang_nhap.ActiveForm.Close();
+            this.Close();
         }
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxX1.Text.Trim()) || String.IsNullOrEmpty(textBoxX2.Text.Trim()))
+            if (String.IsNullOrEmpty(txtUserName.Text.Trim()) || String.IsNullOrEmpty(txtPassword.Text.Trim()))
             {
                 MessageBox.Show("Bạn chưa nhập đủ thông tin", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                string name = textBoxX1.Text.Trim();
-                string pass = textBoxX2.Text.Trim();
+                string name = txtUserName.Text.Trim();
+                string pass = txtPassword.Text.Trim();
                 string thongBao = nhanVienServices.GetEmployeeByNameAndPass(name, pass);
                 if (UserProfile.idNhanVien != 0)
                 {
-                    MessageBox.Show(thongBao, "Xin Chào", MessageBoxButtons.OK);
-                    Menu form = new Menu(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices, kyLuatServices,
+                    Menu menu = new Menu(bienCheServices, capBacServices, chucVuServices, hopDongServices, khenThuongServices, kyLuatServices,
                         loaiHopDongServices, nhanVienServices, phongBanServices, thanhPhoServices, thongTinGiaDinhServices, thongTinServices, thongTinTrinhDoServices,
                         trinhDoServices);
-                    form.Show();
+                    menu.Show();
+                    this.Hide();
                 }
                 else
                 {

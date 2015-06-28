@@ -202,20 +202,10 @@
             giaDinhForm.ShowDialog(this);
         }
 
-        private void btnSuaHDLD_Click(object sender, EventArgs e)
+        private void btnHopDongList_Click(object sender, EventArgs e)
         {
-            var hopDongDetails = hopDongServices.GetHopDongByEmpId(empDetails.idNhanVien)
-                .OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault();
-            if (hopDongDetails != null)
-            {
-                ChinhSuaHopDongLaoDong editorContractForm = new ChinhSuaHopDongLaoDong(hopDongServices, loaiHopDongServices,
-                nhanVienServices, hopDongDetails);
-                editorContractForm.ShowDialog(this);
-            }
-            else
-            {
-                MessageBox.Show("Không Tìm Thấy Thông Tin Hợp Đồng!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            QuanLyHopDong contractForm = new QuanLyHopDong(nhanVienServices, hopDongServices, loaiHopDongServices, empDetails);
+            contractForm.ShowDialog(this);
         }
 
         #endregion
@@ -228,6 +218,8 @@
             txtManv.ReadOnly = true;
             txtTennv.Text = empDetails.hoTen;
             txtTennv.ReadOnly = true;
+            txtUserName.Text = empDetails.userName;
+            txtUserName.ReadOnly = true;
             txtSdt.Text = empDetails.soDienThoaiDiDong;
             cbCapBac.SelectedValue = empDetails.idCapBac;
             cbBienChe.SelectedValue = empDetails.idBienChe;

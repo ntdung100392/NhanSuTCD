@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,26 +9,26 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
-
-    #endregion
 
     public partial class ThongTinCaNhan : Form
     {
         #region Properties
 
-        private ThongTinNhanVIen _empDetails;
+        private ThongTinNhanVIen empDetails;
 
         #endregion
 
         #region Constructor Or Destructor
 
-        protected readonly ILoaiHopDongServices _loaiHopDongServices;
+        protected readonly ILoaiHopDongServices loaiHopDongServices;
+
         public ThongTinCaNhan(ILoaiHopDongServices loaiHopDongServices, ThongTinNhanVIen empDetails)
         {
-            this._loaiHopDongServices = loaiHopDongServices;
-            this._empDetails = empDetails;
+            this.loaiHopDongServices = loaiHopDongServices;
+            this.empDetails = empDetails;
             InitializeComponent();
         }
 
@@ -45,36 +43,29 @@
 
         private void Main()
         {
-            //
-            InitEmpDetails(_empDetails);
+            InitEmpDetails(empDetails);
 
-            HopDongLaoDong hopDong = _empDetails.HopDongLaoDongs.ToList().OrderByDescending(x => x.ngayBatDau).FirstOrDefault();
-            InitHopDongLaoDong(hopDong);
+            InitThongTinGiaDinh(empDetails.ThongTinGiaDinhs.FirstOrDefault());
 
-            PMNS.Entities.Models.ThongTinTrinhDo thongTinTrinhDo = _empDetails.ThongTinTrinhDoes.ToList().OrderByDescending(x => x.thoiGianTotNghiep).FirstOrDefault();
-            InitThongTinHocVan(thongTinTrinhDo);
+            InitHopDongLaoDong(empDetails.HopDongLaoDongs.ToList().OrderByDescending(x => x.ngayBatDau).FirstOrDefault());
 
-            TD_DD_BN_TV tuyenDung = _empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
-                .Where(x => x.noiDung.Equals("Tuyển Dụng")).FirstOrDefault();
-            InitTuyenDung(tuyenDung);
+            InitThongTinHocVan(empDetails.ThongTinTrinhDoes.ToList().OrderByDescending(x => x.thoiGianTotNghiep).FirstOrDefault());
 
-            TD_DD_BN_TV boNhiem = _empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
-                .Where(x => x.noiDung.Equals("Bổ Nhiệm")).FirstOrDefault();
-            InitBoNhiem(boNhiem);
+            InitTuyenDung(empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
+                .Where(x => x.noiDung.Equals("Tuyển Dụng")).FirstOrDefault());
 
-            TD_DD_BN_TV thoiViec = _empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
-                .Where(x => x.noiDung.Equals("Thôi Việc")).FirstOrDefault();
-            InitThoiViec(thoiViec);
+            InitBoNhiem(empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
+                .Where(x => x.noiDung.Equals("Bổ Nhiệm")).FirstOrDefault());
 
-            TD_DD_BN_TV dieuDong = _empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
-                .Where(x => x.noiDung.Equals("Điều Động")).FirstOrDefault();
-            InitDieuDong(dieuDong);
+            InitThoiViec(empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
+                .Where(x => x.noiDung.Equals("Thôi Việc")).FirstOrDefault());
 
-            KyLuat kyLuat = _empDetails.KyLuats.ToList().OrderByDescending(x => x.ngayKyLuat).FirstOrDefault();
-            InitKyLuat(kyLuat);
+            InitDieuDong(empDetails.TD_DD_BN_TV.ToList().OrderByDescending(x => x.ngayKyQD)
+                .Where(x => x.noiDung.Equals("Điều Động")).FirstOrDefault());
 
-            KhenThuong khenThuong = _empDetails.KhenThuongs.ToList().OrderByDescending(x => x.namKhenThuong).FirstOrDefault();
-            InitKhenThuong(khenThuong);
+            InitKyLuat(empDetails.KyLuats.ToList().OrderByDescending(x => x.ngayKyLuat).FirstOrDefault());
+
+            InitKhenThuong(empDetails.KhenThuongs.ToList().OrderByDescending(x => x.namKhenThuong).FirstOrDefault());
         }
 
         #endregion
@@ -83,10 +74,10 @@
 
         private void InitEmpDetails(ThongTinNhanVIen emp)
         {
-            lblTenNV.Text = _empDetails.hoTen;
-            lblMaNV.Text = _empDetails.MaNV;
-            lblHonNhan.Text = _empDetails.tinhTrangHonNhan;
-            if (_empDetails.gioiTinh == 0)
+            lblTenNV.Text = empDetails.hoTen;
+            lblMaNV.Text = empDetails.MaNV;
+            lblHonNhan.Text = empDetails.tinhTrangHonNhan;
+            if (empDetails.gioiTinh == 0)
             {
                 lblGioiTinh.Text = "Nữ";
             }
@@ -187,7 +178,7 @@
                 lblNguoiBaoLanhHDLD.Text = hopDong.nguoiBaoLanh_TTHDLD;
                 if (hopDong.LoaiHopDong.idCha != 0)
                 {
-                    lblLoaiHD.Text = String.Join(" - ", _loaiHopDongServices.GetLoaiHopDongById(hopDong.LoaiHopDong.idCha).loaiHopDong1,
+                    lblLoaiHD.Text = String.Join(" - ", loaiHopDongServices.GetLoaiHopDongById(hopDong.LoaiHopDong.idCha).loaiHopDong1,
                         hopDong.LoaiHopDong.loaiHopDong1);
                 }
                 else

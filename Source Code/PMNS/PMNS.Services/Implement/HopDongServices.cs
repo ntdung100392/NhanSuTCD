@@ -67,5 +67,17 @@
             }
             return false;
         }
+
+        public void CommitHopDongLaoDong()
+        {
+            try
+            {
+                unitOfWork.Commit();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw e;
+            }
+        }
     }
 }
