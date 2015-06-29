@@ -35,10 +35,6 @@ namespace PMNS.Entities.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(100);
 
-            this.Property(t => t.namSinhVoChong)
-                .IsRequired()
-                .HasMaxLength(100);
-
             this.Property(t => t.thongTinConCai)
                 .IsRequired()
                 .HasMaxLength(100);

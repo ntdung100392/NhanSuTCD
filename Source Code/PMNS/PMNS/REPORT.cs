@@ -492,16 +492,9 @@
                 if (Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu) != 0)
                     empList = empList.Where(e => e.idChucVu == Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu)).ToList();
                 //Filter by LoaiHopDong
-                try
-                {
-                    if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
-                        empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
-                            .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
-                }
-                catch (Exception ex)
-                {
-                    return empList;
-                }
+                if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
+                    empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
+                        .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
                 //Filter by Living Place
                 if (Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho) != 0)
                     empList = empList.Where(e => e.idTP == Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho)).ToList();

@@ -42,13 +42,10 @@
             this.txtNgheNghiepCha = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtNamSinhVoChong = new System.Windows.Forms.TextBox();
-            this.txtNamSinhCha = new System.Windows.Forms.TextBox();
             this.txtHoTenMe = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtNamSinhMe = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -57,6 +54,12 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnFunction = new System.Windows.Forms.Button();
             this.txtConCai = new System.Windows.Forms.TextBox();
+            this.datetimeNgaySinhCha = new System.Windows.Forms.DateTimePicker();
+            this.txtNgaySinhCha = new System.Windows.Forms.MaskedTextBox();
+            this.dateTimeNgaySinhMe = new System.Windows.Forms.DateTimePicker();
+            this.txtNgaySinhMe = new System.Windows.Forms.MaskedTextBox();
+            this.datetimeNgaySinhCV = new System.Windows.Forms.DateTimePicker();
+            this.txtNgaySinhCV = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,20 +175,6 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Thông Tin Con Cái";
             // 
-            // txtNamSinhVoChong
-            // 
-            this.txtNamSinhVoChong.Location = new System.Drawing.Point(578, 225);
-            this.txtNamSinhVoChong.Name = "txtNamSinhVoChong";
-            this.txtNamSinhVoChong.Size = new System.Drawing.Size(166, 20);
-            this.txtNamSinhVoChong.TabIndex = 18;
-            // 
-            // txtNamSinhCha
-            // 
-            this.txtNamSinhCha.Location = new System.Drawing.Point(149, 225);
-            this.txtNamSinhCha.Name = "txtNamSinhCha";
-            this.txtNamSinhCha.Size = new System.Drawing.Size(166, 20);
-            this.txtNamSinhCha.TabIndex = 18;
-            // 
             // txtHoTenMe
             // 
             this.txtHoTenMe.Location = new System.Drawing.Point(149, 257);
@@ -219,13 +208,6 @@
             this.label15.Size = new System.Drawing.Size(88, 13);
             this.label15.TabIndex = 21;
             this.label15.Text = "Nghề Nghiệp Mẹ";
-            // 
-            // txtNamSinhMe
-            // 
-            this.txtNamSinhMe.Location = new System.Drawing.Point(149, 290);
-            this.txtNamSinhMe.Name = "txtNamSinhMe";
-            this.txtNamSinhMe.Size = new System.Drawing.Size(166, 20);
-            this.txtNamSinhMe.TabIndex = 22;
             // 
             // label12
             // 
@@ -263,20 +245,23 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.datetimeNgaySinhCV);
+            this.groupBox2.Controls.Add(this.txtNgaySinhCV);
+            this.groupBox2.Controls.Add(this.dateTimeNgaySinhMe);
+            this.groupBox2.Controls.Add(this.txtNgaySinhMe);
+            this.groupBox2.Controls.Add(this.datetimeNgaySinhCha);
+            this.groupBox2.Controls.Add(this.txtNgaySinhCha);
             this.groupBox2.Controls.Add(this.btnExit);
             this.groupBox2.Controls.Add(this.btnFunction);
             this.groupBox2.Controls.Add(this.txtNgheNghiepMe);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtNamSinhMe);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.txtHoTenMe);
             this.groupBox2.Controls.Add(this.txtConCai);
-            this.groupBox2.Controls.Add(this.txtNamSinhCha);
-            this.groupBox2.Controls.Add(this.txtNamSinhVoChong);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.txtNgheNghiepCha);
@@ -326,6 +311,57 @@
             this.txtConCai.Size = new System.Drawing.Size(166, 101);
             this.txtConCai.TabIndex = 19;
             // 
+            // datetimeNgaySinhCha
+            // 
+            this.datetimeNgaySinhCha.Location = new System.Drawing.Point(293, 225);
+            this.datetimeNgaySinhCha.Name = "datetimeNgaySinhCha";
+            this.datetimeNgaySinhCha.Size = new System.Drawing.Size(22, 20);
+            this.datetimeNgaySinhCha.TabIndex = 106;
+            this.datetimeNgaySinhCha.ValueChanged += new System.EventHandler(this.datetimeNgaySinhCha_ValueChanged);
+            // 
+            // txtNgaySinhCha
+            // 
+            this.txtNgaySinhCha.Location = new System.Drawing.Point(149, 224);
+            this.txtNgaySinhCha.Mask = "00/00/0000";
+            this.txtNgaySinhCha.Name = "txtNgaySinhCha";
+            this.txtNgaySinhCha.Size = new System.Drawing.Size(166, 20);
+            this.txtNgaySinhCha.TabIndex = 107;
+            this.txtNgaySinhCha.ValidatingType = typeof(System.DateTime);
+            // 
+            // dateTimeNgaySinhMe
+            // 
+            this.dateTimeNgaySinhMe.Location = new System.Drawing.Point(300, 294);
+            this.dateTimeNgaySinhMe.Name = "dateTimeNgaySinhMe";
+            this.dateTimeNgaySinhMe.Size = new System.Drawing.Size(15, 20);
+            this.dateTimeNgaySinhMe.TabIndex = 108;
+            this.dateTimeNgaySinhMe.ValueChanged += new System.EventHandler(this.dateTimeNgaySinhMe_ValueChanged);
+            // 
+            // txtNgaySinhMe
+            // 
+            this.txtNgaySinhMe.Location = new System.Drawing.Point(149, 294);
+            this.txtNgaySinhMe.Mask = "00/00/0000";
+            this.txtNgaySinhMe.Name = "txtNgaySinhMe";
+            this.txtNgaySinhMe.Size = new System.Drawing.Size(166, 20);
+            this.txtNgaySinhMe.TabIndex = 109;
+            this.txtNgaySinhMe.ValidatingType = typeof(System.DateTime);
+            // 
+            // datetimeNgaySinhCV
+            // 
+            this.datetimeNgaySinhCV.Location = new System.Drawing.Point(729, 226);
+            this.datetimeNgaySinhCV.Name = "datetimeNgaySinhCV";
+            this.datetimeNgaySinhCV.Size = new System.Drawing.Size(15, 20);
+            this.datetimeNgaySinhCV.TabIndex = 110;
+            this.datetimeNgaySinhCV.ValueChanged += new System.EventHandler(this.datetimeNgaySinhCV_ValueChanged);
+            // 
+            // txtNgaySinhCV
+            // 
+            this.txtNgaySinhCV.Location = new System.Drawing.Point(578, 225);
+            this.txtNgaySinhCV.Mask = "00/00/0000";
+            this.txtNgaySinhCV.Name = "txtNgaySinhCV";
+            this.txtNgaySinhCV.Size = new System.Drawing.Size(165, 20);
+            this.txtNgaySinhCV.TabIndex = 111;
+            this.txtNgaySinhCV.ValidatingType = typeof(System.DateTime);
+            // 
             // ThongTinGiaDinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,13 +393,10 @@
         private System.Windows.Forms.TextBox txtNgheNghiepCha;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtNamSinhVoChong;
-        private System.Windows.Forms.TextBox txtNamSinhCha;
         private System.Windows.Forms.TextBox txtHoTenMe;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtNamSinhMe;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -372,6 +405,12 @@
         private System.Windows.Forms.TextBox txtConCai;
         private System.Windows.Forms.Button btnFunction;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.DateTimePicker dateTimeNgaySinhMe;
+        private System.Windows.Forms.MaskedTextBox txtNgaySinhMe;
+        private System.Windows.Forms.DateTimePicker datetimeNgaySinhCha;
+        private System.Windows.Forms.MaskedTextBox txtNgaySinhCha;
+        private System.Windows.Forms.DateTimePicker datetimeNgaySinhCV;
+        private System.Windows.Forms.MaskedTextBox txtNgaySinhCV;
 
 
     }
