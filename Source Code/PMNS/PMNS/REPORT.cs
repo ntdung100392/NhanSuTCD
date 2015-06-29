@@ -299,8 +299,15 @@
 
         private void comboLoaiHD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(empReportList);
-            ReformatDataGridView(filterList);
+            if (empReportList.Any(emp => emp.HopDongLaoDongs.Count == 0))
+            {
+                MessageBox.Show("Thông Tin Hợp Đồng Chưa Đủ. Không Thể Lọc Dữ Liệu!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var filterList = SearchingFilterData(empReportList);
+                ReformatDataGridView(filterList);
+            }
         }
 
         private void comboNoiO_SelectedIndexChanged(object sender, EventArgs e)
@@ -311,8 +318,15 @@
 
         private void comboTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(empReportList);
-            ReformatDataGridView(filterList);
+            if (empReportList.Any(emp => emp.ThongTinTrinhDoes.Count == 0))
+            {
+                MessageBox.Show("Thông Tin Trình Độ Chưa Đủ. Không Thể Lọc Dữ Liệu!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var filterList = SearchingFilterData(empReportList);
+                ReformatDataGridView(filterList);
+            }
         }
 
         private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
@@ -492,9 +506,16 @@
                 if (Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu) != 0)
                     empList = empList.Where(e => e.idChucVu == Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu)).ToList();
                 //Filter by LoaiHopDong
-                if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
-                    empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
-                        .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
+                if (empList.Any(e => e.HopDongLaoDongs.Count == 0))
+                {
+                    MessageBox.Show("Thông Tin Hợp Đồng Chưa Đủ. Không Thể Lọc Dữ Liệu!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
+                        empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
+                            .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
+                }                
                 //Filter by Living Place
                 if (Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho) != 0)
                     empList = empList.Where(e => e.idTP == Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho)).ToList();

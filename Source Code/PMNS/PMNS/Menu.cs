@@ -329,6 +329,8 @@
 
         #endregion
 
+        #region TrinhDo Management
+
         private void thêmThôngTinTrìnhĐộToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ThongTinTrinhDo trinhDoForm = new ThongTinTrinhDo(nhanVienServices, thongTinTrinhDoServices, trinhDoServices);
@@ -340,5 +342,7 @@
             QuanLyLoaiTrinhDo loaiTrinhDoForm = new QuanLyLoaiTrinhDo(trinhDoServices);
             loaiTrinhDoForm.ShowDialog(this);
         }
+
+        #endregion
     }
 }

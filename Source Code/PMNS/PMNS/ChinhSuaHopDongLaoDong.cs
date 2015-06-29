@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -15,8 +13,6 @@
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
     using PMNS.Services.Models;
-
-    #endregion
 
     #region Delegate
 
