@@ -85,6 +85,7 @@
             InitChucVu();
             InitLoaiHopDong();
             InitThanhPho();
+            InitTrinhDo();
             InitNhanVien();
             InitReportNumberOfEmp();
         }
@@ -491,9 +492,16 @@
                 if (Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu) != 0)
                     empList = empList.Where(e => e.idChucVu == Convert.ToInt32((comboChucVu.SelectedItem as ChucVu).idChucVu)).ToList();
                 //Filter by LoaiHopDong
-                if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
-                    empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
-                        .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
+                try
+                {
+                    if (Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong) != 0)
+                        empList = empList.Where(e => e.HopDongLaoDongs.OrderByDescending(hd => hd.ngayBatDau).FirstOrDefault()
+                            .idLoaiHopDong == Convert.ToInt32((comboLoaiHD.SelectedItem as LoaiHopDong).idLoaiHopDong)).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return empList;
+                }
                 //Filter by Living Place
                 if (Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho) != 0)
                     empList = empList.Where(e => e.idTP == Convert.ToInt32((comboNoiO.SelectedItem as ThanhPho).idThanhPho)).ToList();
@@ -502,7 +510,7 @@
                     empList = empList.Where(e => e.ngayVaoCang.Value.Year == Convert.ToInt32(txtNamVaoCang.Text.Trim())).ToList();
                 //Filter by TrinhDo
                 if (Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo) != 0)
-                    empList = empList.Where(e => e.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo == 
+                    empList = empList.Where(e => e.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo ==
                         Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo)).ToList();
             }
             return empList;
