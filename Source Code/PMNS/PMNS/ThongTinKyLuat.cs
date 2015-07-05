@@ -1,7 +1,5 @@
 ﻿namespace PMNS
 {
-    #region References
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,10 +9,9 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+
     using PMNS.Entities.Models;
     using PMNS.Services.Abstract;
-
-    #endregion
 
     public partial class ThongTinKyLuat : Form
     {
@@ -179,6 +176,7 @@
             dataGridKyLuat.DataSource = _kyLuatServices.GetAllKyLuat().OrderByDescending(x => x.ngayKyLuat).ToList().Select(x =>
                 new
                 {
+                    ID = x.idKyLuat,
                     TenNhanVien = x.ThongTinNhanVIen.hoTen,
                     MaNV = x.ThongTinNhanVIen.MaNV,
                     SoQuyetDinh = x.soQuyetDinhKyLuat,
@@ -187,6 +185,8 @@
                     LoaiKyLuat = x.loaiKyLuat,
                     NgayKyLuat = x.ngayKyLuat.ToString("dd/MM/yyyy")
                 }).ToList();
+            dataGridKyLuat.Columns[0].Visible = false;
+            dataGridKyLuat.CurrentCell = null;
         }
 
         private void InitAutoComplete(string maNV)

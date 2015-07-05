@@ -34,14 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.2.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.2.0.5, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar.Schedule, Version=12.2.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=12.2.0.5, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=12.2.0.4, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.2.0.5, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -347,6 +350,9 @@
     <None Include="Resources\logo - Copy.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="References\DevComponents.DotNetBar.Keyboard.dll" />
+    <Content Include="References\DevComponents.DotNetBar.Schedule.dll" />
+    <Content Include="References\DevComponents.DotNetBar2.dll" />
     <Content Include="References\EPPlus.dll" />
     <None Include="Resources\logo - Copy %282%29.png" />
   </ItemGroup>

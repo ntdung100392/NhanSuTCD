@@ -25,6 +25,12 @@ namespace PMNS.Entities.Models.Mapping
             this.Property(t => t.maPhongDoiToLoai).HasColumnName("maPhongDoiToLoai");
             this.Property(t => t.tenPhongDoiToLoai).HasColumnName("tenPhongDoiToLoai");
             this.Property(t => t.idCha).HasColumnName("idCha");
+
+            // Relationships
+            this.HasRequired(t => t.PhongDoiToLoaiTo2)
+                .WithMany(t => t.PhongDoiToLoaiTo1)
+                .HasForeignKey(d => d.idCha);
+
         }
     }
 }

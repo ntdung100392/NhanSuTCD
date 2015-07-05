@@ -85,6 +85,7 @@
             InitChucVu();
             InitLoaiHopDong();
             InitThanhPho();
+            InitTrinhDo();
             InitNhanVien();
             InitReportNumberOfEmp();
         }
@@ -298,8 +299,15 @@
 
         private void comboLoaiHD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(empReportList);
-            ReformatDataGridView(filterList);
+            if (empReportList.Any(emp => emp.HopDongLaoDongs.Count == 0))
+            {
+                MessageBox.Show("Thông Tin Hợp Đồng Chưa Đủ. Không Thể Lọc Dữ Liệu!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var filterList = SearchingFilterData(empReportList);
+                ReformatDataGridView(filterList);
+            }
         }
 
         private void comboNoiO_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,8 +318,15 @@
 
         private void comboTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var filterList = SearchingFilterData(empReportList);
-            ReformatDataGridView(filterList);
+            if (empReportList.Any(emp => emp.ThongTinTrinhDoes.Count == 0))
+            {
+                MessageBox.Show("Thông Tin Trình Độ Chưa Đủ. Không Thể Lọc Dữ Liệu!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var filterList = SearchingFilterData(empReportList);
+                ReformatDataGridView(filterList);
+            }
         }
 
         private void txtNamVaoCang_TextChanged(object sender, EventArgs e)
@@ -482,8 +497,24 @@
                     empList = empList.Where(e => e.idBienChe == Convert.ToInt32((comboBienChe.SelectedItem as BienChe).idBienChe)).ToList();
                 //Filter by PhongBan
                 if (Convert.ToInt32((comboPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai) != 0)
-                    empList = empList.Where(e => e.idPhongDoiToLoai == Convert.ToInt32((comboPhongBan.SelectedItem as PhongDoiToLoaiTo)
-                        .idPhongDoiToLoai)).ToList();
+                {
+                    var list = new List<int>();
+                    if ((comboPhongBan.SelectedItem as PhongDoiToLoaiTo).PhongDoiToLoaiTo1.Count != 0)
+                    {
+                        var tempList = new List<ThongTinNhanVIen>();
+                        list.Add((comboPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai);
+                        list.AddRange(MethodForEach((comboPhongBan.SelectedItem as PhongDoiToLoaiTo).PhongDoiToLoaiTo1.ToList()));
+                        foreach (var id in list)
+                        {
+                            tempList.AddRange(nhanVienServices.GetAllNhanVienByIdPhongBan(id));
+                        }
+                        empList = empList.Intersect(tempList).ToList();
+                    }
+                    else
+                    {
+                        empList = empList.Where(e => e.idPhongDoiToLoai == (comboPhongBan.SelectedItem as PhongDoiToLoaiTo).idPhongDoiToLoai).ToList();
+                    }
+                }
                 //Filter by CapBac
                 if (Convert.ToInt32((comboCapBac.SelectedItem as CapBac).idCapBac) != 0)
                     empList = empList.Where(e => e.idCapBac == Convert.ToInt32((comboCapBac.SelectedItem as CapBac).idCapBac)).ToList();
@@ -502,10 +533,27 @@
                     empList = empList.Where(e => e.ngayVaoCang.Value.Year == Convert.ToInt32(txtNamVaoCang.Text.Trim())).ToList();
                 //Filter by TrinhDo
                 if (Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo) != 0)
-                    empList = empList.Where(e => e.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo == 
+                    empList = empList.Where(e => e.ThongTinTrinhDoes.FirstOrDefault().idTrinhDo ==
                         Convert.ToInt32((comboTrinhDo.SelectedItem as TrinhDo).idTrinhDo)).ToList();
             }
             return empList;
+        }
+
+        private List<int> MethodForEach(List<PhongDoiToLoaiTo> listData)
+        {
+            List<int> listPhongBan = new List<int>();
+            foreach (var data in listData)
+            {
+                if (data.PhongDoiToLoaiTo1.Count != 0)
+                {
+                    listPhongBan.AddRange(MethodForEach(data.PhongDoiToLoaiTo1.ToList()));
+                }
+                else
+                {
+                    listPhongBan.Add(data.idPhongDoiToLoai);
+                }
+            }
+            return listPhongBan;
         }
 
         private void ExportToExcel(DataTable dataList)

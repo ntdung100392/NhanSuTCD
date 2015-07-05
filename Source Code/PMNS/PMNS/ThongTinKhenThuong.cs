@@ -192,6 +192,7 @@
             dataGridKhenThuong.DataSource = _khenThuongServices.GetAllKhenThuong().OrderByDescending(x => x.namKhenThuong).ToList().Select(
                 x => new
                 {
+                    ID=x.idKhenThuong,
                     MaNV = x.ThongTinNhanVIen.MaNV,
                     TenNhanVien = x.ThongTinNhanVIen.hoTen,
                     LoaiKhenThuong = x.loaiKhenThuong,
@@ -201,6 +202,8 @@
                     ThanhTich = x.thanhTichKhenThuong,
                     GhiChu = x.ghiChu
                 }).ToList();
+            dataGridKhenThuong.Columns[0].Visible = false;
+            dataGridKhenThuong.CurrentCell = null;
         }
 
         private void InitAutoComplete(string maNV)
